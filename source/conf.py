@@ -28,9 +28,9 @@ author = 'vencol'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'breathe',
-    'exhale',
-    'sphinx_rtd_theme'
+    # 'breathe',
+    # 'exhale',
+    # 'sphinx_rtd_theme'
 ]
 
 # Setup the breathe extension
