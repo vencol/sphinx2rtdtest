@@ -1,0 +1,629 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="athttp_8h" kind="file" language="C++">
+    <compoundname>athttp.h</compoundname>
+    <includedby refid="atcmd_8c" local="yes">main/atprocess/atcmd.c</includedby>
+    <includedby refid="athttp_8c" local="yes">main/atprocess/athttp.c</includedby>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="athttp_8h_1a753b26eef8251f4d4256c9bf53b2a3c7" prot="public" static="no">
+        <name>AT_CMD_JSON_STATUS</name>
+        <initializer>&quot;status&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="7" column="9" bodyfile="main/atprocess/athttp.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a2989ebaead73ba7b4d002f4ac4f83cf1" prot="public" static="no">
+        <name>AT_CMD_JSON_DATA</name>
+        <initializer>&quot;data&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="8" column="9" bodyfile="main/atprocess/athttp.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a2eec7fd8dd35bd2a0652c0e991b73820" prot="public" static="no">
+        <name>AT_CMD_JSON_DOMAIN</name>
+        <initializer>&quot;domain&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="9" column="9" bodyfile="main/atprocess/athttp.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1aa0c47835193d9637568633a5614796a5" prot="public" static="no">
+        <name>AT_CMD_JSON_PRODUCTKEY</name>
+        <initializer>&quot;productKey&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="10" column="9" bodyfile="main/atprocess/athttp.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a69faf61c64074e418c69bd026e350efd" prot="public" static="no">
+        <name>AT_CMD_JSON_DEVICESECRET</name>
+        <initializer>&quot;deviceSecret&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="11" column="9" bodyfile="main/atprocess/athttp.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a01c185f0075b008c253b4bbe95ac7cd9" prot="public" static="no">
+        <name>AT_CMD_ATHTTPINIT_SEND</name>
+        <initializer>&quot;AT+HTTPINIT\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="14" column="9" bodyfile="main/atprocess/athttp.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a223d1d6b6aeea5accceb8ff95ddf07f0" prot="public" static="no">
+        <name>AT_CMD_ATHTTPINIT_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="15" column="9" bodyfile="main/atprocess/athttp.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a043ac80abaf70597df3c75d309c158ee" prot="public" static="no">
+        <name>AT_CMD_ATHTTPINIT_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="16" column="9" bodyfile="main/atprocess/athttp.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1aa6d72555be7bf9be9c85eb6ccbc05c5e" prot="public" static="no">
+        <name>AT_CMD_ATHTTPINIT_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="17" column="9" bodyfile="main/atprocess/athttp.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a7b4bf15cc3a0668e32495e302654363e" prot="public" static="no">
+        <name>AT_CMD_ATHTTPPARA_SEND</name>
+        <initializer>&quot;AT+HTTPPARA=\&quot;URL\&quot;,\&quot;http://iot.mengniu.com.cn/iot/device/registration?imei=%lld&amp;customerId=%s\&quot;\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="19" column="9" bodyfile="main/atprocess/athttp.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a3684dcaec66747367ef3b7b7f63065ea" prot="public" static="no">
+        <name>AT_CMD_ATHTTPPARA_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="20" column="9" bodyfile="main/atprocess/athttp.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1af0f14b48b0db69bd0fcb5a89eef5afd0" prot="public" static="no">
+        <name>AT_CMD_ATHTTPPARA_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="21" column="9" bodyfile="main/atprocess/athttp.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1ad7d55e3f8f4881642561dad8560441cc" prot="public" static="no">
+        <name>AT_CMD_ATHTTPPARA_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="22" column="9" bodyfile="main/atprocess/athttp.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a5e869a94e3271dbdaf5bc59dea6f25e1" prot="public" static="no">
+        <name>AT_CMD_ATREADMODE_SEND</name>
+        <initializer>&quot;AT+HTTPPARA=\&quot;READMODE\&quot;,1\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="24" column="9" bodyfile="main/atprocess/athttp.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1afd1338abdbdc5862f902b9ee408820f2" prot="public" static="no">
+        <name>AT_CMD_ATREADMODE_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="25" column="9" bodyfile="main/atprocess/athttp.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a9b52df7d821bc7df64c6a329e2b1b744" prot="public" static="no">
+        <name>AT_CMD_ATREADMODE_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="26" column="9" bodyfile="main/atprocess/athttp.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a74b11554a9f0c506d27ebf0e934d1a2c" prot="public" static="no">
+        <name>AT_CMD_ATREADMODE_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="27" column="9" bodyfile="main/atprocess/athttp.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a6af98bf2c8fb56377f5466b731aa9ffd" prot="public" static="no">
+        <name>AT_CMD_ATHTTPACTION_SEND</name>
+        <initializer>&quot;AT+HTTPACTION=0\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="29" column="9" bodyfile="main/atprocess/athttp.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a4959941ae00c78027eca0a309deac024" prot="public" static="no">
+        <name>AT_CMD_ATHTTPACTION_RESPOND</name>
+        <initializer>&quot;+HTTPACTION: &quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="30" column="9" bodyfile="main/atprocess/athttp.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1ae3b4097bbca5205bb8d22ee90efe62db" prot="public" static="no">
+        <name>AT_CMD_ATHTTPACTION_TIMEOUT</name>
+        <initializer>(ATCMD_1S_TIMEOUT * 30)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="31" column="9" bodyfile="main/atprocess/athttp.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a96aa9a1d4f7929673fec09964b2e56aa" prot="public" static="no">
+        <name>AT_CMD_ATHTTPACTION_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="32" column="9" bodyfile="main/atprocess/athttp.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a62bfddce9090502317fe32919f61653a" prot="public" static="no">
+        <name>AT_CMD_ATHTTPACTION_RESPOND_SPLEN</name>
+        <initializer>11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="33" column="9" bodyfile="main/atprocess/athttp.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1aa9c4f5b73200a6fde42d7e54adc48268" prot="public" static="no">
+        <name>AT_CMD_ATHTTPHEAD_SEND</name>
+        <initializer>&quot;AT+HTTPHEAD\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="35" column="9" bodyfile="main/atprocess/athttp.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a6496e6e27c4996e3778bc3e0d0cab18c" prot="public" static="no">
+        <name>AT_CMD_ATHTTPHEAD_RESPOND</name>
+        <initializer>&quot;+HTTPHEAD: &quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="36" column="9" bodyfile="main/atprocess/athttp.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1addd1193801fb2303b2cea42261a6d3ca" prot="public" static="no">
+        <name>AT_CMD_ATHTTPHEAD_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="37" column="9" bodyfile="main/atprocess/athttp.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a6d9aa15df49278934fd14a1ac80f7c9f" prot="public" static="no">
+        <name>AT_CMD_ATHTTPHEAD_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="38" column="9" bodyfile="main/atprocess/athttp.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a294eb7d3fee7281f35f44aee28d73c7a" prot="public" static="no">
+        <name>AT_CMD_ATHTTPREAD_SEND</name>
+        <initializer>&quot;AT+HTTPREAD=%d,%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="40" column="9" bodyfile="main/atprocess/athttp.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a5d5b2b064ce62f187f9c216af33e9339" prot="public" static="no">
+        <name>AT_CMD_ATHTTPREAD_RESPOND</name>
+        <initializer>&quot;+HTTPREAD:&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="41" column="9" bodyfile="main/atprocess/athttp.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a31fb757bd345aca21e09236b78046c71" prot="public" static="no">
+        <name>AT_CMD_ATHTTPREAD_TIMEOUT</name>
+        <initializer>ATCMD_1S_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="42" column="9" bodyfile="main/atprocess/athttp.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1ad1f0c016c88a049656c8e63c314da99f" prot="public" static="no">
+        <name>AT_CMD_ATHTTPREAD_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="43" column="9" bodyfile="main/atprocess/athttp.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1ae9c9513990e746b864b249f31528e7a2" prot="public" static="no">
+        <name>AT_CMD_ATHTTPREAD_SEND_MAXLEN</name>
+        <initializer>(28)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="44" column="9" bodyfile="main/atprocess/athttp.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a37f7521bc7dc03f05d873f9e279f1490" prot="public" static="no">
+        <name>AT_CMD_ATHTTPREAD_RESPOND_SPLEN</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="45" column="9" bodyfile="main/atprocess/athttp.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a7eb54b88337d29a53d49e31aa3722a29" prot="public" static="no">
+        <name>AT_CMD_ATHTTPTERM_SEND</name>
+        <initializer>&quot;AT+HTTPTERM\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="47" column="9" bodyfile="main/atprocess/athttp.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a5280bcb8e534459bf7cbe180d220158d" prot="public" static="no">
+        <name>AT_CMD_ATHTTPTERM_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="48" column="9" bodyfile="main/atprocess/athttp.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1abea1e2024082c8ce3a9b7e6320333c83" prot="public" static="no">
+        <name>AT_CMD_ATHTTPTERM_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="49" column="9" bodyfile="main/atprocess/athttp.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1ab7c953e02bd687a546d6dc78f2bbc416" prot="public" static="no">
+        <name>AT_CMD_ATHTTPTERM_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="50" column="9" bodyfile="main/atprocess/athttp.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a5eabda18b652ae5f49c3928972e4b9ff" prot="public" static="no">
+        <name>AT_CMD_ATOTAPARA_SEND</name>
+        <initializer>&quot;AT+HTTPPARA=\&quot;URL\&quot;,\&quot;http://%s\&quot;\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="54" column="9" bodyfile="main/atprocess/athttp.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1acde3dd6962f2ed8a3924ad73aedb30af" prot="public" static="no">
+        <name>AT_CMD_ATOTAPARA_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="55" column="9" bodyfile="main/atprocess/athttp.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a8efe32e98b912dbcd34ca55f8f54f960" prot="public" static="no">
+        <name>AT_CMD_ATOTAPARA_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="56" column="9" bodyfile="main/atprocess/athttp.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a1770674e0825024c73e11849ada097c7" prot="public" static="no">
+        <name>AT_CMD_ATOTAPARA_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="57" column="9" bodyfile="main/atprocess/athttp.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a612cab4cd4fa846ec70ad336ec8f7560" prot="public" static="no">
+        <name>AT_CMD_ATOTAREAD_SEND</name>
+        <initializer>&quot;AT+HTTPREAD=%d,%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="59" column="9" bodyfile="main/atprocess/athttp.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a148d0883cf15116f001985b8a1f7fbd6" prot="public" static="no">
+        <name>AT_CMD_ATOTAREAD_RESPOND</name>
+        <initializer>&quot;+HTTPREAD:&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="60" column="9" bodyfile="main/atprocess/athttp.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a6fe7f55bf607ebe47ba2ee22c9a1f18f" prot="public" static="no">
+        <name>AT_CMD_ATOTAREAD_TIMEOUT</name>
+        <initializer>10*ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="61" column="9" bodyfile="main/atprocess/athttp.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a4b1471717ab3ef460c7f610066d92e63" prot="public" static="no">
+        <name>AT_CMD_ATOTAREAD_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="62" column="9" bodyfile="main/atprocess/athttp.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a22d3b06ad2ef5f19ebf7e0bafa6e1eaa" prot="public" static="no">
+        <name>AT_CMD_ATOTAREAD_SEND_MAXLEN</name>
+        <initializer>(28)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="63" column="9" bodyfile="main/atprocess/athttp.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="athttp_8h_1a71ac8b400e073badc7b2c847f316ca13" prot="public" static="no">
+        <name>AT_CMD_ATOTAREAD_RESPOND_SPLEN</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="64" column="9" bodyfile="main/atprocess/athttp.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="athttp_8h_1a2e21ada04776231bb165f45ae3e16e79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void atCmdStartGetIotInfo</definition>
+        <argsstring>(void)</argsstring>
+        <name>atCmdStartGetIotInfo</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="4" column="6" bodyfile="main/atprocess/athttp.c" bodystart="438" bodyend="443" declfile="main/atprocess/athttp.h" declline="4" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="athttp_8h_1ae281489e0272092c53a6ce1e1ec2b00b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void atPraseHttpCmd</definition>
+        <argsstring>(char *recbuf, int len)</argsstring>
+        <name>atPraseHttpCmd</name>
+        <param>
+          <type>char *</type>
+          <declname>recbuf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/athttp.h" line="5" column="6" bodyfile="main/atprocess/athttp.c" bodystart="450" bodyend="459" declfile="main/atprocess/athttp.h" declline="5" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__AT_4GHTTPCMD__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__AT_4GHTTPCMD__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>atCmdStartGetIotInfo(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>atPraseHttpCmd(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>recbuf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_JSON_STATUS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;status&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_JSON_DATA<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;data&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_JSON_DOMAIN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;domain&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_JSON_PRODUCTKEY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;productKey&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_JSON_DEVICESECRET<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;deviceSecret&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//AT+HTTPINIT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPINIT_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+HTTPINIT\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPINIT_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPINIT_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPINIT_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//AT+HTTPPARA</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPPARA_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+HTTPPARA=\&quot;URL\&quot;,\&quot;http://iot.mengniu.com.cn/iot/device/registration?imei=%lld&amp;customerId=%s\&quot;\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPPARA_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPPARA_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPPARA_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//AT+READMODE<sp/>readmode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATREADMODE_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+HTTPPARA=\&quot;READMODE\&quot;,1\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATREADMODE_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATREADMODE_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATREADMODE_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//AT+HTTPACTION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPACTION_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+HTTPACTION=0\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPACTION_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;+HTTPACTION:<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPACTION_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_1S_TIMEOUT<sp/>*<sp/>30)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPACTION_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPACTION_RESPOND_SPLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//AT+HTTPHEAD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPHEAD_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+HTTPHEAD\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPHEAD_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;+HTTPHEAD:<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPHEAD_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPHEAD_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">//AT+HTTPREAD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPREAD_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+HTTPREAD=%d,%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPREAD_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;+HTTPREAD:&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPREAD_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_1S_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPREAD_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPREAD_SEND_MAXLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(28)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPREAD_RESPOND_SPLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">//AT+HTTPTERM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPTERM_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+HTTPTERM\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPTERM_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPTERM_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATHTTPTERM_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">//AT+OTAPARA</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATOTAPARA_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+HTTPPARA=\&quot;URL\&quot;,\&quot;http://%s\&quot;\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATOTAPARA_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATOTAPARA_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATOTAPARA_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//AT+OTAREAD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATOTAREAD_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+HTTPREAD=%d,%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATOTAREAD_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;+HTTPREAD:&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATOTAREAD_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10*ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATOTAREAD_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATOTAREAD_SEND_MAXLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(28)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATOTAREAD_RESPOND_SPLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="main/atprocess/athttp.h"/>
+  </compounddef>
+</doxygen>

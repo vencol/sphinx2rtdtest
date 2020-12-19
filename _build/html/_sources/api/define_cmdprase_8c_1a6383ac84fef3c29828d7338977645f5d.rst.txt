@@ -1,0 +1,13 @@
+.. _exhale_define_cmdprase_8c_1a6383ac84fef3c29828d7338977645f5d:
+
+Define CMD_PREFIX_20GW
+======================
+
+- Defined in :ref:`file_main_iot_cmdprase.c`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: CMD_PREFIX_20GW

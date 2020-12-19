@@ -1,0 +1,13 @@
+.. _exhale_define_drv__1650_8c_1a8ad7ceb373ce664b1c2482a66537e7c0:
+
+Define ACK_CHECK_DIS
+====================
+
+- Defined in :ref:`file_main_freezerdrv_drv_1650.c`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: ACK_CHECK_DIS

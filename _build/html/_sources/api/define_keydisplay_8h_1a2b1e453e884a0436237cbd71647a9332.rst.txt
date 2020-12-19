@@ -1,0 +1,13 @@
+.. _exhale_define_keydisplay_8h_1a2b1e453e884a0436237cbd71647a9332:
+
+Define DISPLAY_CHAR_r
+=====================
+
+- Defined in :ref:`file_main_iot_keydisplay.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: DISPLAY_CHAR_r

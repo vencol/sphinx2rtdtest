@@ -1,0 +1,13 @@
+.. _exhale_define_drv__display_8h_1a12732f38767839af8c026db307202939:
+
+Define DISPLAY_DATA_RECEIVE_TIMEOUT
+===================================
+
+- Defined in :ref:`file_main_freezerdrv_drv_display.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: DISPLAY_DATA_RECEIVE_TIMEOUT

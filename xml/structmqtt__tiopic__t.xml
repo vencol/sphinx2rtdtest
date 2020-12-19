@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structmqtt__tiopic__t" kind="struct" language="C++" prot="public">
+    <compoundname>mqtt_tiopic_t</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmqtt__tiopic__t_1a6ccf227a5dab6595a18eeb4f89e9fd87" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* mqtt_tiopic_t::prefix</definition>
+        <argsstring></argsstring>
+        <name>prefix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/mqtttopic.c" line="32" column="19" bodyfile="main/iot/mqtttopic.c" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmqtt__tiopic__t_1abf37598093db013d68fd005826df289c" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* mqtt_tiopic_t::suffix</definition>
+        <argsstring></argsstring>
+        <name>suffix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/mqtttopic.c" line="33" column="19" bodyfile="main/iot/mqtttopic.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmqtt__tiopic__t_1a6f97f11f19c46e035db0c7f53c343e5e" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* mqtt_tiopic_t::flexfix</definition>
+        <argsstring></argsstring>
+        <name>flexfix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/mqtttopic.c" line="34" column="19" bodyfile="main/iot/mqtttopic.c" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="main/iot/mqtttopic.c" line="31" column="1" bodyfile="main/iot/mqtttopic.c" bodystart="31" bodyend="35"/>
+    <listofallmembers>
+      <member refid="structmqtt__tiopic__t_1a6f97f11f19c46e035db0c7f53c343e5e" prot="public" virt="non-virtual"><scope>mqtt_tiopic_t</scope><name>flexfix</name></member>
+      <member refid="structmqtt__tiopic__t_1a6ccf227a5dab6595a18eeb4f89e9fd87" prot="public" virt="non-virtual"><scope>mqtt_tiopic_t</scope><name>prefix</name></member>
+      <member refid="structmqtt__tiopic__t_1abf37598093db013d68fd005826df289c" prot="public" virt="non-virtual"><scope>mqtt_tiopic_t</scope><name>suffix</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

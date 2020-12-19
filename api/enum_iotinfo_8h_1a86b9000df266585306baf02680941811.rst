@@ -1,0 +1,13 @@
+.. _exhale_enum_iotinfo_8h_1a86b9000df266585306baf02680941811:
+
+Enum iot_error_opt_t
+====================
+
+- Defined in :ref:`file_main_iot_iotinfo.h`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: iot_error_opt_t

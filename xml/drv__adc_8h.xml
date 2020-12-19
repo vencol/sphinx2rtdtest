@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="drv__adc_8h" kind="file" language="C++">
+    <compoundname>drv_adc.h</compoundname>
+    <includedby refid="drv__adc_8c" local="yes">main/freezerdrv/drv_adc.c</includedby>
+    <includedby refid="controlpro_8c" local="yes">main/iot/controlpro.c</includedby>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="drv__adc_8h_1a45bec0368751da53732cc6f0f2c7ceaa" prot="public" static="no">
+        <name>NTC1_ADC_STRUCT</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="8" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1a0c20a52d9383e91c1237c9a3a9e4e9d4" prot="public" static="no">
+        <name>NTC2_ADC_STRUCT</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="9" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1a1b04ca3dd3218347b3ebe5f55fee1ed1" prot="public" static="no">
+        <name>MAX_ADC_CHANNEL</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="10" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1a2e19b650a911fc78299b218bdde79aaa" prot="public" static="no">
+        <name>NTC1_ADC_CHANNEL</name>
+        <initializer>ADC1_CHANNEL_6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="11" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1a54ffcfe8972f5a0af45e0db21206d311" prot="public" static="no">
+        <name>NTC2_ADC_CHANNEL</name>
+        <initializer>ADC1_CHANNEL_7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="12" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1a7b86398275ad4bb2fd8eb1f057d60bfd" prot="public" static="no">
+        <name>NTC1_ADC_DEFAULT_COUNTER</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="13" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1a30b7532be31fc74e96b4a7d43aed5057" prot="public" static="no">
+        <name>NTC2_ADC_DEFAULT_COUNTER</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="14" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1a1c2fe6946cc7808b0d0c014133e30a27" prot="public" static="no">
+        <name>NTC_CONVER_STOP</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="17" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1aa7dbf5fa961c744e0a83a232f6a43b3d" prot="public" static="no">
+        <name>NTC_CONVER_START</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="18" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1a61fadb0de79f0bc765d30617a0140c24" prot="public" static="no">
+        <name>NTC_CONVER_GET</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="19" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1af62e464a9872e6c2e92f36f31f12ad35" prot="public" static="no">
+        <name>NTC_ERROR</name>
+        <initializer>(-10000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="20" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1aff1507ab99d23e96fc76fa15fce883ab" prot="public" static="no">
+        <name>NTC_RANGE_ERROR</name>
+        <initializer>(-10001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="21" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1a5edf9fd456a35142ba27b3f529de023a" prot="public" static="no">
+        <name>NTC_TABLE_LEN</name>
+        <initializer>116</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="22" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__adc_8h_1a2ea3b80ff0276a453aab0bad562502a3" prot="public" static="no">
+        <name>NTC_CONVER_OFFSET</name>
+        <initializer>(-40)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="23" column="9" bodyfile="main/freezerdrv/drv_adc.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="drv__adc_8h_1a051450b6141e843ce4664775d800f5d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void drvAdcInit</definition>
+        <argsstring>(void)</argsstring>
+        <name>drvAdcInit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="4" column="6" bodyfile="main/freezerdrv/drv_adc.c" bodystart="194" bodyend="216" declfile="main/freezerdrv/drv_adc.h" declline="4" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__adc_8h_1aba22e16be72d32dd00830966d741b254" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void updateAdcValue</definition>
+        <argsstring>(void)</argsstring>
+        <name>updateAdcValue</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="5" column="6" bodyfile="main/freezerdrv/drv_adc.c" bodystart="148" bodyend="193" declfile="main/freezerdrv/drv_adc.h" declline="5" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__adc_8h_1afa8c66b2e872bb684276de2832ba0b7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int setAdcOperation</definition>
+        <argsstring>(unsigned char channel, char type)</argsstring>
+        <name>setAdcOperation</name>
+        <param>
+          <type>unsigned char</type>
+          <declname>channel</declname>
+        </param>
+        <param>
+          <type>char</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_adc.h" line="6" column="5" bodyfile="main/freezerdrv/drv_adc.c" bodystart="113" bodyend="147" declfile="main/freezerdrv/drv_adc.h" declline="6" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__DRV_ADC__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__DRV_ADC__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>drvAdcInit(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateAdcValue(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight><highlight class="comment">//10ms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>setAdcOperation(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>channel,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC1_ADC_STRUCT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC2_ADC_STRUCT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_ADC_CHANNEL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC1_ADC_CHANNEL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ADC1_CHANNEL_6//ADC1_GPIO34_CHANNEL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC2_ADC_CHANNEL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ADC1_CHANNEL_7//ADC1_GPIO35_CHANNEL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC1_ADC_DEFAULT_COUNTER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC2_ADC_DEFAULT_COUNTER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC_CONVER_STOP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC_CONVER_START<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC_CONVER_GET<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC_ERROR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-10000)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC_RANGE_ERROR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-10001)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC_TABLE_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>116<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>NTC_CONVER_OFFSET<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-40)<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="main/freezerdrv/drv_adc.h"/>
+  </compounddef>
+</doxygen>

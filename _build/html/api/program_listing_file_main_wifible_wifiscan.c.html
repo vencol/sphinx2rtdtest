@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File wifiscan.c &mdash; freezer  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists\css\tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> freezer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">freezer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File wifiscan.c</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_main_wifible_wifiscan.c.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-wifiscan-c">
+<span id="program-listing-file-main-wifible-wifiscan-c"></span><h1>Program Listing for File wifiscan.c<a class="headerlink" href="#program-listing-for-file-wifiscan-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_main_wifible_wifiscan.c.html#file-main-wifible-wifiscan-c"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">main\wifible\wifiscan.c</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* WiFi station Example</span>
+
+<span class="cm">   This example code is in the Public Domain (or CC0 licensed, at your option.)</span>
+
+<span class="cm">   Unless required by applicable law or agreed to in writing, this</span>
+<span class="cm">   software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR</span>
+<span class="cm">   CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm">*/</span>
+<span class="cp">#include</span> <span class="cpf">&quot;freertos/FreeRTOS.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;freertos/event_groups.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_wifi.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_log.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_event_loop.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;nvs_flash.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;string.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;stdio.h&quot;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">wifiScanStart</span><span class="p">(</span><span class="kt">char</span> <span class="n">channel</span><span class="p">);</span>
+<span class="cp">#if CONFIG_WIFI_ALL_CHANNEL_SCAN</span>
+<span class="cp">#define DEFAULT_SCAN_METHOD WIFI_ALL_CHANNEL_SCAN</span>
+<span class="cp">#elif CONFIG_WIFI_FAST_SCAN</span>
+<span class="cp">#define DEFAULT_SCAN_METHOD WIFI_FAST_SCAN</span>
+<span class="cp">#else</span>
+<span class="cp">#define DEFAULT_SCAN_METHOD WIFI_FAST_SCAN</span>
+<span class="cp">#endif </span><span class="cm">/*CONFIG_SCAN_METHOD*/</span><span class="cp"></span>
+
+<span class="cp">#if CONFIG_WIFI_CONNECT_AP_BY_SIGNAL</span>
+<span class="cp">#define DEFAULT_SORT_METHOD WIFI_CONNECT_AP_BY_SIGNAL</span>
+<span class="cp">#elif CONFIG_WIFI_CONNECT_AP_BY_SECURITY</span>
+<span class="cp">#define DEFAULT_SORT_METHOD WIFI_CONNECT_AP_BY_SECURITY</span>
+<span class="cp">#else</span>
+<span class="cp">#define DEFAULT_SORT_METHOD WIFI_CONNECT_AP_BY_SIGNAL</span>
+<span class="cp">#endif </span><span class="cm">/*CONFIG_SORT_METHOD*/</span><span class="cp"></span>
+
+<span class="cp">#if CONFIG_FAST_SCAN_THRESHOLD</span>
+<span class="cp">#define DEFAULT_RSSI CONFIG_FAST_SCAN_MINIMUM_SIGNAL</span>
+<span class="cp">#if CONFIG_EXAMPLE_OPEN</span>
+<span class="cp">#define DEFAULT_AUTHMODE WIFI_AUTH_OPEN</span>
+<span class="cp">#elif CONFIG_EXAMPLE_WEP</span>
+<span class="cp">#define DEFAULT_AUTHMODE WIFI_AUTH_WEP</span>
+<span class="cp">#elif CONFIG_EXAMPLE_WPA</span>
+<span class="cp">#define DEFAULT_AUTHMODE WIFI_AUTH_WPA_PSK</span>
+<span class="cp">#elif CONFIG_EXAMPLE_WPA2</span>
+<span class="cp">#define DEFAULT_AUTHMODE WIFI_AUTH_WPA2_PSK</span>
+<span class="cp">#else</span>
+<span class="cp">#define DEFAULT_AUTHMODE WIFI_AUTH_OPEN</span>
+<span class="cp">#endif</span>
+<span class="cp">#else</span>
+<span class="cp">#define DEFAULT_RSSI -127</span>
+<span class="cp">#define DEFAULT_AUTHMODE WIFI_AUTH_OPEN</span>
+<span class="cp">#endif </span><span class="cm">/*CONFIG_FAST_SCAN_THRESHOLD*/</span><span class="cp"></span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">TAG</span> <span class="o">=</span> <span class="s">&quot;scan&quot;</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">EventGroupHandle_t</span> <span class="n">wifi_event_group</span><span class="p">;</span><span class="c1">//定义一个事件的句柄</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">SCAN_DONE_BIT</span> <span class="o">=</span> <span class="n">BIT0</span><span class="p">;</span><span class="c1">//定义事件，占用事件变量的第0位，最多可以定义32个事件。</span>
+<span class="k">static</span> <span class="n">wifi_scan_config_t</span> <span class="n">scanConf</span>  <span class="o">=</span> <span class="p">{</span>
+      <span class="p">.</span><span class="n">ssid</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span>
+      <span class="p">.</span><span class="n">bssid</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span>
+      <span class="p">.</span><span class="n">channel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="p">.</span><span class="n">show_hidden</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="p">};</span><span class="c1">//定义scanConf结构体，供函数esp_wifi_scan_start调用</span>
+<span class="k">static</span> <span class="n">esp_err_t</span> <span class="nf">wifiEventHandler</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span> <span class="n">system_event_t</span> <span class="o">*</span><span class="n">event</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">event</span><span class="o">-&gt;</span><span class="n">event_id</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nl">SYSTEM_EVENT_STA_START</span><span class="p">:</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;SYSTEM_EVENT_STA_START&quot;</span><span class="p">);</span>
+           <span class="c1">// ESP_ERROR_CHECK(esp_wifi_connect());</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="c1">// case SYSTEM_EVENT_STA_GOT_IP:</span>
+        <span class="c1">//     ESP_LOGI(TAG, &quot;SYSTEM_EVENT_STA_GOT_IP&quot;);</span>
+        <span class="c1">//     ESP_LOGI(TAG, &quot;Got IP: %s\n&quot;, ip4addr_ntoa(&amp;event-&gt;event_info.got_ip.ip_info.ip));</span>
+        <span class="c1">//     break;</span>
+        <span class="c1">// case SYSTEM_EVENT_STA_DISCONNECTED:</span>
+        <span class="c1">//     ESP_LOGI(TAG, &quot;SYSTEM_EVENT_STA_DISCONNECTED&quot;);</span>
+        <span class="c1">//     // ESP_ERROR_CHECK(esp_wifi_connect());</span>
+        <span class="c1">//     break;</span>
+        <span class="k">case</span> <span class="nl">SYSTEM_EVENT_SCAN_DONE</span><span class="p">:</span>
+            <span class="n">xEventGroupSetBits</span><span class="p">(</span><span class="n">wifi_event_group</span><span class="p">,</span> <span class="n">SCAN_DONE_BIT</span><span class="p">);</span>        <span class="c1">//设置事件位</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">default</span><span class="o">:</span>
+            <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">ESP_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* Initialize Wi-Fi as sta and set scan method */</span>
+<span class="c1">// static void wifi_scan(void)</span>
+<span class="c1">// {</span>
+<span class="c1">//     tcpip_adapter_init();</span>
+<span class="c1">//     ESP_ERROR_CHECK(esp_event_loop_init(wifiEventHandler, NULL));</span>
+
+<span class="c1">//     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();</span>
+<span class="c1">//     ESP_ERROR_CHECK(esp_wifi_init(&amp;cfg));</span>
+<span class="c1">//     wifi_config_t wifi_config = {</span>
+<span class="c1">//         .sta = {</span>
+<span class="c1">//             .ssid = DEFAULT_SSID,</span>
+<span class="c1">//             .password = DEFAULT_PWD,</span>
+<span class="c1">//             .scan_method = DEFAULT_SCAN_METHOD,</span>
+<span class="c1">//             .sort_method = DEFAULT_SORT_METHOD,</span>
+<span class="c1">//             .threshold.rssi = DEFAULT_RSSI,</span>
+<span class="c1">//             .threshold.authmode = DEFAULT_AUTHMODE,</span>
+<span class="c1">//         },</span>
+<span class="c1">//     };</span>
+<span class="c1">//     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));</span>
+<span class="c1">//     ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_STA, &amp;wifi_config));</span>
+<span class="c1">//     ESP_ERROR_CHECK(esp_wifi_start());</span>
+<span class="c1">// }</span>
+
+<span class="k">extern</span> <span class="kt">int</span> <span class="nf">operateScanWifi</span><span class="p">(</span><span class="kt">char</span> <span class="n">type</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ssid</span><span class="p">,</span> <span class="k">const</span> <span class="kt">signed</span> <span class="kt">char</span> <span class="n">signal</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">mac</span><span class="p">);</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">wifiScanTask</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">pvParameters</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">EventBits_t</span> <span class="n">uxBits</span><span class="p">;</span>
+   <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">uxBits</span> <span class="o">=</span> <span class="n">xEventGroupWaitBits</span><span class="p">(</span><span class="n">wifi_event_group</span><span class="p">,</span> <span class="n">SCAN_DONE_BIT</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span> <span class="o">/</span> <span class="n">portTICK_PERIOD_MS</span><span class="p">);</span>    <span class="c1">//等待事件被置位，即等待扫描完成</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">uxBits</span> <span class="o">&amp;</span> <span class="n">SCAN_DONE_BIT</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="c1">// ESP_LOGI(TAG, &quot;WIFI scan doen&quot;);</span>
+        <span class="n">xEventGroupClearBits</span><span class="p">(</span><span class="n">wifi_event_group</span><span class="p">,</span> <span class="n">SCAN_DONE_BIT</span><span class="p">);</span><span class="c1">//清除事件标志位</span>
+
+        <span class="kt">uint16_t</span> <span class="n">apCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">esp_wifi_scan_get_ap_num</span><span class="p">(</span><span class="o">&amp;</span><span class="n">apCount</span><span class="p">);</span><span class="c1">//Get number of APs found in last scan</span>
+        <span class="c1">// ESP_LOGI(TAG, &quot;Number of access points found: %d\n&quot;, apCount);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">apCount</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">wifi_ap_record_t</span> <span class="o">*</span><span class="n">list</span> <span class="o">=</span> <span class="p">(</span><span class="n">wifi_ap_record_t</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">wifi_ap_record_t</span><span class="p">)</span> <span class="o">*</span> <span class="n">apCount</span><span class="p">);</span><span class="c1">//定义一个wifi_ap_record_t的结构体的链表空间</span>
+            <span class="n">ESP_ERROR_CHECK</span><span class="p">(</span><span class="n">esp_wifi_scan_get_ap_records</span><span class="p">(</span><span class="o">&amp;</span><span class="n">apCount</span><span class="p">,</span> <span class="n">list</span><span class="p">));</span><span class="c1">//获取上次扫描中找到的AP列表。</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">apCount</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// printf(&quot;(%d,\&quot;%s\&quot;,%d,\&quot;&quot;MACSTR&quot; %d\&quot;)\r\n&quot;,list[i].authmode, list[i].ssid, list[i].rssi,</span>
+                <span class="c1">//     MAC2STR(list[i].bssid),list[i].primary);</span>
+                <span class="n">operateScanWifi</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">ssid</span><span class="p">,</span> <span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">rssi</span><span class="p">,</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">bssid</span><span class="p">);</span>
+            <span class="p">}</span><span class="c1">//将链表的数据信息打印出来</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">list</span><span class="p">);</span><span class="c1">//释放链表</span>
+            <span class="n">list</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+            <span class="c1">// printf(&quot;\n\n&quot;);//换行</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Nothing AP found&quot;</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>
+            <span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">==</span> <span class="mi">11</span><span class="p">)</span>
+            <span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>
+            <span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">!=</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="n">wifiScanStart</span><span class="p">(</span><span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span><span class="p">);</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="c1">// operateScanWifi(0, NULL, 0, NULL);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+
+
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">wifiScanStart</span><span class="p">(</span><span class="kt">char</span> <span class="n">channel</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">channel</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>    <span class="p">{</span>
+        <span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">esp_wifi_scan_stop</span><span class="p">()</span> <span class="o">!=</span> <span class="n">ESP_OK</span><span class="p">)</span>
+            <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Failed to stop scan&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>    <span class="p">{</span>
+        <span class="n">scanConf</span><span class="p">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">esp_wifi_scan_start</span><span class="p">(</span><span class="o">&amp;</span><span class="n">scanConf</span><span class="p">,</span> <span class="nb">false</span><span class="p">)</span> <span class="o">!=</span> <span class="n">ESP_OK</span><span class="p">)</span>
+            <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span> <span class="s">&quot;Failed to start scan&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">WifiScanInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;wifi scan!!!!!!!!!!!!!!!!!!!!!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+   <span class="c1">// tcpip_adapter_init();</span>
+    <span class="n">wifi_event_group</span> <span class="o">=</span> <span class="n">xEventGroupCreate</span><span class="p">();</span>    <span class="c1">//创建一个事件标志组</span>
+    <span class="n">ESP_ERROR_CHECK</span><span class="p">(</span><span class="n">esp_event_loop_init</span><span class="p">(</span><span class="n">wifiEventHandler</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">));</span><span class="c1">//创建事件的任务</span>
+    <span class="n">wifi_init_config_t</span> <span class="n">cfg</span> <span class="o">=</span> <span class="n">WIFI_INIT_CONFIG_DEFAULT</span><span class="p">();</span><span class="c1">//设置默认的wifi栈参数</span>
+    <span class="n">ESP_ERROR_CHECK</span><span class="p">(</span><span class="n">esp_wifi_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">));</span>    <span class="c1">//初始化WiFi Alloc资源为WiFi驱动，如WiFi控制结构，RX / TX缓冲区，WiFi NVS结构等，此WiFi也启动WiFi任务。</span>
+   <span class="c1">//  ESP_ERROR_CHECK(esp_wifi_set_storage(WIFI_STORAGE_RAM));// Set the WiFi API configuration storage type</span>
+    <span class="n">ESP_ERROR_CHECK</span><span class="p">(</span><span class="n">esp_wifi_set_mode</span><span class="p">(</span><span class="n">WIFI_MODE_STA</span><span class="p">));</span><span class="c1">//Set the WiFi operating mode</span>
+    <span class="n">ESP_ERROR_CHECK</span><span class="p">(</span><span class="n">esp_wifi_start</span><span class="p">());</span>
+        <span class="n">xTaskCreate</span><span class="p">(</span><span class="o">&amp;</span><span class="n">wifiScanTask</span><span class="p">,</span> <span class="s">&quot;wifiScanTask&quot;</span><span class="p">,</span> <span class="mi">2048</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">configMAX_PRIORITIES</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span><span class="c1">//创建扫描任务</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, vencol
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,788 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="iotinfo_8h" kind="file" language="C++">
+    <compoundname>iotinfo.h</compoundname>
+    <includedby refid="atcmd_8c" local="yes">main/atprocess/atcmd.c</includedby>
+    <includedby refid="athttp_8c" local="yes">main/atprocess/athttp.c</includedby>
+    <includedby refid="atmqtt_8c" local="yes">main/atprocess/atmqtt.c</includedby>
+    <includedby refid="cmdprase_8c" local="yes">main/iot/cmdprase.c</includedby>
+    <includedby refid="controlpro_8c" local="yes">main/iot/controlpro.c</includedby>
+    <includedby refid="displaypro_8c" local="yes">main/iot/displaypro.c</includedby>
+    <includedby refid="fzprotocol__rec_8c" local="yes">main/iot/fzprotocol_rec.c</includedby>
+    <includedby refid="fzprotocol__send_8c" local="yes">main/iot/fzprotocol_send.c</includedby>
+    <includedby refid="iotinfo_8c" local="yes">main/iot/iotinfo.c</includedby>
+    <includedby refid="keydisplay_8c" local="yes">main/iot/keydisplay.c</includedby>
+    <includedby refid="mqtttopic_8c" local="yes">main/iot/mqtttopic.c</includedby>
+    <innerclass refid="structatcmd__module__t" prot="public">atcmd_module_t</innerclass>
+    <innerclass refid="structdevice__info__t" prot="public">device_info_t</innerclass>
+    <innerclass refid="structdevice__param__t" prot="public">device_param_t</innerclass>
+    <innerclass refid="unionerror__info__t" prot="public">error_info_t</innerclass>
+    <innerclass refid="structiotinfo__module__t" prot="public">iotinfo_module_t</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="iotinfo_8h_1a8b20d1a071fd000999cb96c9c377cb2d" prot="public" static="no">
+        <name>FREEZER_APP_VERSION</name>
+        <initializer>CONFIG_APP_PROJECT_VER</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="136" column="9" bodyfile="main/iot/iotinfo.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1ad371a9ea95e6c5e0dc77ef868e3fc572" prot="public" static="no">
+        <name>POWER_STATUS_ON</name>
+        <initializer>(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="137" column="9" bodyfile="main/iot/iotinfo.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1a6b7410adc717d9410c94db4c66697b44" prot="public" static="no">
+        <name>POWER_STATUS_LOCALOFF</name>
+        <initializer>(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="138" column="9" bodyfile="main/iot/iotinfo.h" bodystart="138" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1a7f4f4d53ff43e2df4641919ade81db6d" prot="public" static="no">
+        <name>POWER_STATUS_REMOTEOFF</name>
+        <initializer>(2)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="139" column="9" bodyfile="main/iot/iotinfo.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1ad29d42f6a6d46157c32447d3d9d9cb3d" prot="public" static="no">
+        <name>POWER_STATUS_LOCALON</name>
+        <initializer>(3)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="140" column="9" bodyfile="main/iot/iotinfo.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1ab8df551d0520ff8c1e25d3830012ae1b" prot="public" static="no">
+        <name>AT_CMD_IMEI_IMSI_LEN</name>
+        <initializer>(15)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="142" column="9" bodyfile="main/iot/iotinfo.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1a4bbb99447cd52827590740d89304c846" prot="public" static="no">
+        <name>AT_CMD_CUSTOMID</name>
+        <initializer>&quot;9ad61d41da6c46ab81&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="143" column="9" bodyfile="main/iot/iotinfo.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1a6bbeedf0d990a3573a4bcf9dfc45c4e2" prot="public" static="no">
+        <name>AT_CMD_SUCCESSS</name>
+        <initializer>(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="144" column="9" bodyfile="main/iot/iotinfo.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1aca27b4d2ab96bccc85c5eb679fe99945" prot="public" static="no">
+        <name>AT_CMD_FAIL</name>
+        <initializer>(-1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="145" column="9" bodyfile="main/iot/iotinfo.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1a4c120866470f8696f323cf5ad60c953f" prot="public" static="no">
+        <name>MODE_TLS_GUIDER</name>
+        <initializer>-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="147" column="9" bodyfile="main/iot/iotinfo.h" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1ac7444c759d0f7fe592ee80fdde1368f4" prot="public" static="no">
+        <name>MODE_TLS_DIRECT</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="148" column="9" bodyfile="main/iot/iotinfo.h" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1a2edd35c78dcb498ddcfa0a6d430ec988" prot="public" static="no">
+        <name>MODE_TCP_DIRECT_PLAIN</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="149" column="9" bodyfile="main/iot/iotinfo.h" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1ab881446fded4428bab20319352b91afa" prot="public" static="no">
+        <name>SECURE_MODE</name>
+        <initializer>MODE_TCP_DIRECT_PLAIN</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="150" column="9" bodyfile="main/iot/iotinfo.h" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1a3d8212bb863fa0db21759b29ffc207f2" prot="public" static="no">
+        <name>DEFAULT_ATTRS_FREQUENCY</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="152" column="9" bodyfile="main/iot/iotinfo.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1a5730cc46a2520437e9fedf3a99d49699" prot="public" static="no">
+        <name>DEFAULT_MQTT_HEART_FREQUENCY</name>
+        <initializer>60</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="153" column="9" bodyfile="main/iot/iotinfo.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1a6f21887b9442529dcd40eda75781e54c" prot="public" static="no">
+        <name>POWERON_6HOUR</name>
+        <initializer>(100U * 60 * 60 * 6)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="155" column="9" bodyfile="main/iot/iotinfo.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1afd3b8b5f17288bdbfa08914797edd68b" prot="public" static="no">
+        <name>CLOSE_TIME_CONTINUE</name>
+        <initializer>(100U * 60 * 15)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="156" column="9" bodyfile="main/iot/iotinfo.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1a87a3a0058ec31f801d7130b106dc633e" prot="public" static="no">
+        <name>CLOSE_TIME_MINI</name>
+        <initializer>(100U * 60 * 3)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="157" column="9" bodyfile="main/iot/iotinfo.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1a6c62d8c243f526d178223c7e8c0f3ebd" prot="public" static="no">
+        <name>CLOSE_TIME_FIRSTTSG</name>
+        <initializer>(100U * 60 * 3)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="158" column="9" bodyfile="main/iot/iotinfo.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="iotinfo_8h_1ada6162e0fefebe603d13f4d58b3aed2a" prot="public" static="no">
+        <name>FIRSTON_TIME</name>
+        <initializer>(100U * 6)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="159" column="9" bodyfile="main/iot/iotinfo.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="iotinfo_8h_1aab9816086b932b58f2be5372e1d92b7c" prot="public" static="no" strong="no">
+        <type></type>
+        <name>iot_status_opt_t</name>
+        <enumvalue id="iotinfo_8h_1aab9816086b932b58f2be5372e1d92b7caa951d650016d7c9c94b9301d9655789d" prot="public">
+          <name>IOT_NONE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1aab9816086b932b58f2be5372e1d92b7ca954cd21b19028ae13bfd8d6f95613058" prot="public">
+          <name>IOT_GETBASEINFO</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1aab9816086b932b58f2be5372e1d92b7ca4414d1d1287ce9850475628ae97976d1" prot="public">
+          <name>IOT_SAVEBASEINFO</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1aab9816086b932b58f2be5372e1d92b7cac06fdea45da91c4242ea85580cc1d1da" prot="public">
+          <name>IOT_SETMQTTINFO</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1aab9816086b932b58f2be5372e1d92b7ca1906ba1fb50cb885ad691f793e3ff605" prot="public">
+          <name>IOT_CONNECTMQTT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="98" column="1" bodyfile="main/iot/iotinfo.h" bodystart="98" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="enum" id="iotinfo_8h_1a86b9000df266585306baf02680941811" prot="public" static="no" strong="no">
+        <type></type>
+        <name>iot_error_opt_t</name>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811aa26c163b80b1f6786ca81dadc14b00fb" prot="public">
+          <name>ERR_OK</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811ab072b6579cd6c53ddb9e9b6578d5186b" prot="public">
+          <name>ERR_COMMON</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811a95fc14f91f2ef98db2bf3d5d2bf02e20" prot="public">
+          <name>ERR_CMD_TIMEOUT</name>
+          <initializer>=11</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811a864c826f4b4ba81d5d9be80c2adafcf2" prot="public">
+          <name>ERR_CMD_INVALID</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811aa6e2baa286fd2cd90f6564e56df04f03" prot="public">
+          <name>ERR_CMD_ILLEGAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811ab57be15e7895e0babaea3869794342d2" prot="public">
+          <name>ERR_PARAMETER_ILLEGAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811a3675a785f4c919fea36d6fbf41c7bd06" prot="public">
+          <name>ERR_UPGRADE_URL_INVALID</name>
+          <initializer>=91</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811aa82789e9f08437ad751fa1c63bfa790d" prot="public">
+          <name>ERR_UPGRADE_CHECK_FAILED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811a78518b1ba5943b1c1a0386073281d973" prot="public">
+          <name>ERR_UPGRADE_UNKNOWN_CHECKOUT_TYPE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811a8b379a9bd49ad2dd5b17455f962a60d1" prot="public">
+          <name>ERR_UPGRADE_UNKNOWN_UPGRADE_TYPE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811ac131e38a5fcba85e95cbc733cae2e833" prot="public">
+          <name>ERR_UPGRADE_NOT_ALLOW</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811ae463df8b8d4a1cb3463ece1040d8c147" prot="public">
+          <name>ERR_UPGRADE_CONTENT_ERROR</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="iotinfo_8h_1a86b9000df266585306baf02680941811a8aa0931289190de79569c00e41ff95f1" prot="public">
+          <name>ERR_DEV_BASE</name>
+          <initializer>=1000</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="105" column="1" bodyfile="main/iot/iotinfo.h" bodystart="105" bodyend="122"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="iotinfo_8h_1a2710dcc04827550a95abd1da53813164" prot="public" static="no" mutable="no">
+        <type><ref refid="structiotinfo__module__t" kindref="compound">iotinfo_module_t</ref></type>
+        <definition>iotinfo_module_t iotinfo_module</definition>
+        <argsstring></argsstring>
+        <name>iotinfo_module</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="96" column="25" bodyfile="main/iot/iotinfo.c" bodystart="19" bodyend="-1" declfile="main/iot/iotinfo.h" declline="96" declcolumn="25"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="iotinfo_8h_1a25cafb3bf6d0f3e4e2c9eb1234ea71bf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int SaveInfoToFlash</definition>
+        <argsstring>(char *domain)</argsstring>
+        <name>SaveInfoToFlash</name>
+        <param>
+          <type>char *</type>
+          <declname>domain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="124" column="5" bodyfile="main/iot/iotinfo.c" bodystart="233" bodyend="248" declfile="main/iot/iotinfo.h" declline="124" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotinfo_8h_1a276c86ed9f7d1d2b39f780a2c8655578" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>unsigned long long</type>
+        <definition>unsigned long long str2Imei</definition>
+        <argsstring>(char *buf)</argsstring>
+        <name>str2Imei</name>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="125" column="20" bodyfile="main/iot/iotinfo.c" bodystart="249" bodyend="268" declfile="main/iot/iotinfo.h" declline="125" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="iotinfo_8h_1a9faa82412a234b49842c3d38341ffb84" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int getMqttInfo</definition>
+        <argsstring>(iotinfo_module_t *pmqtt_module)</argsstring>
+        <name>getMqttInfo</name>
+        <param>
+          <type><ref refid="structiotinfo__module__t" kindref="compound">iotinfo_module_t</ref> *</type>
+          <declname>pmqtt_module</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="126" column="5" bodyfile="main/iot/iotinfo.c" bodystart="160" bodyend="232" declfile="main/iot/iotinfo.h" declline="126" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotinfo_8h_1abff77ef608d87183c6c17cb1cf3dbf63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fzReportAttrsInfo</definition>
+        <argsstring>(char step)</argsstring>
+        <name>fzReportAttrsInfo</name>
+        <param>
+          <type>char</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="127" column="13" bodyfile="main/iot/fzprotocol_send.c" bodystart="83" bodyend="114" declfile="main/iot/iotinfo.h" declline="127" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="iotinfo_8h_1a178d7698667887d61358c0079dec5b62" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void setReportTime</definition>
+        <argsstring>(unsigned int time)</argsstring>
+        <name>setReportTime</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="128" column="6" bodyfile="main/iot/iotinfo.c" bodystart="332" bodyend="335" declfile="main/iot/iotinfo.h" declline="128" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="iotinfo_8h_1a9b98491f6334eaa299c3fb593c37a291" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fzRespondUgrade</definition>
+        <argsstring>(int errnum)</argsstring>
+        <name>fzRespondUgrade</name>
+        <param>
+          <type>int</type>
+          <declname>errnum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="129" column="6" bodyfile="main/iot/fzprotocol_send.c" bodystart="321" bodyend="347" declfile="main/iot/iotinfo.h" declline="129" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="iotinfo_8h_1a712db936bdeb7d4bc40a04e92f949aee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fzReportAlarmInfo</definition>
+        <argsstring>(void)</argsstring>
+        <name>fzReportAlarmInfo</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="130" column="6" bodyfile="main/iot/fzprotocol_send.c" bodystart="116" bodyend="177" declfile="main/iot/iotinfo.h" declline="130" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="iotinfo_8h_1a2067d1c1233c0071fc1d280029af1ce5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int iotInfoInit</definition>
+        <argsstring>(void)</argsstring>
+        <name>iotInfoInit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="131" column="5" bodyfile="main/iot/iotinfo.c" bodystart="269" bodyend="330" declfile="main/iot/iotinfo.h" declline="131" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotinfo_8h_1aec82b7511ea62e713f4f56344a40107c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void iotInfoPro</definition>
+        <argsstring>(void)</argsstring>
+        <name>iotInfoPro</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="132" column="6" bodyfile="main/iot/iotinfo.c" bodystart="337" bodyend="380" declfile="main/iot/iotinfo.h" declline="132" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="iotinfo_8h_1a1f26a2cd59da5f5a05c20ed885dc65d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int bleIbeaconInit</definition>
+        <argsstring>(void)</argsstring>
+        <name>bleIbeaconInit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="133" column="5" bodyfile="main/wifible/bleibeacon.c" bodystart="159" bodyend="194" declfile="main/iot/iotinfo.h" declline="133" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="iotinfo_8h_1a5d8c4ab2b209a3dc4c2c8a38caad250c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void WifiScanInit</definition>
+        <argsstring>(void)</argsstring>
+        <name>WifiScanInit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="134" column="6" bodyfile="main/wifible/wifiscan.c" bodystart="175" bodyend="187" declfile="main/iot/iotinfo.h" declline="134" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="iotinfo_8h_1adff0c9085e902db0a74aceb7bbbef2b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void wifiScanStart</definition>
+        <argsstring>(char channel)</argsstring>
+        <name>wifiScanStart</name>
+        <param>
+          <type>char</type>
+          <declname>channel</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="135" column="6" bodyfile="main/wifible/wifiscan.c" bodystart="162" bodyend="174" declfile="main/iot/iotinfo.h" declline="135" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__IOT_INFO__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__IOT_INFO__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>pack(1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="structatcmd__module__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>atversion;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>atSendtime<sp/><sp/>:<sp/>7;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>atStatus<sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>uartStatus<sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>csqRssi<sp/><sp/><sp/><sp/><sp/>:<sp/>5;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>csqBer<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>4;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>reg2gStatus<sp/>:<sp/>3;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>reg4gStatus<sp/>:<sp/>3;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}<sp/><ref refid="structatcmd__module__t" kindref="compound">atcmd_module_t</ref>;</highlight></codeline>
+<codeline lineno="15" refid="structdevice__info__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*mainlbs;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*otherlbs;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*historytemp;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*wifimac;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>wifinum<sp/><sp/><sp/><sp/><sp/>:<sp/>5;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>otherlbsnum<sp/>:<sp/>3;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>noalarms<sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>noprobealarms<sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>probealarms<sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>nocommunicatealarms<sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>communicatealarms<sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>powerstatus1<sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}<sp/><ref refid="structdevice__info__t" kindref="compound">device_info_t</ref>;</highlight></codeline>
+<codeline lineno="29" refid="structdevice__param__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>upbacklash;</highlight><highlight class="comment">//0.1°C<sp/><sp/>//C1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>downbacklash;</highlight><highlight class="comment">//0.1°C<sp/><sp/><sp/><sp/>//C2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>hightempalarm;</highlight><highlight class="comment">//0.1°C<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>lowtempalarm;</highlight><highlight class="comment">//0.1°C<sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settemphigh;</highlight><highlight class="comment">//1°C<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settemplow;</highlight><highlight class="comment">//1°C<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>erroron;</highlight><highlight class="comment">//1min<sp/><sp/>//C3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>erroroff;</highlight><highlight class="comment">//1min<sp/>//C4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>heartTime<sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>12;</highlight><highlight class="comment">//1s</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>showway<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>2;</highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>powerstatus<sp/><sp/><sp/><sp/><sp/>:<sp/>2;</highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reportTime<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>6;</highlight><highlight class="comment">//1min</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flagsave<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>10;</highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>tempoffset;</highlight><highlight class="comment">//0.1°C<sp/><sp/><sp/><sp/>//C5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settemp;</highlight><highlight class="comment">//1°C<sp/><sp/><sp/>//Ts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}<sp/><ref refid="structdevice__param__t" kindref="compound">device_param_t</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#pragma<sp/>anon_unions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="unionerror__info__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">union<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>errbit;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>errnone<sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>errnosim<sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>errfrozen<sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>errrefrigera:<sp/>1;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>errregister<sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>errsim<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>errcsq<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>errmcu<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>errwifi<sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>errble<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}<ref refid="unionerror__info__t" kindref="compound">error_info_t</ref>;</highlight></codeline>
+<codeline lineno="66" refid="structiotinfo__module__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structatcmd__module__t" kindref="compound">atcmd_module_t</ref><sp/><sp/>*at_module;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structdevice__info__t" kindref="compound">device_info_t</ref><sp/><sp/><sp/>*devinfo;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structdevice__param__t" kindref="compound">device_param_t</ref><sp/><sp/>*devparam;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>imei;</highlight><highlight class="comment">//deviceName<sp/>deviceId</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>imsi;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*productKey;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*deviceSecret;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*clientId;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*userName;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*passWord;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*iotDomain;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*upgradeSn;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*upgradeUrl;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="unionerror__info__t" kindref="compound">error_info_t</ref><sp/><sp/><sp/><sp/>error;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>operateTime;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>tempDisTime;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>realTemp;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>showTemp;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>powerOnTime;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>iotPort<sp/><sp/><sp/><sp/><sp/>:<sp/>12;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>setdisplay1<sp/>:<sp/>3;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/>displayalarm:<sp/>1;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/>iotStatus<sp/><sp/><sp/>:<sp/>5;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/>otaStatus<sp/><sp/>:<sp/>2;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/>firstOn<sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>unsigned<sp/>char<sp/><sp/><sp/><sp/>displayStatus;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/>secureMode;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal">}<sp/><ref refid="structiotinfo__module__t" kindref="compound">iotinfo_module_t</ref>;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>pack()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structiotinfo__module__t" kindref="compound">iotinfo_module_t</ref><sp/>iotinfo_module;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>IOT_NONE,</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>IOT_GETBASEINFO,</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>IOT_SAVEBASEINFO,</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>IOT_SETMQTTINFO,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>IOT_CONNECTMQTT,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}<sp/>iot_status_opt_t;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_OK,</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_COMMON,</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_CMD_TIMEOUT=11,</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_CMD_INVALID,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_CMD_ILLEGAL,</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_PARAMETER_ILLEGAL,</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_UPGRADE_URL_INVALID=91,</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_UPGRADE_CHECK_FAILED,</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_UPGRADE_UNKNOWN_CHECKOUT_TYPE,</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_UPGRADE_UNKNOWN_UPGRADE_TYPE,</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_UPGRADE_NOT_ALLOW,</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_UPGRADE_CONTENT_ERROR,</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>ERR_DEV_BASE=1000,</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">}<sp/>iot_error_opt_t;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">//common</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>SaveInfoToFlash(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*domain);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>str2Imei(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buf);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>getMqttInfo(<ref refid="structiotinfo__module__t" kindref="compound">iotinfo_module_t</ref><sp/>*pmqtt_module);</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fzReportAttrsInfo(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>step);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setReportTime(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>time);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fzRespondUgrade(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>errnum);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fzReportAlarmInfo(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iotInfoInit(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>iotInfoPro(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bleIbeaconInit(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>WifiScanInit(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>wifiScanStart(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>channel);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FREEZER_APP_VERSION<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CONFIG_APP_PROJECT_VER</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POWER_STATUS_ON<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POWER_STATUS_LOCALOFF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POWER_STATUS_REMOTEOFF<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POWER_STATUS_LOCALON<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(3)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_IMEI_IMSI_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(15)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_CUSTOMID<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;9ad61d41da6c46ab81&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_SUCCESSS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_FAIL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>all<sp/>secure<sp/>mode<sp/>define<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MODE_TLS_GUIDER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MODE_TLS_DIRECT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MODE_TCP_DIRECT_PLAIN<sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SECURE_MODE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MODE_TCP_DIRECT_PLAIN</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFAULT_ATTRS_FREQUENCY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1//MIN</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DEFAULT_MQTT_HEART_FREQUENCY<sp/><sp/><sp/><sp/>60//S</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>POWERON_6HOUR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(100U<sp/>*<sp/>60<sp/>*<sp/>60<sp/>*<sp/>6)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CLOSE_TIME_CONTINUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(100U<sp/>*<sp/>60<sp/>*<sp/>15)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CLOSE_TIME_MINI<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(100U<sp/>*<sp/>60<sp/>*<sp/>3)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CLOSE_TIME_FIRSTTSG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(100U<sp/>*<sp/>60<sp/>*<sp/>3)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FIRSTON_TIME<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(100U<sp/>*<sp/>6)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#define<sp/>POWERON_6HOUR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4000//(100U<sp/>*<sp/>60<sp/>*<sp/>60<sp/>*<sp/>6)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#define<sp/>CLOSE_TIME_CONTINUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3000//(100U<sp/>*<sp/>60<sp/>*<sp/>15)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#define<sp/>CLOSE_TIME_MINI<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1000//(100U<sp/>*<sp/>60<sp/>*<sp/>3)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#define<sp/>CLOSE_TIME_FIRSTTSG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(100U<sp/>*<sp/>60<sp/>*<sp/>3)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#define<sp/>FIRSTON_TIME<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(100U<sp/>*<sp/>6)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="main/iot/iotinfo.h"/>
+  </compounddef>
+</doxygen>

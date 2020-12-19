@@ -1,0 +1,13 @@
+.. _exhale_define_atcmd_8h_1a59a9871484531bbf659879dcd2c0a3c7:
+
+Define AT_CMD_ATCEREG_TIMEOUT
+=============================
+
+- Defined in :ref:`file_main_atprocess_atcmd.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: AT_CMD_ATCEREG_TIMEOUT

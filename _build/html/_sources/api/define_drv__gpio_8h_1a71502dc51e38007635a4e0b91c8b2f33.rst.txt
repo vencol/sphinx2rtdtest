@@ -1,0 +1,13 @@
+.. _exhale_define_drv__gpio_8h_1a71502dc51e38007635a4e0b91c8b2f33:
+
+Define SET_FAN_OUTPUT
+=====================
+
+- Defined in :ref:`file_main_freezerdrv_drv_gpio.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: SET_FAN_OUTPUT

@@ -1,0 +1,13 @@
+.. _exhale_define_atmqtt_8h_1a578b7650a8a4722ee31009ec30800e46:
+
+Define AT_CMD_MQTT_DUP_MAXNUM
+=============================
+
+- Defined in :ref:`file_main_atprocess_atmqtt.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: AT_CMD_MQTT_DUP_MAXNUM

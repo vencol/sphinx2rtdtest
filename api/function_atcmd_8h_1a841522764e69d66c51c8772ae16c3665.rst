@@ -1,0 +1,13 @@
+.. _exhale_function_atcmd_8h_1a841522764e69d66c51c8772ae16c3665:
+
+Function atSendCmd(bool)
+========================
+
+- Defined in :ref:`file_main_atprocess_atcmd.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: atSendCmd(bool)

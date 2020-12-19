@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structatcmd__module__t" kind="struct" language="C++" prot="public">
+    <compoundname>atcmd_module_t</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structatcmd__module__t_1aa16d5a32f79b6890b4b21b4dfda47065" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atcmd_module_t::atversion</definition>
+        <argsstring></argsstring>
+        <name>atversion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="6" column="25" bodyfile="main/iot/iotinfo.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatcmd__module__t_1acd35d0c83de7a5e101b67daa23ff40ec" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atcmd_module_t::atSendtime</definition>
+        <argsstring></argsstring>
+        <name>atSendtime</name>
+        <bitfield> 7</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="7" column="19" bodyfile="main/iot/iotinfo.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatcmd__module__t_1ab38e729cd72408effd84c2a4bc4946fc" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atcmd_module_t::atStatus</definition>
+        <argsstring></argsstring>
+        <name>atStatus</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="8" column="19" bodyfile="main/iot/iotinfo.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatcmd__module__t_1a22b2f3076ad46731e21ca81aa89711d5" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atcmd_module_t::uartStatus</definition>
+        <argsstring></argsstring>
+        <name>uartStatus</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="9" column="19" bodyfile="main/iot/iotinfo.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatcmd__module__t_1a9949268cc5c0f6a443601e1d9d7c256e" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atcmd_module_t::csqRssi</definition>
+        <argsstring></argsstring>
+        <name>csqRssi</name>
+        <bitfield> 5</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="10" column="19" bodyfile="main/iot/iotinfo.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatcmd__module__t_1a74ebffd0ddfff4b6ac25b027a8bed88c" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atcmd_module_t::csqBer</definition>
+        <argsstring></argsstring>
+        <name>csqBer</name>
+        <bitfield> 4</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="11" column="19" bodyfile="main/iot/iotinfo.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatcmd__module__t_1aa394713ffabd5559a35ee2e807f684dc" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atcmd_module_t::reg2gStatus</definition>
+        <argsstring></argsstring>
+        <name>reg2gStatus</name>
+        <bitfield> 3</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="12" column="19" bodyfile="main/iot/iotinfo.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatcmd__module__t_1a97c5201f2e9334b1c65e6188e9e1f96d" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atcmd_module_t::reg4gStatus</definition>
+        <argsstring></argsstring>
+        <name>reg4gStatus</name>
+        <bitfield> 3</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="13" column="19" bodyfile="main/iot/iotinfo.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="main/iot/iotinfo.h" line="5" column="1" bodyfile="main/iot/iotinfo.h" bodystart="5" bodyend="14"/>
+    <listofallmembers>
+      <member refid="structatcmd__module__t_1acd35d0c83de7a5e101b67daa23ff40ec" prot="public" virt="non-virtual"><scope>atcmd_module_t</scope><name>atSendtime</name></member>
+      <member refid="structatcmd__module__t_1ab38e729cd72408effd84c2a4bc4946fc" prot="public" virt="non-virtual"><scope>atcmd_module_t</scope><name>atStatus</name></member>
+      <member refid="structatcmd__module__t_1aa16d5a32f79b6890b4b21b4dfda47065" prot="public" virt="non-virtual"><scope>atcmd_module_t</scope><name>atversion</name></member>
+      <member refid="structatcmd__module__t_1a74ebffd0ddfff4b6ac25b027a8bed88c" prot="public" virt="non-virtual"><scope>atcmd_module_t</scope><name>csqBer</name></member>
+      <member refid="structatcmd__module__t_1a9949268cc5c0f6a443601e1d9d7c256e" prot="public" virt="non-virtual"><scope>atcmd_module_t</scope><name>csqRssi</name></member>
+      <member refid="structatcmd__module__t_1aa394713ffabd5559a35ee2e807f684dc" prot="public" virt="non-virtual"><scope>atcmd_module_t</scope><name>reg2gStatus</name></member>
+      <member refid="structatcmd__module__t_1a97c5201f2e9334b1c65e6188e9e1f96d" prot="public" virt="non-virtual"><scope>atcmd_module_t</scope><name>reg4gStatus</name></member>
+      <member refid="structatcmd__module__t_1a22b2f3076ad46731e21ca81aa89711d5" prot="public" virt="non-virtual"><scope>atcmd_module_t</scope><name>uartStatus</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

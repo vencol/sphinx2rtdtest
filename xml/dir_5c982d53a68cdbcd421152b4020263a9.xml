@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_5c982d53a68cdbcd421152b4020263a9" kind="dir">
+    <compoundname>main</compoundname>
+    <innerdir refid="dir_f105f0e538e954198b5bf4c02aa9d001">main/atprocess</innerdir>
+    <innerdir refid="dir_c4480a9bf0e46c92bd1f4c193ebb81ce">main/freezerdrv</innerdir>
+    <innerdir refid="dir_7e225a9e449240062ba2d94d8b36478e">main/iot</innerdir>
+    <innerdir refid="dir_08903b6b019561c7d3cb072273d25c97">main/wifible</innerdir>
+    <innerfile refid="app__main_8c">app_main.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="main/"/>
+  </compounddef>
+</doxygen>

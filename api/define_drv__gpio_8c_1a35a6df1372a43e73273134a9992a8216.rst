@@ -1,0 +1,13 @@
+.. _exhale_define_drv__gpio_8c_1a35a6df1372a43e73273134a9992a8216:
+
+Define MODULE_4G_OPEN_TIME
+==========================
+
+- Defined in :ref:`file_main_freezerdrv_drv_gpio.c`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MODULE_4G_OPEN_TIME

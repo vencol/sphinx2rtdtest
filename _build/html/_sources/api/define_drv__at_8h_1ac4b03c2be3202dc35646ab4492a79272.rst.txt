@@ -1,0 +1,13 @@
+.. _exhale_define_drv__at_8h_1ac4b03c2be3202dc35646ab4492a79272:
+
+Define AT_RX_BUF_SIZE
+=====================
+
+- Defined in :ref:`file_main_freezerdrv_drv_at.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: AT_RX_BUF_SIZE

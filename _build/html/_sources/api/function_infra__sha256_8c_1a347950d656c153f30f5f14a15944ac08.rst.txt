@@ -1,0 +1,13 @@
+.. _exhale_function_infra__sha256_8c_1a347950d656c153f30f5f14a15944ac08:
+
+Function utilsSha256Zeroize
+===========================
+
+- Defined in :ref:`file_main_atprocess_infra_sha256.c`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: utilsSha256Zeroize(void *, uint32_t)

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structst_queue_msg" kind="struct" language="C++" prot="public">
+    <compoundname>stQueueMsg</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structst_queue_msg_1ae568d741b2e669a4be49635bdee63df7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stQueueMsg::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="26" column="5" bodyfile="main/freezerdrv/drv_at.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structst_queue_msg_1a3511e2e7eed82e5df016ce4825055d93" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int stQueueMsg::len</definition>
+        <argsstring></argsstring>
+        <name>len</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="27" column="5" bodyfile="main/freezerdrv/drv_at.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="main/freezerdrv/drv_at.h" line="24" column="1" bodyfile="main/freezerdrv/drv_at.h" bodystart="25" bodyend="28"/>
+    <listofallmembers>
+      <member refid="structst_queue_msg_1a3511e2e7eed82e5df016ce4825055d93" prot="public" virt="non-virtual"><scope>stQueueMsg</scope><name>len</name></member>
+      <member refid="structst_queue_msg_1ae568d741b2e669a4be49635bdee63df7" prot="public" virt="non-virtual"><scope>stQueueMsg</scope><name>start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

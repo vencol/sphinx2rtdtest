@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structiot__sha256__context" kind="struct" language="C++" prot="public">
+    <compoundname>iot_sha256_context</compoundname>
+    <includes refid="infra__sha256_8h" local="no">infra_sha256.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structiot__sha256__context_1a097a654e2edb579290bc5c38dbe2e6d5" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t iot_sha256_context::total[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>total</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>number of bytes processed <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/infra_sha256.h" line="19" column="14" bodyfile="main/atprocess/infra_sha256.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiot__sha256__context_1a7e7dd244818f8acb0e22c041fd18fceb" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t iot_sha256_context::state[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>state</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>intermediate digest state <linebreak/>
+ </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/infra_sha256.h" line="20" column="14" bodyfile="main/atprocess/infra_sha256.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiot__sha256__context_1a15103073c498a6c38c17bdb04150f8e4" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char iot_sha256_context::buffer[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>data block being processed </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/infra_sha256.h" line="21" column="19" bodyfile="main/atprocess/infra_sha256.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiot__sha256__context_1aae8823e11620c906fb0ebe436c8766af" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int iot_sha256_context::is224</definition>
+        <argsstring></argsstring>
+        <name>is224</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>0 =&gt; SHA-256, else SHA-224 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/infra_sha256.h" line="22" column="9" bodyfile="main/atprocess/infra_sha256.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>SHA-256 context structure. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="main/atprocess/infra_sha256.h" line="18" column="1" bodyfile="main/atprocess/infra_sha256.h" bodystart="18" bodyend="23"/>
+    <listofallmembers>
+      <member refid="structiot__sha256__context_1a15103073c498a6c38c17bdb04150f8e4" prot="public" virt="non-virtual"><scope>iot_sha256_context</scope><name>buffer</name></member>
+      <member refid="structiot__sha256__context_1aae8823e11620c906fb0ebe436c8766af" prot="public" virt="non-virtual"><scope>iot_sha256_context</scope><name>is224</name></member>
+      <member refid="structiot__sha256__context_1a7e7dd244818f8acb0e22c041fd18fceb" prot="public" virt="non-virtual"><scope>iot_sha256_context</scope><name>state</name></member>
+      <member refid="structiot__sha256__context_1a097a654e2edb579290bc5c38dbe2e6d5" prot="public" virt="non-virtual"><scope>iot_sha256_context</scope><name>total</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

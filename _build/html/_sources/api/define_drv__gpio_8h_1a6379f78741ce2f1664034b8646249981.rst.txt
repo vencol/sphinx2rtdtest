@@ -1,0 +1,13 @@
+.. _exhale_define_drv__gpio_8h_1a6379f78741ce2f1664034b8646249981:
+
+Define SET_4GRESET_OUTPUT
+=========================
+
+- Defined in :ref:`file_main_freezerdrv_drv_gpio.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: SET_4GRESET_OUTPUT

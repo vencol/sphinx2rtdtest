@@ -1,0 +1,13 @@
+.. _exhale_define_athttp_8h_1a62bfddce9090502317fe32919f61653a:
+
+Define AT_CMD_ATHTTPACTION_RESPOND_SPLEN
+========================================
+
+- Defined in :ref:`file_main_atprocess_athttp.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: AT_CMD_ATHTTPACTION_RESPOND_SPLEN

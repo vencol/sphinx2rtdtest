@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="unionu__ret_len" kind="union" language="C++" prot="public">
+    <compoundname>u_retLen</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionu__ret_len_1afb2084def18771efdda9ee013ff11e8f" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char u_retLen::sptr[8]</definition>
+        <argsstring>[8]</argsstring>
+        <name>sptr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/infra_sha256.h" line="26" column="10" bodyfile="main/atprocess/infra_sha256.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionu__ret_len_1aaf6debb58038750407b200af330776b7" prot="public" static="no" mutable="no">
+        <type>uint64_t</type>
+        <definition>uint64_t u_retLen::lint</definition>
+        <argsstring></argsstring>
+        <name>lint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/infra_sha256.h" line="27" column="14" bodyfile="main/atprocess/infra_sha256.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="main/atprocess/infra_sha256.h" line="25" column="1" bodyfile="main/atprocess/infra_sha256.h" bodystart="25" bodyend="28"/>
+    <listofallmembers>
+      <member refid="unionu__ret_len_1aaf6debb58038750407b200af330776b7" prot="public" virt="non-virtual"><scope>u_retLen</scope><name>lint</name></member>
+      <member refid="unionu__ret_len_1afb2084def18771efdda9ee013ff11e8f" prot="public" virt="non-virtual"><scope>u_retLen</scope><name>sptr</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+.. _exhale_function_drv__nvs__flash_8h_1a5781fe36b095e52303999245e5506450:
+
+Function halSetNumDeviceName(unsigned long long)
+================================================
+
+- Defined in :ref:`file_main_freezerdrv_drv_nvs_flash.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: halSetNumDeviceName(unsigned long long)

@@ -1,0 +1,13 @@
+.. _exhale_function_drv__1650_8c_1ac169ccc71127fb86cf492675fc409b1b:
+
+Function i2cMasterSetAddrData
+=============================
+
+- Defined in :ref:`file_main_freezerdrv_drv_1650.c`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: i2cMasterSetAddrData(uint8_t, uint8_t)

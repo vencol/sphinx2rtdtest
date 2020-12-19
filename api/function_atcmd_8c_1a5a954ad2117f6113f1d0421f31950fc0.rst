@@ -1,0 +1,13 @@
+.. _exhale_function_atcmd_8c_1a5a954ad2117f6113f1d0421f31950fc0:
+
+Function atPraseBaseError
+=========================
+
+- Defined in :ref:`file_main_atprocess_atcmd.c`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: atPraseBaseError(char *, int)

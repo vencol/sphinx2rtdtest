@@ -1,0 +1,13 @@
+.. _exhale_typedef_drv__at_8h_1aaf19d499892a4ce1409326ece00f5264:
+
+Typedef QueueHandle_t
+=====================
+
+- Defined in :ref:`file_main_freezerdrv_drv_at.h`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: QueueHandle_t

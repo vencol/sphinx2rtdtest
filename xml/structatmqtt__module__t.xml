@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structatmqtt__module__t" kind="struct" language="C++" prot="public">
+    <compoundname>atmqtt_module_t</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structatmqtt__module__t_1afda222d9d9d121dfa22447e640281db8" prot="public" static="no" mutable="no">
+        <type>void(*</type>
+        <definition>void(* atmqtt_module_t::IotMqttOperatoinCb) (unsigned char status)</definition>
+        <argsstring>)(unsigned char status)</argsstring>
+        <name>IotMqttOperatoinCb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/atmqtt.c" line="20" column="3" bodyfile="main/atprocess/atmqtt.c" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatmqtt__module__t_1a0845c2708e2714bd53f7380c2ef73ef6" prot="public" static="no" mutable="no">
+        <type>void(*</type>
+        <definition>void(* atmqtt_module_t::IotMqttReceiveCb) (char *topic, char *payload)</definition>
+        <argsstring>)(char *topic, char *payload)</argsstring>
+        <name>IotMqttReceiveCb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/atmqtt.c" line="21" column="3" bodyfile="main/atprocess/atmqtt.c" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatmqtt__module__t_1a88ba965ce317c928ce0ceb58c5cec690" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atmqtt_module_t::mqttClienNum</definition>
+        <argsstring></argsstring>
+        <name>mqttClienNum</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/atmqtt.c" line="22" column="17" bodyfile="main/atprocess/atmqtt.c" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatmqtt__module__t_1a2bc51a6e80536dab3db2489fc1a8a681" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atmqtt_module_t::qos</definition>
+        <argsstring></argsstring>
+        <name>qos</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/atmqtt.c" line="23" column="17" bodyfile="main/atprocess/atmqtt.c" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatmqtt__module__t_1a9ff97df7d9474c34de4038a034e1c976" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atmqtt_module_t::dup</definition>
+        <argsstring></argsstring>
+        <name>dup</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/atmqtt.c" line="24" column="17" bodyfile="main/atprocess/atmqtt.c" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structatmqtt__module__t_1aeb94487ed216eb9748eb0668fbe9fdbf" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int atmqtt_module_t::retain</definition>
+        <argsstring></argsstring>
+        <name>retain</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/atprocess/atmqtt.c" line="25" column="17" bodyfile="main/atprocess/atmqtt.c" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="main/atprocess/atmqtt.c" line="19" column="1" bodyfile="main/atprocess/atmqtt.c" bodystart="19" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structatmqtt__module__t_1a9ff97df7d9474c34de4038a034e1c976" prot="public" virt="non-virtual"><scope>atmqtt_module_t</scope><name>dup</name></member>
+      <member refid="structatmqtt__module__t_1afda222d9d9d121dfa22447e640281db8" prot="public" virt="non-virtual"><scope>atmqtt_module_t</scope><name>IotMqttOperatoinCb</name></member>
+      <member refid="structatmqtt__module__t_1a0845c2708e2714bd53f7380c2ef73ef6" prot="public" virt="non-virtual"><scope>atmqtt_module_t</scope><name>IotMqttReceiveCb</name></member>
+      <member refid="structatmqtt__module__t_1a88ba965ce317c928ce0ceb58c5cec690" prot="public" virt="non-virtual"><scope>atmqtt_module_t</scope><name>mqttClienNum</name></member>
+      <member refid="structatmqtt__module__t_1a2bc51a6e80536dab3db2489fc1a8a681" prot="public" virt="non-virtual"><scope>atmqtt_module_t</scope><name>qos</name></member>
+      <member refid="structatmqtt__module__t_1aeb94487ed216eb9748eb0668fbe9fdbf" prot="public" virt="non-virtual"><scope>atmqtt_module_t</scope><name>retain</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

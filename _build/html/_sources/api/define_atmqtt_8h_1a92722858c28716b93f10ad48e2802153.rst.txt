@@ -1,0 +1,13 @@
+.. _exhale_define_atmqtt_8h_1a92722858c28716b93f10ad48e2802153:
+
+Define AT_CMD_ATCMQTTDISC_SEND
+==============================
+
+- Defined in :ref:`file_main_atprocess_atmqtt.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: AT_CMD_ATCMQTTDISC_SEND

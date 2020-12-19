@@ -1,0 +1,13 @@
+.. _exhale_function_drv__at_8h_1a213051596f01b34b1d051309a2fa2d83:
+
+Function drvAtSendData(const char \*, int)
+==========================================
+
+- Defined in :ref:`file_main_freezerdrv_drv_at.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: drvAtSendData(const char *, int)

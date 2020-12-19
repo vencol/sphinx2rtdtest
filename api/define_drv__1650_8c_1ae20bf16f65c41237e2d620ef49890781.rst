@@ -1,0 +1,13 @@
+.. _exhale_define_drv__1650_8c_1ae20bf16f65c41237e2d620ef49890781:
+
+Define NACK_VAL
+===============
+
+- Defined in :ref:`file_main_freezerdrv_drv_1650.c`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: NACK_VAL

@@ -1,0 +1,13 @@
+.. _exhale_function_atcmd_8c_1a191079ef21b52b9966412f037cbb9401:
+
+Function detectSimCard
+======================
+
+- Defined in :ref:`file_main_atprocess_atcmd.c`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: detectSimCard(char *, int)

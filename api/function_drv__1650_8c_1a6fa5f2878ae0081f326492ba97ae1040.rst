@@ -1,0 +1,13 @@
+.. _exhale_function_drv__1650_8c_1a6fa5f2878ae0081f326492ba97ae1040:
+
+Function tm1650ReadKey(uint8_t \*)
+==================================
+
+- Defined in :ref:`file_main_freezerdrv_drv_1650.c`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: tm1650ReadKey(uint8_t *)

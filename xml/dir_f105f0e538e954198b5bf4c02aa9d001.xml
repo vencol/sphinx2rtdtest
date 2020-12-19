@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_f105f0e538e954198b5bf4c02aa9d001" kind="dir">
+    <compoundname>main/atprocess</compoundname>
+    <innerfile refid="atcmd_8c">atcmd.c</innerfile>
+    <innerfile refid="atcmd_8h">atcmd.h</innerfile>
+    <innerfile refid="athttp_8c">athttp.c</innerfile>
+    <innerfile refid="athttp_8h">athttp.h</innerfile>
+    <innerfile refid="atmqtt_8c">atmqtt.c</innerfile>
+    <innerfile refid="atmqtt_8h">atmqtt.h</innerfile>
+    <innerfile refid="infra__sha256_8c">infra_sha256.c</innerfile>
+    <innerfile refid="infra__sha256_8h">infra_sha256.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="main/atprocess/"/>
+  </compounddef>
+</doxygen>

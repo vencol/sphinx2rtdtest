@@ -1,0 +1,527 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="drv__nvs__flash_8h" kind="file" language="C++">
+    <compoundname>drv_nvs_flash.h</compoundname>
+    <includedby refid="drv__nvs__flash_8c" local="yes">main/freezerdrv/drv_nvs_flash.c</includedby>
+    <includedby refid="iotinfo_8c" local="yes">main/iot/iotinfo.c</includedby>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="drv__nvs__flash_8h_1a18edb9f1c969ea2881a7720b1ce099ed" prot="public" static="no">
+        <name>LINKKIT_FIRMWARE_VERSION</name>
+        <initializer>&quot;0.0.1&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="5" column="9" bodyfile="main/freezerdrv/drv_nvs_flash.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__nvs__flash_8h_1a47361bef3b0563a71a60996fe96b1912" prot="public" static="no">
+        <name>IOTX_FIRMWARE_VERSION_LEN</name>
+        <initializer>(32)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="6" column="9" bodyfile="main/freezerdrv/drv_nvs_flash.h" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__nvs__flash_8h_1a1da147b5c516cbf818301e4bd580e810" prot="public" static="no">
+        <name>IOTX_PRODUCT_KEY_LEN</name>
+        <initializer>(20)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="7" column="9" bodyfile="main/freezerdrv/drv_nvs_flash.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__nvs__flash_8h_1a85a85e2b5605d45c49befc4794937372" prot="public" static="no">
+        <name>IOTX_DEVICE_NAME_LEN</name>
+        <initializer>(32)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="8" column="9" bodyfile="main/freezerdrv/drv_nvs_flash.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__nvs__flash_8h_1aa10a6afe5b36a358bab69f80e6812458" prot="public" static="no">
+        <name>IOTX_DEVICE_SECRET_LEN</name>
+        <initializer>(64)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="9" column="9" bodyfile="main/freezerdrv/drv_nvs_flash.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__nvs__flash_8h_1a175394a42a42d1e756e5e0cfadccd554" prot="public" static="no">
+        <name>IOTX_DEVICE_ID_LEN</name>
+        <initializer>(64)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="10" column="9" bodyfile="main/freezerdrv/drv_nvs_flash.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__nvs__flash_8h_1a314b57e85e0cf2247c17839610e0599d" prot="public" static="no">
+        <name>IOTX_PRODUCT_SECRET_LEN</name>
+        <initializer>(64)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="11" column="9" bodyfile="main/freezerdrv/drv_nvs_flash.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__nvs__flash_8h_1a831a6bc060cb578c640b9f86f7225166" prot="public" static="no">
+        <name>IOTX_FIRMWARE_VER_LEN</name>
+        <initializer>(32)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="12" column="9" bodyfile="main/freezerdrv/drv_nvs_flash.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__nvs__flash_8h_1abcd69bce960e1b224ef45470c5d90fc1" prot="public" static="no">
+        <name>IOTX_MQTT_DOMAIN_LEN</name>
+        <initializer>(64)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="13" column="9" bodyfile="main/freezerdrv/drv_nvs_flash.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__nvs__flash_8h_1a025d7eae007cd1040fb179a7bdf023e2" prot="public" static="no">
+        <name>IOTX_MQTT_PORT_LEN</name>
+        <initializer>(8)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="14" column="9" bodyfile="main/freezerdrv/drv_nvs_flash.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="drv__nvs__flash_8h_1ac0c52b415a88b9951cb1c2a7d776f147" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halGetIotMqttDomain</definition>
+        <argsstring>(char domain[(64)+1])</argsstring>
+        <name>halGetIotMqttDomain</name>
+        <param>
+          <type>char</type>
+          <declname>domain</declname>
+          <array>[(64)+1]</array>
+        </param>
+        <briefdescription>
+<para>Get ito domain from user&apos;s system persistent storage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>[ou]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>domain: array to store MqttDomain, max length is IOTX_MQTT_DOMAIN_LEN </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the actual length of MqttDomain </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="15" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="184" bodyend="187" declfile="main/freezerdrv/drv_nvs_flash.h" declline="15" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1a5e694d32fd01b9933c8e676f9f18fdd2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halGetIotMqttPort</definition>
+        <argsstring>(char port[(8)+1])</argsstring>
+        <name>halGetIotMqttPort</name>
+        <param>
+          <type>char</type>
+          <declname>port</declname>
+          <array>[(8)+1]</array>
+        </param>
+        <briefdescription>
+<para>Get ito port from user&apos;s system persistent storage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>[ou]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>halGetIotMqttPort: array to store MqttPort, max length is IOTX_MQTT_PORT_LEN </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the actual length of Mqtt Port </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="16" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="195" bodyend="198" declfile="main/freezerdrv/drv_nvs_flash.h" declline="16" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1a8907cf145e5cdcf10776e0f41c861fa5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halGetProductKey</definition>
+        <argsstring>(char product_key[(20)+1])</argsstring>
+        <name>halGetProductKey</name>
+        <param>
+          <type>char</type>
+          <declname>product_key</declname>
+          <array>[(20)+1]</array>
+        </param>
+        <briefdescription>
+<para>Get product key from user&apos;s system persistent storage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>[ou]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>product_key: array to store product key, max length is IOTX_PRODUCT_KEY_LEN </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the actual length of product key </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="17" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="162" bodyend="165" declfile="main/freezerdrv/drv_nvs_flash.h" declline="17" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1a770e4fd9c69ec3fac2e1ecf6107b1d6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halGetDeviceName</definition>
+        <argsstring>(char device_name[(32)+1])</argsstring>
+        <name>halGetDeviceName</name>
+        <param>
+          <type>char</type>
+          <declname>device_name</declname>
+          <array>[(32)+1]</array>
+        </param>
+        <briefdescription>
+<para>Get device name from user&apos;s system persistent storage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>[ou]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>device_name: array to store device name, max length is IOTX_DEVICE_NAME_LEN </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the actual length of device name </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="18" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="140" bodyend="143" declfile="main/freezerdrv/drv_nvs_flash.h" declline="18" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1a7d3eb77a97dac6609b6a66167305c719" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halGetDeviceSecret</definition>
+        <argsstring>(char device_secret[(64)+1])</argsstring>
+        <name>halGetDeviceSecret</name>
+        <param>
+          <type>char</type>
+          <declname>device_secret</declname>
+          <array>[(64)+1]</array>
+        </param>
+        <briefdescription>
+<para>Get device secret from user&apos;s system persistent storage. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>[ou]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>device_secret: array to store device secret, max length is IOTX_DEVICE_SECRET_LEN </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the actual length of device secret </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="19" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="151" bodyend="154" declfile="main/freezerdrv/drv_nvs_flash.h" declline="19" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1a164d34bef674d62f1ca077eca31a51d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halGetFirmwareVersion</definition>
+        <argsstring>(char *version)</argsstring>
+        <name>halGetFirmwareVersion</name>
+        <param>
+          <type>char *</type>
+          <declname>version</declname>
+        </param>
+        <briefdescription>
+<para>Get firmware version. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>[ou]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>version: array to store firmware version, max length is IOTX_FIRMWARE_VER_LEN </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>the actual length of firmware version </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="20" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="206" bodyend="222" declfile="main/freezerdrv/drv_nvs_flash.h" declline="20" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1ac01585ed4ba0f1ba75d89b929856647c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halSetDeviceParam</definition>
+        <argsstring>(char *device_param, int len)</argsstring>
+        <name>halSetDeviceParam</name>
+        <param>
+          <type>char *</type>
+          <declname>device_param</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="21" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="278" bodyend="283" declfile="main/freezerdrv/drv_nvs_flash.h" declline="21" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1afe22c7b64ac80ffdbd3796e42b11406a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halSetIotMqttDomain</definition>
+        <argsstring>(char *mqttdomain)</argsstring>
+        <name>halSetIotMqttDomain</name>
+        <param>
+          <type>char *</type>
+          <declname>mqttdomain</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="23" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="305" bodyend="308" declfile="main/freezerdrv/drv_nvs_flash.h" declline="23" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1a7e505f22fa73b661ba6ef8af93425185" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halSetIotMqttPort</definition>
+        <argsstring>(char *mqttport)</argsstring>
+        <name>halSetIotMqttPort</name>
+        <param>
+          <type>char *</type>
+          <declname>mqttport</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="24" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="310" bodyend="313" declfile="main/freezerdrv/drv_nvs_flash.h" declline="24" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1ad2ba3764ae4544d25b9791713e0c39cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halSetDeviceName</definition>
+        <argsstring>(char *device_name)</argsstring>
+        <name>halSetDeviceName</name>
+        <param>
+          <type>char *</type>
+          <declname>device_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="25" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="285" bodyend="288" declfile="main/freezerdrv/drv_nvs_flash.h" declline="25" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1a68074cf7a381454c96e411b275178366" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halSetDeviceSecret</definition>
+        <argsstring>(char *device_name)</argsstring>
+        <name>halSetDeviceSecret</name>
+        <param>
+          <type>char *</type>
+          <declname>device_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="26" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="290" bodyend="293" declfile="main/freezerdrv/drv_nvs_flash.h" declline="26" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1abc92827b77e653fa619ad143102898a6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halSetProductKey</definition>
+        <argsstring>(char *device_name)</argsstring>
+        <name>halSetProductKey</name>
+        <param>
+          <type>char *</type>
+          <declname>device_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="27" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="295" bodyend="298" declfile="main/freezerdrv/drv_nvs_flash.h" declline="27" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1a82ac75f11b79296d7d4b598841d27d0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halSetProductSecret</definition>
+        <argsstring>(char *device_name)</argsstring>
+        <name>halSetProductSecret</name>
+        <param>
+          <type>char *</type>
+          <declname>device_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="28" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="300" bodyend="303" declfile="main/freezerdrv/drv_nvs_flash.h" declline="28" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1a37a3f032963402dc1b1dff033ed6f2cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halGetDeviceParam</definition>
+        <argsstring>(char *device_param, int len)</argsstring>
+        <name>halGetDeviceParam</name>
+        <param>
+          <type>char *</type>
+          <declname>device_param</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="29" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="128" bodyend="133" declfile="main/freezerdrv/drv_nvs_flash.h" declline="29" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1a46368ea1d6d498afe050a03052f655ed" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halSetNumIotMqttPort</definition>
+        <argsstring>(int port)</argsstring>
+        <name>halSetNumIotMqttPort</name>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="31" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="321" bodyend="326" declfile="main/freezerdrv/drv_nvs_flash.h" declline="31" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__nvs__flash_8h_1a5781fe36b095e52303999245e5506450" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int halSetNumDeviceName</definition>
+        <argsstring>(unsigned long long device_id)</argsstring>
+        <name>halSetNumDeviceName</name>
+        <param>
+          <type>unsigned long long</type>
+          <declname>device_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_nvs_flash.h" line="32" column="5" bodyfile="main/freezerdrv/drv_nvs_flash.c" bodystart="315" bodyend="320" declfile="main/freezerdrv/drv_nvs_flash.h" declline="32" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__DRV_NVS_FLASH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__DRV_NVS_FLASH__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//nvs<sp/>flash</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LINKKIT_FIRMWARE_VERSION<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;0.0.1&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IOTX_FIRMWARE_VERSION_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(32)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IOTX_PRODUCT_KEY_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(20)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IOTX_DEVICE_NAME_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(32)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IOTX_DEVICE_SECRET_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(64)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IOTX_DEVICE_ID_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(64)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IOTX_PRODUCT_SECRET_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(64)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IOTX_FIRMWARE_VER_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(32)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IOTX_MQTT_DOMAIN_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(64)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IOTX_MQTT_PORT_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(8)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halGetIotMqttDomain(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>domain[IOTX_MQTT_DOMAIN_LEN<sp/>+<sp/>1]);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halGetIotMqttPort(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>port[IOTX_MQTT_PORT_LEN<sp/>+<sp/>1]);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halGetProductKey(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>product_key[IOTX_PRODUCT_KEY_LEN<sp/>+<sp/>1]);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halGetDeviceName(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>device_name[IOTX_DEVICE_NAME_LEN<sp/>+<sp/>1]);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halGetDeviceSecret(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>device_secret[IOTX_DEVICE_SECRET_LEN<sp/>+<sp/>1]);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halGetFirmwareVersion(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*version);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halSetDeviceParam(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*device_param,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halSetIotMqttDomain(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*mqttdomain);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halSetIotMqttPort(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*mqttport);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halSetDeviceName(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*device_name);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halSetDeviceSecret(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*device_name);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halSetProductKey(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*device_name);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halSetProductSecret(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*device_name);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halGetDeviceParam(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*device_param,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halSetNumIotMqttPort(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>port);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>halSetNumDeviceName(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>device_id);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="main/freezerdrv/drv_nvs_flash.h"/>
+  </compounddef>
+</doxygen>

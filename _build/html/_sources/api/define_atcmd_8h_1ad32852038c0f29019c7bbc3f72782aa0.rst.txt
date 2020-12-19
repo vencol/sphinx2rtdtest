@@ -1,0 +1,13 @@
+.. _exhale_define_atcmd_8h_1ad32852038c0f29019c7bbc3f72782aa0:
+
+Define AT_CMD_ATIPR_RETRY
+=========================
+
+- Defined in :ref:`file_main_atprocess_atcmd.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: AT_CMD_ATIPR_RETRY

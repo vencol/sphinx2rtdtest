@@ -1,0 +1,667 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File athttp.c &mdash; freezer  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists\css\tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> freezer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">freezer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File athttp.c</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_main_atprocess_athttp.c.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-athttp-c">
+<span id="program-listing-file-main-atprocess-athttp-c"></span><h1>Program Listing for File athttp.c<a class="headerlink" href="#program-listing-for-file-athttp-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_main_atprocess_athttp.c.html#file-main-atprocess-athttp-c"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">main\atprocess\athttp.c</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* WiFi station Example</span>
+
+<span class="cm">   This example code is in the Public Domain (or CC0 licensed, at your option.)</span>
+
+<span class="cm">   Unless required by applicable law or agreed to in writing, this</span>
+<span class="cm">   software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR</span>
+<span class="cm">   CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm">*/</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_log.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;cJSON.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;iotinfo.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;atcmd.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;athttp.h&quot;</span><span class="cp"></span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ATTAG</span> <span class="o">=</span> <span class="s">&quot;athttp&quot;</span><span class="p">;</span>
+
+<span class="cp">#define URL_TEST &quot;47.242.12.154:8080/freezer.bin&quot;</span>
+<span class="c1">// #define URL_TEST &quot;47.242.12.154:8080/1.txt&quot;</span>
+
+<span class="cp">#define OTA_READMODE            1</span>
+
+<span class="cp">#define OTA_NONE                0</span>
+<span class="cp">#define OTA_WORKING             1</span>
+<span class="cp">#define OTA_FAIL                2</span>
+<span class="cp">#define OTA_SUCCESS             3</span>
+
+<span class="cp">#define OTA_FIRST_PACK_SIZE     1024</span>
+<span class="cp">#define OTA_ONE_PACK_MAX        1024</span>
+<span class="k">static</span> <span class="kt">char</span> <span class="o">*</span><span class="n">otaBuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">otaStep</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">httpBodySize</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">atOtaQuit</span><span class="p">(</span><span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">OTA_SUCCESS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">otaStatus</span> <span class="o">=</span> <span class="n">OTA_SUCCESS</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">otaStep</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">httpBodySize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATHTTPTERM</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atGetOtaInfo</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">url</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">url</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="mi">128</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAPARA_SEND</span><span class="p">,</span> <span class="n">url</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="mi">128</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATOTAPARA [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATHTTPPARA</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAPARA_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATHTTPPARA</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAPARA_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAPARA_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAPARA_RETRY</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atGetOtaBody</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">step</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s otaStep:%d httpBodySize:%d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">httpBodySize</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">httpBodySize</span> <span class="o">&lt;</span> <span class="n">OTA_FIRST_PACK_SIZE</span> <span class="o">||</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">AT_CMD_ATHTTPREAD_SEND_MAXLEN</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">step</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAREAD_SEND_MAXLEN</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAREAD_SEND</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">OTA_FIRST_PACK_SIZE</span><span class="p">);</span>
+  <span class="k">else</span>  <span class="p">{</span>
+    <span class="c1">// if(httpBodySize &lt; OTA_FIRST_PACK_SIZE + OTA_ONE_PACK_MAX * step)</span>
+    <span class="c1">//   ret = OTA_ONE_PACK_MAX;</span>
+    <span class="c1">// else</span>
+<span class="cp">#if (OTA_READMODE == 1)</span>
+      <span class="n">ret</span> <span class="o">=</span> <span class="n">OTA_FIRST_PACK_SIZE</span> <span class="o">+</span> <span class="n">OTA_ONE_PACK_MAX</span> <span class="o">*</span> <span class="p">(</span><span class="n">step</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAREAD_SEND_MAXLEN</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAREAD_SEND</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">OTA_ONE_PACK_MAX</span><span class="p">);</span>
+<span class="cp">#elif</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAREAD_SEND_MAXLEN</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAREAD_SEND</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">OTA_ONE_PACK_MAX</span><span class="p">);</span>
+<span class="cp">#endif</span>
+  <span class="p">}</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="n">AT_CMD_ATOTAREAD_SEND_MAXLEN</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATOTAREAD %d [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATOTAREAD</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAREAD_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_ADD</span><span class="p">;</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATOTAREAD</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAREAD_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAREAD_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAREAD_RETRY</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">extern</span> <span class="kt">int</span> <span class="nf">appOtaReceive</span><span class="p">(</span><span class="kt">int</span> <span class="n">step</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">buflen</span><span class="p">);</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atMergeOtaInfo</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">strtemp</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;%s otapack data step:%d len:%d recbuf[%s]&quot;, __FUNCTION__ , otaStep, len, recbuf);</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATOTAREAD_RESPOND</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// setReportTime(0);//set report clean</span>
+    <span class="kt">int</span> <span class="n">lentemp</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATOTAREAD_RESPOND</span><span class="p">));</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">lentemp</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="p">(</span><span class="n">lentemp</span> <span class="o">==</span> <span class="mi">1024</span> <span class="o">&amp;&amp;</span> <span class="n">len</span> <span class="o">!=</span> <span class="mi">1059</span><span class="p">)</span>  <span class="p">)</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">len</span> <span class="o">=</span> <span class="n">lentemp</span><span class="p">;</span>
+    <span class="n">strtemp</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">strtemp</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">len</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s otapack data otaStep:%d len:%d &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">otaStep</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">otaStep</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">otaStep</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="n">otaBuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">realloc</span><span class="p">(</span><span class="n">otaBuf</span><span class="p">,</span> <span class="n">OTA_ONE_PACK_MAX</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">otaBuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
+          <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ota buf error &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+          <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">==</span> <span class="n">OTA_FIRST_PACK_SIZE</span><span class="p">){</span>
+          <span class="n">memcpy</span><span class="p">(</span><span class="n">otaBuf</span><span class="p">,</span> <span class="n">strtemp</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">appOtaReceive</span><span class="p">(</span><span class="n">otaStep</span><span class="p">,</span> <span class="n">otaBuf</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">atGetOtaBody</span><span class="p">(</span><span class="o">++</span><span class="n">otaStep</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">otaStep</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">otaBuf</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">httpBodySize</span> <span class="o">&gt;</span> <span class="n">OTA_FIRST_PACK_SIZE</span> <span class="o">+</span> <span class="n">OTA_ONE_PACK_MAX</span> <span class="o">*</span> <span class="p">(</span><span class="n">otaStep</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// memcpy(otatestbuf+OTA_FIRST_PACK_SIZE +OTA_ONE_PACK_MAX * (otaStep - 2), strtemp + 2, len);</span>
+          <span class="n">memcpy</span><span class="p">(</span><span class="n">otaBuf</span><span class="p">,</span> <span class="n">strtemp</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">appOtaReceive</span><span class="p">(</span><span class="n">otaStep</span><span class="p">,</span> <span class="n">otaBuf</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">atGetOtaBody</span><span class="p">(</span><span class="o">++</span><span class="n">otaStep</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span>  <span class="p">{</span>
+          <span class="c1">// memcpy(otatestbuf+OTA_FIRST_PACK_SIZE +OTA_ONE_PACK_MAX * (otaStep - 2), strtemp + 2, len);</span>
+          <span class="n">memcpy</span><span class="p">(</span><span class="n">otaBuf</span><span class="p">,</span> <span class="n">strtemp</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+          <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s otapack receive over step:%d httpBodySize:%d pack [%s] &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">otaStep</span><span class="p">,</span> <span class="n">httpBodySize</span><span class="p">,</span> <span class="n">otaBuf</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">appOtaReceive</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">otaBuf</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">{</span>
+            <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">;</span><span class="c1">//only one receive</span>
+            <span class="n">atOtaQuit</span><span class="p">(</span><span class="n">OTA_SUCCESS</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="k">else</span>  <span class="p">{</span>
+            <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">;</span><span class="c1">//only one receive</span>
+            <span class="n">atOtaQuit</span><span class="p">(</span><span class="n">OTA_FAIL</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="n">free</span><span class="p">(</span><span class="n">otaBuf</span><span class="p">);</span>
+          <span class="n">otaBuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span><span class="c1">//otabuf</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span><span class="c1">//head</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atGetIotInfo</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">imei</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">customid</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s IMEI %lld&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">imei</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">imei</span> <span class="o">&lt;</span> <span class="mi">100000000000000ULL</span> <span class="o">||</span> <span class="n">customid</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATHTTPPARA_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="n">AT_CMD_IMEI_IMSI_LEN</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">customid</span><span class="p">));</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPPARA_SEND</span><span class="p">,</span> <span class="n">imei</span><span class="p">,</span> <span class="n">customid</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="mi">128</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATHTTPPARA [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATHTTPPARA</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPPARA_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATHTTPPARA</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPPARA_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPPARA_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPPARA_RETRY</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atGetIotBody</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">start</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s start:%d end:%d &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">start</span> <span class="o">&gt;=</span> <span class="n">end</span> <span class="o">||</span> <span class="n">end</span> <span class="o">&lt;</span> <span class="mi">10</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">AT_CMD_ATHTTPREAD_SEND_MAXLEN</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPREAD_SEND_MAXLEN</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPREAD_SEND</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="mi">128</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATHTTPREAD [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATHTTPREAD</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPPARA_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATHTTPREAD</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPPARA_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPPARA_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPPARA_RETRY</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atGetHttpSize</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">statusCode</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">httpBodySize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">statusCode</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">statusCode</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">httpBodySize</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">httpBodySize</span><span class="p">)</span>
+        <span class="p">{</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">otaStatus</span> <span class="o">&amp;&amp;</span> <span class="n">httpBodySize</span> <span class="o">&lt;</span> <span class="n">OTA_FIRST_PACK_SIZE</span><span class="p">)</span><span class="c1">//out ota</span>
+            <span class="n">atOtaQuit</span><span class="p">(</span><span class="n">OTA_FAIL</span><span class="p">);</span>
+          <span class="k">else</span>  <span class="p">{</span>
+            <span class="c1">// ATSENDCMD_CHANGE(ATHTTPHEAD);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">otaStatus</span> <span class="o">==</span> <span class="n">OTA_WORKING</span><span class="p">)</span>  <span class="p">{</span>
+              <span class="n">otaStep</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+              <span class="n">atGetOtaBody</span><span class="p">(</span><span class="n">otaStep</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span>  <span class="p">{</span>
+              <span class="n">atGetIotBody</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">httpBodySize</span><span class="p">);</span>
+              <span class="n">httpBodySize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+          <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s statusCode:%d httpBodySize:%d &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">statusCode</span><span class="p">,</span> <span class="n">httpBodySize</span><span class="p">);</span>
+          <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span><span class="c1">//httpBodySize</span>
+      <span class="p">}</span><span class="c1">//,</span>
+    <span class="p">}</span><span class="c1">//statusCode</span>
+  <span class="p">}</span><span class="c1">//,</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPraseHttpIotInfo</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">strtemp</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">cJSON</span> <span class="o">*</span><span class="n">root</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">root1</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">root2</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="sc">&#39;{&#39;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span><span class="s">&quot;JSON Parse str %s&quot;</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+    <span class="n">strtemp</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">AT_CMD_ATHTTPREAD_RESPOND</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">strtemp</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="o">*</span><span class="n">strtemp</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+      <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span><span class="s">&quot;JSON Parse strtemp %s&quot;</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+      <span class="n">root</span> <span class="o">=</span> <span class="n">cJSON_Parse</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="c1">// &amp;&amp; cJSON_IsObject(root))</span>
+      <span class="p">{</span>
+        <span class="n">strtemp</span> <span class="o">=</span> <span class="n">cJSON_Print</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span><span class="s">&quot;JSON Parse root here %s&quot;</span><span class="p">,</span> <span class="n">strtemp</span><span class="p">);</span>
+        <span class="n">cJSON_free</span><span class="p">(</span><span class="n">strtemp</span><span class="p">);</span>
+        <span class="n">strtemp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+        <span class="n">root1</span> <span class="o">=</span> <span class="n">cJSON_GetObjectItem</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">AT_CMD_JSON_STATUS</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">root1</span> <span class="o">&amp;&amp;</span> <span class="n">cJSON_IsString</span><span class="p">(</span><span class="n">root1</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">*</span><span class="p">(</span><span class="n">root1</span><span class="o">-&gt;</span><span class="n">valuestring</span><span class="p">)</span> <span class="o">==</span> <span class="sc">&#39;1&#39;</span><span class="p">)</span>
+        <span class="p">{</span>
+          <span class="n">root1</span> <span class="o">=</span> <span class="n">cJSON_GetObjectItem</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">AT_CMD_JSON_DATA</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">root1</span> <span class="o">&amp;&amp;</span> <span class="n">cJSON_IsObject</span><span class="p">(</span><span class="n">root1</span><span class="p">))</span>
+          <span class="p">{</span>
+            <span class="n">strtemp</span> <span class="o">=</span> <span class="n">cJSON_Print</span><span class="p">(</span><span class="n">root1</span><span class="p">);</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span><span class="s">&quot;JSON Parse data %s&quot;</span><span class="p">,</span> <span class="n">strtemp</span><span class="p">);</span>
+            <span class="n">cJSON_free</span><span class="p">(</span><span class="n">strtemp</span><span class="p">);</span>
+            <span class="n">strtemp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+            <span class="n">root2</span> <span class="o">=</span> <span class="n">cJSON_GetObjectItem</span><span class="p">(</span><span class="n">root1</span><span class="p">,</span> <span class="n">AT_CMD_JSON_PRODUCTKEY</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">root2</span> <span class="o">&amp;&amp;</span> <span class="n">cJSON_IsString</span><span class="p">(</span><span class="n">root2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">root2</span><span class="o">-&gt;</span><span class="n">valuestring</span><span class="p">))</span>
+            <span class="p">{</span>
+              <span class="n">str</span> <span class="o">=</span> <span class="n">cJSON_GetStringValue</span><span class="p">(</span><span class="n">root2</span><span class="p">);</span>
+              <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">realloc</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">root2</span><span class="o">-&gt;</span><span class="n">valuestring</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+              <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">)</span>
+                <span class="n">memcpy</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">,</span> <span class="n">root2</span><span class="o">-&gt;</span><span class="n">valuestring</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">root2</span><span class="o">-&gt;</span><span class="n">valuestring</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+              <span class="k">else</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span><span class="c1">//productKey</span>
+            <span class="k">else</span>
+              <span class="k">return</span><span class="p">;</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span><span class="s">&quot;JSON Parse productKey %s&quot;</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">);</span>
+
+            <span class="n">root2</span> <span class="o">=</span> <span class="n">cJSON_GetObjectItem</span><span class="p">(</span><span class="n">root1</span><span class="p">,</span> <span class="n">AT_CMD_JSON_DEVICESECRET</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">root2</span> <span class="o">&amp;&amp;</span> <span class="n">cJSON_IsString</span><span class="p">(</span><span class="n">root2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">root2</span><span class="o">-&gt;</span><span class="n">valuestring</span><span class="p">))</span>
+            <span class="p">{</span>
+              <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">realloc</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">root2</span><span class="o">-&gt;</span><span class="n">valuestring</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+              <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span><span class="p">)</span>
+                <span class="n">memcpy</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span><span class="p">,</span> <span class="n">root2</span><span class="o">-&gt;</span><span class="n">valuestring</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">root2</span><span class="o">-&gt;</span><span class="n">valuestring</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+              <span class="k">else</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span><span class="c1">//deviceSecret</span>
+            <span class="k">else</span>
+              <span class="k">return</span><span class="p">;</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span><span class="s">&quot;JSON Parse deviceSecret %s&quot;</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span><span class="p">);</span>
+            <span class="n">root2</span> <span class="o">=</span> <span class="n">cJSON_GetObjectItem</span><span class="p">(</span><span class="n">root1</span><span class="p">,</span> <span class="n">AT_CMD_JSON_DOMAIN</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">root2</span> <span class="o">&amp;&amp;</span> <span class="n">cJSON_IsString</span><span class="p">(</span><span class="n">root2</span><span class="p">))</span>
+            <span class="p">{</span>
+              <span class="n">strtemp</span> <span class="o">=</span> <span class="n">cJSON_GetStringValue</span><span class="p">(</span><span class="n">root2</span><span class="p">);</span>
+              <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">strtemp</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">);</span>
+              <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotPort</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+              <span class="n">len</span> <span class="o">=</span> <span class="n">str</span> <span class="o">-</span> <span class="n">strtemp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+              <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">realloc</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+              <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span><span class="p">)</span>
+              <span class="p">{</span>
+                <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span><span class="s">&quot;JSON Parse strtemp [%s]&quot;</span><span class="p">,</span> <span class="n">strtemp</span><span class="p">);</span>
+                <span class="n">memcpy</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span><span class="p">,</span> <span class="n">strtemp</span><span class="p">,</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">);</span>
+                <span class="o">*</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span> <span class="o">+</span> <span class="n">len</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+              <span class="p">}</span>
+              <span class="k">else</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span><span class="c1">//domain</span>
+            <span class="k">else</span>
+              <span class="k">return</span><span class="p">;</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span><span class="s">&quot;JSON Parse iotDomain [%s]:%d&quot;</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotPort</span><span class="p">);</span>
+            <span class="n">SaveInfoToFlash</span><span class="p">(</span><span class="n">strtemp</span><span class="p">);</span>
+            <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATHTTPTERM</span><span class="p">);</span>
+          <span class="p">}</span><span class="c1">//data</span>
+        <span class="p">}</span><span class="c1">//status</span>
+        <span class="n">cJSON_Delete</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+      <span class="p">}</span><span class="c1">//root</span>
+    <span class="p">}</span><span class="c1">//AT_CMD_ATHTTPREAD_RESPOND</span>
+  <span class="p">}</span><span class="c1">//{</span>
+<span class="p">}</span>
+<span class="c1">// static void atPraseHttpHeadInfo( char* recbuf, int len)</span>
+<span class="c1">// {</span>
+<span class="c1">//   char* str=NULL;</span>
+<span class="c1">//   if(recbuf == NULL || len == 0)</span>
+<span class="c1">//     return;</span>
+<span class="c1">//   str = strstr(recbuf, &quot;HTTP/1.1 200&quot;);</span>
+<span class="c1">//   if(str) {</span>
+<span class="c1">//     if(iotinfo_module.otaStatus == OTA_WORKING)  {</span>
+<span class="c1">//       otaStep = 1;</span>
+<span class="c1">//       atGetOtaBody(otaStep);</span>
+<span class="c1">//     }</span>
+<span class="c1">//     else  {</span>
+<span class="c1">//       atGetIotBody(0, httpBodySize);</span>
+<span class="c1">//       httpBodySize = 0;</span>
+<span class="c1">//     }</span>
+<span class="c1">//   }</span>
+<span class="c1">// }</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPraseHttpOk</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">atcmd_current</span><span class="p">)</span>
+  <span class="p">{</span>
+  <span class="k">case</span> <span class="nl">ATHTTPINIT</span><span class="p">:</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">otaStatus</span> <span class="o">==</span> <span class="n">OTA_WORKING</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">atGetOtaInfo</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">upgradeUrl</span><span class="p">);</span><span class="c1">//ATHTTPPARA</span>
+      <span class="p">}</span>
+      <span class="k">else</span>
+        <span class="n">atGetIotInfo</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span><span class="p">,</span> <span class="n">AT_CMD_CUSTOMID</span><span class="p">);</span><span class="c1">//ATHTTPPARA</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATHTTPPARA</span><span class="p">:</span>
+<span class="cp">#if (OTA_READMODE == 1)</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATREADMODE</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATREADMODE</span><span class="p">:</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATHTTPACTION</span><span class="p">);</span>
+<span class="cp">#elif</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATHTTPACTION</span><span class="p">);</span>
+<span class="cp">#endif</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATHTTPACTION</span><span class="p">:</span>
+      <span class="n">ATCMD_WAIT_SPECIAL</span><span class="p">(</span><span class="n">AT_CMD_ATHTTPACTION_TIMEOUT</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="c1">// case ATHTTPHEAD:</span>
+  <span class="c1">//     atPraseHttpHeadInfo(recbuf, len);</span>
+  <span class="c1">//   break;</span>
+  <span class="k">case</span> <span class="nl">ATHTTPREAD</span><span class="p">:</span>
+      <span class="n">ATCMD_WAIT_SPECIAL</span><span class="p">(</span><span class="n">AT_CMD_ATHTTPREAD_TIMEOUT</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">case</span> <span class="nl">ATOTAREAD</span><span class="p">:</span>
+      <span class="n">ATCMD_WAIT_SPECIAL</span><span class="p">(</span><span class="n">AT_CMD_ATOTAREAD_TIMEOUT</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">case</span> <span class="nl">ATHTTPTERM</span><span class="p">:</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">otaStatus</span> <span class="o">==</span> <span class="n">OTA_SUCCESS</span><span class="p">)</span>
+        <span class="n">fzRespondUgrade</span><span class="p">(</span><span class="n">ERR_OK</span><span class="p">);</span>
+      <span class="k">else</span>  <span class="p">{</span>
+        <span class="n">ATSENDCMD_CHANGE_NULL</span><span class="p">();</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">=</span> <span class="n">IOT_SAVEBASEINFO</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">default</span><span class="o">:</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s not atcmd_current&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPraseHttpSpecial</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">==</span> <span class="n">ATCMD_WAIT_ADD</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// ESP_LOGI(ATTAG, &quot;recbuf [%s] [%s] not %s&quot;, recbuf, AT_CMD_ATHTTPACTION_SEND+2, AT_CMD_ATHTTPACTION_SEND+1+AT_CMD_ATHTTPACTION_RESPOND_SPLEN );</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATHTTPACTION</span> <span class="o">&amp;&amp;</span> <span class="n">ATCMD_WAIT_SPECIAL_CMP</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">ATHTTPACTION</span><span class="p">)</span> <span class="p">)</span>  <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">;</span><span class="c1">//only one receive</span>
+      <span class="n">atGetHttpSize</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATHTTPREAD</span> <span class="o">&amp;&amp;</span> <span class="n">ATCMD_WAIT_SPECIAL_CMP</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">ATHTTPREAD</span><span class="p">)</span> <span class="p">){</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">;</span><span class="c1">//only one receive</span>
+      <span class="n">atPraseHttpIotInfo</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATOTAREAD</span><span class="p">){</span><span class="c1">// &amp;&amp; memcmp(recbuf, ATCMDRESPONDOKSTR, strlen(ATCMDRESPONDOKSTR)) == 0 ){//ATCMD_WAIT_SPECIAL_CMP(recbuf, ATOTAREAD) ){</span>
+      <span class="c1">// if(atMergeOtaInfo(recbuf, len) == 0)</span>
+      <span class="c1">//   g_atcmd_uri_map_send.wait = ATCMD_WAIT_NONE;//only one receive</span>
+      <span class="n">atMergeOtaInfo</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPraseHttpError</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s Read ERROR bytes&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+  <span class="c1">// atSendCmd(0);</span>
+  <span class="c1">// if(atcmd_current == ATOTAREAD &amp;&amp; g_atcmd_uri_map_send.wait != ATCMD_WAIT_ADD)</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">atCmdStartGetIotInfo</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">httpBodySize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">otaStatus</span> <span class="o">=</span> <span class="n">OTA_NONE</span><span class="p">;</span>
+  <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATHTTPINIT</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">atCmdStartGetOtaInfo</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">httpBodySize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">otaStatus</span> <span class="o">=</span> <span class="n">OTA_WORKING</span><span class="p">;</span>
+  <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATHTTPINIT</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">atPraseHttpCmd</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s atcmd_current : %d wait:%d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">atcmd_current</span><span class="p">,</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">ATCMDRESPONDOK</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">atPraseHttpOk</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="p">)</span>
+    <span class="n">atPraseHttpSpecial</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+  <span class="k">else</span><span class="c1">//receive not right</span>
+    <span class="n">atPraseHttpError</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, vencol
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

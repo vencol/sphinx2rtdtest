@@ -1,0 +1,13 @@
+.. _exhale_function_atcmd_8h_1afca35744711019499365d618b959faa8:
+
+Function atMallocCmd(char, char \*, char \*)
+============================================
+
+- Defined in :ref:`file_main_atprocess_atcmd.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: atMallocCmd(char, char *, char *)

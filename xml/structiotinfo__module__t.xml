@@ -1,0 +1,419 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structiotinfo__module__t" kind="struct" language="C++" prot="public">
+    <compoundname>iotinfo_module_t</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structiotinfo__module__t_1acca54ba93eb6e61f49dcf8b39889dc10" prot="public" static="no" mutable="no">
+        <type><ref refid="structatcmd__module__t" kindref="compound">atcmd_module_t</ref> *</type>
+        <definition>atcmd_module_t* iotinfo_module_t::at_module</definition>
+        <argsstring></argsstring>
+        <name>at_module</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="67" column="21" bodyfile="main/iot/iotinfo.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a7718f104c591e632c58e4dbf0b440aa9" prot="public" static="no" mutable="no">
+        <type><ref refid="structdevice__info__t" kindref="compound">device_info_t</ref> *</type>
+        <definition>device_info_t* iotinfo_module_t::devinfo</definition>
+        <argsstring></argsstring>
+        <name>devinfo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="68" column="21" bodyfile="main/iot/iotinfo.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1abe227cdc8459d28d87df5a617fdbbc8d" prot="public" static="no" mutable="no">
+        <type><ref refid="structdevice__param__t" kindref="compound">device_param_t</ref> *</type>
+        <definition>device_param_t* iotinfo_module_t::devparam</definition>
+        <argsstring></argsstring>
+        <name>devparam</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="69" column="21" bodyfile="main/iot/iotinfo.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a27a76319eb54dbe85870f88fc6c3113b" prot="public" static="no" mutable="no">
+        <type>unsigned long long</type>
+        <definition>unsigned long long iotinfo_module_t::imei</definition>
+        <argsstring></argsstring>
+        <name>imei</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="70" column="26" bodyfile="main/iot/iotinfo.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1ab0e4a60897b81ad996167f2a4fb9b35a" prot="public" static="no" mutable="no">
+        <type>unsigned long long</type>
+        <definition>unsigned long long iotinfo_module_t::imsi</definition>
+        <argsstring></argsstring>
+        <name>imsi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="71" column="25" bodyfile="main/iot/iotinfo.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1afc6cce0dd95dff35afb858138a8a3a2c" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* iotinfo_module_t::productKey</definition>
+        <argsstring></argsstring>
+        <name>productKey</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="72" column="21" bodyfile="main/iot/iotinfo.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1ad91e6c7f036a90e6466e02ebd9ddf864" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* iotinfo_module_t::deviceSecret</definition>
+        <argsstring></argsstring>
+        <name>deviceSecret</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="73" column="21" bodyfile="main/iot/iotinfo.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a0e6352c74cdf9c21f1444a995a87ca32" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* iotinfo_module_t::clientId</definition>
+        <argsstring></argsstring>
+        <name>clientId</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="74" column="6" bodyfile="main/iot/iotinfo.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1ad6b57f2f1c2d81ca1617d88b0769b1e0" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* iotinfo_module_t::userName</definition>
+        <argsstring></argsstring>
+        <name>userName</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="75" column="6" bodyfile="main/iot/iotinfo.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a397897d2bad998f7e08215c061e7b412" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* iotinfo_module_t::passWord</definition>
+        <argsstring></argsstring>
+        <name>passWord</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="76" column="6" bodyfile="main/iot/iotinfo.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a39dd437e78e5ba5b0b4a875d8f7c048e" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* iotinfo_module_t::iotDomain</definition>
+        <argsstring></argsstring>
+        <name>iotDomain</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="77" column="17" bodyfile="main/iot/iotinfo.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1ace950d8439f10705d26f2922908ed5ac" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* iotinfo_module_t::upgradeSn</definition>
+        <argsstring></argsstring>
+        <name>upgradeSn</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="78" column="21" bodyfile="main/iot/iotinfo.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a6290b04697aae8cea7d6957bc5f3a264" prot="public" static="no" mutable="no">
+        <type>char *</type>
+        <definition>char* iotinfo_module_t::upgradeUrl</definition>
+        <argsstring></argsstring>
+        <name>upgradeUrl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="79" column="21" bodyfile="main/iot/iotinfo.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a90ed117ed2c2e4d49b4b3d38b480ed56" prot="public" static="no" mutable="no">
+        <type><ref refid="unionerror__info__t" kindref="compound">error_info_t</ref></type>
+        <definition>error_info_t iotinfo_module_t::error</definition>
+        <argsstring></argsstring>
+        <name>error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="80" column="17" bodyfile="main/iot/iotinfo.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a93281905edeb9acea38125ee7fcae2ed" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short iotinfo_module_t::operateTime</definition>
+        <argsstring></argsstring>
+        <name>operateTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="81" column="19" bodyfile="main/iot/iotinfo.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a4887e82329b742b9027d091aceac7f74" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short iotinfo_module_t::tempDisTime</definition>
+        <argsstring></argsstring>
+        <name>tempDisTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="82" column="19" bodyfile="main/iot/iotinfo.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1acb8625fd01d0c650150d42e085b81034" prot="public" static="no" mutable="no">
+        <type>signed short</type>
+        <definition>signed short iotinfo_module_t::realTemp</definition>
+        <argsstring></argsstring>
+        <name>realTemp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="83" column="20" bodyfile="main/iot/iotinfo.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1ae93d92c8c47ad28c12c51d0055ee055d" prot="public" static="no" mutable="no">
+        <type>signed short</type>
+        <definition>signed short iotinfo_module_t::showTemp</definition>
+        <argsstring></argsstring>
+        <name>showTemp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="84" column="20" bodyfile="main/iot/iotinfo.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1aae0a00f3d5523a6d0955729120688e5a" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int iotinfo_module_t::powerOnTime</definition>
+        <argsstring></argsstring>
+        <name>powerOnTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="85" column="17" bodyfile="main/iot/iotinfo.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1ac5ce248974d7d99dde320f3e746b3882" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short iotinfo_module_t::iotPort</definition>
+        <argsstring></argsstring>
+        <name>iotPort</name>
+        <bitfield> 12</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="86" column="16" bodyfile="main/iot/iotinfo.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a7501a42e9fa843b447f1106190999350" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short iotinfo_module_t::setdisplay1</definition>
+        <argsstring></argsstring>
+        <name>setdisplay1</name>
+        <bitfield> 3</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="87" column="16" bodyfile="main/iot/iotinfo.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a08ce8b50156185819e721997e77394b0" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short iotinfo_module_t::displayalarm</definition>
+        <argsstring></argsstring>
+        <name>displayalarm</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="88" column="20" bodyfile="main/iot/iotinfo.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1aea5e295679a52ba16790f1cbc988a7c8" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char iotinfo_module_t::iotStatus</definition>
+        <argsstring></argsstring>
+        <name>iotStatus</name>
+        <bitfield> 5</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="89" column="20" bodyfile="main/iot/iotinfo.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a23d06ea5193f7ad04743a2f084db4a16" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char iotinfo_module_t::otaStatus</definition>
+        <argsstring></argsstring>
+        <name>otaStatus</name>
+        <bitfield> 2</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="90" column="20" bodyfile="main/iot/iotinfo.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a3c3805b068cb33c69031a1c233034047" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char iotinfo_module_t::firstOn</definition>
+        <argsstring></argsstring>
+        <name>firstOn</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="91" column="20" bodyfile="main/iot/iotinfo.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structiotinfo__module__t_1a10243ba3152aeb7a5e4e71d8abf3eed9" prot="public" static="no" mutable="no">
+        <type>signed char</type>
+        <definition>signed char iotinfo_module_t::secureMode</definition>
+        <argsstring></argsstring>
+        <name>secureMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/iotinfo.h" line="93" column="19" bodyfile="main/iot/iotinfo.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>iotinfo_module_t</label>
+        <link refid="structiotinfo__module__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>devinfo</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>at_module</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>devparam</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>error</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>error_info_t</label>
+        <link refid="unionerror__info__t"/>
+      </node>
+      <node id="4">
+        <label>device_param_t</label>
+        <link refid="structdevice__param__t"/>
+      </node>
+      <node id="3">
+        <label>atcmd_module_t</label>
+        <link refid="structatcmd__module__t"/>
+      </node>
+      <node id="2">
+        <label>device_info_t</label>
+        <link refid="structdevice__info__t"/>
+      </node>
+    </collaborationgraph>
+    <location file="main/iot/iotinfo.h" line="66" column="1" bodyfile="main/iot/iotinfo.h" bodystart="66" bodyend="94"/>
+    <listofallmembers>
+      <member refid="structiotinfo__module__t_1acca54ba93eb6e61f49dcf8b39889dc10" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>at_module</name></member>
+      <member refid="structiotinfo__module__t_1a0e6352c74cdf9c21f1444a995a87ca32" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>clientId</name></member>
+      <member refid="structiotinfo__module__t_1ad91e6c7f036a90e6466e02ebd9ddf864" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>deviceSecret</name></member>
+      <member refid="structiotinfo__module__t_1a7718f104c591e632c58e4dbf0b440aa9" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>devinfo</name></member>
+      <member refid="structiotinfo__module__t_1abe227cdc8459d28d87df5a617fdbbc8d" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>devparam</name></member>
+      <member refid="structiotinfo__module__t_1a08ce8b50156185819e721997e77394b0" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>displayalarm</name></member>
+      <member refid="structiotinfo__module__t_1a90ed117ed2c2e4d49b4b3d38b480ed56" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>error</name></member>
+      <member refid="structiotinfo__module__t_1a3c3805b068cb33c69031a1c233034047" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>firstOn</name></member>
+      <member refid="structiotinfo__module__t_1a27a76319eb54dbe85870f88fc6c3113b" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>imei</name></member>
+      <member refid="structiotinfo__module__t_1ab0e4a60897b81ad996167f2a4fb9b35a" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>imsi</name></member>
+      <member refid="structiotinfo__module__t_1a39dd437e78e5ba5b0b4a875d8f7c048e" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>iotDomain</name></member>
+      <member refid="structiotinfo__module__t_1ac5ce248974d7d99dde320f3e746b3882" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>iotPort</name></member>
+      <member refid="structiotinfo__module__t_1aea5e295679a52ba16790f1cbc988a7c8" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>iotStatus</name></member>
+      <member refid="structiotinfo__module__t_1a93281905edeb9acea38125ee7fcae2ed" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>operateTime</name></member>
+      <member refid="structiotinfo__module__t_1a23d06ea5193f7ad04743a2f084db4a16" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>otaStatus</name></member>
+      <member refid="structiotinfo__module__t_1a397897d2bad998f7e08215c061e7b412" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>passWord</name></member>
+      <member refid="structiotinfo__module__t_1aae0a00f3d5523a6d0955729120688e5a" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>powerOnTime</name></member>
+      <member refid="structiotinfo__module__t_1afc6cce0dd95dff35afb858138a8a3a2c" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>productKey</name></member>
+      <member refid="structiotinfo__module__t_1acb8625fd01d0c650150d42e085b81034" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>realTemp</name></member>
+      <member refid="structiotinfo__module__t_1a10243ba3152aeb7a5e4e71d8abf3eed9" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>secureMode</name></member>
+      <member refid="structiotinfo__module__t_1a7501a42e9fa843b447f1106190999350" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>setdisplay1</name></member>
+      <member refid="structiotinfo__module__t_1ae93d92c8c47ad28c12c51d0055ee055d" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>showTemp</name></member>
+      <member refid="structiotinfo__module__t_1a4887e82329b742b9027d091aceac7f74" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>tempDisTime</name></member>
+      <member refid="structiotinfo__module__t_1ace950d8439f10705d26f2922908ed5ac" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>upgradeSn</name></member>
+      <member refid="structiotinfo__module__t_1a6290b04697aae8cea7d6957bc5f3a264" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>upgradeUrl</name></member>
+      <member refid="structiotinfo__module__t_1ad6b57f2f1c2d81ca1617d88b0769b1e0" prot="public" virt="non-virtual"><scope>iotinfo_module_t</scope><name>userName</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

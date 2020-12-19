@@ -1,0 +1,13 @@
+.. _exhale_function_drv__gpio_8c_1a7921b6f32111302a4f055af756b50c54:
+
+Function drvOutputGpioInit(void)
+================================
+
+- Defined in :ref:`file_main_freezerdrv_drv_gpio.c`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: drvOutputGpioInit(void)

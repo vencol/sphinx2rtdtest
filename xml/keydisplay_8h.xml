@@ -1,0 +1,1003 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="keydisplay_8h" kind="file" language="C++">
+    <compoundname>keydisplay.h</compoundname>
+    <includedby refid="controlpro_8c" local="yes">main/iot/controlpro.c</includedby>
+    <includedby refid="displaypro_8c" local="yes">main/iot/displaypro.c</includedby>
+    <includedby refid="iotmain_8c" local="yes">main/iot/iotmain.c</includedby>
+    <includedby refid="keydisplay_8c" local="yes">main/iot/keydisplay.c</includedby>
+    <innerclass refid="structdisplay__buf__t" prot="public">display_buf_t</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="keydisplay_8h_1ad852467ff33bb3849d3bb7461c36e327" prot="public" static="no">
+        <name>BASE_DISPLAY_TIME</name>
+        <initializer>(10)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="85" column="9" bodyfile="main/iot/keydisplay.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a2d2fbb375cfc2fc35c5e96e82e23d98c" prot="public" static="no">
+        <name>DISPLAY_REFRESH_TIME</name>
+        <initializer>(100 / BASE_DISPLAY_TIME)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="86" column="9" bodyfile="main/iot/keydisplay.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a8e7367af5e2ff0672d7804674fac06e3" prot="public" static="no">
+        <name>SET_OPERATION_TIME</name>
+        <initializer>(8000 / BASE_DISPLAY_TIME)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="87" column="9" bodyfile="main/iot/keydisplay.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a05fbf88b9cd145302da9476922912fba" prot="public" static="no">
+        <name>DISPLAY_FLASH_500MS</name>
+        <initializer>(500 / BASE_DISPLAY_TIME)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="89" column="9" bodyfile="main/iot/keydisplay.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a7be328e00e5c923d574b56384901515f" prot="public" static="no">
+        <name>DISPLAY_FLASH_1S</name>
+        <initializer>(1000 / BASE_DISPLAY_TIME)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="90" column="9" bodyfile="main/iot/keydisplay.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a3a5a77ee2d007545e8d0cd9921ddee51" prot="public" static="no">
+        <name>DISPLAY_FLASH_NONE</name>
+        <initializer>(10000 / BASE_DISPLAY_TIME)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="91" column="9" bodyfile="main/iot/keydisplay.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a44031484fa34f3512f4c3a0c78eaad3a" prot="public" static="no">
+        <name>DISPLAY_CHAR_b</name>
+        <initializer>(0x7c)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="93" column="9" bodyfile="main/iot/keydisplay.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1ac21bdb0aebda11c312049ce943b332fc" prot="public" static="no">
+        <name>DISPLAY_CHAR_C</name>
+        <initializer>(0x39)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="94" column="9" bodyfile="main/iot/keydisplay.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a5b9b3833938f5ab1e43e470cd838248c" prot="public" static="no">
+        <name>DISPLAY_CHAR_d</name>
+        <initializer>(0x5e)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="95" column="9" bodyfile="main/iot/keydisplay.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a23db1fc2fbb751499d253c93d96cdf08" prot="public" static="no">
+        <name>DISPLAY_CHAR_E</name>
+        <initializer>(0x79)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="96" column="9" bodyfile="main/iot/keydisplay.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1af7951db5d7c6279ec238a4d504e92240" prot="public" static="no">
+        <name>DISPLAY_CHAR_F</name>
+        <initializer>(0x71)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="97" column="9" bodyfile="main/iot/keydisplay.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1af990dc7757480e3cbaff0c4c3bd7f8d7" prot="public" static="no">
+        <name>DISPLAY_CHAR_H</name>
+        <initializer>(0x76)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="98" column="9" bodyfile="main/iot/keydisplay.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a09c711e0143641adb725061a51495060" prot="public" static="no">
+        <name>DISPLAY_CHAR_L</name>
+        <initializer>(0x38)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="99" column="9" bodyfile="main/iot/keydisplay.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a2b1e453e884a0436237cbd71647a9332" prot="public" static="no">
+        <name>DISPLAY_CHAR_r</name>
+        <initializer>(0x50)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="100" column="9" bodyfile="main/iot/keydisplay.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1ace83ddbfb2bfdecb9ca9792720e0eb5b" prot="public" static="no">
+        <name>DISPLAY_TYPE_NONE</name>
+        <initializer>(-1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="102" column="9" bodyfile="main/iot/keydisplay.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1af7b32d2bd2549234b010ef1ccabd4a1c" prot="public" static="no">
+        <name>DISPLAY_TYPE_SET</name>
+        <initializer>(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="103" column="9" bodyfile="main/iot/keydisplay.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a4775e861f0d51b5bd6d7b81736bffb25" prot="public" static="no">
+        <name>DISPLAY_TYPE_ON</name>
+        <initializer>(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="104" column="9" bodyfile="main/iot/keydisplay.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a47bc25ab1153855369007fb64fecdff0" prot="public" static="no">
+        <name>DISPLAY_TYPE_OFF</name>
+        <initializer>(2)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="105" column="9" bodyfile="main/iot/keydisplay.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1aa808def2650fee730f98e3c30c8eacb6" prot="public" static="no">
+        <name>DISPLAY_TYPE_ONOVER</name>
+        <initializer>(3)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="106" column="9" bodyfile="main/iot/keydisplay.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a99baee0abcd87e69df8de0e47d276424" prot="public" static="no">
+        <name>DISPLAY_TYPE_OffOVER</name>
+        <initializer>(4)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="107" column="9" bodyfile="main/iot/keydisplay.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a0d3f4f378fe0d1e1f8259de273130e57" prot="public" static="no">
+        <name>DISPLAY_TYPE_ERROR</name>
+        <initializer>(0x7f)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="108" column="9" bodyfile="main/iot/keydisplay.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a320bfe61dbcc695e40b4c9e51ffaeb85" prot="public" static="no">
+        <name>DISPLAY_TYPE_DIGITAL</name>
+        <initializer>(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="109" column="9" bodyfile="main/iot/keydisplay.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a9c251403c94c129dbbe4fec42ad433e4" prot="public" static="no">
+        <name>DISPLAY_TYPE_DECIMAL</name>
+        <initializer>(DISPLAY_TYPE_DIGITAL + 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="110" column="9" bodyfile="main/iot/keydisplay.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1ab068ebb14acf8aea3476d6f46cc23452" prot="public" static="no">
+        <name>DISPLAY_TYPE_PARAM1</name>
+        <initializer>(DISPLAY_TYPE_DECIMAL + 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="111" column="9" bodyfile="main/iot/keydisplay.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a143d793bf5c190a0d66d0affe458817d" prot="public" static="no">
+        <name>DISPLAY_TYPE_CSQ</name>
+        <initializer>(DISPLAY_TYPE_PARAM1 + 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="112" column="9" bodyfile="main/iot/keydisplay.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a3c0eab602734efc83731e6835151bdf1" prot="public" static="no">
+        <name>DISPLAY_TYPE_HHH</name>
+        <initializer>(DISPLAY_TYPE_CSQ + 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="113" column="9" bodyfile="main/iot/keydisplay.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1a3b1d801cf4df960871a2a0c0ca287dc9" prot="public" static="no">
+        <name>DISPLAY_TYPE_LLL</name>
+        <initializer>(DISPLAY_TYPE_HHH + 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="114" column="9" bodyfile="main/iot/keydisplay.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1aa11700edf851c5fc9e0b461085f91e54" prot="public" static="no">
+        <name>DISPLAY_TYPE_bd</name>
+        <initializer>(DISPLAY_TYPE_LLL + 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="115" column="9" bodyfile="main/iot/keydisplay.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="keydisplay_8h_1ab19400306d9c2563c4c3b201204113d6" prot="public" static="no">
+        <name>DISPLAY_TYPE_OF</name>
+        <initializer>(DISPLAY_TYPE_bd + 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="116" column="9" bodyfile="main/iot/keydisplay.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46" prot="public" static="no" strong="no">
+        <type></type>
+        <name>display_status_opt_t</name>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46ae1804614a1f20fe485d37f0bcaf05906" prot="public">
+          <name>DISPLAY_NONE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a5f4249b403c9011a9b3c7c2ffe0ee001" prot="public">
+          <name>DISPLAY_POWERON</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a26dbe0bae0b8f9f134ee944e29eb389e" prot="public">
+          <name>DISPLAY_3STEMP</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a5ff818bebd467f938e997740025b433d" prot="public">
+          <name>DISPLAY_LOCKED</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46aa812ceaef8b924fb1f9a3290b794841c" prot="public">
+          <name>DISPLAY_LOCALOFF</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a9a766c4902e4375a22caab0676726c53" prot="public">
+          <name>DISPLAY_REMOTEOFF</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46aba24ccc1d380d2302cd40178b06dc642" prot="public">
+          <name>DISPLAY_SET_TEMP</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a34bb0b7d9f7e6ff85ea3403313dfb182" prot="public">
+          <name>DISPLAY_SELECT_PARAM_C1</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a1141efbef89f0fd364304c671e8b9e02" prot="public">
+          <name>DISPLAY_SELECT_PARAM_C2</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a65c478755e80eff16b17a5420ee74751" prot="public">
+          <name>DISPLAY_SELECT_PARAM_C3</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46ad7170a04c67bb8c6b1e4a75eeff07a06" prot="public">
+          <name>DISPLAY_SELECT_PARAM_C4</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46af42709ddff087413d682ada4b80b5107" prot="public">
+          <name>DISPLAY_SELECT_PARAM_C5</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46ad9d61c5b92df1c0d59f05633349b9a58" prot="public">
+          <name>DISPLAY_SELECT_PARAM_F1</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a23774350ee521c22649f309a015d0eda" prot="public">
+          <name>DISPLAY_SET_C1</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46ab6f4cf979eee84d3aedd6747372d8bc0" prot="public">
+          <name>DISPLAY_SET_C2</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46ad5a24c4abbea7dbd5ce964092773c72b" prot="public">
+          <name>DISPLAY_SET_C3</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a283183ab24a072642262a7d3663755d6" prot="public">
+          <name>DISPLAY_SET_C4</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a587bbba7bf8dd732dcc2b086b27035ce" prot="public">
+          <name>DISPLAY_SET_C5</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46aba997357373788ea7b28c4f2c64be9a8" prot="public">
+          <name>DISPLAY_SET_F1</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a682da657d0ce2be3cdc1b1d0d07f118e" prot="public">
+          <name>DISPLAY_ERR_NONE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46abf12c069b63c7a9a9f633d3b8189dfb5" prot="public">
+          <name>DISPLAY_ERR_NOSIM</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a7723bd464b3b0d75b6ab2ab123bd3f01" prot="public">
+          <name>DISPLAY_ERR_FROZEN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a6ad9e1b74c66d2900db87888b80c4f47" prot="public">
+          <name>DISPLAY_ERR_REFRIGERA</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a67cdbd804454f40dabcc94683738a7e7" prot="public">
+          <name>DISPLAY_ERR_REGISTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a8b2e515bf40a66a417c010c7aab5bcee" prot="public">
+          <name>DISPLAY_ERR_ERRSIM</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46af3a733f2057620998020b05862250fa2" prot="public">
+          <name>DISPLAY_ERR_CSQ</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a56f5966dda92cd97ef4a6e0de8d9d7e0" prot="public">
+          <name>DISPLAY_ERR_MCU</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46afd517f97a67109df9e47f082d5283cea" prot="public">
+          <name>DISPLAY_ERR_WIFI</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46af59dc5cd4d4a09cb5f65aeb5c9008c6a" prot="public">
+          <name>DISPLAY_ERR_BLE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="keydisplay_8h_1aba6973c7d52a79c09f059b7c4c576b46a230f0c983a46318ca8252573fe1417a1" prot="public">
+          <name>DISPLAY_ERR_SHOW_CSQ</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="25" column="1" bodyfile="main/iot/keydisplay.h" bodystart="25" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="keydisplay_8h_1a879d62e3ddecb83ba07fef48c2126127" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char displayStatus</definition>
+        <argsstring></argsstring>
+        <name>displayStatus</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="62" column="23" bodyfile="main/iot/displaypro.c" bodystart="29" bodyend="-1" declfile="main/iot/keydisplay.h" declline="62" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="keydisplay_8h_1a7da84c70bd103a19cc73638ba133241f" prot="public" static="no" mutable="no">
+        <type>signed short</type>
+        <definition>signed short displayTemp</definition>
+        <argsstring></argsstring>
+        <name>displayTemp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="63" column="22" bodyfile="main/iot/displaypro.c" bodystart="30" bodyend="-1" declfile="main/iot/keydisplay.h" declline="63" declcolumn="22"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="keydisplay_8h_1a8c548751802c5960b3092be28cc56d9f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void displayInit</definition>
+        <argsstring>(void)</argsstring>
+        <name>displayInit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="65" column="6" bodyfile="main/iot/displaypro.c" bodystart="887" bodyend="891" declfile="main/iot/keydisplay.h" declline="65" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1a5f1112a2f13eb4aeab1e4b67ad13f737" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void displayProcess</definition>
+        <argsstring>(void)</argsstring>
+        <name>displayProcess</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="66" column="6" bodyfile="main/iot/displaypro.c" bodystart="813" bodyend="882" declfile="main/iot/keydisplay.h" declline="66" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1a2bf89d6e575a6c0cf908289aa599c4a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void displaySetRekey</definition>
+        <argsstring>(unsigned char key)</argsstring>
+        <name>displaySetRekey</name>
+        <param>
+          <type>unsigned char</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="67" column="6" bodyfile="main/iot/displaypro.c" bodystart="883" bodyend="886" declfile="main/iot/keydisplay.h" declline="67" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1aaa1617d0fc1636297e08c95020ced6c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t keyDisplayUartSend</definition>
+        <argsstring>(uint8_t cmd, const char *data, uint8_t len)</argsstring>
+        <name>keyDisplayUartSend</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>cmd</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="68" column="9" bodyfile="main/iot/keydisplay.c" bodystart="57" bodyend="69" declfile="main/iot/keydisplay.h" declline="68" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1a29d111cc2a633dab38d9ac07c577fb05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void resetDisplay</definition>
+        <argsstring>(void)</argsstring>
+        <name>resetDisplay</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="70" column="6" bodyfile="main/iot/displaypro.c" bodystart="387" bodyend="391" declfile="main/iot/keydisplay.h" declline="70" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1a07457bfd6eb167ecbd803d3d18d34100" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int settingQuit</definition>
+        <argsstring>(signed char type)</argsstring>
+        <name>settingQuit</name>
+        <param>
+          <type>signed char</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="71" column="5" bodyfile="main/iot/displaypro.c" bodystart="392" bodyend="424" declfile="main/iot/keydisplay.h" declline="71" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1ae543da9a8d566dc08feec10b59530751" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int setTempDisplay</definition>
+        <argsstring>(signed char type)</argsstring>
+        <name>setTempDisplay</name>
+        <param>
+          <type>signed char</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="72" column="5" bodyfile="main/iot/displaypro.c" bodystart="516" bodyend="540" declfile="main/iot/keydisplay.h" declline="72" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1ac8a87d27be3a56d27c218ad1c9f6d0c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int setParamInOut</definition>
+        <argsstring>(signed char type)</argsstring>
+        <name>setParamInOut</name>
+        <param>
+          <type>signed char</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="73" column="5" bodyfile="main/iot/displaypro.c" bodystart="581" bodyend="636" declfile="main/iot/keydisplay.h" declline="73" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1a0af6459f4d3819304656fb3089fa2ade" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int setParamDisplay</definition>
+        <argsstring>(signed char type)</argsstring>
+        <name>setParamDisplay</name>
+        <param>
+          <type>signed char</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="74" column="5" bodyfile="main/iot/displaypro.c" bodystart="637" bodyend="680" declfile="main/iot/keydisplay.h" declline="74" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1ad3aab3e4384a2342ce6c3258f1805f33" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int selectParamDisplay</definition>
+        <argsstring>(signed char type)</argsstring>
+        <name>selectParamDisplay</name>
+        <param>
+          <type>signed char</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="75" column="5" bodyfile="main/iot/displaypro.c" bodystart="541" bodyend="579" declfile="main/iot/keydisplay.h" declline="75" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1a11014ae8475e274b434877a9cc99002e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int setErrDisplay</definition>
+        <argsstring>(signed char type)</argsstring>
+        <name>setErrDisplay</name>
+        <param>
+          <type>signed char</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="76" column="5" bodyfile="main/iot/displaypro.c" bodystart="681" bodyend="739" declfile="main/iot/keydisplay.h" declline="76" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1ab40a6f84a38ccd66c54cc36df7a1cac9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void setDisplay_0</definition>
+        <argsstring>(signed char settemp)</argsstring>
+        <name>setDisplay_0</name>
+        <param>
+          <type>signed char</type>
+          <declname>settemp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="77" column="6" bodyfile="main/iot/displaypro.c" bodystart="488" bodyend="515" declfile="main/iot/keydisplay.h" declline="77" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1aa4dc83e68626b954dd84bf176455bd73" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int powerOffLocal</definition>
+        <argsstring>(signed char type)</argsstring>
+        <name>powerOffLocal</name>
+        <param>
+          <type>signed char</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="78" column="5" bodyfile="main/iot/displaypro.c" bodystart="443" bodyend="460" declfile="main/iot/keydisplay.h" declline="78" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1a181df39f80c1beb9d107d77de8cdabea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int powerOffRemote</definition>
+        <argsstring>(signed char type)</argsstring>
+        <name>powerOffRemote</name>
+        <param>
+          <type>signed char</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="79" column="5" bodyfile="main/iot/displaypro.c" bodystart="425" bodyend="442" declfile="main/iot/keydisplay.h" declline="79" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1a9264c3fd1a515b1e2098c20b26e7ee64" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int powerOnDisplay</definition>
+        <argsstring>(signed char type)</argsstring>
+        <name>powerOnDisplay</name>
+        <param>
+          <type>signed char</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="80" column="5" bodyfile="main/iot/displaypro.c" bodystart="461" bodyend="487" declfile="main/iot/keydisplay.h" declline="80" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1a51f5dc23ab8ffab26d44803598fa149e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int canFastDisplay</definition>
+        <argsstring>(void)</argsstring>
+        <name>canFastDisplay</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="81" column="5" bodyfile="main/iot/displaypro.c" bodystart="755" bodyend="761" declfile="main/iot/keydisplay.h" declline="81" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keydisplay_8h_1a0e860bd80720daa036ff8705dbcd4417" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void displayTempAlarm</definition>
+        <argsstring>(int settime)</argsstring>
+        <name>displayTempAlarm</name>
+        <param>
+          <type>int</type>
+          <declname>settime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/iot/keydisplay.h" line="82" column="6" bodyfile="main/iot/displaypro.c" bodystart="325" bodyend="348" declfile="main/iot/keydisplay.h" declline="82" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__IOT_DISPLAY__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__IOT_DISPLAY__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>pack(1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="structdisplay__buf__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>reskey<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>8;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>digital0<sp/><sp/><sp/><sp/>:<sp/>7;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>point0<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>digital1<sp/><sp/><sp/><sp/>:<sp/>7;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>point1<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>digital2<sp/><sp/><sp/><sp/>:<sp/>7;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>point2<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>compressorled:<sp/>1;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>wifiled<sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>signled<sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>lteled<sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>save<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>2;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>frozengreen<sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>frozenred<sp/><sp/><sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}<sp/><ref refid="structdisplay__buf__t" kindref="compound">display_buf_t</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>pack()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_NONE,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_POWERON,</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_3STEMP,</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_LOCKED,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_LOCALOFF,</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_REMOTEOFF,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SET_TEMP,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SELECT_PARAM_C1,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SELECT_PARAM_C2,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SELECT_PARAM_C3,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SELECT_PARAM_C4,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SELECT_PARAM_C5,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SELECT_PARAM_F1,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SET_C1,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SET_C2,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SET_C3,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SET_C4,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SET_C5,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_SET_F1,</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_ERR_NONE,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_ERR_NOSIM,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_ERR_FROZEN,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_ERR_REFRIGERA,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_ERR_REGISTER,</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_ERR_ERRSIM,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_ERR_CSQ,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_ERR_MCU,</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_ERR_WIFI,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_ERR_BLE,</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>DISPLAY_ERR_SHOW_CSQ,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}<sp/>display_status_opt_t;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>displayStatus;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/>displayTemp;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>displayInit(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>displayProcess(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>displaySetRekey(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>key);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">uint8_t<sp/>keyDisplayUartSend(uint8_t<sp/>cmd,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*data,<sp/>uint8_t<sp/>len);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>resetDisplay(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>settingQuit(</highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>setTempDisplay(</highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>setParamInOut(</highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>setParamDisplay(</highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>selectParamDisplay(</highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>setErrDisplay(</highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setDisplay_0(</highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>settemp);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>powerOffLocal(</highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>powerOffRemote(</highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>powerOnDisplay(</highlight><highlight class="keywordtype">signed</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>canFastDisplay(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>displayTempAlarm(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>settime);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BASE_DISPLAY_TIME<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(10)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_REFRESH_TIME<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(100<sp/>/<sp/>BASE_DISPLAY_TIME)//MS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SET_OPERATION_TIME<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(8000<sp/>/<sp/>BASE_DISPLAY_TIME)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_FLASH_500MS<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(500<sp/>/<sp/>BASE_DISPLAY_TIME)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_FLASH_1S<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1000<sp/>/<sp/>BASE_DISPLAY_TIME)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_FLASH_NONE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(10000<sp/>/<sp/>BASE_DISPLAY_TIME)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_CHAR_b<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x7c)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_CHAR_C<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x39)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_CHAR_d<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x5e)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_CHAR_E<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x79)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_CHAR_F<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x71)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_CHAR_H<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x76)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_CHAR_L<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x38)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_CHAR_r<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x50)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_NONE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(-1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_SET<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_ON<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_OFF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_ONOVER<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(3)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_OffOVER<sp/><sp/><sp/><sp/><sp/><sp/>(4)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_ERROR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0x7f)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_DIGITAL<sp/><sp/><sp/><sp/><sp/><sp/>(1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_DECIMAL<sp/><sp/><sp/><sp/><sp/><sp/>(DISPLAY_TYPE_DIGITAL<sp/>+<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_PARAM1<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(DISPLAY_TYPE_DECIMAL<sp/>+<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_CSQ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(DISPLAY_TYPE_PARAM1<sp/>+<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_HHH<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(DISPLAY_TYPE_CSQ<sp/>+<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_LLL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(DISPLAY_TYPE_HHH<sp/>+<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_bd<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(DISPLAY_TYPE_LLL<sp/>+<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DISPLAY_TYPE_OF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(DISPLAY_TYPE_bd<sp/>+<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="main/iot/keydisplay.h"/>
+  </compounddef>
+</doxygen>

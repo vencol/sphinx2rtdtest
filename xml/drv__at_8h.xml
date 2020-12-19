@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="drv__at_8h" kind="file" language="C++">
+    <compoundname>drv_at.h</compoundname>
+    <includedby refid="atcmd_8c" local="yes">main/atprocess/atcmd.c</includedby>
+    <includedby refid="drv__at_8c" local="yes">main/freezerdrv/drv_at.c</includedby>
+    <innerclass refid="structst_queue_msg" prot="public">stQueueMsg</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="drv__at_8h_1ab21ad052e38b0947cbb9dace8cbb4dfe" prot="public" static="no">
+        <name>AT_UART_NUM</name>
+        <initializer>(UART_NUM_2)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="7" column="9" bodyfile="main/freezerdrv/drv_at.h" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__at_8h_1a770f9c92eb13130e094c2e771e367c68" prot="public" static="no">
+        <name>AT_TXD_PIN</name>
+        <initializer>(17)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="8" column="9" bodyfile="main/freezerdrv/drv_at.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__at_8h_1a9d6380ca4be7959f65cafcd91dabb09a" prot="public" static="no">
+        <name>AT_RXD_PIN</name>
+        <initializer>(16)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="9" column="9" bodyfile="main/freezerdrv/drv_at.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__at_8h_1ac4b03c2be3202dc35646ab4492a79272" prot="public" static="no">
+        <name>AT_RX_BUF_SIZE</name>
+        <initializer>(2048/2*3)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="10" column="9" bodyfile="main/freezerdrv/drv_at.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__at_8h_1a98592d85ade023b79d74d811e9c8c53f" prot="public" static="no">
+        <name>AT_DATA_QUEUE_SIZE</name>
+        <initializer>(20)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="11" column="9" bodyfile="main/freezerdrv/drv_at.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__at_8h_1af9dbefa4d2e08fa869d78e789234d0c8" prot="public" static="no">
+        <name>AT_DATA_RECEIVE_TIMEOUT</name>
+        <initializer>(3)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="12" column="9" bodyfile="main/freezerdrv/drv_at.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="drv__at_8h_1aaf19d499892a4ce1409326ece00f5264" prot="public" static="no">
+        <type>void *</type>
+        <definition>typedef void* QueueHandle_t</definition>
+        <argsstring></argsstring>
+        <name>QueueHandle_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="14" column="15" bodyfile="main/freezerdrv/drv_at.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="drv__at_8h_1a4234eb0afe3ca66d3b8e5c8c110c964c" prot="public" static="no">
+        <type>void(*</type>
+        <definition>typedef void(* uartReceiveCallback) (char *recbuf, int len)</definition>
+        <argsstring>)(char *recbuf, int len)</argsstring>
+        <name>uartReceiveCallback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="15" column="9" bodyfile="main/freezerdrv/drv_at.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="drv__at_8h_1ad167e8e2ac142bf5c9d3e6d30505cc65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvAtInit</definition>
+        <argsstring>(uartReceiveCallback recCb, QueueHandle_t *queue)</argsstring>
+        <name>drvAtInit</name>
+        <param>
+          <type>uartReceiveCallback</type>
+          <declname>recCb</declname>
+        </param>
+        <param>
+          <type>QueueHandle_t *</type>
+          <declname>queue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="16" column="5" bodyfile="main/freezerdrv/drv_at.c" bodystart="68" bodyend="101" declfile="main/freezerdrv/drv_at.h" declline="16" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__at_8h_1a932f45cf00cf4ea0b55494caac583605" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void drvAtProcess</definition>
+        <argsstring>(void)</argsstring>
+        <name>drvAtProcess</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="17" column="6" bodyfile="main/freezerdrv/drv_at.c" bodystart="234" bodyend="239" declfile="main/freezerdrv/drv_at.h" declline="17" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__at_8h_1aee9bd18c921ecb091075a261964ab0a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvSetAtBaudrate</definition>
+        <argsstring>(uint32_t baudrate)</argsstring>
+        <name>drvSetAtBaudrate</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>baudrate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="18" column="5" bodyfile="main/freezerdrv/drv_at.c" bodystart="58" bodyend="67" declfile="main/freezerdrv/drv_at.h" declline="18" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__at_8h_1a213051596f01b34b1d051309a2fa2d83" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvAtSendData</definition>
+        <argsstring>(const char *data, int len)</argsstring>
+        <name>drvAtSendData</name>
+        <param>
+          <type>const char *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="19" column="5" bodyfile="main/freezerdrv/drv_at.c" bodystart="41" bodyend="56" declfile="main/freezerdrv/drv_at.h" declline="19" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__at_8h_1ab8be4bef2ec4d5281b47485d5c8fa6bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvAtReadData</definition>
+        <argsstring>(char *data, int start, int len)</argsstring>
+        <name>drvAtReadData</name>
+        <param>
+          <type>char *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="21" column="5" bodyfile="main/freezerdrv/drv_at.c" bodystart="35" bodyend="39" declfile="main/freezerdrv/drv_at.h" declline="21" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__at_8h_1a37f16dc02c3dd5c2e1d50fec8b8b15af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvAtCanReadData</definition>
+        <argsstring>(int start, int len)</argsstring>
+        <name>drvAtCanReadData</name>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/freezerdrv/drv_at.h" line="22" column="5" bodyfile="main/freezerdrv/drv_at.c" bodystart="30" bodyend="33" declfile="main/freezerdrv/drv_at.h" declline="22" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__DRV_AT__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__DRV_AT__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#define<sp/>AT_UART_NUM<sp/>(UART_NUM_1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#define<sp/>AT_TXD_PIN<sp/>(4)//UART_NUM_2<sp/>GPIO_NUM_17</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#define<sp/>AT_RXD_PIN<sp/>(5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_UART_NUM<sp/>(UART_NUM_2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_TXD_PIN<sp/>(17)//UART_NUM_2<sp/>GPIO_NUM_17</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_RXD_PIN<sp/>(16)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_RX_BUF_SIZE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(2048/2*3)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_DATA_QUEUE_SIZE<sp/><sp/><sp/><sp/><sp/><sp/>(20)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_DATA_RECEIVE_TIMEOUT<sp/>(3)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*<sp/>QueueHandle_t;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>void<sp/>(*uartReceiveCallback)(<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>recbuf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvAtInit(uartReceiveCallback<sp/>recCb,<sp/>QueueHandle_t*<sp/>queue)<sp/>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>drvAtProcess(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvSetAtBaudrate(uint32_t<sp/>baudrate)<sp/>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvAtSendData(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//use<sp/>in<sp/>queue</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvAtReadData(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>start,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvAtCanReadData(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>start,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="structst_queue_msg" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{<sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>start;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}<ref refid="structst_queue_msg" kindref="compound">stQueueMsg</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="main/freezerdrv/drv_at.h"/>
+  </compounddef>
+</doxygen>

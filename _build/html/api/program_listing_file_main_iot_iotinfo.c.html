@@ -1,0 +1,588 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File iotinfo.c &mdash; freezer  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists\css\tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> freezer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">freezer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File iotinfo.c</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_main_iot_iotinfo.c.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-iotinfo-c">
+<span id="program-listing-file-main-iot-iotinfo-c"></span><h1>Program Listing for File iotinfo.c<a class="headerlink" href="#program-listing-for-file-iotinfo-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_main_iot_iotinfo.c.html#file-main-iot-iotinfo-c"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">main\iot\iotinfo.c</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* WiFi station Example</span>
+
+<span class="cm">   This example code is in the Public Domain (or CC0 licensed, at your option.)</span>
+
+<span class="cm">   Unless required by applicable law or agreed to in writing, this</span>
+<span class="cm">   software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR</span>
+<span class="cm">   CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm">*/</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_system.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_log.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;drv_nvs_flash.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;infra_sha256.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;iotinfo.h&quot;</span><span class="cp"></span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ATTAG</span> <span class="o">=</span> <span class="s">&quot;iotinfo&quot;</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">device_info_t</span> <span class="n">devinfo</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">device_param_t</span> <span class="n">devparam</span><span class="p">;</span>
+<span class="n">iotinfo_module_t</span> <span class="n">iotinfo_module</span><span class="p">;</span>
+<span class="k">extern</span> <span class="kt">int</span> <span class="nf">mqttInit</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="k">extern</span> <span class="kt">int</span> <span class="nf">operateHistoryTemp</span><span class="p">(</span><span class="kt">int</span> <span class="n">temp</span><span class="p">);</span>
+
+
+<span class="cp">#define UINT_MAX    (~0U)</span>
+<span class="cp">#define DEV_SIGN_CLIENT_ID_MAXLEN         (128)</span>
+<span class="cp">#define DEV_SIGN_SOURCE_MAXLEN            (200)</span>
+<span class="cp">#define DEV_SIGN_PASSWD_LEN               (32)</span>
+<span class="cp">#define DEV_SIGN_USERNAME_LEN             (32)</span>
+<span class="cm">/* use fixed timestamp */</span>
+<span class="c1">// __TIME__</span>
+<span class="cp">#define TIMESTAMP_VALUE             &quot;2009231715&quot;</span><span class="c1">//&quot;2524608000000&quot;//__TIME__ //&quot;1600052689&quot;</span>
+<span class="cp">#define IOTX_SDK_VERSION            &quot;3.0.1&quot;</span>
+<span class="cp">#define CLIENTID_STRING             &quot;%lld|timestamp=%s,secureMode=%d,signmethod=hmacsha256,gw=0,ext=0,_v=sdk-c-%s|&quot;</span>
+<span class="cp">#define SIGN_STRING                 &quot;clientId%llddeviceName%lldproductKey%stimestamp%s&quot;</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">_hex2str</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="n">input</span><span class="p">,</span> <span class="kt">uint16_t</span> <span class="n">input_len</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">output</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">zEncode</span> <span class="o">=</span> <span class="s">&quot;0123456789ABCDEF&quot;</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">input_len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">j</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">zEncode</span><span class="p">[(</span><span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xf</span><span class="p">];</span>
+        <span class="n">output</span><span class="p">[</span><span class="n">j</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">zEncode</span><span class="p">[(</span><span class="n">input</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&amp;</span> <span class="mh">0xf</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">flashInfoInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span>   <span class="n">numdata</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span><span class="o">*</span> <span class="n">flashdata</span><span class="p">;</span>
+  <span class="c1">//deviceSecret</span>
+  <span class="n">flashdata</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="n">IOTX_DEVICE_SECRET_LEN</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">flashdata</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err1</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">halGetDeviceSecret</span><span class="p">(</span><span class="n">flashdata</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err1</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s deviceSecret:[%s]  &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">flashdata</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">strlen</span><span class="p">(</span><span class="n">flashdata</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">32</span> <span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err1</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span><span class="p">);</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span> <span class="o">=</span> <span class="n">flashdata</span><span class="p">;</span>
+
+  <span class="c1">//imei deviceName did</span>
+  <span class="n">flashdata</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="n">IOTX_DEVICE_NAME_LEN</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">flashdata</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err2</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">halGetDeviceName</span><span class="p">(</span><span class="n">flashdata</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err2</span><span class="p">;</span>
+  <span class="n">numdata</span> <span class="o">=</span> <span class="n">str2Imei</span><span class="p">(</span><span class="n">flashdata</span><span class="p">);</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s imei:[%s] %lld &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">flashdata</span><span class="p">,</span> <span class="n">numdata</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">numdata</span> <span class="o">&lt;</span> <span class="mi">100000000000000ULL</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err2</span><span class="p">;</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span> <span class="o">=</span> <span class="n">numdata</span><span class="p">;</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">flashdata</span><span class="p">);</span>
+  <span class="n">flashdata</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="c1">//productKey</span>
+  <span class="n">flashdata</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="n">IOTX_PRODUCT_KEY_LEN</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">flashdata</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err3</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">halGetProductKey</span><span class="p">(</span><span class="n">flashdata</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err3</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s productKey:[%s]  &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">flashdata</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">strlen</span><span class="p">(</span><span class="n">flashdata</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">8</span> <span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err3</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">);</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span> <span class="o">=</span> <span class="n">flashdata</span><span class="p">;</span>
+
+  <span class="c1">//iotDomain</span>
+  <span class="n">flashdata</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="n">IOTX_MQTT_DOMAIN_LEN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">flashdata</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err4</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">halGetIotMqttDomain</span><span class="p">(</span><span class="n">flashdata</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err4</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s iotDomain:[%s]  &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">flashdata</span><span class="p">);</span>
+  <span class="c1">// if( flashdata = NULL )</span>
+  <span class="c1">//   goto err3;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span><span class="p">);</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span> <span class="o">=</span> <span class="n">flashdata</span><span class="p">;</span>
+  <span class="n">flashdata</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">flashdata</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err4</span><span class="p">;</span>
+  <span class="o">*</span><span class="n">flashdata</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotPort</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">flashdata</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotPort</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err4</span><span class="p">;</span>
+
+  <span class="c1">//iotPort</span>
+  <span class="c1">// flashdata = (char*) malloc(IOTX_MQTT_PORT_LEN);</span>
+  <span class="c1">// if(flashdata == NULL)</span>
+  <span class="c1">//   goto err5;</span>
+  <span class="c1">// if(halGetIotMqttPort(flashdata) &lt;= 0)</span>
+  <span class="c1">//   goto err5;</span>
+  <span class="c1">// numdata = atoi(flashdata);</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;%s iotPort:[%s] %lld &quot;, __FUNCTION__, flashdata, numdata);</span>
+  <span class="c1">// if( numdata &lt;= 0 )</span>
+  <span class="c1">//   goto err5;</span>
+  <span class="c1">// iotinfo_module.iotPort = numdata;</span>
+  <span class="c1">// free(flashdata);</span>
+  <span class="c1">// flashdata = NULL;</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+
+<span class="c1">// err5:</span>
+<span class="c1">//   free(iotinfo_module.iotDomain);</span>
+<span class="c1">//   iotinfo_module.iotDomain = NULL;</span>
+<span class="c1">//   ESP_LOGI(ATTAG, &quot;%s err5 [%d] :&quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+<span class="nl">err4</span><span class="p">:</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">);</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;%s err4 [%d] :&quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+<span class="nl">err3</span><span class="p">:</span>
+  <span class="c1">// free(iotinfo_module.imei);</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;%s err3 [%d] :&quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+<span class="nl">err2</span><span class="p">:</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span><span class="p">);</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;%s err2 [%d] :&quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+<span class="nl">err1</span><span class="p">:</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">flashdata</span><span class="p">);</span>
+  <span class="n">flashdata</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;%s err1 [%d] :&quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="nf">getMqttInfo</span><span class="p">(</span><span class="n">iotinfo_module_t</span> <span class="o">*</span><span class="n">pmqtt_module</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">len</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s IMEI %s:%s %lld&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">__DATE__</span><span class="p">,</span>  <span class="n">__TIME__</span><span class="p">,</span>  <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">imei</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">pmqtt_module</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">imei</span> <span class="o">&lt;</span> <span class="mi">100000000000000ULL</span> <span class="o">||</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">secureMode</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err0</span><span class="p">;</span>
+
+  <span class="c1">//client id</span>
+  <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">CLIENTID_STRING</span><span class="p">)</span> <span class="o">+</span> <span class="n">AT_CMD_IMEI_IMSI_LEN</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">TIMESTAMP_VALUE</span><span class="p">)</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">IOTX_SDK_VERSION</span><span class="p">);</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s IMEI %d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+  <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">clientId</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">realloc</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">clientId</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">clientId</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err1</span><span class="p">;</span>
+  <span class="n">len</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">clientId</span><span class="p">,</span> <span class="n">DEV_SIGN_CLIENT_ID_MAXLEN</span><span class="p">,</span> <span class="n">CLIENTID_STRING</span><span class="p">,</span>
+                                          <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">imei</span><span class="p">,</span> <span class="n">TIMESTAMP_VALUE</span><span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">secureMode</span><span class="p">,</span> <span class="n">IOTX_SDK_VERSION</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">len</span> <span class="o">&gt;=</span> <span class="n">DEV_SIGN_CLIENT_ID_MAXLEN</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err1</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s clientId [%s] len %d &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">clientId</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">clientId</span><span class="p">)</span> <span class="p">);</span>
+
+  <span class="c1">//sign source</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">signsource</span><span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="n">DEV_SIGN_SOURCE_MAXLEN</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">signsource</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err2</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sign_hex</span><span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="n">DEV_SIGN_PASSWD_LEN</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sign_hex</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err3</span><span class="p">;</span>
+  <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">passWord</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">realloc</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">passWord</span><span class="p">,</span> <span class="n">DEV_SIGN_PASSWD_LEN</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">passWord</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err4</span><span class="p">;</span>
+  <span class="n">len</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">signsource</span><span class="p">,</span> <span class="n">DEV_SIGN_SOURCE_MAXLEN</span><span class="p">,</span> <span class="n">SIGN_STRING</span><span class="p">,</span>
+                                          <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">imei</span><span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">imei</span><span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">productKey</span><span class="p">,</span> <span class="n">TIMESTAMP_VALUE</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">len</span> <span class="o">&gt;=</span> <span class="n">DEV_SIGN_SOURCE_MAXLEN</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err4</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s signsource [%s] len %d &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">signsource</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">signsource</span><span class="p">)</span> <span class="p">);</span>
+  <span class="n">utilsHmacSha256</span><span class="p">((</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="n">signsource</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">signsource</span><span class="p">),</span> <span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">deviceSecret</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">deviceSecret</span><span class="p">),</span> <span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="n">sign_hex</span><span class="p">);</span>
+  <span class="n">_hex2str</span><span class="p">((</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="n">sign_hex</span><span class="p">,</span> <span class="n">DEV_SIGN_PASSWD_LEN</span><span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">passWord</span><span class="p">);</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">passWord</span> <span class="o">+</span> <span class="n">DEV_SIGN_PASSWD_LEN</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s passWord [%s] len %d &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">passWord</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">passWord</span><span class="p">)</span> <span class="p">);</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">sign_hex</span><span class="p">);</span>
+  <span class="n">sign_hex</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">signsource</span><span class="p">);</span>
+  <span class="n">signsource</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="n">len</span> <span class="o">=</span> <span class="n">AT_CMD_IMEI_IMSI_LEN</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">productKey</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">userName</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">realloc</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">userName</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">userName</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err5</span><span class="p">;</span>
+  <span class="n">len</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">userName</span><span class="p">,</span> <span class="n">DEV_SIGN_USERNAME_LEN</span><span class="p">,</span> <span class="s">&quot;%lld&amp;%s&quot;</span><span class="p">,</span>
+                                          <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">imei</span><span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">productKey</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">len</span> <span class="o">&gt;=</span> <span class="n">DEV_SIGN_USERNAME_LEN</span><span class="p">)</span>
+    <span class="k">goto</span> <span class="n">err5</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s userName [%s] len %d &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">userName</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">userName</span><span class="p">)</span> <span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="nl">err5</span><span class="p">:</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">userName</span><span class="p">);</span>
+  <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">userName</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="nl">err4</span><span class="p">:</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">passWord</span><span class="p">);</span>
+  <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">passWord</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="nl">err3</span><span class="p">:</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">sign_hex</span><span class="p">);</span>
+  <span class="n">sign_hex</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="nl">err2</span><span class="p">:</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">signsource</span><span class="p">);</span>
+  <span class="n">signsource</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="nl">err1</span><span class="p">:</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">clientId</span><span class="p">);</span>
+  <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">clientId</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+<span class="nl">err0</span><span class="p">:</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">SaveInfoToFlash</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">domain</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">domain</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s save param info &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span>  <span class="p">);</span>
+    <span class="k">return</span> <span class="n">halSetDeviceParam</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">device_param_t</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+  <span class="p">{</span>
+    <span class="n">halSetIotMqttDomain</span><span class="p">(</span><span class="n">domain</span><span class="p">);</span>
+    <span class="n">halSetProductKey</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">);</span>
+    <span class="n">halSetDeviceSecret</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">deviceSecret</span><span class="p">);</span>
+    <span class="n">halSetNumDeviceName</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span><span class="p">);</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s save iot info &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span>  <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="nf">str2Imei</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">buf</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span> <span class="n">pbuf</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">ret1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="n">ret1</span> <span class="o">=</span> <span class="n">atol</span><span class="p">(</span><span class="n">buf</span><span class="o">+</span><span class="mi">8</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret1</span> <span class="o">&lt;</span> <span class="mi">1000000</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">pbuf</span><span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">pbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">memcpy</span><span class="p">(</span><span class="n">pbuf</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+  <span class="o">*</span><span class="p">(</span><span class="n">pbuf</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">atol</span><span class="p">(</span><span class="n">pbuf</span><span class="p">);</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">pbuf</span><span class="p">);</span>
+  <span class="n">pbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="mi">10000000</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">ret</span><span class="o">*</span><span class="mi">10000000</span> <span class="o">+</span> <span class="n">ret1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">iotInfoInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devinfo</span>      <span class="o">=</span> <span class="o">&amp;</span><span class="n">devinfo</span><span class="p">;</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span>     <span class="o">=</span> <span class="o">&amp;</span><span class="n">devparam</span><span class="p">;</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span>    <span class="o">=</span> <span class="n">IOT_NONE</span><span class="p">;</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">powerOnTime</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">firstOn</span>      <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s comein[%d] &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">esp_get_free_heap_size</span><span class="p">());</span>
+  <span class="c1">// for(int i =0 ; i &lt; 10; i++)</span>
+  <span class="c1">// {</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;%s comein[%d] &quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+  <span class="c1">//   flashInfoInit();</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;%s comeout[%d] &quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+  <span class="c1">// }</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">flashInfoInit</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s getflash success  [%d] domain [%s] : %d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">esp_get_free_heap_size</span><span class="p">(),</span>
+                                                        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotDomain</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotPort</span><span class="p">);</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">=</span> <span class="n">IOT_GETBASEINFO</span><span class="p">;</span><span class="c1">//</span>
+  <span class="p">}</span>
+
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s after getflash heap %d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">esp_get_free_heap_size</span><span class="p">()</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">halGetDeviceParam</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">device_param_t</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span><span class="c1">//default param</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span> <span class="o">=</span> <span class="o">-</span><span class="mi">23</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span>     <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">upbacklash</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="mi">10</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">downbacklash</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="mi">10</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">erroron</span> <span class="o">=</span> <span class="mi">70</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">erroroff</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">tempoffset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemphigh</span> <span class="o">=</span> <span class="o">-</span><span class="mi">15</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemplow</span> <span class="o">=</span> <span class="o">-</span><span class="mi">28</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">hightempalarm</span> <span class="o">=</span> <span class="o">-</span><span class="mi">179</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">lowtempalarm</span> <span class="o">=</span> <span class="o">-</span><span class="mi">241</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">heartTime</span> <span class="o">=</span> <span class="n">DEFAULT_MQTT_HEART_FREQUENCY</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">reportTime</span> <span class="o">=</span> <span class="n">DEFAULT_ATTRS_FREQUENCY</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s default param heap %d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">esp_get_free_heap_size</span><span class="p">()</span> <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// iotinfo_module.imei = 860461046399476ULL;</span>
+  <span class="c1">// iotinfo_module.devparam-&gt;showway     = 2;</span>
+  <span class="c1">// iotinfo_module.devparam-&gt;upbacklash = 50;</span>
+  <span class="c1">// iotinfo_module.devparam-&gt;downbacklash = 60;</span>
+  <span class="c1">// iotinfo_module.devparam-&gt;reportTime = 60;</span>
+  <span class="c1">// iotinfo_module.iotStatus = IOT_NONE;//test</span>
+
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s param  settemp:%d tempoffset:%d upbacklash:%d downbacklash:%d erroron:%d erroroff:%d lowtempalarm:%d hightempalarm:%d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span>
+                                                                <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">tempoffset</span><span class="p">,</span>
+                                                                <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">upbacklash</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">downbacklash</span><span class="p">,</span>
+                                                                <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">erroron</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">erroroff</span><span class="p">,</span>
+                                                                <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">lowtempalarm</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">hightempalarm</span><span class="p">);</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">bleIbeaconInit</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errble</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">WifiScanInit</span><span class="p">();</span>
+  <span class="n">wifiScanStart</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errwifi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s getout  [%d] &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">esp_get_free_heap_size</span><span class="p">());</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">attrReportTime</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span> <span class="nf">setReportTime</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">time</span><span class="p">)</span><span class="c1">//10ms</span>
+<span class="p">{</span>
+  <span class="n">attrReportTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">extern</span> <span class="kt">void</span> <span class="nf">fzReceiveUpgradeMsg</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span> <span class="n">rbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">iotInfoPro</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="c1">//10ms</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">errbit</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">powerOnTime</span> <span class="o">&lt;</span> <span class="n">UINT_MAX</span><span class="p">)</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">powerOnTime</span><span class="o">++</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">powerOnTime</span> <span class="o">=</span> <span class="n">UINT_MAX</span><span class="p">;</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">==</span> <span class="n">IOT_SAVEBASEINFO</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span><span class="s">&quot;iotStatus %d&quot;</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">mqttInit</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">=</span> <span class="n">IOT_SETMQTTINFO</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">attrReportTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">==</span> <span class="n">IOT_CONNECTMQTT</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">otaStatus</span> <span class="o">!=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">errbit</span> <span class="o">!=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errbit</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">errbit</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errbit</span><span class="p">;</span>
+      <span class="n">fzReportAlarmInfo</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">else</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">attrReportTime</span> <span class="o">&gt;</span> <span class="n">UINT_MAX</span><span class="p">)</span>
+        <span class="n">attrReportTime</span> <span class="o">=</span> <span class="n">UINT_MAX</span><span class="p">;</span>
+      <span class="c1">// else if(iotinfo_module.otaStatus == 0 &amp;&amp; attrReportTime == 500 )//30s</span>
+      <span class="c1">//   fzReceiveUpgradeMsg(0,0);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">attrReportTime</span> <span class="o">%</span> <span class="mi">3000</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">)</span><span class="c1">//30s</span>
+        <span class="n">wifiScanStart</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">attrReportTime</span> <span class="o">%</span> <span class="mi">30000</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span><span class="c1">//5min</span>
+        <span class="n">operateHistoryTemp</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span><span class="o">/</span><span class="mi">10</span><span class="p">);</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="n">attrReportTime</span> <span class="o">&gt;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">reportTime</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">otaStatus</span><span class="p">)</span>  <span class="p">{</span>
+          <span class="n">attrReportTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span><span class="s">&quot;otaStatus 1min attr&quot;</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">else</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">at_module</span><span class="o">-&gt;</span><span class="n">atSendtime</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">)</span>  <span class="p">{</span>
+          <span class="n">attrReportTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="n">fzReportAttrsInfo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, vencol
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

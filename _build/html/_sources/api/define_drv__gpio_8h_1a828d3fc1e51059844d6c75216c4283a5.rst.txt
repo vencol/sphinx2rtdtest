@@ -1,0 +1,13 @@
+.. _exhale_define_drv__gpio_8h_1a828d3fc1e51059844d6c75216c4283a5:
+
+Define SET_COMPRESSOR_OUTPUT
+============================
+
+- Defined in :ref:`file_main_freezerdrv_drv_gpio.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: SET_COMPRESSOR_OUTPUT
