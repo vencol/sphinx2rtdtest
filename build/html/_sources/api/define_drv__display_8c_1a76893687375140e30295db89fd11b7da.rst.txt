@@ -1,0 +1,13 @@
+.. _exhale_define_drv__display_8c_1a76893687375140e30295db89fd11b7da:
+
+Define PATTERN_CHR_NUM
+======================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_freezerdrv_drv_display.c`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: PATTERN_CHR_NUM

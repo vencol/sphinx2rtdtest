@@ -1,0 +1,601 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="fzprotocol__send_8c" kind="file" language="C++">
+    <compoundname>fzprotocol_send.c</compoundname>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/task.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="yes">esp_system.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">cJSON.h</includes>
+    <includes refid="iotinfo_8h" local="yes">iotinfo.h</includes>
+    <includes refid="cmdprase_8h" local="yes">cmdprase.h</includes>
+    <includes refid="mqtttopic_8h" local="yes">mqtttopic.h</includes>
+    <includes refid="fzprotocol_8h" local="yes">fzprotocol.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>G:/code/esp/code/freezer/main/iot/fzprotocol_send.c</label>
+        <link refid="fzprotocol__send_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>iotinfo.h</label>
+        <link refid="iotinfo_8h_source"/>
+      </node>
+      <node id="2">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="12">
+        <label>fzprotocol.h</label>
+        <link refid="fzprotocol_8h_source"/>
+      </node>
+      <node id="6">
+        <label>esp_system.h</label>
+      </node>
+      <node id="11">
+        <label>mqtttopic.h</label>
+        <link refid="mqtttopic_8h_source"/>
+      </node>
+      <node id="8">
+        <label>cJSON.h</label>
+      </node>
+      <node id="5">
+        <label>string.h</label>
+      </node>
+      <node id="7">
+        <label>esp_log.h</label>
+      </node>
+      <node id="3">
+        <label>freertos/task.h</label>
+      </node>
+      <node id="4">
+        <label>stdio.h</label>
+      </node>
+      <node id="10">
+        <label>cmdprase.h</label>
+        <link refid="cmdprase_8h_source"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="fzprotocol__send_8c_1a98c24dc9eb271dd1b713bfa38220de12" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* ATTAG</definition>
+        <argsstring></argsstring>
+        <name>ATTAG</name>
+        <initializer>= &quot;fzProtocol_SEND&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" line="20" column="19" bodyfile="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="fzprotocol__send_8c_1ada6dfc312644817ee27dcafa9e538179" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fzReportRegisterInfo</definition>
+        <argsstring>(void)</argsstring>
+        <name>fzReportRegisterInfo</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" line="22" column="6" bodyfile="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" bodystart="22" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="fzprotocol__send_8c_1abff77ef608d87183c6c17cb1cf3dbf63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fzReportAttrsInfo</definition>
+        <argsstring>(char step)</argsstring>
+        <name>fzReportAttrsInfo</name>
+        <param>
+          <type>char</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" line="83" column="6" bodyfile="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" bodystart="83" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="fzprotocol__send_8c_1a712db936bdeb7d4bc40a04e92f949aee" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fzReportAlarmInfo</definition>
+        <argsstring>(void)</argsstring>
+        <name>fzReportAlarmInfo</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" line="116" column="6" bodyfile="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" bodystart="116" bodyend="177"/>
+      </memberdef>
+      <memberdef kind="function" id="fzprotocol__send_8c_1a3c1fdf74c622e24e39617e7106971d4c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fzRespondAlarmQuery</definition>
+        <argsstring>(const char *messageId, unsigned int respondbit)</argsstring>
+        <name>fzRespondAlarmQuery</name>
+        <param>
+          <type>const char *</type>
+          <declname>messageId</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>respondbit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" line="183" column="6" bodyfile="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" bodystart="183" bodyend="215"/>
+      </memberdef>
+      <memberdef kind="function" id="fzprotocol__send_8c_1a1f11600df46739ff377c0638064e5154" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fzRespondAttrsQuery</definition>
+        <argsstring>(const char *messageId, unsigned int respondbit)</argsstring>
+        <name>fzRespondAttrsQuery</name>
+        <param>
+          <type>const char *</type>
+          <declname>messageId</declname>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>respondbit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" line="223" column="6" bodyfile="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" bodystart="223" bodyend="249"/>
+      </memberdef>
+      <memberdef kind="function" id="fzprotocol__send_8c_1a1722b201e1ba55f0145f60c0f34064e9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fzReportShadowUpdate</definition>
+        <argsstring>(int vid)</argsstring>
+        <name>fzReportShadowUpdate</name>
+        <param>
+          <type>int</type>
+          <declname>vid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" line="252" column="6" bodyfile="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" bodystart="252" bodyend="285"/>
+      </memberdef>
+      <memberdef kind="function" id="fzprotocol__send_8c_1a550d474ec0c3eaddcf160caa180f9915" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fzRespondShadowUpdate</definition>
+        <argsstring>(unsigned int setbit, int vid)</argsstring>
+        <name>fzRespondShadowUpdate</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>setbit</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>vid</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" line="287" column="6" bodyfile="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" bodystart="287" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="function" id="fzprotocol__send_8c_1a9b98491f6334eaa299c3fb593c37a291" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void fzRespondUgrade</definition>
+        <argsstring>(int errnum)</argsstring>
+        <name>fzRespondUgrade</name>
+        <param>
+          <type>int</type>
+          <declname>errnum</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" line="321" column="6" bodyfile="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c" bodystart="321" bodyend="347"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>WiFi<sp/>station<sp/>Example</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"></highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/><sp/>This<sp/>example<sp/>code<sp/>is<sp/>in<sp/>the<sp/>Public<sp/>Domain<sp/>(or<sp/>CC0<sp/>licensed,<sp/>at<sp/>your<sp/>option.)</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/><sp/><sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>this</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/><sp/><sp/>software<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/><sp/><sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/task.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_system.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cJSON.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;iotinfo.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cmdprase.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;mqtttopic.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fzprotocol.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ATTAG<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;fzProtocol_SEND&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fzReportRegisterInfo(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>/{ProductKey}/{DevId}/user/Rpt/DevInfo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>tempbuf[16],<sp/>*jsonstr=NULL;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/>cJSON<sp/>*reginfo_obj<sp/>=<sp/>NULL,<sp/>*devModules_array<sp/>=<sp/>NULL,<sp/>*array_obj<sp/>=<sp/>NULL,<sp/>*moduleInfos_obj<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/>reginfo_obj<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(reginfo_obj)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(reginfo_obj,<sp/></highlight><highlight class="stringliteral">&quot;protocolVers&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;1.0&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(reginfo_obj,<sp/></highlight><highlight class="stringliteral">&quot;devType&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;aokema9E&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(reginfo_obj,<sp/></highlight><highlight class="stringliteral">&quot;devState&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;online&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(reginfo_obj,<sp/></highlight><highlight class="stringliteral">&quot;softwareVers&quot;</highlight><highlight class="normal">,<sp/>FREEZER_APP_VERSION);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(reginfo_obj,<sp/></highlight><highlight class="stringliteral">&quot;hardwareVers&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;1.0.1&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(reginfo_obj,<sp/></highlight><highlight class="stringliteral">&quot;devModules&quot;</highlight><highlight class="normal">,<sp/>devModules_array<sp/>=<sp/>cJSON_CreateArray());</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(devModules_array<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToArray(devModules_array,<sp/>array_obj<sp/>=<sp/>cJSON_CreateObject());</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(array_obj<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(array_obj,<sp/></highlight><highlight class="stringliteral">&quot;moduleType&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;4G&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>snprintf(tempbuf,<sp/>16,<sp/></highlight><highlight class="stringliteral">&quot;%lld&quot;</highlight><highlight class="normal">,<sp/>iotinfo_module.imei);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(array_obj,<sp/></highlight><highlight class="stringliteral">&quot;moduleId&quot;</highlight><highlight class="normal">,<sp/>tempbuf);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(array_obj,<sp/></highlight><highlight class="stringliteral">&quot;moduleInfos&quot;</highlight><highlight class="normal">,<sp/>moduleInfos_obj<sp/>=<sp/>cJSON_CreateObject());</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(moduleInfos_obj<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>snprintf(tempbuf,<sp/>16,<sp/></highlight><highlight class="stringliteral">&quot;%lld&quot;</highlight><highlight class="normal">,<sp/>iotinfo_module.imsi);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(moduleInfos_obj,<sp/></highlight><highlight class="stringliteral">&quot;IMSI&quot;</highlight><highlight class="normal">,<sp/>tempbuf);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(moduleInfos_obj,<sp/></highlight><highlight class="stringliteral">&quot;softwareVers&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;1.0.1&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(moduleInfos_obj,<sp/></highlight><highlight class="stringliteral">&quot;hardwareVers&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;1.0.1&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(moduleInfos_obj,<sp/></highlight><highlight class="stringliteral">&quot;supportUpgrade&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;0&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cJSON_AddItemToArray(devModules_array,<sp/>array_obj<sp/>=<sp/>cJSON_CreateObject());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if(array_obj<sp/>==<sp/>NULL)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>goto<sp/>end;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cJSON_AddStringToObject(array_obj,<sp/>&quot;moduleType&quot;,<sp/>&quot;bluetooth&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if(<sp/>esp_read_mac((uint8_t<sp/>*)keytemp,<sp/>ESP_MAC_BT)<sp/>)//ESP_MAC_WIFI_STA</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>return<sp/>-1;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>snprintf(buf,<sp/>13,<sp/>&quot;%02X%02X%02X%02X%02X%02X&quot;,<sp/>keytemp[0],<sp/>keytemp[1],<sp/>keytemp[2],<sp/>keytemp[3],<sp/>keytemp[4],<sp/>keytemp[5]);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cJSON_AddStringToObject(array_obj,<sp/>&quot;moduleId&quot;,<sp/>tempbuf);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cJSON_AddItemToObject(array_obj,<sp/>&quot;moduleInfos&quot;,<sp/>moduleInfos_obj<sp/>=<sp/>cJSON_CreateObject());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if(moduleInfos_obj<sp/>==<sp/>NULL)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>goto<sp/>end;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cJSON_AddStringToObject(moduleInfos_obj,<sp/>&quot;IMSI&quot;,<sp/>&quot;imsi&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cJSON_AddStringToObject(moduleInfos_obj,<sp/>&quot;softwareVers&quot;,<sp/>&quot;1.0.1&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cJSON_AddStringToObject(moduleInfos_obj,<sp/>&quot;hardwareVers&quot;,<sp/>&quot;1.0.1&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cJSON_AddStringToObject(moduleInfos_obj,<sp/>&quot;supportUpgrade&quot;,<sp/>&quot;0&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>cJSON_PrintUnformatted(reginfo_obj);</highlight><highlight class="comment">//malloc<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(jsonstr<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(ATTAG,<sp/>&quot;cjson<sp/>is<sp/>[%s]&quot;,<sp/>jsonstr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publishMqttTopic(MQTT_TOPIC_PUB_DEVINFO,<sp/>NULL,<sp/>jsonstr);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_free(jsonstr);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal">end:</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/>cJSON_Delete(reginfo_obj);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fzReportAttrsInfo(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>step)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>/{ProductKey}/{DevId}/user/Rpt/AttrRpt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*jsonstr=NULL;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/>cJSON<sp/>*attrsinfo_obj<sp/>=<sp/>NULL,<sp/>*attrs_array<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/>attrsinfo_obj<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(attrsinfo_obj)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(attrsinfo_obj,<sp/></highlight><highlight class="stringliteral">&quot;attrs&quot;</highlight><highlight class="normal">,<sp/>attrs_array<sp/>=<sp/>cJSON_CreateArray());</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(attrs_array<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag<sp/>=<sp/>CMD_BIT_MASK(SRQ_POWERON)<sp/>|<sp/>CMD_BIT_MASK(RQ_FROZEN_TEMP)<sp/>|<sp/>CMD_BIT_MASK(RQ_HISTORY_TEMP)<sp/>|<sp/></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMD_BIT_MASK(RQ_MAIN_CELL)<sp/>|<sp/>CMD_BIT_MASK(RQ_OTHER_CELL)<sp/>|<sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMD_BIT_MASK(RQ_SCAN_WIFI_MAC_NUM)<sp/>|<sp/>CMD_BIT_MASK(RQ_SCAN_WIFI_MAC);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(step<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flag<sp/>|=<sp/>CMD_BIT_MASK(QUERY_WIFI_MAC);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>setCmdObj(attrs_array,<sp/>flag,<sp/>0);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>cJSON_PrintUnformatted(attrsinfo_obj);</highlight><highlight class="comment">//malloc<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(jsonstr<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(ATTAG,<sp/></highlight><highlight class="stringliteral">&quot;cjson<sp/>is<sp/>[%s]&quot;</highlight><highlight class="normal">,<sp/>jsonstr);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publishMqttTopic(MQTT_TOPIC_PUB_ATTRRPT,<sp/>NULL,<sp/>jsonstr);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_free(jsonstr);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal">end:</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(ATTAG,<sp/>&quot;cjson<sp/>is<sp/>[in<sp/>end]&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/>cJSON_Delete(attrsinfo_obj);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fzReportAlarmInfo(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>/{ProductKey}/{DevId}/user/Rpt/AlarmRpt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*jsonstr=NULL;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/>cJSON<sp/>*alarminfo_obj<sp/>=<sp/>NULL,<sp/>*alarms_array<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/>alarminfo_obj<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(alarminfo_obj)</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(alarminfo_obj,<sp/></highlight><highlight class="stringliteral">&quot;alarms&quot;</highlight><highlight class="normal">,<sp/>alarms_array<sp/>=<sp/>cJSON_CreateArray());</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(alarms_array<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(iotinfo_module.error.errrefrigera<sp/>||<sp/>iotinfo_module.error.errfrozen)<sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;probealarms<sp/><sp/><sp/><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;noprobealarms<sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(iotinfo_module.devinfo-&gt;probealarms)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;noprobealarms<sp/><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;probealarms<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(iotinfo_module.error.errnosim<sp/>||<sp/>iotinfo_module.error.errsim<sp/>||<sp/>iotinfo_module.error.errregister<sp/>||<sp/>iotinfo_module.at_module-&gt;atStatus)</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>iotinfo_module.error.errwifi<sp/>||<sp/>iotinfo_module.error.errmcu<sp/>||<sp/>iotinfo_module.error.errble)<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;communicatealarms<sp/><sp/><sp/><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;nocommunicatealarms<sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(iotinfo_module.devinfo-&gt;communicatealarms)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;nocommunicatealarms<sp/><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;communicatealarms<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(iotinfo_module.devinfo-&gt;noprobealarms<sp/>&amp;&amp;<sp/>iotinfo_module.devinfo-&gt;nocommunicatealarms)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;noalarms<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(iotinfo_module.devinfo-&gt;probealarms<sp/>||<sp/>iotinfo_module.devinfo-&gt;communicatealarms<sp/>||<sp/>iotinfo_module.devinfo-&gt;noprobealarms<sp/>||<sp/>iotinfo_module.devinfo-&gt;nocommunicatealarms)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;noalarms<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;noalarms<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag<sp/>=<sp/>CMD_BIT_MASK(ALARM_CANCLE)<sp/>|<sp/></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMD_BIT_MASK(ALARM_PROBE_CANCLE)<sp/>|<sp/>CMD_BIT_MASK(ALARM_PROBE)<sp/>|<sp/></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMD_BIT_MASK(ALARM_COMMUNICATE_CANCLE)<sp/>|<sp/>CMD_BIT_MASK(ALARM_COMMUNICATE);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>setCmdObj(alarms_array,<sp/>flag,<sp/>0);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;noalarms<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;noprobealarms<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;nocommunicatealarms<sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>cJSON_PrintUnformatted(alarminfo_obj);</highlight><highlight class="comment">//malloc<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(jsonstr<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(ATTAG,<sp/>&quot;cjson<sp/>is<sp/>[%s]&quot;,<sp/>jsonstr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publishMqttTopic(MQTT_TOPIC_PUB_ALARMRPT,<sp/>NULL,<sp/>jsonstr);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_free(jsonstr);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal">end:</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/>cJSON_Delete(alarminfo_obj);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight><highlight class="comment">//<sp/>{<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;action&quot;:&quot;alarmQuery&quot;,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;param&quot;<sp/>:<sp/>{}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="comment">//<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fzRespondAlarmQuery(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>messageId,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>respondbit)</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>/{ProductKey}/{DevId}/user/Rpt/DevInfo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*jsonstr=NULL;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/>cJSON<sp/>*alarmresp_obj<sp/>=<sp/>NULL,<sp/>*alarms_array<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/>alarmresp_obj<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(alarmresp_obj)</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(alarmresp_obj,<sp/></highlight><highlight class="stringliteral">&quot;action&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;alarmQueryRep&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(alarmresp_obj,<sp/></highlight><highlight class="stringliteral">&quot;param&quot;</highlight><highlight class="normal">,<sp/>alarms_array<sp/>=<sp/>cJSON_CreateObject());</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(alarms_array<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;noprobealarms<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;nocommunicatealarms<sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(iotinfo_module.devinfo-&gt;probealarms<sp/>==<sp/>0<sp/>&amp;&amp;<sp/>iotinfo_module.devinfo-&gt;communicatealarms<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;noalarms<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>respondbit<sp/>=<sp/>CMD_BIT_MASK(ALARM_CANCLE)<sp/>|<sp/>CMD_BIT_MASK(ALARM_PROBE)<sp/>|<sp/>CMD_BIT_MASK(ALARM_COMMUNICATE);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>setCmdObj(alarms_array,<sp/>respondbit,<sp/>2);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>iotinfo_module.devinfo-&gt;noalarms<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>cJSON_PrintUnformatted(alarmresp_obj);</highlight><highlight class="comment">//malloc<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(jsonstr<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(ATTAG,<sp/>&quot;cjson<sp/>is<sp/>[%s]&quot;,<sp/>jsonstr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publishMqttTopic(MQTT_TOPIC_PUB_RRPC,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)messageId,<sp/>jsonstr);</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_free(jsonstr);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal">end:</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/>cJSON_Delete(alarmresp_obj);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="comment">//<sp/>{<sp/>&quot;action&quot;:&quot;attrQuery&quot;,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;param&quot;<sp/>:<sp/>[</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;20ga01&quot;,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;20gw00&quot;,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight><highlight class="comment">//<sp/>&quot;60gw00&quot;<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight><highlight class="comment">//<sp/>]<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fzRespondAttrsQuery(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>messageId,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>respondbit)</highlight></codeline>
+<codeline lineno="224"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>/{ProductKey}/{DevId}/user/Rpt/DevInfo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*jsonstr=NULL;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/>cJSON<sp/>*attrsinfo_obj<sp/>=<sp/>NULL,<sp/>*attrs_array<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/>attrsinfo_obj<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(attrsinfo_obj)</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(attrsinfo_obj,<sp/></highlight><highlight class="stringliteral">&quot;action&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;attrQueryRep&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(attrsinfo_obj,<sp/></highlight><highlight class="stringliteral">&quot;param&quot;</highlight><highlight class="normal">,<sp/>attrs_array<sp/>=<sp/>cJSON_CreateArray());</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(attrs_array<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>setCmdObj(attrs_array,<sp/>respondbit,<sp/>1);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>cJSON_PrintUnformatted(attrsinfo_obj);</highlight><highlight class="comment">//malloc<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(jsonstr<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(ATTAG,<sp/>&quot;cjson<sp/>is<sp/>[%s]&quot;,<sp/>jsonstr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publishMqttTopic(MQTT_TOPIC_PUB_RRPC,<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*)messageId,<sp/>jsonstr);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_free(jsonstr);</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal">end:</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/>cJSON_Delete(attrsinfo_obj);</highlight></codeline>
+<codeline lineno="249"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fzReportShadowUpdate(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>vid)</highlight></codeline>
+<codeline lineno="253"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>/{ProductKey}/{DevId}/user/Rpt/DevInfo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*jsonstr=NULL;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/>cJSON<sp/>*update_obj<sp/>=<sp/>NULL,<sp/>*state_obj<sp/>=<sp/>NULL,<sp/>*reported_obj<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/>update_obj<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(update_obj)</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(update_obj,<sp/></highlight><highlight class="stringliteral">&quot;state&quot;</highlight><highlight class="normal">,<sp/>state_obj<sp/>=<sp/>cJSON_CreateObject());</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(state_obj<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(state_obj,<sp/></highlight><highlight class="stringliteral">&quot;reported&quot;</highlight><highlight class="normal">,<sp/>reported_obj<sp/>=<sp/>cJSON_CreateObject());</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(reported_obj<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag<sp/>=<sp/>CMD_BIT_MASK(SRQ_POWERON)<sp/>|<sp/>CMD_BIT_MASK(RQ_FROZEN_TEMP)<sp/>|<sp/>CMD_BIT_MASK(QUERY_REPORT_FREQUENCY)<sp/>|<sp/>CMD_BIT_MASK(QUERY_MQTT_HEARTTIME)<sp/>|</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMD_BIT_MASK(RQ_HISTORY_TEMP)<sp/>|CMD_BIT_MASK(RQ_MAIN_CELL)<sp/>|<sp/>CMD_BIT_MASK(RQ_OTHER_CELL)<sp/>|<sp/></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CMD_BIT_MASK(RQ_SCAN_WIFI_MAC_NUM)<sp/>|<sp/>CMD_BIT_MASK(RQ_SCAN_WIFI_MAC);</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>setCmdObj(reported_obj,<sp/>flag,<sp/>2);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(update_obj,<sp/></highlight><highlight class="stringliteral">&quot;method&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;update&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(update_obj,<sp/></highlight><highlight class="stringliteral">&quot;version&quot;</highlight><highlight class="normal">,<sp/>vid);</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>cJSON_PrintUnformatted(update_obj);</highlight><highlight class="comment">//malloc<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(jsonstr<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(ATTAG,<sp/>&quot;cjson<sp/>is<sp/>[%s]&quot;,<sp/>jsonstr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publishMqttTopic(MQTT_TOPIC_PUB_SHADOW,<sp/>NULL,<sp/>jsonstr);</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_free(jsonstr);</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal">end:</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/>cJSON_Delete(update_obj);</highlight></codeline>
+<codeline lineno="285"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fzRespondShadowUpdate(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>setbit,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>vid)</highlight></codeline>
+<codeline lineno="288"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>/{ProductKey}/{DevId}/user/Rpt/DevInfo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*jsonstr=NULL;</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/>cJSON<sp/>*update_obj<sp/>=<sp/>NULL,<sp/>*state_obj<sp/>=<sp/>NULL,<sp/>*reported_obj<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/>update_obj<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(update_obj)</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(update_obj,<sp/></highlight><highlight class="stringliteral">&quot;state&quot;</highlight><highlight class="normal">,<sp/>state_obj<sp/>=<sp/>cJSON_CreateObject());</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(state_obj<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(state_obj,<sp/></highlight><highlight class="stringliteral">&quot;reported&quot;</highlight><highlight class="normal">,<sp/>reported_obj<sp/>=<sp/>cJSON_CreateObject());</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(reported_obj<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"></highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>setCmdObj(reported_obj,<sp/>setbit,<sp/>2);</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cJSON_AddStringToObject(state_obj,<sp/>&quot;desired&quot;,<sp/>&quot;null&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(update_obj,<sp/></highlight><highlight class="stringliteral">&quot;method&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;update&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(update_obj,<sp/></highlight><highlight class="stringliteral">&quot;version&quot;</highlight><highlight class="normal">,<sp/>vid);</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>cJSON_PrintUnformatted(update_obj);</highlight><highlight class="comment">//malloc<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(jsonstr<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(ATTAG,<sp/>&quot;cjson<sp/>is<sp/>[%s]&quot;,<sp/>jsonstr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publishMqttTopic(MQTT_TOPIC_PUB_SHADOW,<sp/>NULL,<sp/>jsonstr);</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_free(jsonstr);</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal">end:</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/>cJSON_Delete(update_obj);</highlight></codeline>
+<codeline lineno="318"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fzRespondUgrade(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>errnum)</highlight></codeline>
+<codeline lineno="322"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>/{ProductKey}/{DevId}/user/Rpt/DevInfo</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>numbuf[5],<sp/>*jsonstr=NULL;</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/>cJSON<sp/>*update_obj<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/>update_obj<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(update_obj)</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(iotinfo_module.upgradeSn)</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(update_obj,<sp/></highlight><highlight class="stringliteral">&quot;sn&quot;</highlight><highlight class="normal">,<sp/>iotinfo_module.upgradeSn);</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(update_obj,<sp/></highlight><highlight class="stringliteral">&quot;sn&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>snprintf(numbuf,<sp/>5,<sp/></highlight><highlight class="stringliteral">&quot;%d&quot;</highlight><highlight class="normal">,<sp/>errnum);</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(update_obj,<sp/></highlight><highlight class="stringliteral">&quot;errorNo&quot;</highlight><highlight class="normal">,<sp/>numbuf);</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>cJSON_PrintUnformatted(update_obj);</highlight><highlight class="comment">//malloc<sp/>pointer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(jsonstr<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>end;</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(ATTAG,<sp/>&quot;cjson<sp/>is<sp/>[%s]&quot;,<sp/>jsonstr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>publishMqttTopic(MQTT_TOPIC_PUB_UPGRADEACK,<sp/>NULL,<sp/>jsonstr);</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_free(jsonstr);</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>jsonstr<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"></highlight></codeline>
+<codeline lineno="345"><highlight class="normal">end:</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/>cJSON_Delete(update_obj);</highlight></codeline>
+<codeline lineno="347"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="G:/code/esp/code/freezer/main/iot/fzprotocol_send.c"/>
+  </compounddef>
+</doxygen>

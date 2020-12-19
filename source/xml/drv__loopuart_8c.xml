@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="drv__loopuart_8c" kind="file" language="C++">
+    <compoundname>drv_loopuart.c</compoundname>
+    <includes local="yes">esp_system.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">string.h</includes>
+    <includes refid="drv__loopuart_8h" local="yes">drv_loopuart.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c</label>
+        <link refid="drv__loopuart_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>drv_loopuart.h</label>
+        <link refid="drv__loopuart_8h_source"/>
+      </node>
+      <node id="2">
+        <label>esp_system.h</label>
+      </node>
+      <node id="4">
+        <label>string.h</label>
+      </node>
+      <node id="3">
+        <label>esp_log.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="drv__loopuart_8c_1a1f9f2fb6ddd752439d2113a29db96fa2" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* LOOPTAG</definition>
+        <argsstring></argsstring>
+        <name>LOOPTAG</name>
+        <initializer>= &quot;drvuart&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" line="14" column="19" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="drv__loopuart_8c_1aeece20e1e0bad5fe0f32759448d9f47d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvLoop_bufferInit</definition>
+        <argsstring>(stLoopBuffer *loopbuf, char *buf, int maxlen)</argsstring>
+        <name>drvLoop_bufferInit</name>
+        <param>
+          <type><ref refid="structst_loop_buffer" kindref="compound">stLoopBuffer</ref> *</type>
+          <declname>loopbuf</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>buf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>maxlen</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" line="17" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" bodystart="17" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__loopuart_8c_1aca544db78f79736017a8527c27d2f51c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvLoop_CanWriteData</definition>
+        <argsstring>(stLoopBuffer *loopbuf, int len)</argsstring>
+        <name>drvLoop_CanWriteData</name>
+        <param>
+          <type><ref refid="structst_loop_buffer" kindref="compound">stLoopBuffer</ref> *</type>
+          <declname>loopbuf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" line="27" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" bodystart="27" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__loopuart_8c_1a02b51ca56c2e94a5c63c19b1d0295ade" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvLoop_WriteData</definition>
+        <argsstring>(stLoopBuffer *loopbuf, char *data, int len)</argsstring>
+        <name>drvLoop_WriteData</name>
+        <param>
+          <type><ref refid="structst_loop_buffer" kindref="compound">stLoopBuffer</ref> *</type>
+          <declname>loopbuf</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" line="37" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" bodystart="37" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__loopuart_8c_1a59f892a4fd30ad8ccf348ae7ac0bb824" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvLoop_CanReadData</definition>
+        <argsstring>(stLoopBuffer *loopbuf, int start, int len)</argsstring>
+        <name>drvLoop_CanReadData</name>
+        <param>
+          <type><ref refid="structst_loop_buffer" kindref="compound">stLoopBuffer</ref> *</type>
+          <declname>loopbuf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" line="62" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" bodystart="62" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__loopuart_8c_1a8799174c14d702e7c55851011bdf7c87" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvLoop_ReadData</definition>
+        <argsstring>(stLoopBuffer *loopbuf, char *data, int start, int len)</argsstring>
+        <name>drvLoop_ReadData</name>
+        <param>
+          <type><ref refid="structst_loop_buffer" kindref="compound">stLoopBuffer</ref> *</type>
+          <declname>loopbuf</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" line="70" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c" bodystart="70" bodyend="95"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>UART<sp/>asynchronous<sp/>example,<sp/>that<sp/>uses<sp/>separate<sp/>RX<sp/>and<sp/>TX<sp/>tasks</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"></highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/><sp/>This<sp/>example<sp/>code<sp/>is<sp/>in<sp/>the<sp/>Public<sp/>Domain<sp/>(or<sp/>CC0<sp/>licensed,<sp/>at<sp/>your<sp/>option.)</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"></highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/><sp/><sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>this</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/><sp/><sp/>software<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/><sp/><sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_system.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;string.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;drv_loopuart.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*LOOPTAG<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;drvuart&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvLoop_bufferInit(<ref refid="structst_loop_buffer" kindref="compound">stLoopBuffer</ref><sp/>*loopbuf,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*buf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>maxlen)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(loopbuf<sp/>==<sp/>NULL<sp/>||<sp/>buf<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>loopbuf-&gt;Buffer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>buf;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>loopbuf-&gt;MaxLen<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>maxlen;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>loopbuf-&gt;BufferReadptr<sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>loopbuf-&gt;BufferWriteptr<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvLoop_CanWriteData(<ref refid="structst_loop_buffer" kindref="compound">stLoopBuffer</ref><sp/>*loopbuf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(LOOPTAG,<sp/>&quot;%s<sp/>MaxLen:<sp/>%d<sp/><sp/>len:<sp/>%d<sp/>BufferReadptr:<sp/>%d<sp/>BufferReadptr:<sp/>%d&quot;,<sp/>__FUNCTION__<sp/>,<sp/>loopbuf-&gt;MaxLen,<sp/>len,<sp/>loopbuf-&gt;BufferWriteptr,<sp/>loopbuf-&gt;BufferReadptr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>(loopbuf-&gt;BufferReadptr<sp/>&lt;=<sp/>loopbuf-&gt;BufferWriteptr<sp/>&amp;&amp;<sp/>loopbuf-&gt;BufferReadptr<sp/>+<sp/>loopbuf-&gt;MaxLen<sp/>-<sp/>loopbuf-&gt;BufferWriteptr<sp/>&lt;<sp/>len)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>(loopbuf-&gt;BufferReadptr<sp/>&gt;<sp/>loopbuf-&gt;BufferWriteptr<sp/>&amp;&amp;<sp/>loopbuf-&gt;BufferReadptr<sp/>-<sp/>loopbuf-&gt;BufferWriteptr<sp/>&lt;<sp/>len)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>len<sp/>&lt;<sp/>1<sp/>)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;<sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(LOOPTAG,<sp/>&quot;%s<sp/>len<sp/>%d<sp/>from<sp/>%d<sp/>&quot;,<sp/>__FUNCTION__<sp/>,<sp/>len,<sp/>loopbuf-&gt;BufferWriteptr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvLoop_WriteData(<ref refid="structst_loop_buffer" kindref="compound">stLoopBuffer</ref><sp/>*loopbuf,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>drvLoop_CanWriteData(loopbuf,<sp/>len)<sp/>==<sp/>0<sp/>)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>(loopbuf-&gt;BufferWriteptr<sp/>&gt;=<sp/>loopbuf-&gt;BufferReadptr<sp/>&amp;&amp;<sp/>loopbuf-&gt;BufferWriteptr<sp/>+<sp/>len<sp/>&lt;=<sp/>loopbuf-&gt;MaxLen)<sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>(loopbuf-&gt;BufferWriteptr<sp/>&lt;<sp/>loopbuf-&gt;BufferReadptr<sp/>&amp;&amp;<sp/>loopbuf-&gt;BufferWriteptr<sp/>+<sp/>len<sp/>&lt;=<sp/>loopbuf-&gt;BufferReadptr)<sp/>)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;len;<sp/>i++)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(loopbuf-&gt;Buffer<sp/>+<sp/>loopbuf-&gt;BufferWriteptr++)<sp/>=<sp/>*(data++);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(LOOPTAG,<sp/>&quot;%s<sp/>BufferWriteptr<sp/><sp/>%d<sp/>len:%d&quot;,<sp/>__FUNCTION__<sp/>,<sp/>loopbuf-&gt;BufferWriteptr,<sp/>len);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>len<sp/>=<sp/>len<sp/>+<sp/>loopbuf-&gt;BufferWriteptr<sp/>-<sp/>loopbuf-&gt;MaxLen;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=loopbuf-&gt;BufferWriteptr;<sp/>i&lt;loopbuf-&gt;MaxLen;<sp/>i++)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(loopbuf-&gt;Buffer<sp/>+<sp/>i)<sp/>=<sp/>*(data++);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;len;<sp/>i++)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(loopbuf-&gt;Buffer<sp/>+<sp/>i)<sp/>=<sp/>*(data++);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loopbuf-&gt;BufferWriteptr<sp/>=<sp/>len;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(LOOPTAG,<sp/>&quot;%s<sp/>BufferWriteptr<sp/>change<sp/>%d<sp/>len:%d&quot;,<sp/>__FUNCTION__<sp/>,<sp/>loopbuf-&gt;BufferWriteptr,<sp/>len);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvLoop_CanReadData(<ref refid="structst_loop_buffer" kindref="compound">stLoopBuffer</ref><sp/>*loopbuf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>start,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>(start<sp/>&gt;<sp/>loopbuf-&gt;BufferWriteptr<sp/>&amp;&amp;<sp/>loopbuf-&gt;BufferWriteptr<sp/>+<sp/>loopbuf-&gt;MaxLen<sp/>-<sp/>start<sp/>&lt;<sp/>len)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>(start<sp/>&lt;=<sp/>loopbuf-&gt;BufferWriteptr<sp/>&amp;&amp;<sp/>loopbuf-&gt;BufferWriteptr<sp/>-<sp/>start<sp/>&lt;<sp/>len)<sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>len<sp/>&lt;<sp/>1<sp/>)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvLoop_ReadData(<ref refid="structst_loop_buffer" kindref="compound">stLoopBuffer</ref><sp/>*loopbuf,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>start,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//maybe<sp/>nouse<sp/>data<sp/>between<sp/>start<sp/>and<sp/>loopbuf-&gt;BufferReadptr</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>drvLoop_CanReadData(loopbuf,<sp/>start,<sp/>len)<sp/>==<sp/>0<sp/>)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loopbuf-&gt;BufferReadptr<sp/>=<sp/>start;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(loopbuf-&gt;BufferReadptr<sp/>&lt;=<sp/>loopbuf-&gt;BufferWriteptr)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;len;<sp/>i++)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(data++)<sp/>=<sp/>*(loopbuf-&gt;Buffer<sp/>+<sp/>loopbuf-&gt;BufferReadptr++);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(LOOPTAG,<sp/>&quot;%s<sp/>BufferReadptr<sp/>%d<sp/>&quot;,<sp/>__FUNCTION__<sp/>,<sp/>loopbuf-&gt;BufferReadptr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>len<sp/>=<sp/>len<sp/>+<sp/>loopbuf-&gt;BufferReadptr<sp/>-<sp/>loopbuf-&gt;MaxLen;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=loopbuf-&gt;BufferReadptr;<sp/>i&lt;loopbuf-&gt;MaxLen;<sp/>i++)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(data++)<sp/>=<sp/>*(loopbuf-&gt;Buffer<sp/>+<sp/>i);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(i=0;<sp/>i&lt;len;<sp/>i++)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(data++)<sp/>=<sp/>*(loopbuf-&gt;Buffer<sp/>+<sp/>i);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>loopbuf-&gt;BufferReadptr<sp/>=<sp/>len;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ESP_LOGI(LOOPTAG,<sp/>&quot;%s<sp/>BufferReadptr<sp/>change<sp/>%d<sp/>&quot;,<sp/>__FUNCTION__<sp/>,<sp/>loopbuf-&gt;BufferReadptr);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_loopuart.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program Listing for File mqtttopic.c &#8212; freezer  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="program-listing-for-file-mqtttopic-c">
+<span id="program-listing-file-g-code-esp-code-freezer-main-iot-mqtttopic-c"></span><h1>Program Listing for File mqtttopic.c<a class="headerlink" href="#program-listing-for-file-mqtttopic-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_G__code_esp_code_freezer_main_iot_mqtttopic.c.html#file-g-code-esp-code-freezer-main-iot-mqtttopic-c"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\iot\mqtttopic.c</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* topic Example</span>
+<span class="cm">/sys/a14XBNg6pCp/123456789012345/user/Rpt/AlarmRpt</span>
+<span class="cm">RRPC请求消息Topic：  /sys/${YourProductKey}/${YourDeviceName}/rrpc/request/${messageId}</span>
+<span class="cm">RRPC响应消息Topic：  /sys/${YourProductKey}/${YourDeviceName}/rrpc/response/${messageId}</span>
+<span class="cm">RRPC订阅Topic：   /sys/${YourProductKey}/${YourDeviceName}/rrpc/request/+</span>
+
+<span class="cm">shadow发布Topic   /shadow/update/${YourProductKey}/${YourDeviceName}</span>
+<span class="cm">shadow订阅Topic   /shadow/get/${YourProductKey}/${YourDeviceName}</span>
+
+<span class="cm">发布告警上报Topic    /${YourProductKey}/${YourDeviceName}/user/Rpt/AlarmRpt</span>
+<span class="cm">发布属性上报Topic    /${YourProductKey}/${YourDeviceName}/user/Rpt/AttrRpt</span>
+<span class="cm">发布设备信息Topic    /${YourProductKey}/${YourDeviceName}/user/Rpt/DevInfo</span>
+<span class="cm">订阅Topic           /${YourProductKey}/${YourDeviceName}/user/Rpt/+</span>
+
+<span class="cm">发布升级确认信息Topic    /${YourProductKey}/${YourDeviceName}/user/UpgradeAck</span>
+<span class="cm">订阅设备升级Topic    /${YourProductKey}/${YourDeviceName}/user/Upgrade</span>
+<span class="cm">*/</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="c1">// #include &quot;esp_system.h&quot;</span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_log.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;atcmd.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;atmqtt.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;iotinfo.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;mqtttopic.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;fzprotocol.h&quot;</span><span class="cp"></span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ATTAG</span> <span class="o">=</span> <span class="s">&quot;mqttpro&quot;</span><span class="p">;</span>
+
+<span class="cp">#pragma pack(1)</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+   <span class="kt">char</span>           <span class="o">*</span><span class="n">prefix</span><span class="p">;</span>
+   <span class="kt">char</span>           <span class="o">*</span><span class="n">suffix</span><span class="p">;</span>
+   <span class="kt">char</span>           <span class="o">*</span><span class="n">flexfix</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">mqtt_tiopic_t</span><span class="p">;</span>
+<span class="cp">#pragma pack()</span>
+<span class="n">mqtt_topic_map_opt_t</span> <span class="n">mqtttopic_current</span><span class="o">=</span><span class="n">MQTT_TOPIC_NONE</span><span class="p">;</span>
+<span class="k">static</span> <span class="k">const</span> <span class="n">mqtt_tiopic_t</span> <span class="n">mqtt_tiopic</span><span class="p">[]</span> <span class="o">=</span>
+<span class="p">{</span>
+   <span class="p">{</span><span class="s">&quot;/sys/&quot;</span><span class="p">,</span> <span class="s">&quot;/rrpc/request&quot;</span><span class="p">,</span> <span class="s">&quot;/+&quot;</span><span class="p">},</span>
+   <span class="p">{</span><span class="s">&quot;/shadow/get/&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">},</span>
+   <span class="p">{</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="s">&quot;/user/Rpt&quot;</span><span class="p">,</span> <span class="s">&quot;/+&quot;</span><span class="p">},</span>
+   <span class="p">{</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="s">&quot;/user/Upgrade&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">},</span><span class="c1">//MQTT_TOPIC_SUB_END</span>
+   <span class="p">{</span><span class="s">&quot;/shadow/update/&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">},</span>
+   <span class="p">{</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="s">&quot;/user/Rpt&quot;</span><span class="p">,</span> <span class="s">&quot;/DevInfo&quot;</span><span class="p">},</span>
+   <span class="p">{</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="s">&quot;/user/Rpt&quot;</span><span class="p">,</span> <span class="s">&quot;/AttrRpt&quot;</span><span class="p">},</span>
+   <span class="p">{</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="s">&quot;/user/Rpt&quot;</span><span class="p">,</span> <span class="s">&quot;/AlarmRpt&quot;</span><span class="p">},</span><span class="c1">//MQTT_TOPIC_PUB_END</span>
+   <span class="p">{</span><span class="s">&quot;/sys/&quot;</span><span class="p">,</span> <span class="s">&quot;/rrpc/response/&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">},</span>
+   <span class="p">{</span><span class="s">&quot;/&quot;</span><span class="p">,</span> <span class="s">&quot;/user/UpgradeAck&quot;</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">},</span>
+<span class="p">};</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">iotMqttSubSuccessCb</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">mqtttopic_current</span> <span class="o">&lt;</span> <span class="n">MQTT_TOPIC_SUB_END</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">mqtttopic_current</span> <span class="o">==</span> <span class="n">MQTT_TOPIC_SUB_END</span><span class="p">){</span>
+         <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s sub all [status:%d] [mqtttopic:%d]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">mqtttopic_current</span><span class="p">);</span>
+         <span class="n">fzReportShadowUpdate</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span>
+         <span class="n">subMqttTopic</span><span class="p">(</span><span class="n">mqtttopic_current</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">mqtttopic_current</span><span class="p">].</span><span class="n">flexfix</span><span class="p">);</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">iotMqttUnSubSuccessCb</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">mqtttopic_current</span> <span class="o">&amp;&amp;</span> <span class="n">mqtttopic_current</span> <span class="o">&lt;</span> <span class="n">MQTT_TOPIC_SUB_END</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="o">--</span><span class="n">mqtttopic_current</span><span class="p">;</span>
+      <span class="n">unSubMqttTopic</span><span class="p">(</span><span class="n">mqtttopic_current</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">mqtttopic_current</span><span class="p">].</span><span class="n">flexfix</span><span class="p">);</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">iotMqttPubSuccessCb</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">&lt;</span> <span class="n">IOT_CONNECTMQTT</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">mqtttopic_current</span> <span class="o">&lt;</span> <span class="n">MQTT_TOPIC_PUB_END</span><span class="p">)</span>  <span class="p">{</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">mqtttopic_current</span> <span class="o">==</span> <span class="n">MQTT_TOPIC_PUB_DEVINFO</span><span class="p">)</span>
+            <span class="n">fzReportRegisterInfo</span><span class="p">();</span>
+         <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">mqtttopic_current</span> <span class="o">==</span> <span class="n">MQTT_TOPIC_PUB_ATTRRPT</span><span class="p">)</span>
+            <span class="n">fzReportAttrsInfo</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+         <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">mqtttopic_current</span> <span class="o">==</span> <span class="n">MQTT_TOPIC_PUB_ALARMRPT</span><span class="p">)</span>
+            <span class="n">fzReportAlarmInfo</span><span class="p">();</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">mqtttopic_current</span> <span class="o">==</span> <span class="n">MQTT_TOPIC_PUB_END</span><span class="p">){</span>
+         <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">=</span> <span class="n">IOT_CONNECTMQTT</span><span class="p">;</span>
+         <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s pub all [status:%d] [mqtttopic:%d]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">mqtttopic_current</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">mqtttopic_current</span> <span class="o">==</span> <span class="n">MQTT_TOPIC_PUB_UPGRADEACK</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">otaStatus</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//OTA_SUCCESS</span>
+         <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;Prepare to restart system!&quot;</span><span class="p">);</span>
+<span class="k">extern</span> <span class="kt">void</span>  <span class="n">esp_restart</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+         <span class="n">esp_restart</span><span class="p">();</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">iotMqttOperationCb</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">status</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s status [%d] topic [%d]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">mqtttopic_current</span><span class="p">);</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">status</span> <span class="o">&gt;</span> <span class="n">MQTT_CONNECT_FAIL</span> <span class="o">&amp;&amp;</span> <span class="n">status</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">ATSENDCMD_CHANGE_NULL</span><span class="p">();</span>
+   <span class="k">switch</span> <span class="p">(</span><span class="n">status</span><span class="p">)</span>
+   <span class="p">{</span>
+   <span class="k">case</span> <span class="nl">MQTT_CONNECT_SUCCESS</span><span class="p">:</span>
+      <span class="n">subMqttTopic</span><span class="p">(</span><span class="n">MQTT_TOPIC_SUB_RRPC</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+   <span class="k">case</span> <span class="nl">MQTT_CONNECT_SUB_SUCCESS</span><span class="p">:</span>
+      <span class="n">iotMqttSubSuccessCb</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+   <span class="k">case</span> <span class="nl">MQTT_CONNECT_UNSUB_SUCCESS</span><span class="p">:</span>
+      <span class="n">iotMqttUnSubSuccessCb</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+   <span class="k">case</span> <span class="nl">MQTT_CONNECT_PUB_SUCCESS</span><span class="p">:</span>
+      <span class="n">iotMqttPubSuccessCb</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+   <span class="k">case</span> <span class="nl">MQTT_DISCONNECT_SUCCESS</span><span class="p">:</span>
+      <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s MQTT_DISCONNECT_SUCCESS&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+
+   <span class="k">default</span><span class="o">:</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">status</span> <span class="o">&gt;</span> <span class="n">MQTT_CONNECT_FAIL</span> <span class="o">&amp;&amp;</span> <span class="n">status</span><span class="o">%</span><span class="mi">2</span><span class="p">)</span>
+         <span class="n">ATSENDCMD_CHANGE_NULL</span><span class="p">();</span>
+      <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s other or fail&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">iotMqttReceiveCb</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">topic</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">payload</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">imei</span><span class="p">;</span>
+   <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">rectopic</span><span class="o">=</span><span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">recpayload</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">topic</span> <span class="o">&amp;&amp;</span> <span class="n">payload</span><span class="p">)</span>
+   <span class="p">{</span>
+      <span class="c1">// ESP_LOGI(ATTAG, &quot;%s topic [%s] payload [%s]&quot;, __FUNCTION__ , topic, payload);</span>
+      <span class="n">rectopic</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">rectopic</span><span class="p">)</span>
+      <span class="p">{</span>
+         <span class="n">recpayload</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">);</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">recpayload</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+         <span class="p">{</span>
+            <span class="n">free</span><span class="p">(</span><span class="n">rectopic</span><span class="p">);</span>
+            <span class="n">rectopic</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">else</span>
+         <span class="k">return</span><span class="p">;</span>
+
+      <span class="n">setReportTime</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="c1">//set report clean</span>
+      <span class="n">memcpy</span><span class="p">(</span><span class="n">rectopic</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">memcpy</span><span class="p">(</span><span class="n">recpayload</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s topic [%s] payload [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">rectopic</span><span class="p">,</span> <span class="n">payload</span><span class="p">);</span>
+
+      <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">rectopic</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">){</span>
+         <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s pk [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+         <span class="n">imei</span> <span class="o">=</span> <span class="n">str2Imei</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">imei</span> <span class="o">==</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span><span class="p">){</span>
+            <span class="k">if</span><span class="p">(</span> <span class="n">memcmp</span><span class="p">(</span><span class="n">rectopic</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_SUB_SHADOW</span><span class="p">].</span><span class="n">prefix</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_SUB_SHADOW</span><span class="p">].</span><span class="n">prefix</span><span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">){</span>
+               <span class="n">fzReceiveShadowMsg</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="p">}</span><span class="c1">//shadow</span>
+            <span class="k">else</span>  <span class="p">{</span>
+               <span class="n">str</span> <span class="o">=</span> <span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">)</span> <span class="o">+</span> <span class="n">AT_CMD_IMEI_IMSI_LEN</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+               <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s topic end [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+               <span class="k">if</span><span class="p">(</span> <span class="n">memcmp</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_SUB_RRPC</span><span class="p">].</span><span class="n">suffix</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_SUB_RRPC</span><span class="p">].</span><span class="n">suffix</span><span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">){</span>
+                  <span class="n">str</span> <span class="o">=</span> <span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_SUB_RRPC</span><span class="p">].</span><span class="n">suffix</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+                  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s topic rrpc id [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+                  <span class="n">fzReceiveRrpcMsg</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+               <span class="p">}</span><span class="c1">//rrpc</span>
+               <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">memcmp</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_SUB_RPT</span><span class="p">].</span><span class="n">suffix</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_SUB_RPT</span><span class="p">].</span><span class="n">suffix</span><span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">){</span>
+                  <span class="n">str</span> <span class="o">=</span> <span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_SUB_RPT</span><span class="p">].</span><span class="n">suffix</span><span class="p">);</span>
+                  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s user topic [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+                  <span class="k">if</span><span class="p">(</span><span class="n">memcmp</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_PUB_ALARMRPT</span><span class="p">].</span><span class="n">flexfix</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_PUB_ALARMRPT</span><span class="p">].</span><span class="n">flexfix</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+                  <span class="p">}</span><span class="c1">//AlarmRpt</span>
+                  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">memcmp</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_PUB_ALARMRPT</span><span class="p">].</span><span class="n">flexfix</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_PUB_ALARMRPT</span><span class="p">].</span><span class="n">flexfix</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+                  <span class="p">}</span><span class="c1">//AttrRpt</span>
+                  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">memcmp</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_PUB_DEVINFO</span><span class="p">].</span><span class="n">flexfix</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_PUB_DEVINFO</span><span class="p">].</span><span class="n">flexfix</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+                  <span class="p">}</span><span class="c1">//DevInfo</span>
+               <span class="p">}</span>
+               <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">memcmp</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_SUB_UPGRADE</span><span class="p">].</span><span class="n">suffix</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">MQTT_TOPIC_SUB_UPGRADE</span><span class="p">].</span><span class="n">suffix</span><span class="p">)</span> <span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">){</span>
+                  <span class="n">fzReceiveUpgradeMsg</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+               <span class="p">}</span><span class="c1">//upgrade</span>
+            <span class="p">}</span>
+         <span class="p">}</span><span class="c1">//imei</span>
+      <span class="p">}</span><span class="c1">//productKey</span>
+
+      <span class="n">free</span><span class="p">(</span><span class="n">rectopic</span><span class="p">);</span>
+      <span class="n">free</span><span class="p">(</span><span class="n">recpayload</span><span class="p">);</span>
+      <span class="n">rectopic</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+      <span class="n">recpayload</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">//must free topic</span>
+<span class="k">static</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">generaMqttTopic</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">prefix</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">suffix</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">flexfix</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+   <span class="kt">char</span> <span class="o">*</span><span class="n">topic</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">prefix</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span> <span class="o">&lt;</span> <span class="mi">100000000000000ULL</span><span class="p">)</span>
+      <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">suffix</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">)</span> <span class="o">+</span> <span class="n">AT_CMD_IMEI_IMSI_LEN</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+   <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">flexfix</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">suffix</span><span class="p">)</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">)</span> <span class="o">+</span> <span class="n">AT_CMD_IMEI_IMSI_LEN</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+   <span class="k">else</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">suffix</span><span class="p">)</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">flexfix</span><span class="p">)</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">)</span> <span class="o">+</span> <span class="n">AT_CMD_IMEI_IMSI_LEN</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+
+   <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_MAX_TOPIC_LEN</span><span class="p">)</span>
+      <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+   <span class="n">topic</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">len</span><span class="p">);</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">topic</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+      <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+
+   <span class="k">if</span><span class="p">(</span><span class="n">suffix</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="s">&quot;%s%s/%lld&quot;</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span><span class="p">);</span>
+   <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">flexfix</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="s">&quot;%s%s/%lld%s&quot;</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span><span class="p">,</span> <span class="n">suffix</span><span class="p">);</span>
+   <span class="k">else</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="s">&quot;%s%s/%lld%s%s&quot;</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">productKey</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span><span class="p">,</span> <span class="n">suffix</span><span class="p">,</span> <span class="n">flexfix</span><span class="p">);</span>
+
+   <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_MAX_TOPIC_LEN</span><span class="p">)</span>
+   <span class="p">{</span>
+      <span class="n">free</span><span class="p">(</span><span class="n">topic</span><span class="p">);</span>
+      <span class="n">topic</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+   <span class="p">}</span>
+   <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s success [%s] len:%d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span> <span class="p">);</span>
+   <span class="k">return</span> <span class="n">topic</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="nf">subMqttTopic</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">topicnum</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">flexfix</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">int</span> <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+   <span class="kt">char</span> <span class="o">*</span><span class="n">topic</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+   <span class="c1">// for(int i=0; i&lt;MQTT_TOPIC_SUB_END; i++)</span>
+   <span class="p">{</span>
+      <span class="n">mqtttopic_current</span> <span class="o">=</span> <span class="n">topicnum</span><span class="p">;</span>
+      <span class="c1">// if(mqtttopic_current &gt; MQTT_TOPIC_SUB_END)</span>
+      <span class="c1">//    topicnum = mqtttopic_current - 1;</span>
+      <span class="c1">// ESP_LOGI(ATTAG, &quot;%s in  [%d] :&quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">flexfix</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+         <span class="n">flexfix</span> <span class="o">=</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">flexfix</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">flexfix</span><span class="p">)</span>
+         <span class="n">topic</span> <span class="o">=</span> <span class="n">generaMqttTopic</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">prefix</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">suffix</span><span class="p">,</span> <span class="n">flexfix</span><span class="p">);</span>
+      <span class="k">else</span>
+         <span class="n">topic</span> <span class="o">=</span> <span class="n">generaMqttTopic</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">prefix</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">suffix</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span>
+      <span class="p">{</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">atSubMqttTopic</span><span class="p">(</span><span class="n">AT_CMD_MQTT_QOS</span><span class="p">,</span> <span class="n">topic</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+         <span class="n">free</span><span class="p">(</span><span class="n">topic</span><span class="p">);</span>
+         <span class="n">topic</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="c1">// ESP_LOGI(ATTAG, &quot;%s out  [%d] :&quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">unSubMqttTopic</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">topicnum</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">flexfix</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">int</span> <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+   <span class="kt">char</span> <span class="o">*</span><span class="n">topic</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+   <span class="c1">// for(int i=0; i&lt;MQTT_TOPIC_SUB_END; i++)</span>
+   <span class="p">{</span>
+      <span class="n">mqtttopic_current</span> <span class="o">=</span> <span class="n">topicnum</span><span class="p">;</span>
+      <span class="c1">// if(mqtttopic_current &gt; MQTT_TOPIC_SUB_END)</span>
+      <span class="c1">//    topicnum = mqtttopic_current - 1;</span>
+      <span class="c1">// ESP_LOGI(ATTAG, &quot;%s in  [%d] :&quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">flexfix</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+         <span class="n">flexfix</span> <span class="o">=</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">flexfix</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">flexfix</span><span class="p">)</span>
+         <span class="n">topic</span> <span class="o">=</span> <span class="n">generaMqttTopic</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">prefix</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">suffix</span><span class="p">,</span> <span class="n">flexfix</span><span class="p">);</span>
+      <span class="k">else</span>
+         <span class="n">topic</span> <span class="o">=</span> <span class="n">generaMqttTopic</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">prefix</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">suffix</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span>
+      <span class="p">{</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">atUnSubMqttTopic</span><span class="p">(</span><span class="n">AT_CMD_MQTT_DUP</span><span class="p">,</span> <span class="n">topic</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+         <span class="n">free</span><span class="p">(</span><span class="n">topic</span><span class="p">);</span>
+         <span class="n">topic</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="c1">// ESP_LOGI(ATTAG, &quot;%s out  [%d] :&quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">publishMqttTopic</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">topicnum</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">flexfix</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">payload</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">int</span> <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+   <span class="kt">char</span> <span class="o">*</span><span class="n">topic</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">payload</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+   <span class="c1">// for(int i=0; i&lt;MQTT_TOPIC_SUB_END; i++)</span>
+   <span class="p">{</span>
+      <span class="n">mqtttopic_current</span> <span class="o">=</span> <span class="n">topicnum</span><span class="p">;</span>
+      <span class="c1">// if(mqtttopic_current &gt; MQTT_TOPIC_SUB_END)</span>
+      <span class="c1">//    topicnum = mqtttopic_current - 1;</span>
+      <span class="c1">// ESP_LOGI(ATTAG, &quot;%s in  [%d] :&quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">flexfix</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+         <span class="n">flexfix</span> <span class="o">=</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">flexfix</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">flexfix</span><span class="p">)</span>
+         <span class="n">topic</span> <span class="o">=</span> <span class="n">generaMqttTopic</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">prefix</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">suffix</span><span class="p">,</span> <span class="n">flexfix</span><span class="p">);</span>
+      <span class="k">else</span>
+         <span class="n">topic</span> <span class="o">=</span> <span class="n">generaMqttTopic</span><span class="p">(</span><span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">prefix</span><span class="p">,</span> <span class="n">mqtt_tiopic</span><span class="p">[</span><span class="n">topicnum</span><span class="p">].</span><span class="n">suffix</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span>
+      <span class="p">{</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">atPublishMqttTopic</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+         <span class="n">free</span><span class="p">(</span><span class="n">topic</span><span class="p">);</span>
+         <span class="n">topic</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="c1">// ESP_LOGI(ATTAG, &quot;%s out  [%d] :&quot;, __FUNCTION__, esp_get_free_heap_size());</span>
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">mqttInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">atMqttInfoInit</span><span class="p">(</span><span class="n">SECURE_MODE</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+   <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">atMqttCallBackInit</span><span class="p">(</span><span class="n">iotMqttOperationCb</span><span class="p">,</span> <span class="n">iotMqttReceiveCb</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span>
+         <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s success []&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+         <span class="k">return</span> <span class="n">atConnectMqtt</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">freezer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, vencol.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/program_listing_file_G__code_esp_code_freezer_main_iot_mqtttopic.c.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

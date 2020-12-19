@@ -1,0 +1,13 @@
+.. _exhale_function_drv__1650_8h_1ad06044476ebc80b52b9ef417025b4510:
+
+Function drvTm1650Init(void)
+============================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_freezerdrv_drv_1650.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: drvTm1650Init(void)

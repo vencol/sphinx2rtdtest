@@ -1,0 +1,1326 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="atmqtt_8h" kind="file" language="C++">
+    <compoundname>atmqtt.h</compoundname>
+    <includedby refid="atcmd_8c" local="yes">G:/code/esp/code/freezer/main/atprocess/atcmd.c</includedby>
+    <includedby refid="atmqtt_8c" local="yes">G:/code/esp/code/freezer/main/atprocess/atmqtt.c</includedby>
+    <includedby refid="mqtttopic_8c" local="yes">G:/code/esp/code/freezer/main/iot/mqtttopic.c</includedby>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="atmqtt_8h_1a9762da5d68e1d9a2c3e844a674183387" prot="public" static="no">
+        <name>AT_CMD_MQTT_CLIENT_NUM</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="28" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a991f3a7429427fa3c4d5b8577d5ee784" prot="public" static="no">
+        <name>AT_CMD_MQTT_CLIENT_MAXNUM</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="29" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a6875e070c16755666b00612f61fc67c9" prot="public" static="no">
+        <name>AT_CMD_MQTT_KEEPALIVE_TIME</name>
+        <initializer>60</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="30" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a33613e7db1f8c0a45931f5b0d0a59f2e" prot="public" static="no">
+        <name>AT_CMD_MQTT_CLEAN_SESSION</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="31" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1afeb883ce84384b4705d5278bd1769b26" prot="public" static="no">
+        <name>AT_CMD_MQTT_QOS</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="32" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a6ad10aeecc344ebaf76de57f9d793ce1" prot="public" static="no">
+        <name>AT_CMD_MQTT_DUP</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="33" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ac2ecbcca012147c6e4f00c22d13bb49a" prot="public" static="no">
+        <name>AT_CMD_MQTT_RETAIN</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="34" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a5d9d2cf9cc3b25d74204d5063e119b95" prot="public" static="no">
+        <name>AT_CMD_MQTT_TIMEOUT</name>
+        <initializer>60</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="35" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a72f167b624adf077fb03b4f74005d08e" prot="public" static="no">
+        <name>AT_CMD_MQTT_RECEIVE_START</name>
+        <initializer>&quot;+CMQTTRXSTART:&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="38" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1accee5077edf5ab5386d5e3efe2469f9a" prot="public" static="no">
+        <name>AT_CMD_MQTT_RECEIVE_TOPIC</name>
+        <initializer>&quot;+CMQTTRXTOPIC:&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="39" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1aa83eb1ccc6730de2334408afecb46969" prot="public" static="no">
+        <name>AT_CMD_MQTT_RECEIVE_PAYLOAD</name>
+        <initializer>&quot;+CMQTTRXPAYLOAD:&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="40" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a36a55951cb5571fb45e9ff4d74089221" prot="public" static="no">
+        <name>AT_CMD_MQTT_RECEIVE_END</name>
+        <initializer>&quot;+CMQTTRXEND:&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="41" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ac50ddf3f688dffe86a10fa35d69a6447" prot="public" static="no">
+        <name>AT_CMD_MQTT_INPUT_STR</name>
+        <initializer>&quot;\r\n&gt;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="43" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ab0421c766281946122ee4b69d9d1959e" prot="public" static="no">
+        <name>AT_CMD_MQTT_INPUTOK</name>
+        <param><defname>buf</defname></param>
+        <initializer>(memcmp(buf, AT_CMD_MQTT_INPUT_STR, strlen(AT_CMD_MQTT_INPUT_STR)) == 0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="44" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ad0c0f682ace0a129868e6746f2d78ee8" prot="public" static="no">
+        <name>AT_CMD_MQTT_SECURE_MAXNUM</name>
+        <initializer>3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="45" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1adf35f98e99e0579e1ba73220576ac5da" prot="public" static="no">
+        <name>AT_CMD_MQTT_RETAIN_MAXNUM</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="46" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a578b7650a8a4722ee31009ec30800e46" prot="public" static="no">
+        <name>AT_CMD_MQTT_DUP_MAXNUM</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="47" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ab6d7879ce137c2d515f867cecba2c6da" prot="public" static="no">
+        <name>AT_CMD_MQTT_QOS_MAXNUM</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="48" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a5f19dd10c206ca9e91ba6335bf3b8c19" prot="public" static="no">
+        <name>AT_CMD_MQTT_MAX_TOPIC_LEN</name>
+        <initializer>128</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="49" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a4694910b4a28cd8b7147539db820aa7e" prot="public" static="no">
+        <name>AT_CMD_MQTT_MAX_PAYLOAD_LEN</name>
+        <initializer>1024</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="50" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a3b774d60558108ac495bb92059e7dd06" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSTART_SEND</name>
+        <initializer>&quot;AT+CMQTTSTART\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="53" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a63dffdc524815f1769fc53eeb78dbcaf" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSTART_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="54" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1afca22a6b3ff054caa5b2cd55a1847081" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSTART_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="55" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a297cfb09fec2bde661218b6862502cde" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSTART_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="56" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a8b7ec2907b66519452752f8839c70867" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSTART_RESPOND_SPLEN</name>
+        <initializer>11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="57" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a76ee0e383eef59fd89ed76270e83caaf" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTACCQ_SEND</name>
+        <initializer>&quot;AT+CMQTTACCQ=%d,\&quot;%s\&quot;,%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="59" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a5e379f7b3690adb0d5547d5f98ff7e2c" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTACCQ_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="60" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a0a7b5f4e1fae9c04aaad2e5d4d70a49d" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTACCQ_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="61" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1afe2f729d1bcba5b99a7b9a0bbce37384" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTACCQ_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="62" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a2ca9a44331b33e3507621e5927e8b48f" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTCONNECT_SEND</name>
+        <initializer>&quot;AT+CMQTTCONNECT=%d,\&quot;tcp://%s.%s:%d\&quot;,%d,%d,\&quot;%s\&quot;,\&quot;%s\&quot;\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="64" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a744f0afe0b8122d0acb02e3cbed4816f" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTCONNECT_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="65" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1aace4af253cdffb908f482fd372e483b4" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTCONNECT_TIMEOUT</name>
+        <initializer>(ATCMD_1S_TIMEOUT*10)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="66" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a79fe834b23a0b692a73c9cadcbe51905" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTCONNECT_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="67" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a8f47a629dded5ea23661bb4cd2cc7a06" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTCONNECT_SEND_MAXLEN</name>
+        <initializer>190</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="68" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a0a7a0993245083fbae5961f3881f593e" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTCONNECT_KEEPALIVE_MAX</name>
+        <initializer>64800</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="69" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a63ab7ac87840911ee1bc29b40b973954" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTCONNECT_CLEANSEESION_MAX</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="70" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a3381b9aae129cf970ab8c9f875383e0b" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTCONNECT_RESPOND_SPLEN</name>
+        <initializer>13</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="71" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a92722858c28716b93f10ad48e2802153" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTDISC_SEND</name>
+        <initializer>&quot;AT+CMQTTDISC=%d,%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="74" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a66ddc0ad400fcfce28c9c21f53e5d1d8" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTDISC_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="75" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ab2c4cb17837a24356864db7f33c490ab" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTDISC_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="76" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a25d9162d3096440f1bca18ec9010fddb" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTDISC_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="77" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a02783a53d3504833c0e2bb058cb940ba" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTDISC_RESPOND_SPLEN</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="78" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a4c33c1c03f55c96c796f6d54c6b3a8c7" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTREL_SEND</name>
+        <initializer>&quot;AT+CMQTTREL=%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="80" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a0ab5a090ea5ca0946e543999d0e19e37" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTREL_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="81" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a3ae16125acbfd71249e22ebfbcbce5db" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTREL_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="82" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ae66ab5a422f99730097807fa3c97dd29" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTREL_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="83" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1af7caf895df8ff2f98d6d74f7ccdfbd68" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSTOP_SEND</name>
+        <initializer>&quot;AT+CMQTTSTOP\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="85" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1acc8bcf22a8a43f9d5e1dc7ec44160f0c" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSTOP_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="86" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a1829581e0e99c73e6b828d7212944923" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSTOP_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="87" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a91553f18d953079438ddd5b29b5b5a73" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSTOP_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="88" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1abe7b16db922fa3df0e6532f0d5edb644" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSTOP_RESPOND_SPLEN</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="89" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a388209d7ce873a0058bcb9f4655fac52" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSUBTOPIC_SEND</name>
+        <initializer>&quot;AT+CMQTTSUBTOPIC=%d,%d,%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="92" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1af459479dab40a6d12561a1bfc246dea7" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSUBTOPIC_RESPOND</name>
+        <initializer>&quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="93" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1af5f18348d73db99e394275d21a46f726" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSUBTOPIC_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="94" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a603d4758e65d716d55cb8cdd2426b2d9" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSUBTOPIC_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="95" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a752e6d063d221658a520ebaabd8d2728" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSUB_SEND</name>
+        <initializer>&quot;AT+CMQTTSUB=%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="97" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a7824edb979f97ea09aeaffd3f1baabbe" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSUB_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="98" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a64ff147a0b0a79b54115fb32e5c7763f" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSUB_TIMEOUT</name>
+        <initializer>ATCMD_1S_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="99" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ab7352f6908035695fdba55561b041725" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSUB_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="100" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1aaf1046ec645f8439c2f68f1693e608da" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTSUB_RESPOND_SPLEN</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="101" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ac586703fa386e567e8c90d3aff921623" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTUNSUBTOPIC_SEND</name>
+        <initializer>&quot;AT+CMQTTUNSUBTOPIC=%d,%d,%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="104" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a44de0e251047e1e570066224cdae8bcd" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTUNSUBTOPIC_RESPOND</name>
+        <initializer>&quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="105" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1af0359527c09cf9bd3ffb01091ba9752a" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTUNSUBTOPIC_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="106" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a8984af3d384d65841d3b7d2975fd126e" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTUNSUBTOPIC_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="107" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a4a411aa0234c59cbf7679e3351d88a0e" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTUNSUB_SEND</name>
+        <initializer>&quot;AT+CMQTTUNSUB=%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="109" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a38eeee79a0edf113cac383c676de3a75" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTUNSUB_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="110" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a2d3cc7d852af6f861372e4bfa1ca2c89" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTUNSUB_TIMEOUT</name>
+        <initializer>ATCMD_1S_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="111" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a915651bf7e86244deaff9e8438022da9" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTUNSUB_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="112" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a5cd3ab29ba2d49d96b80723fbd469d13" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTUNSUB_RESPOND_SPLEN</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="113" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1afd93bfafff9bb515583c75f7514af7de" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTTOPIC_SEND</name>
+        <initializer>&quot;AT+CMQTTTOPIC=%d,%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="116" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a6b781ee592e2326add2fa34e2c7e8039" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTTOPIC_RESPOND</name>
+        <initializer>&quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="117" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a4ee2dd430bf413bfc2246cefa96cbe23" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTTOPIC_TIMEOUT</name>
+        <initializer>(2*ATCMD_MIN_TIMEOUT)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="118" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a32b24a63941105c9491642a33881e162" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTTOPIC_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="119" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ae41287b90d57bdae1f48dc3a95734696" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTPAYLOAD_SEND</name>
+        <initializer>&quot;AT+CMQTTPAYLOAD=%d,%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="121" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1af31b2fc7940e267e293af9a6e94ef1e5" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTPAYLOAD_RESPOND</name>
+        <initializer>&quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="122" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1af8e74a97d6fc3ae5aa9bc125a3f629e4" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTPAYLOAD_TIMEOUT</name>
+        <initializer>ATCMD_MIN_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="123" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a50f257ba5ca4c4cc17488b4493d974e4" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTPAYLOAD_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="124" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1aa2f35fa94223f9cf366f1ff99210c462" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTPUB_SEND</name>
+        <initializer>&quot;AT+CMQTTPUB=%d,%d,%d,%d,%d\r\n&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="126" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ab514fb7d6d1ea133cd8658f5987c9d65" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTPUB_RESPOND</name>
+        <initializer>ATCMDRESPONDOKSTR</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="127" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a83d6f8b6bdcc092b5936080efa352e7d" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTPUB_TIMEOUT</name>
+        <initializer>ATCMD_1S_TIMEOUT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="128" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a43162ba7829e9e161b7e5e687abfa5c4" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTPUB_RETRY</name>
+        <initializer>(ATCMD_MIN_RETRY)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="129" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1ae0c9611cf60d612ebeac8e7a7cdad998" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTPUB_RESPOND_SPLEN</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="130" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a6921bd01d71e74d59f04951f35fd8fc8" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTPUB_TIMEOUT_MINI</name>
+        <initializer>60</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="131" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="atmqtt_8h_1a8172ca685fb6cd66092d396b7940b763" prot="public" static="no">
+        <name>AT_CMD_ATCMQTTPUB_TIMEOUT_MAX</name>
+        <initializer>180</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="132" column="9" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8" prot="public" static="no" strong="no">
+        <type></type>
+        <name>mqtt_uri_map_opt_t</name>
+        <enumvalue id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8a16c46768a0785eed334e3aa00b5b209f" prot="public">
+          <name>MQTT_NONE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8a3608ad14ffd888134e89f28a104bd03c" prot="public">
+          <name>MQTT_CONNECT_FAIL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8a60acad1eee58a3e15ab46fa86ee30d53" prot="public">
+          <name>MQTT_CONNECT_SUCCESS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8a8ebdb595f6328c83a5d787d8bd6ef42c" prot="public">
+          <name>MQTT_CONNECT_SUB_FAIL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8a012ac5bb6e73aba53092d6ac052537bb" prot="public">
+          <name>MQTT_CONNECT_SUB_SUCCESS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8abb0be0b8c60270b6d3e63d06e27d3786" prot="public">
+          <name>MQTT_CONNECT_UNSUB_FAIL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8a12718898a72d71c1392e20c7a3ad1bac" prot="public">
+          <name>MQTT_CONNECT_UNSUB_SUCCESS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8aafe5925056bcaf46e533363a03f50beb" prot="public">
+          <name>MQTT_CONNECT_PUB_FAIL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8a56aa03ff9006e84f6409b73155ea31bc" prot="public">
+          <name>MQTT_CONNECT_PUB_SUCCESS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8a0a54f9c8cf1a19a956b3caf95e5e3b12" prot="public">
+          <name>MQTT_DISCONNECT_FAIL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="atmqtt_8h_1a53e5ab985fa9fda70c12908ae52313c8a60c7ec7a02d143f6eece14b7da0e5bb8" prot="public">
+          <name>MQTT_DISCONNECT_SUCCESS</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="14" column="1" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" bodystart="14" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="atmqtt_8h_1a9605b9a3828a22e8c9973277a8f136a1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void atPraseMqttCmd</definition>
+        <argsstring>(char *recbuf, int len)</argsstring>
+        <name>atPraseMqttCmd</name>
+        <param>
+          <type>char *</type>
+          <declname>recbuf</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="5" column="6" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.c" bodystart="482" bodyend="491" declfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" declline="5" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="atmqtt_8h_1ac390eff1096a7609eb0ad7f4b868464b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int atMqttInfoInit</definition>
+        <argsstring>(char secureMode)</argsstring>
+        <name>atMqttInfoInit</name>
+        <param>
+          <type>char</type>
+          <declname>secureMode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="7" column="5" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.c" bodystart="38" bodyend="47" declfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" declline="7" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="atmqtt_8h_1a11f6e131904afb93282ca97543ea8582" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int atConnectMqtt</definition>
+        <argsstring>(unsigned char timeout)</argsstring>
+        <name>atConnectMqtt</name>
+        <param>
+          <type>unsigned char</type>
+          <declname>timeout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="8" column="5" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.c" bodystart="493" bodyend="501" declfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" declline="8" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="atmqtt_8h_1accab9e16514ea05a71df42c212b21e1b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int atDisconnectMqtt</definition>
+        <argsstring>(unsigned char timeout)</argsstring>
+        <name>atDisconnectMqtt</name>
+        <param>
+          <type>unsigned char</type>
+          <declname>timeout</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="9" column="5" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.c" bodystart="502" bodyend="529" declfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" declline="9" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="atmqtt_8h_1aa3b038eb86d6074ba3d8723b60f28363" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int atSubMqttTopic</definition>
+        <argsstring>(unsigned char qos, char *topic)</argsstring>
+        <name>atSubMqttTopic</name>
+        <param>
+          <type>unsigned char</type>
+          <declname>qos</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>topic</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="10" column="5" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.c" bodystart="530" bodyend="562" declfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" declline="10" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="atmqtt_8h_1a703f40c909e93e6c1e1b8ed151e8b7af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int atUnSubMqttTopic</definition>
+        <argsstring>(unsigned char dup, char *topic)</argsstring>
+        <name>atUnSubMqttTopic</name>
+        <param>
+          <type>unsigned char</type>
+          <declname>dup</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>topic</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="11" column="5" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.c" bodystart="563" bodyend="594" declfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" declline="11" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="atmqtt_8h_1ae1a02cb2c54e03b8025f497bab914b0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int atPublishMqttTopic</definition>
+        <argsstring>(char *topic, char *payload)</argsstring>
+        <name>atPublishMqttTopic</name>
+        <param>
+          <type>char *</type>
+          <declname>topic</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>payload</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="12" column="5" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.c" bodystart="595" bodyend="637" declfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" declline="12" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="atmqtt_8h_1a011b391307113b46be5740fc26526a50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int atMqttCallBackInit</definition>
+        <argsstring>(void(*IotMqttOperatoinCb)(unsigned char), void(*IotMqttReceiveCb)(char *, char *))</argsstring>
+        <name>atMqttCallBackInit</name>
+        <param>
+          <type>void(*)(unsigned char)</type>
+          <declname>IotMqttOperatoinCb</declname>
+        </param>
+        <param>
+          <type>void(*)(char *, char *)</type>
+          <declname>IotMqttReceiveCb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" line="13" column="5" bodyfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.c" bodystart="30" bodyend="37" declfile="G:/code/esp/code/freezer/main/atprocess/atmqtt.h" declline="13" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__AT_4GMQTTCMD__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__AT_4GMQTTCMD__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>atPraseMqttCmd(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>recbuf,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len);</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//mqtt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>atMqttInfoInit(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>secureMode);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>atConnectMqtt(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>timeout);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>atDisconnectMqtt(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>timeout);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>atSubMqttTopic(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>qos,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*topic);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>atUnSubMqttTopic(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>dup,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*topic);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>atPublishMqttTopic(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*topic,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*payload);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>atMqttCallBackInit(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>(*IotMqttOperatoinCb)(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">),<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>(*IotMqttReceiveCb)(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*));</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>MQTT_NONE,</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>MQTT_CONNECT_FAIL,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>MQTT_CONNECT_SUCCESS,</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>MQTT_CONNECT_SUB_FAIL,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>MQTT_CONNECT_SUB_SUCCESS,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>MQTT_CONNECT_UNSUB_FAIL,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>MQTT_CONNECT_UNSUB_SUCCESS,</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>MQTT_CONNECT_PUB_FAIL,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>MQTT_CONNECT_PUB_SUCCESS,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>MQTT_DISCONNECT_FAIL,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>MQTT_DISCONNECT_SUCCESS,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}<sp/>mqtt_uri_map_opt_t;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_CLIENT_NUM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_CLIENT_MAXNUM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_KEEPALIVE_TIME<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>60<sp/><sp/>//*s</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_CLEAN_SESSION<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_QOS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_DUP<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_RETAIN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>60</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_RECEIVE_START<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;+CMQTTRXSTART:&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_RECEIVE_TOPIC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;+CMQTTRXTOPIC:&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_RECEIVE_PAYLOAD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;+CMQTTRXPAYLOAD:&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_RECEIVE_END<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;+CMQTTRXEND:&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_INPUT_STR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;\r\n&gt;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_INPUTOK(buf)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(memcmp(buf,<sp/>AT_CMD_MQTT_INPUT_STR,<sp/>strlen(AT_CMD_MQTT_INPUT_STR))<sp/>==<sp/>0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_SECURE_MAXNUM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_RETAIN_MAXNUM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_DUP_MAXNUM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_QOS_MAXNUM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_MAX_TOPIC_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>128</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_MQTT_MAX_PAYLOAD_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1024</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTSTART<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSTART_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTSTART\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSTART_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSTART_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSTART_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSTART_RESPOND_SPLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTACCQ</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTACCQ_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTACCQ=%d,\&quot;%s\&quot;,%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTACCQ_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTACCQ_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTACCQ_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTCONNECT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTCONNECT_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTCONNECT=%d,\&quot;tcp://%s.%s:%d\&quot;,%d,%d,\&quot;%s\&quot;,\&quot;%s\&quot;\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTCONNECT_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTCONNECT_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_1S_TIMEOUT*10)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTCONNECT_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTCONNECT_SEND_MAXLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>190</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTCONNECT_KEEPALIVE_MAX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>64800<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTCONNECT_CLEANSEESION_MAX<sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTCONNECT_RESPOND_SPLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>13</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTDISC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTDISC_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTDISC=%d,%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTDISC_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTDISC_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTDISC_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTDISC_RESPOND_SPLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTREL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTREL_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTREL=%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTREL_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTREL_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTREL_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTSTOP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSTOP_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTSTOP\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSTOP_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSTOP_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSTOP_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSTOP_RESPOND_SPLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTSUBTOPIC<sp/><sp/><sp/>RESPOND<sp/>to<sp/>send<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSUBTOPIC_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTSUBTOPIC=%d,%d,%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSUBTOPIC_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSUBTOPIC_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSUBTOPIC_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTSUB<sp/><sp/><sp/>RESPOND<sp/>to<sp/>send<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSUB_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTSUB=%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSUB_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSUB_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_1S_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSUB_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTSUB_RESPOND_SPLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTUNSUBTOPIC<sp/><sp/><sp/>RESPOND<sp/>to<sp/>send<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTUNSUBTOPIC_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTUNSUBTOPIC=%d,%d,%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTUNSUBTOPIC_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTUNSUBTOPIC_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTUNSUBTOPIC_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTUNSUB<sp/><sp/><sp/>RESPOND<sp/>to<sp/>send<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTUNSUB_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTUNSUB=%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTUNSUB_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTUNSUB_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_1S_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTUNSUB_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTUNSUB_RESPOND_SPLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTTOPIC<sp/><sp/><sp/>RESPOND<sp/>to<sp/>send<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTTOPIC_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTTOPIC=%d,%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTTOPIC_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTTOPIC_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(2*ATCMD_MIN_TIMEOUT)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTTOPIC_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTPAYLOAD<sp/><sp/><sp/>RESPOND<sp/>to<sp/>send<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTPAYLOAD_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTPAYLOAD=%d,%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTPAYLOAD_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTPAYLOAD_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_MIN_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTPAYLOAD_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="comment">//AT+CMQTTPUB<sp/><sp/><sp/>RESPOND<sp/>to<sp/>send<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTPUB_SEND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;AT+CMQTTPUB=%d,%d,%d,%d,%d\r\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTPUB_RESPOND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMDRESPONDOKSTR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTPUB_TIMEOUT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ATCMD_1S_TIMEOUT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTPUB_RETRY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ATCMD_MIN_RETRY)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTPUB_RESPOND_SPLEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTPUB_TIMEOUT_MINI<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>60</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AT_CMD_ATCMQTTPUB_TIMEOUT_MAX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>180</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="G:/code/esp/code/freezer/main/atprocess/atmqtt.h"/>
+  </compounddef>
+</doxygen>

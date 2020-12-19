@@ -1,0 +1,13 @@
+.. _exhale_define_iotinfo_8h_1a4c120866470f8696f323cf5ad60c953f:
+
+Define MODE_TLS_GUIDER
+======================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_iot_iotinfo.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: MODE_TLS_GUIDER

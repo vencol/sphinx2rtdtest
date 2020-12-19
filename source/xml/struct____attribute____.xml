@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="struct____attribute____" kind="struct" language="C++" prot="public">
+    <compoundname>__attribute__</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct____attribute_____1a579b52c6081aa88ff51693e0f0d6e9bd" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t __attribute__::flags[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>flags</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="53" column="13" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct____attribute_____1a3ddd0091402d85a50cf9eb63ff2c7d71" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t __attribute__::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="54" column="13" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct____attribute_____1a30e60959661cf2e3b2dcc52e5d3e9249" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t __attribute__::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="55" column="13" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct____attribute_____1a45b844ad333d762d3640f60a0b9d5eda" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t __attribute__::company_id</definition>
+        <argsstring></argsstring>
+        <name>company_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="56" column="14" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct____attribute_____1ac1144f2e4ecd3ef18a850ec5d2b1331e" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t __attribute__::beacon_type</definition>
+        <argsstring></argsstring>
+        <name>beacon_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="57" column="14" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct____attribute_____1a889b6b24a6f4d4808291f50d1276ff84" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t __attribute__::proximity_uuid[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>proximity_uuid</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="61" column="13" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct____attribute_____1a20297dad74f2b112f04f611af211fd5c" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t __attribute__::major</definition>
+        <argsstring></argsstring>
+        <name>major</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="62" column="14" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct____attribute_____1a2f7d3dbd958a3772e7438fb711993770" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t __attribute__::minor</definition>
+        <argsstring></argsstring>
+        <name>minor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="63" column="14" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct____attribute_____1abe3ef862a238f2736494e21658ea3b97" prot="public" static="no" mutable="no">
+        <type>int8_t</type>
+        <definition>int8_t __attribute__::measured_power</definition>
+        <argsstring></argsstring>
+        <name>measured_power</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="64" column="12" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct____attribute_____1a4530dac57ebcb18a88d01c1445d5ecce" prot="public" static="no" mutable="no">
+        <type>esp_ble_ibeacon_head_t</type>
+        <definition>esp_ble_ibeacon_head_t __attribute__::ibeacon_head</definition>
+        <argsstring></argsstring>
+        <name>ibeacon_head</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="69" column="28" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct____attribute_____1af19d6697e0bd7da58a0077da87c6ff40" prot="public" static="no" mutable="no">
+        <type>esp_ble_ibeacon_vendor_t</type>
+        <definition>esp_ble_ibeacon_vendor_t __attribute__::ibeacon_vendor</definition>
+        <argsstring></argsstring>
+        <name>ibeacon_vendor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="70" column="30" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" line="52" column="1" bodyfile="G:/code/esp/code/freezer/main/wifible/esp_ibeacon_api.h" bodystart="52" bodyend="58"/>
+    <listofallmembers>
+      <member refid="struct____attribute_____1ac1144f2e4ecd3ef18a850ec5d2b1331e" prot="public" virt="non-virtual"><scope>__attribute__</scope><name>beacon_type</name></member>
+      <member refid="struct____attribute_____1a45b844ad333d762d3640f60a0b9d5eda" prot="public" virt="non-virtual"><scope>__attribute__</scope><name>company_id</name></member>
+      <member refid="struct____attribute_____1a579b52c6081aa88ff51693e0f0d6e9bd" prot="public" virt="non-virtual"><scope>__attribute__</scope><name>flags</name></member>
+      <member refid="struct____attribute_____1a4530dac57ebcb18a88d01c1445d5ecce" prot="public" virt="non-virtual"><scope>__attribute__</scope><name>ibeacon_head</name></member>
+      <member refid="struct____attribute_____1af19d6697e0bd7da58a0077da87c6ff40" prot="public" virt="non-virtual"><scope>__attribute__</scope><name>ibeacon_vendor</name></member>
+      <member refid="struct____attribute_____1a3ddd0091402d85a50cf9eb63ff2c7d71" prot="public" virt="non-virtual"><scope>__attribute__</scope><name>length</name></member>
+      <member refid="struct____attribute_____1a20297dad74f2b112f04f611af211fd5c" prot="public" virt="non-virtual"><scope>__attribute__</scope><name>major</name></member>
+      <member refid="struct____attribute_____1abe3ef862a238f2736494e21658ea3b97" prot="public" virt="non-virtual"><scope>__attribute__</scope><name>measured_power</name></member>
+      <member refid="struct____attribute_____1a2f7d3dbd958a3772e7438fb711993770" prot="public" virt="non-virtual"><scope>__attribute__</scope><name>minor</name></member>
+      <member refid="struct____attribute_____1a889b6b24a6f4d4808291f50d1276ff84" prot="public" virt="non-virtual"><scope>__attribute__</scope><name>proximity_uuid</name></member>
+      <member refid="struct____attribute_____1a30e60959661cf2e3b2dcc52e5d3e9249" prot="public" virt="non-virtual"><scope>__attribute__</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

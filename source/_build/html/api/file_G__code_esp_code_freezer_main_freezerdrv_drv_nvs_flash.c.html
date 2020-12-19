@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File drv_nvs_flash.c &#8212; freezer  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="file-drv-nvs-flash-c">
+<span id="file-g-code-esp-code-freezer-main-freezerdrv-drv-nvs-flash-c"></span><h1>File drv_nvs_flash.c<a class="headerlink" href="#file-drv-nvs-flash-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="dir_G__code_esp_code_freezer_main_freezerdrv.html#dir-g-code-esp-code-freezer-main-freezerdrv"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\freezerdrv</span></code>)</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-g-code-esp-code-freezer-main-freezerdrv-drv-nvs-flash-c" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\freezerdrv\drv_nvs_flash.c</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id2">Includes</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id3">Functions</a></p></li>
+<li><p><a class="reference internal" href="#defines" id="id4">Defines</a></p></li>
+<li><p><a class="reference internal" href="#variables" id="id5">Variables</a></p></li>
+</ul>
+</div>
+<div class="section" id="definition-g-code-esp-code-freezer-main-freezerdrv-drv-nvs-flash-c">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\freezerdrv\drv_nvs_flash.c</span></code>)<a class="headerlink" href="#definition-g-code-esp-code-freezer-main-freezerdrv-drv-nvs-flash-c" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_G__code_esp_code_freezer_main_freezerdrv_drv_nvs_flash.c.html">Program Listing for File drv_nvs_flash.c</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">drv_nvs_flash.h</span></code> (<a class="reference internal" href="file_G__code_esp_code_freezer_main_freezerdrv_drv_nvs_flash.h.html#file-g-code-esp-code-freezer-main-freezerdrv-drv-nvs-flash-h"><span class="std std-ref">File drv_nvs_flash.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esp_err.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esp_log.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nvs.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nvs_flash.h</span></code> (<a class="reference internal" href="file_G__code_esp_code_freezer_main_freezerdrv_drv_nvs_flash.h.html#file-g-code-esp-code-freezer-main-freezerdrv-drv-nvs-flash-h"><span class="std std-ref">File drv_nvs_flash.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stdio.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string.h</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a770e4fd9c69ec3fac2e1ecf6107b1d6a.html#exhale-function-drv-nvs-flash-8c-1a770e4fd9c69ec3fac2e1ecf6107b1d6a"><span class="std std-ref">Function halGetDeviceName(char)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a37a3f032963402dc1b1dff033ed6f2cc.html#exhale-function-drv-nvs-flash-8c-1a37a3f032963402dc1b1dff033ed6f2cc"><span class="std std-ref">Function halGetDeviceParam(char *, int)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a7d3eb77a97dac6609b6a66167305c719.html#exhale-function-drv-nvs-flash-8c-1a7d3eb77a97dac6609b6a66167305c719"><span class="std std-ref">Function halGetDeviceSecret(char)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a164d34bef674d62f1ca077eca31a51d3.html#exhale-function-drv-nvs-flash-8c-1a164d34bef674d62f1ca077eca31a51d3"><span class="std std-ref">Function halGetFirmwareVersion(char *)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1ac0c52b415a88b9951cb1c2a7d776f147.html#exhale-function-drv-nvs-flash-8c-1ac0c52b415a88b9951cb1c2a7d776f147"><span class="std std-ref">Function halGetIotMqttDomain(char)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a5e694d32fd01b9933c8e676f9f18fdd2.html#exhale-function-drv-nvs-flash-8c-1a5e694d32fd01b9933c8e676f9f18fdd2"><span class="std std-ref">Function halGetIotMqttPort(char)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a8907cf145e5cdcf10776e0f41c861fa5.html#exhale-function-drv-nvs-flash-8c-1a8907cf145e5cdcf10776e0f41c861fa5"><span class="std std-ref">Function halGetProductKey(char)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a4431143492c689239eedcdb1c25a14ce.html#exhale-function-drv-nvs-flash-8c-1a4431143492c689239eedcdb1c25a14ce"><span class="std std-ref">Function halGetProductParam</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1ab556edfb14781e1cede6098e6ae36e25.html#exhale-function-drv-nvs-flash-8c-1ab556edfb14781e1cede6098e6ae36e25"><span class="std std-ref">Function halGetProductSecret</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a398127cf9d258db09de80f49432c03ad.html#exhale-function-drv-nvs-flash-8c-1a398127cf9d258db09de80f49432c03ad"><span class="std std-ref">Function halProductParamInit</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1ad2ba3764ae4544d25b9791713e0c39cc.html#exhale-function-drv-nvs-flash-8c-1ad2ba3764ae4544d25b9791713e0c39cc"><span class="std std-ref">Function halSetDeviceName(char *)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1ac01585ed4ba0f1ba75d89b929856647c.html#exhale-function-drv-nvs-flash-8c-1ac01585ed4ba0f1ba75d89b929856647c"><span class="std std-ref">Function halSetDeviceParam(char *, int)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1ab0cc9589c5a1f4659464f64f0e19d7c7.html#exhale-function-drv-nvs-flash-8c-1ab0cc9589c5a1f4659464f64f0e19d7c7"><span class="std std-ref">Function halSetDeviceSecret(char *)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1afe22c7b64ac80ffdbd3796e42b11406a.html#exhale-function-drv-nvs-flash-8c-1afe22c7b64ac80ffdbd3796e42b11406a"><span class="std std-ref">Function halSetIotMqttDomain(char *)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a7e505f22fa73b661ba6ef8af93425185.html#exhale-function-drv-nvs-flash-8c-1a7e505f22fa73b661ba6ef8af93425185"><span class="std std-ref">Function halSetIotMqttPort(char *)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a5781fe36b095e52303999245e5506450.html#exhale-function-drv-nvs-flash-8c-1a5781fe36b095e52303999245e5506450"><span class="std std-ref">Function halSetNumDeviceName(unsigned long long)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a46368ea1d6d498afe050a03052f655ed.html#exhale-function-drv-nvs-flash-8c-1a46368ea1d6d498afe050a03052f655ed"><span class="std std-ref">Function halSetNumIotMqttPort(int)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a65eaaa3157dd7cefdc75e7993da77691.html#exhale-function-drv-nvs-flash-8c-1a65eaaa3157dd7cefdc75e7993da77691"><span class="std std-ref">Function halSetProductKey(char *)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a62c7d2e2ba927afad875e56d5c60cf95.html#exhale-function-drv-nvs-flash-8c-1a62c7d2e2ba927afad875e56d5c60cf95"><span class="std std-ref">Function halSetProductParam</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__nvs__flash_8c_1a3681c742536373701992b2d6bc0e1ced.html#exhale-function-drv-nvs-flash-8c-1a3681c742536373701992b2d6bc0e1ced"><span class="std std-ref">Function halSetProductSecret(char *)</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="defines">
+<h2>Defines<a class="headerlink" href="#defines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="define_drv__nvs__flash_8c_1a8b53b99543fba8ee5b12669fa1221da4.html#exhale-define-drv-nvs-flash-8c-1a8b53b99543fba8ee5b12669fa1221da4"><span class="std std-ref">Define FLASH_KEY_DEVICE_NAME</span></a></p></li>
+<li><p><a class="reference internal" href="define_drv__nvs__flash_8c_1a95783032af72ceaa48cb7a678d20b5d4.html#exhale-define-drv-nvs-flash-8c-1a95783032af72ceaa48cb7a678d20b5d4"><span class="std std-ref">Define FLASH_KEY_DEVICE_PARAM</span></a></p></li>
+<li><p><a class="reference internal" href="define_drv__nvs__flash_8c_1a4ce39eedbd1b1a92f6539afe35420646.html#exhale-define-drv-nvs-flash-8c-1a4ce39eedbd1b1a92f6539afe35420646"><span class="std std-ref">Define FLASH_KEY_DEVICE_SECRET</span></a></p></li>
+<li><p><a class="reference internal" href="define_drv__nvs__flash_8c_1a3fad4586067101515f80dbe862230e79.html#exhale-define-drv-nvs-flash-8c-1a3fad4586067101515f80dbe862230e79"><span class="std std-ref">Define FLASH_KEY_MQTT_DOMAIN</span></a></p></li>
+<li><p><a class="reference internal" href="define_drv__nvs__flash_8c_1ad2b54f9189f9aac008c9709c70ba8b85.html#exhale-define-drv-nvs-flash-8c-1ad2b54f9189f9aac008c9709c70ba8b85"><span class="std std-ref">Define FLASH_KEY_MQTT_PORT</span></a></p></li>
+<li><p><a class="reference internal" href="define_drv__nvs__flash_8c_1a28d96de0cc472605c90470e8abffadc7.html#exhale-define-drv-nvs-flash-8c-1a28d96de0cc472605c90470e8abffadc7"><span class="std std-ref">Define FLASH_KEY_PRODUCT_KEY</span></a></p></li>
+<li><p><a class="reference internal" href="define_drv__nvs__flash_8c_1adf7a279c8a7cc9caec51cce9649aec06.html#exhale-define-drv-nvs-flash-8c-1adf7a279c8a7cc9caec51cce9649aec06"><span class="std std-ref">Define FLASH_KEY_PRODUCT_SECRET</span></a></p></li>
+<li><p><a class="reference internal" href="define_drv__nvs__flash_8c_1a2f08881d509efb049c24baf9bd2a1fde.html#exhale-define-drv-nvs-flash-8c-1a2f08881d509efb049c24baf9bd2a1fde"><span class="std std-ref">Define MFG_PARTITION_NAME</span></a></p></li>
+<li><p><a class="reference internal" href="define_drv__nvs__flash_8c_1a16a76704a981578fee7ff90b91fa8f2c.html#exhale-define-drv-nvs-flash-8c-1a16a76704a981578fee7ff90b91fa8f2c"><span class="std std-ref">Define NVS_PRODUCT</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="variable_drv__nvs__flash_8c_1afef7b3084c492a7dad2a0cedeeb4cf6f.html#exhale-variable-drv-nvs-flash-8c-1afef7b3084c492a7dad2a0cedeeb4cf6f"><span class="std std-ref">Variable s_part_init_flag</span></a></p></li>
+<li><p><a class="reference internal" href="variable_drv__nvs__flash_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c.html#exhale-variable-drv-nvs-flash-8c-1a5a85b9c772bbeb480b209a3e6ea92b4c"><span class="std std-ref">Variable TAG</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">freezer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, vencol.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/file_G__code_esp_code_freezer_main_freezerdrv_drv_nvs_flash.c.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

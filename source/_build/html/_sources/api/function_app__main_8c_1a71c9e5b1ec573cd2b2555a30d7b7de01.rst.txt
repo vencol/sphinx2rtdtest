@@ -1,0 +1,13 @@
+.. _exhale_function_app__main_8c_1a71c9e5b1ec573cd2b2555a30d7b7de01:
+
+Function appOtaReceive(int, char \*, int)
+=========================================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_app_main.c`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: appOtaReceive(int, char *, int)

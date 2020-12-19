@@ -1,0 +1,13 @@
+.. _exhale_define_atcmd_8h_1a5e2ee64c25191d870417150e538d3583:
+
+Define AT_CMD_ATCNETCI1_RESPOND
+===============================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_atprocess_atcmd.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: AT_CMD_ATCNETCI1_RESPOND

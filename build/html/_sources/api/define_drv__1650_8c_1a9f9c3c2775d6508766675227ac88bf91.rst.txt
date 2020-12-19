@@ -1,0 +1,13 @@
+.. _exhale_define_drv__1650_8c_1a9f9c3c2775d6508766675227ac88bf91:
+
+Define ESP_SLAVE_ADDR
+=====================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_freezerdrv_drv_1650.c`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: ESP_SLAVE_ADDR

@@ -1,0 +1,13 @@
+.. _exhale_function_drv__1650_8c_1a09fdbc701715e56354b68b67c3b0be05:
+
+Function LSB2MSB
+================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_freezerdrv_drv_1650.c`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: LSB2MSB(uint8_t)

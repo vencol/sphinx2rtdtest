@@ -1,0 +1,13 @@
+.. _exhale_define_drv__gpio_8h_1a8354b32e617712f601c637c15e5b91ea:
+
+Define OUTPUT_FAN_NUMBER
+========================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_freezerdrv_drv_gpio.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: OUTPUT_FAN_NUMBER

@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program Listing for File esp_ibeacon_api.c &#8212; freezer  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="program-listing-for-file-esp-ibeacon-api-c">
+<span id="program-listing-file-g-code-esp-code-freezer-main-wifible-esp-ibeacon-api-c"></span><h1>Program Listing for File esp_ibeacon_api.c<a class="headerlink" href="#program-listing-for-file-esp-ibeacon-api-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_G__code_esp_code_freezer_main_wifible_esp_ibeacon_api.c.html#file-g-code-esp-code-freezer-main-wifible-esp-ibeacon-api-c"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\wifible\esp_ibeacon_api.c</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">   This example code is in the Public Domain (or CC0 licensed, at your option.)</span>
+
+<span class="cm">   Unless required by applicable law or agreed to in writing, this</span>
+<span class="cm">   software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR</span>
+<span class="cm">   CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm">*/</span>
+
+
+
+<span class="cm">/****************************************************************************</span>
+<span class="cm">*</span>
+<span class="cm">* This file is for iBeacon APIs. It supports both iBeacon encode and decode.</span>
+<span class="cm">*</span>
+<span class="cm">* iBeacon is a trademark of Apple Inc. Before building devices which use iBeacon technology,</span>
+<span class="cm">* visit https://developer.apple.com/ibeacon/ to obtain a license.</span>
+<span class="cm">*</span>
+<span class="cm">****************************************************************************/</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;esp_gap_ble_api.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_ibeacon_api.h&quot;</span><span class="cp"></span>
+
+
+<span class="k">const</span> <span class="kt">uint8_t</span> <span class="n">uuid_zeros</span><span class="p">[</span><span class="n">ESP_UUID_LEN_128</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">,</span> <span class="mh">0x00</span><span class="p">};</span>
+
+<span class="cm">/* For iBeacon packet format, please refer to Apple &quot;Proximity Beacon Specification&quot; doc */</span>
+<span class="cm">/* Constant part of iBeacon data */</span>
+<span class="n">esp_ble_ibeacon_head_t</span> <span class="n">ibeacon_common_head</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">.</span><span class="n">flags</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x02</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">},</span>
+    <span class="p">.</span><span class="n">length</span> <span class="o">=</span> <span class="mh">0x1A</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="mh">0xFF</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">company_id</span> <span class="o">=</span> <span class="mh">0x004C</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">beacon_type</span> <span class="o">=</span> <span class="mh">0x1502</span>
+<span class="p">};</span>
+
+<span class="cm">/* Vendor part of iBeacon data*/</span>
+<span class="n">esp_ble_ibeacon_vendor_t</span> <span class="n">vendor_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">.</span><span class="n">proximity_uuid</span> <span class="o">=</span> <span class="n">ESP_UUID</span><span class="p">,</span>
+    <span class="p">.</span><span class="n">major</span> <span class="o">=</span> <span class="n">ENDIAN_CHANGE_U16</span><span class="p">(</span><span class="n">ESP_MAJOR</span><span class="p">),</span> <span class="c1">//Major=ESP_MAJOR</span>
+    <span class="p">.</span><span class="n">minor</span> <span class="o">=</span> <span class="n">ENDIAN_CHANGE_U16</span><span class="p">(</span><span class="n">ESP_MINOR</span><span class="p">),</span> <span class="c1">//Minor=ESP_MINOR</span>
+    <span class="p">.</span><span class="n">measured_power</span> <span class="o">=</span> <span class="mh">0xC5</span>
+<span class="p">};</span>
+
+<span class="kt">bool</span> <span class="nf">espBleIsIbeaconPacket</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="n">adv_data</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">adv_data_len</span><span class="p">){</span>
+    <span class="kt">bool</span> <span class="n">result</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="n">adv_data</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">adv_data_len</span> <span class="o">==</span> <span class="mh">0x1E</span><span class="p">)){</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">memcmp</span><span class="p">(</span><span class="n">adv_data</span><span class="p">,</span> <span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ibeacon_common_head</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">ibeacon_common_head</span><span class="p">))){</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">esp_err_t</span> <span class="nf">esp_ble_config_ibeacon_data</span> <span class="p">(</span><span class="n">esp_ble_ibeacon_vendor_t</span> <span class="o">*</span><span class="n">vendor_config</span><span class="p">,</span> <span class="n">esp_ble_ibeacon_t</span> <span class="o">*</span><span class="n">ibeacon_adv_data</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">vendor_config</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">ibeacon_adv_data</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="o">!</span><span class="n">memcmp</span><span class="p">(</span><span class="n">vendor_config</span><span class="o">-&gt;</span><span class="n">proximity_uuid</span><span class="p">,</span> <span class="n">uuid_zeros</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">uuid_zeros</span><span class="p">)))){</span>
+        <span class="k">return</span> <span class="n">ESP_ERR_INVALID_ARG</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ibeacon_adv_data</span><span class="o">-&gt;</span><span class="n">ibeacon_head</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ibeacon_common_head</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">esp_ble_ibeacon_head_t</span><span class="p">));</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ibeacon_adv_data</span><span class="o">-&gt;</span><span class="n">ibeacon_vendor</span><span class="p">,</span> <span class="n">vendor_config</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">esp_ble_ibeacon_vendor_t</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="n">ESP_OK</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">freezer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, vencol.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/program_listing_file_G__code_esp_code_freezer_main_wifible_esp_ibeacon_api.c.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

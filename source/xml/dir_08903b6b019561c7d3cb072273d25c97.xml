@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_08903b6b019561c7d3cb072273d25c97" kind="dir">
+    <compoundname>G:/code/esp/code/freezer/main/wifible</compoundname>
+    <innerfile refid="bleibeacon_8c">bleibeacon.c</innerfile>
+    <innerfile refid="bleibeacon_8h">bleibeacon.h</innerfile>
+    <innerfile refid="esp__ibeacon__api_8c">esp_ibeacon_api.c</innerfile>
+    <innerfile refid="esp__ibeacon__api_8h">esp_ibeacon_api.h</innerfile>
+    <innerfile refid="wifiscan_8c">wifiscan.c</innerfile>
+    <innerfile refid="wifiscan_8h">wifiscan.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/code/esp/code/freezer/main/wifible/"/>
+  </compounddef>
+</doxygen>

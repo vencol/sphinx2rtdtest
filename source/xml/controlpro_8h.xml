@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="controlpro_8h" kind="file" language="C++">
+    <compoundname>controlpro.h</compoundname>
+    <includedby refid="cmdprase_8c" local="yes">G:/code/esp/code/freezer/main/iot/cmdprase.c</includedby>
+    <includedby refid="controlpro_8c" local="yes">G:/code/esp/code/freezer/main/iot/controlpro.c</includedby>
+    <includedby refid="iotmain_8c" local="yes">G:/code/esp/code/freezer/main/iot/iotmain.c</includedby>
+    <includedby refid="keydisplay_8c" local="yes">G:/code/esp/code/freezer/main/iot/keydisplay.c</includedby>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="controlpro_8h_1ad7b278769af360010f037db8cf724f46" prot="public" static="no" strong="no">
+        <type></type>
+        <name>control_flagbit_opt_t</name>
+        <enumvalue id="controlpro_8h_1ad7b278769af360010f037db8cf724f46a4e50a8b52ef533a17c43eb414f00998f" prot="public">
+          <name>SET_FIRST_TSG</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="controlpro_8h_1ad7b278769af360010f037db8cf724f46ad9a27afb8dc22963ff3ce7cc4c98d18f" prot="public">
+          <name>SET_WORK_TIMEOUT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="controlpro_8h_1ad7b278769af360010f037db8cf724f46ad150fc54e7501cda9e4baf7b0cd3d408" prot="public">
+          <name>SET_REMOTE_OFF</name>
+          <initializer>=7</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="controlpro_8h_1ad7b278769af360010f037db8cf724f46ad1c1fcc84676e89bd94c5b8c203a8a05" prot="public">
+          <name>RESET_FIRST_TSG</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="controlpro_8h_1ad7b278769af360010f037db8cf724f46a6f939ffd5b9c108146fb44be21975147" prot="public">
+          <name>RESET_WORK_TIMEOUT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="controlpro_8h_1ad7b278769af360010f037db8cf724f46aea295688b08df8ffab57e51c0892998f" prot="public">
+          <name>RESET_REMOTE_OFF</name>
+          <initializer>=15</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="controlpro_8h_1ad7b278769af360010f037db8cf724f46a38deea833eb30275b502e4736b85e14c" prot="public">
+          <name>SET_ERROR_ON</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/controlpro.h" line="4" column="1" bodyfile="G:/code/esp/code/freezer/main/iot/controlpro.h" bodystart="4" bodyend="13"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="controlpro_8h_1aad6fb9d9fd4f6a64e9ce0a547170b55a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void controlInit</definition>
+        <argsstring>(void)</argsstring>
+        <name>controlInit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/controlpro.h" line="15" column="6" bodyfile="G:/code/esp/code/freezer/main/iot/controlpro.c" bodystart="193" bodyend="201" declfile="G:/code/esp/code/freezer/main/iot/controlpro.h" declline="15" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="controlpro_8h_1a2a389cd78b80e11fc369562af4808834" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void controlProcess</definition>
+        <argsstring>(void)</argsstring>
+        <name>controlProcess</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/controlpro.h" line="16" column="6" bodyfile="G:/code/esp/code/freezer/main/iot/controlpro.c" bodystart="186" bodyend="192" declfile="G:/code/esp/code/freezer/main/iot/controlpro.h" declline="16" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="controlpro_8h_1ab6678e1a688254b90c5619848e20af8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int isCompressorDelay</definition>
+        <argsstring>(void)</argsstring>
+        <name>isCompressorDelay</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/controlpro.h" line="17" column="5" bodyfile="G:/code/esp/code/freezer/main/iot/controlpro.c" bodystart="147" bodyend="155" declfile="G:/code/esp/code/freezer/main/iot/controlpro.h" declline="17" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="controlpro_8h_1ab65756dea5b8aa7e5a8c39fe1ea5e3ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void powerOnControl</definition>
+        <argsstring>(char status)</argsstring>
+        <name>powerOnControl</name>
+        <param>
+          <type>char</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/controlpro.h" line="18" column="6" bodyfile="G:/code/esp/code/freezer/main/iot/controlpro.c" bodystart="157" bodyend="184" declfile="G:/code/esp/code/freezer/main/iot/controlpro.h" declline="18" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__TEMP_PROCESS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__TEMP_PROCESS__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/>SET_FIRST_TSG,</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>SET_WORK_TIMEOUT,</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>SET_REMOTE_OFF=7,</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>RESET_FIRST_TSG,</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>RESET_WORK_TIMEOUT,</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>RESET_REMOTE_OFF=15,</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>SET_ERROR_ON,</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}<sp/>control_flagbit_opt_t;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>controlInit(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>controlProcess(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isCompressorDelay(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>powerOnControl(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>status);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="G:/code/esp/code/freezer/main/iot/controlpro.h"/>
+  </compounddef>
+</doxygen>

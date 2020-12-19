@@ -1,0 +1,789 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File atcmd.c &mdash; freezer  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists\css\tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> freezer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">freezer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File atcmd.c</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_G__code_esp_code_freezer_main_atprocess_atcmd.c.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-atcmd-c">
+<span id="program-listing-file-g-code-esp-code-freezer-main-atprocess-atcmd-c"></span><h1>Program Listing for File atcmd.c<a class="headerlink" href="#program-listing-for-file-atcmd-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_G__code_esp_code_freezer_main_atprocess_atcmd.c.html#file-g-code-esp-code-freezer-main-atprocess-atcmd-c"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\atprocess\atcmd.c</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* WiFi station Example</span>
+
+<span class="cm">   This example code is in the Public Domain (or CC0 licensed, at your option.)</span>
+
+<span class="cm">   Unless required by applicable law or agreed to in writing, this</span>
+<span class="cm">   software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR</span>
+<span class="cm">   CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm">*/</span>
+<span class="cp">#include</span> <span class="cpf">&quot;freertos/FreeRTOS.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;freertos/task.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;freertos/queue.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_log.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;drv_at.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;iotinfo.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;atcmd.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;athttp.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;atmqtt.h&quot;</span><span class="cp"></span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ATTAG</span> <span class="o">=</span> <span class="s">&quot;atcmd&quot;</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">QueueHandle_t</span> <span class="n">atDataQueue</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">atcmd_module_t</span> <span class="n">atcmd_module</span><span class="p">;</span>
+
+
+<span class="c1">//releate with atcmd_uri_map_opt_t</span>
+<span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">short</span>  <span class="n">atcmd_sendtimeout</span><span class="p">;</span>
+<span class="n">atcmd_uri_map_opt_t</span> <span class="n">atcmd_current</span><span class="o">=</span><span class="n">AT</span><span class="p">;</span>
+<span class="n">atcmd_uri_map_t</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">;</span>
+
+<span class="cp">#define STR_NULL_BREAK(P)               do{ \</span>
+<span class="cp">  if(P == NULL) { \</span>
+<span class="cp">    ESP_LOGI(ATTAG, &quot;%s STRNULL error&quot;, __FUNCTION__ );  \</span>
+<span class="cp">    break;  \</span>
+<span class="cp">  } \</span>
+<span class="cp">}while(0)</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">hexStr2Num</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">num</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">len</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="n">num</span><span class="o">&lt;&lt;</span><span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="o">*</span><span class="n">str</span> <span class="o">&gt;</span> <span class="sc">&#39;9&#39;</span> <span class="o">?</span> <span class="o">*</span><span class="n">str</span><span class="o">+</span><span class="mi">9</span> <span class="o">:</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x0F</span><span class="p">);</span>
+    <span class="n">str</span><span class="o">++</span><span class="p">;</span>
+    <span class="n">len</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">num</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">cellInfoValid</span><span class="p">(</span><span class="kt">int</span> <span class="n">mcc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mnc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">lac</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cellid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signal</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// mcc for 000-099、100-199 和 800-899 为保留码 MCC，Mobile Country Code，移动国家代码    000～999</span>
+  <span class="c1">// MNC，Mobile Network Code，移动网络号码(中国移动为0，中国联通为1，中国电信为2)    00～99或000～999</span>
+  <span class="c1">// LAC，Location Area Code，位置区域码    0001－FFFEH</span>
+  <span class="c1">// CID，Cell Identity，基站编号   (跟踪区代码（Tracking Area Code，TAC）)   (0,65535) (0,268435455)</span>
+  <span class="c1">// BSSS，Base station signal strength，基站信号强度</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">mcc</span> <span class="o">&lt;</span> <span class="mi">99</span> <span class="o">||</span> <span class="n">mcc</span> <span class="o">&gt;</span> <span class="mi">999</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">lac</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">lac</span> <span class="o">&gt;</span> <span class="mh">0xFFFE</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">cellid</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">cellid</span> <span class="o">&gt;</span> <span class="mi">268435455</span> <span class="o">||</span> <span class="n">cellid</span> <span class="o">==</span> <span class="mi">65535</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">extern</span> <span class="kt">int</span> <span class="nf">operateCellInfo</span><span class="p">(</span><span class="kt">char</span> <span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mcc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mnc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">lac</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cellid</span><span class="p">,</span> <span class="kt">int</span> <span class="n">signal</span><span class="p">);</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">updateMainCell</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="c1">// &lt;System Mode&gt;,&lt;Operation Mode&gt;,&lt;MCC&gt;-&lt;MNC&gt;,&lt;TAC&gt;,&lt;SCellID&gt;,&lt;PCellID&gt;,&lt;Frequency Band&gt;,&lt;earfcn&gt;,&lt;dlbw&gt;,&lt;ulbw&gt;,&lt;RSRQ&gt;,&lt;RSRP&gt;,&lt;RSSI&gt;,&lt;RSSNR&gt;</span>
+<span class="c1">// LTE,          Online,           460-00,     0x247C,   225360194,5,   EUTRAN-BAND40,   38950   ,5     ,0     ,30    ,68    ,65    ,28</span>
+<span class="c1">// +CPSI: &lt;System Mode&gt;,&lt;Operation Mode&gt;,&lt;MCC&gt;-&lt;MNC&gt;,&lt;LAC&gt;,&lt;Cell ID&gt;,&lt;Frequency Band&gt;,&lt;PSC&gt;,&lt;Freq&gt;,&lt;SSC&gt;,&lt;EC/IO&gt;,&lt;RSCP&gt;,&lt;Qual&gt;,&lt;RxLev&gt;,&lt;TXPWR&gt;</span>
+<span class="c1">//   AT+CPSI?</span>
+<span class="c1">// +CPSI: LTE,Online,460-00,0x247C,225360194,5,EUTRAN-BAND40,38950,5,0,30,68,65,28</span>
+<span class="c1">// OK</span>
+<span class="c1">// char testbuf[]=&quot;+CPSI: LTE,Online,460-00,0x247C,225360194,5,EUTRAN-BAND40,38950,5,0,30,68,65,28&quot;;</span>
+<span class="c1">// recbuf = testbuf;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">atcmd_module</span><span class="p">.</span><span class="n">csqRssi</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">atcmd_module</span><span class="p">.</span><span class="n">csqRssi</span> <span class="o">&gt;</span> <span class="mi">31</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">strtemp</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="s">&quot;+CPSI: &quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&quot;+CPSI: &quot;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">memcmp</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;LTE&quot;</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&quot;LTE&quot;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">memcmp</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;GSM&quot;</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&quot;GSM&quot;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">memcmp</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;WCDMA&quot;</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&quot;WCDMA&quot;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">memcmp</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;Online&quot;</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&quot;Online&quot;</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">mcc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">mnc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">lac</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">cellid</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">signal</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">mcc</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sc">&#39;-&#39;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">mnc</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;,0&quot;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span><span class="c1">//,0x</span>
+  <span class="n">strtemp</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">strtemp</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">lac</span> <span class="o">=</span> <span class="n">hexStr2Num</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">strtemp</span> <span class="o">-</span> <span class="n">str</span><span class="p">);</span>
+  <span class="n">cellid</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">strtemp</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">signal</span> <span class="o">=</span> <span class="n">atcmd_module</span><span class="p">.</span><span class="n">csqRssi</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">113</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">cellInfoValid</span><span class="p">(</span><span class="n">mcc</span><span class="p">,</span> <span class="n">mnc</span><span class="p">,</span> <span class="n">lac</span><span class="p">,</span> <span class="n">cellid</span><span class="p">,</span> <span class="n">signal</span><span class="p">))</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">operateCellInfo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">mcc</span><span class="p">,</span> <span class="n">mnc</span><span class="p">,</span> <span class="n">lac</span><span class="p">,</span> <span class="n">cellid</span><span class="p">,</span> <span class="n">signal</span><span class="p">);</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s mcc: %d ,mnc: %d ,lac: %d ,cellid: %d ,signal: %d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">mcc</span><span class="p">,</span> <span class="n">mnc</span><span class="p">,</span> <span class="n">lac</span><span class="p">,</span> <span class="n">cellid</span><span class="p">,</span> <span class="n">signal</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">updateOtherCell</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="c1">// +CNETCINONINFO: 0, MCC-MNC: 460-00,TAC: 9340,cellid: 233029463,rsrp: 38,rsrq: 14</span>
+<span class="c1">// +CNETCI: 1</span>
+<span class="c1">// char tf[]=&quot;+CNETCINONINFO: 0, MCC-MNC: 460-00,TAC: 9340,cellid: 233029463,rsrp: 38,rsrq: 14\r\n+CNETCINONINFO: 1,  MCC-MNC: 460-00,TAC: 13116,cellid: 60660547,rsrp: 42,rsrq: 28\r\n+CNETCI: 1&quot;;</span>
+<span class="c1">// recbuf = tf;</span>
+  <span class="kt">int</span> <span class="n">signal</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="s">&quot;+CNETCI: &quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&quot;+CNETCI: &quot;</span><span class="p">);</span>
+  <span class="n">signal</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">signal</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="c1">//not net update</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="s">&quot;MCC-MNC:&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">mcc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">mnc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">lac</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">cellid</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="n">operateCellInfo</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">mcc</span><span class="p">,</span> <span class="n">mnc</span><span class="p">,</span> <span class="n">lac</span><span class="p">,</span> <span class="n">cellid</span><span class="p">,</span> <span class="n">signal</span><span class="p">);</span>
+
+  <span class="k">do</span>  <span class="p">{</span>
+    <span class="n">mcc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">mnc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">lac</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">cellid</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">mcc</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&quot;MCC-MNC:&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&quot;MCC-MNC:&quot;</span><span class="p">),</span> <span class="sc">&#39;-&#39;</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">mnc</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;AC:&quot;</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">lac</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&quot;AC:&quot;</span><span class="p">));</span>
+        <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;cellid:&quot;</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">cellid</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&quot;cellid:&quot;</span><span class="p">));</span>
+          <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;rsrq:&quot;</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>   <span class="p">{</span>
+            <span class="n">signal</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="s">&quot;rsrq:&quot;</span><span class="p">));</span>
+            <span class="n">signal</span> <span class="o">=</span> <span class="n">signal</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span><span class="mi">113</span><span class="p">;</span>
+            <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s mcc: %d ,mnc: %d ,lac: %d ,cellid: %d ,signal: %d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">mcc</span><span class="p">,</span> <span class="n">mnc</span><span class="p">,</span> <span class="n">lac</span><span class="p">,</span> <span class="n">cellid</span><span class="p">,</span> <span class="n">signal</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">cellInfoValid</span><span class="p">(</span><span class="n">mcc</span><span class="p">,</span> <span class="n">mnc</span><span class="p">,</span> <span class="n">lac</span><span class="p">,</span> <span class="n">cellid</span><span class="p">,</span> <span class="n">signal</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+              <span class="n">operateCellInfo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">mcc</span><span class="p">,</span> <span class="n">mnc</span><span class="p">,</span> <span class="n">lac</span><span class="p">,</span> <span class="n">cellid</span><span class="p">,</span> <span class="n">signal</span><span class="p">);</span>
+            <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;MCC-MNC:&quot;</span><span class="p">);</span>
+          <span class="p">}</span><span class="c1">//signal</span>
+        <span class="p">}</span><span class="c1">//cellid</span>
+      <span class="p">}</span><span class="c1">//lac</span>
+    <span class="p">}</span><span class="c1">//mnc</span>
+  <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devinfo</span><span class="o">-&gt;</span><span class="n">otherlbsnum</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">updateCsq</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">tempnum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCSQ_RESPOND</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">tempnum</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">tempnum</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">tempnum</span> <span class="o">&lt;=</span> <span class="mi">31</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">atcmd_module</span><span class="p">.</span><span class="n">csqRssi</span> <span class="o">=</span> <span class="n">tempnum</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">atcmd_module</span><span class="p">.</span><span class="n">csqRssi</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errcsq</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errcsq</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+    <span class="n">atcmd_module</span><span class="p">.</span><span class="n">csqRssi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">tempnum</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">tempnum</span> <span class="o">&gt;=</span> <span class="mh">0x0f</span><span class="p">)</span>
+    <span class="n">atcmd_module</span><span class="p">.</span><span class="n">csqBer</span> <span class="o">=</span> <span class="mh">0x0f</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="n">atcmd_module</span><span class="p">.</span><span class="n">csqBer</span> <span class="o">=</span> <span class="n">tempnum</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCSQ</span><span class="p">)</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATCNETCI1</span><span class="p">);</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errnosim</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s csqRssi: %d , csqRssi: %d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">atcmd_module</span><span class="p">.</span><span class="n">csqRssi</span><span class="p">,</span> <span class="n">atcmd_module</span><span class="p">.</span><span class="n">csqBer</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">detectSimCard</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="s">&quot;SIM REMOVED&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">)</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errnosim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="c1">// else</span>
+  <span class="c1">//   iotinfo_module.error.errnosim = 0;</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPraseBaseOk</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s atcmd_currents %d &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">atcmd_current</span><span class="p">);</span><span class="c1">//, strlen(AT_CMD_CUSTOMIDtest));</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">atcmd_current</span><span class="p">)</span>
+  <span class="p">{</span>
+  <span class="k">case</span> <span class="nl">AT</span><span class="p">:</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATIPR</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATIPR</span><span class="p">:</span>
+      <span class="n">drvSetAtBaudrate</span><span class="p">(</span><span class="mi">921600</span><span class="p">);</span>
+      <span class="n">vTaskDelay</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">portTICK_PERIOD_MS</span><span class="p">);</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATE0</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATE0</span><span class="p">:</span>
+      <span class="n">atcmd_module</span><span class="p">.</span><span class="n">atStatus</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATCGMR</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCGMR</span><span class="p">:</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATI</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATI</span><span class="p">:</span>
+    <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATI_VERSION_FLAG</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s version : %s &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+      <span class="n">atcmd_module</span><span class="p">.</span><span class="n">atversion</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATI_VERSION_FLAG</span><span class="p">));</span>
+      <span class="n">atcmd_module</span><span class="p">.</span><span class="n">atversion</span> <span class="o">&lt;&lt;=</span> <span class="mi">16</span><span class="p">;</span>
+      <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sc">&#39;.&#39;</span><span class="p">);</span>
+      <span class="n">STR_NULL_BREAK</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+      <span class="n">atcmd_module</span><span class="p">.</span><span class="n">atversion</span> <span class="o">=</span> <span class="n">atcmd_module</span><span class="p">.</span><span class="n">atversion</span> <span class="o">|</span> <span class="p">(</span><span class="n">len</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="p">);</span>
+      <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;.&#39;</span><span class="p">);</span>
+      <span class="n">STR_NULL_BREAK</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+      <span class="n">atcmd_module</span><span class="p">.</span><span class="n">atversion</span> <span class="o">=</span> <span class="n">atcmd_module</span><span class="p">.</span><span class="n">atversion</span> <span class="o">|</span> <span class="n">len</span><span class="p">;</span>
+
+      <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATI_IMEI_FLAG</span><span class="p">);</span>
+      <span class="n">STR_NULL_BREAK</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+<span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">str2Imei</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATI_IMEI_FLAG</span><span class="p">));</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">temp</span> <span class="o">&lt;</span> <span class="mi">100000000000000ULL</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">retry</span><span class="p">)</span>
+          <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s get IMEI error&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+        <span class="c1">// else   //error</span>
+      <span class="p">}</span>
+      <span class="k">else</span>  <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">temp</span> <span class="o">!=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+          <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">=</span> <span class="n">IOT_NONE</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATCIMI</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s atcmd_module.IMEI : %lld &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imei</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s get version error&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s atcmd_module.atversion : 0x%08X &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">atcmd_module</span><span class="p">.</span><span class="n">atversion</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCIMI</span><span class="p">:</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imsi</span> <span class="o">=</span> <span class="n">str2Imei</span><span class="p">(</span><span class="n">recbuf</span><span class="o">+</span><span class="mi">2</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imsi</span> <span class="o">&lt;</span> <span class="mi">100000000000000ULL</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">retry</span><span class="p">)</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s get imsi error&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+      <span class="c1">// else   //error</span>
+      <span class="c1">// g_atcmd_uri_map_send.timeout = ATCMD_1S_TIMEOUT;</span>
+      <span class="c1">// g_atcmd_uri_map_send.retry = ATCMD_MIN_RETRY;</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errnosim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>  <span class="p">{</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errnosim</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATCSQ</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s iotinfo_module.imsi : %lld &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">imsi</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="c1">// case ATCSQ:</span>
+  <span class="c1">//   if(updateCsq(recbuf, len) == 0)</span>
+  <span class="c1">//     ATSENDCMD_CHANGE(ATCNETCI1);</span>
+  <span class="c1">//   iotinfo_module.error.errnosim = 0;</span>
+  <span class="c1">//   break;</span>
+  <span class="k">case</span> <span class="nl">ATCNETCI1</span><span class="p">:</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATCREG</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCREG</span><span class="p">:</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATCEREG</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCEREG</span><span class="p">:</span>
+    <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCEREG_RESPOND</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">str</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sc">&#39;:&#39;</span><span class="p">);</span>
+      <span class="n">STR_NULL_BREAK</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span>          <span class="k">break</span><span class="p">;</span>
+      <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+      <span class="n">STR_NULL_BREAK</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+      <span class="n">len</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">len</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">atcmd_module</span><span class="p">.</span><span class="n">reg4gStatus</span> <span class="o">=</span> <span class="n">len</span><span class="p">;</span>
+      <span class="k">else</span>
+        <span class="k">break</span><span class="p">;</span>
+
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errsim</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="c1">// atSendCmdChange(0, NULL, 0, 0, 0);</span>
+  <span class="c1">// iotinfo_module.iotStatus = IOT_NONE;//test</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">==</span> <span class="n">IOT_NONE</span><span class="p">)</span>
+        <span class="n">atCmdStartGetIotInfo</span><span class="p">();</span>
+        <span class="c1">// atCmdStartGetOtaInfo();</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="n">atSendCmdChange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">=</span> <span class="n">IOT_SAVEBASEINFO</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s reg4gStatus: %d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">atcmd_module</span><span class="p">.</span><span class="n">reg4gStatus</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>  <span class="p">{</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errsim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s get ATCSQ error&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">default</span><span class="o">:</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s not atcmd_current&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPraseBaseError</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s Read ERROR bytes&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+  <span class="c1">// atSendCmd(0);</span>
+  <span class="c1">// if( atcmd_current == ATIPR &amp;&amp; atcmd_module.atStatus )  {</span>
+  <span class="c1">// char *str=NULL;</span>
+  <span class="c1">//   str = strstr(recbuf, &quot;+CEREG:&quot;);</span>
+  <span class="c1">//   if(str) {</span>
+  <span class="c1">//     len = atoi(str + strlen(&quot;+CEREG:&quot;));</span>
+  <span class="c1">//     if(len == 1 || len == 5)</span>
+  <span class="c1">//       ATSENDCMD_CHANGE(ATE0);</span>
+  <span class="c1">//   }</span>
+  <span class="c1">// }</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPraseBaseCmd</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">ATCMDRESPONDOK</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">atPraseBaseOk</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+  <span class="k">else</span><span class="c1">//receive not right</span>
+    <span class="n">atPraseBaseError</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atUartReceive</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="c1">//maybe need copy data</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">recbuf</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">len</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">&lt;</span> <span class="mi">256</span><span class="p">)</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;Read %d bytes: &#39;%s&#39;  &quot;</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="n">recbuf</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;Read %d bytes:   &quot;</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;lld %lld &quot;, str2Imei(recbuf));</span>
+  <span class="c1">// ESP_LOG_BUFFER_HEXDUMP(ATTAG, recbuf, len, ESP_LOG_INFO);</span>
+  <span class="n">atcmd_module</span><span class="p">.</span><span class="n">uartStatus</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="c1">// if(atcmd_module.atCmdChange == AT_NONE)</span>
+  <span class="p">{</span>
+
+<span class="c1">// extern void fzReceiveUpgradeMsg(char * rbuf, int len);</span>
+<span class="c1">//       fzReceiveUpgradeMsg(0,0);</span>
+<span class="c1">//       return;</span>
+<span class="c1">// extern void fzReceiveRrpcMsg(char * rbuf, int len, const char* messageId);</span>
+<span class="c1">//   fzReceiveRrpcMsg(recbuf, len, &quot;123&quot;);</span>
+<span class="c1">//   return;</span>
+
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">updateCsq</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+      <span class="n">ret</span> <span class="o">=</span> <span class="n">updateMainCell</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+      <span class="n">ret</span> <span class="o">=</span> <span class="n">updateOtherCell</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">&lt;</span> <span class="n">AT_BASE_MAX</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">detectSimCard</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+        <span class="n">atPraseBaseCmd</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">&lt;</span> <span class="n">AT_HTTP_MAX</span><span class="p">)</span>
+        <span class="n">atPraseHttpCmd</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">&lt;</span> <span class="n">AT_MQTT_MAX</span><span class="p">)</span>
+        <span class="n">atPraseMqttCmd</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">querytime</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">setQueryTime</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">time</span><span class="p">)</span><span class="c1">//10ms</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">time</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">querytime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">else</span>  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">querytime</span> <span class="o">&lt;</span> <span class="mi">1500</span><span class="p">)</span>  <span class="c1">//csq</span>
+      <span class="n">querytime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">querytime</span> <span class="o">&lt;</span> <span class="mi">3000</span><span class="p">)</span> <span class="c1">//cpsi</span>
+      <span class="n">querytime</span> <span class="o">=</span> <span class="mi">1500</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">querytime</span> <span class="o">&lt;</span> <span class="mi">4500</span><span class="p">)</span> <span class="c1">//CNETCI</span>
+      <span class="n">querytime</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPrasePro</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span><span class="o">*</span> <span class="n">bufTemp</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">stQueueMsg</span> <span class="n">event</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// esp_task_wdt_feed();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">xQueueReceive</span><span class="p">(</span><span class="n">atDataQueue</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="p">)</span><span class="o">&amp;</span><span class="n">event</span><span class="p">,</span> <span class="mi">10</span> <span class="o">/</span> <span class="n">portTICK_PERIOD_MS</span><span class="p">)</span> <span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;atPrasePro xQueueReceive begin %d</span><span class="se">\t</span><span class="s">bytes %d&quot;</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">start</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">len</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">drvAtCanReadData</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">start</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">len</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="c1">// portENTER_CRITICAL();</span>
+        <span class="n">bufTemp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">realloc</span><span class="p">(</span><span class="n">bufTemp</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">len</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">bufTemp</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+          <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;buftemp null&quot;</span><span class="p">);</span>
+        <span class="k">else</span>  <span class="p">{</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">drvAtReadData</span><span class="p">(</span><span class="n">bufTemp</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">start</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">len</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">bufTemp</span><span class="p">[</span><span class="n">event</span><span class="p">.</span><span class="n">len</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="n">atUartReceive</span><span class="p">(</span><span class="n">bufTemp</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="n">len</span><span class="p">);</span>
+          <span class="p">}</span>
+          <span class="n">free</span><span class="p">(</span><span class="n">bufTemp</span><span class="p">);</span>
+          <span class="n">bufTemp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// portEXIT_CRITICAL();</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">atcmd_module</span><span class="p">.</span><span class="n">atSendtime</span> <span class="o">&gt;</span> <span class="mi">120</span><span class="p">)</span>
+        <span class="n">atcmd_module</span><span class="p">.</span><span class="n">atSendtime</span> <span class="o">=</span> <span class="mi">120</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">timeout</span> <span class="o">&amp;&amp;</span> <span class="o">--</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">timeout</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">atSendCmd</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">retry</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">timeout</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">atcmd_module</span><span class="p">.</span><span class="n">atStatus</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+          <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errmcu</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">else</span>  <span class="p">{</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCIMI</span><span class="p">)</span>
+            <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errnosim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="c1">//           else if(atcmd_current == ATHTTPACTION)  {</span>
+<span class="c1">// extern int atOtaQuit(char type);</span>
+<span class="c1">//             fzRespondUgrade();</span>
+<span class="c1">//           }</span>
+          <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">querytime</span> <span class="o">==</span> <span class="mi">1500</span><span class="p">)</span>  <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">!=</span> <span class="n">IOT_CONNECTMQTT</span><span class="p">)</span>
+              <span class="n">querytime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="n">sendAtCmd</span><span class="p">(</span><span class="n">AT_CMD_ATCSQ_SEND</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCSQ_SEND</span><span class="p">));</span>
+          <span class="p">}</span>
+          <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">==</span> <span class="n">IOT_CONNECTMQTT</span><span class="p">)</span>  <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">querytime</span> <span class="o">==</span> <span class="mi">3000</span><span class="p">)</span>
+              <span class="n">sendAtCmd</span><span class="p">(</span><span class="n">AT_CMD_ATCPSI_SEND</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCPSI_SEND</span><span class="p">));</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">querytime</span> <span class="o">==</span> <span class="mi">4500</span><span class="p">)</span> <span class="p">{</span>
+              <span class="n">querytime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+              <span class="n">sendAtCmd</span><span class="p">(</span><span class="n">AT_CMD_ATCNETCI_SEND</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCNETCI_SEND</span><span class="p">));</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="c1">// vTaskDelay(10 / portTICK_PERIOD_MS);</span>
+  <span class="p">}</span>
+  <span class="n">vTaskDelete</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">atSendCmd</span><span class="p">(</span><span class="kt">bool</span> <span class="n">first</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">retry</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">--</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">retry</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s sendcmd last %s len %d timeout %d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span><span class="p">),</span> <span class="n">atcmd_sendtimeout</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>  <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">atcmd_sendtimeout</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s sendcmd [%d] %s len %d timeout %d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">retry</span><span class="p">,</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span><span class="p">),</span> <span class="n">atcmd_sendtimeout</span><span class="p">);</span>
+        <span class="n">sendAtCmd</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span><span class="p">));</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">// else  {</span>
+  <span class="c1">//   if(g_atcmd_uri_map_send.timeout &amp;&amp; --g_atcmd_uri_map_send.timeout == 0)</span>
+  <span class="c1">// }</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">sendAtCmd</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">txBytes</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">atcmd_module</span><span class="p">.</span><span class="n">atSendtime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="c1">// ESP_LOGW(ATTAG, &quot;send %d bytes: [%s]  &quot;, len, data);</span>
+    <span class="n">txBytes</span> <span class="o">=</span> <span class="n">drvAtSendData</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">txBytes</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">atMallocCmd</span><span class="p">(</span><span class="kt">char</span> <span class="n">cmdstate</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">sendcmdin</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">receiveprefixin</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">len</span><span class="p">;</span>
+  <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">sendcmdin</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">realloc</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">retry</span>    <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">timeout</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span>  <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">receiveprefixin</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">receiveprefix</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">realloc</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">receiveprefix</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">receiveprefix</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">free</span><span class="p">(</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span><span class="p">);</span>
+    <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span>  <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">retry</span>    <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">timeout</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span>  <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">atSendCmdChange</span><span class="p">(</span><span class="kt">char</span> <span class="n">cmdstate</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">sendcmd</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">receiveprefix</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">timeout</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">retry</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendcmd</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">timeout</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">retry</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">retry</span>      <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">timeout</span>    <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="c1">// free(g_atcmd_uri_map_send.sendcmd);</span>
+    <span class="c1">// g_atcmd_uri_map_send.sendcmd = NULL;</span>
+    <span class="c1">// free(g_atcmd_uri_map_send.receiveprefix);</span>
+    <span class="c1">// g_atcmd_uri_map_send.receiveprefix = NULL;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">sendcmd</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">timeout</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">retry</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">atcmd_current</span>                   <span class="o">=</span> <span class="n">cmdstate</span><span class="p">;</span>
+  <span class="n">atcmd_sendtimeout</span>               <span class="o">=</span> <span class="n">timeout</span><span class="p">;</span>
+  <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">retry</span>      <span class="o">=</span> <span class="n">retry</span><span class="p">;</span>
+  <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">timeout</span>    <span class="o">=</span> <span class="n">timeout</span><span class="p">;</span>
+
+  <span class="n">memcpy</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">sendcmd</span><span class="p">,</span> <span class="n">sendcmd</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">sendcmd</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">memcpy</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">receiveprefix</span><span class="p">,</span> <span class="n">receiveprefix</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">receiveprefix</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">setQueryTime</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ATOTAREAD</span> <span class="o">==</span> <span class="n">atcmd_current</span><span class="p">)</span>
+    <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">ATE0</span> <span class="o">==</span> <span class="n">atcmd_current</span><span class="p">)</span>
+    <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="n">atSendCmd</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">atCmdInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">memset</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">iotinfo_module</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">iotinfo_module_t</span><span class="p">));</span>
+  <span class="n">memset</span><span class="p">((</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">atcmd_module</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">atcmd_module_t</span><span class="p">));</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">at_module</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">atcmd_module</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s getout  [%d] :&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">esp_get_free_heap_size</span><span class="p">());</span>
+  <span class="n">atcmd_current</span> <span class="o">=</span> <span class="n">AT</span><span class="p">;</span>
+  <span class="c1">// iotinfo_module.imei = 860461046399475ULL;</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">atcmd_current</span><span class="p">,</span> <span class="n">AT_CMD_AT_SEND</span><span class="p">,</span> <span class="n">AT_CMD_AT_RESPOND</span><span class="p">)</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;atCmdInit set send cmd fail&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">drvAtInit</span><span class="p">(</span><span class="n">atUartReceive</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">atDataQueue</span><span class="p">);</span>
+  <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">atcmd_current</span><span class="p">,</span> <span class="n">AT_CMD_AT_SEND</span><span class="p">,</span> <span class="n">AT_CMD_AT_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_AT_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_AT_RETRY</span><span class="p">);</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;init&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">atCmdPro</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">drvAtProcess</span><span class="p">();</span>
+  <span class="n">xTaskCreate</span><span class="p">(</span><span class="n">atPrasePro</span><span class="p">,</span> <span class="s">&quot;atPrasePro&quot;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">configMAX_PRIORITIES</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, vencol
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,578 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File keydisplay.c &mdash; freezer  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists\css\tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> freezer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">freezer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File keydisplay.c</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_G__code_esp_code_freezer_main_iot_keydisplay.c.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-keydisplay-c">
+<span id="program-listing-file-g-code-esp-code-freezer-main-iot-keydisplay-c"></span><h1>Program Listing for File keydisplay.c<a class="headerlink" href="#program-listing-for-file-keydisplay-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_G__code_esp_code_freezer_main_iot_keydisplay.c.html#file-g-code-esp-code-freezer-main-iot-keydisplay-c"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\iot\keydisplay.c</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* WiFi station Example</span>
+
+<span class="cm">   This example code is in the Public Domain (or CC0 licensed, at your option.)</span>
+
+<span class="cm">   Unless required by applicable law or agreed to in writing, this</span>
+<span class="cm">   software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR</span>
+<span class="cm">   CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm">*/</span>
+<span class="cp">#include</span> <span class="cpf">&quot;freertos/FreeRTOS.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;freertos/task.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;freertos/queue.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_system.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_log.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;drv_display.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;iotinfo.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;controlpro.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;keydisplay.h&quot;</span><span class="cp"></span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ATTAG</span> <span class="o">=</span> <span class="s">&quot;keyDisplay&quot;</span><span class="p">;</span>
+
+<span class="cp">#define PROTOCOL_VERSION                            (0 &lt;&lt; 6)</span>
+<span class="cp">#define PROTOCOL_VERSION_MASK                   (0xC0)</span>
+<span class="cp">#define PROTOCOL_HEADER                             (0xAA)</span>
+
+<span class="k">static</span> <span class="n">QueueHandle_t</span> <span class="n">keyDisplayDataQueue</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">char</span> <span class="n">ProtocolSendBuf</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">PROTOCOL_HEADER</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+<span class="k">static</span> <span class="kt">char</span> <span class="nf">getDisplaykey</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">key</span><span class="p">);</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">keyDisplayUartPrase</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">);</span>
+
+<span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span>
+    <span class="n">KEY_NONE</span>                      <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">KEY_UP_SHORT</span>                  <span class="o">=</span> <span class="mi">0</span><span class="n">X02</span><span class="p">,</span>
+    <span class="n">KEY_DOWN_SHORT</span>                <span class="o">=</span> <span class="mi">0</span><span class="n">X07</span><span class="p">,</span>
+    <span class="n">KEY_SET_SHORT</span>                 <span class="o">=</span> <span class="mi">0</span><span class="n">X0C</span><span class="p">,</span>
+    <span class="n">KEY_SET_3S</span>                    <span class="o">=</span> <span class="mi">0</span><span class="n">X0D</span><span class="p">,</span>
+    <span class="n">KEY_UPSET_3S</span>                  <span class="o">=</span> <span class="mi">0</span><span class="n">X12</span><span class="p">,</span>
+    <span class="n">KEY_DOWNSET_3S</span>                <span class="o">=</span> <span class="mi">0</span><span class="n">X14</span><span class="p">,</span>
+    <span class="n">KEY_UPDOWN_8S</span>                 <span class="o">=</span> <span class="mi">0</span><span class="n">X16</span><span class="p">,</span>
+    <span class="n">KEY_UP_CONTINUE</span>               <span class="o">=</span> <span class="mh">0x21</span><span class="p">,</span>
+    <span class="n">KEY_DOWN_CONTINUE</span>             <span class="o">=</span> <span class="mh">0x22</span><span class="p">,</span>
+    <span class="n">KEY_HAVE_PRESS</span>                <span class="o">=</span> <span class="mi">0</span><span class="n">X23</span><span class="p">,</span>
+<span class="p">}</span> <span class="n">key_opt_t</span><span class="p">;</span>
+
+<span class="cp">#define FAST_COUNT_TIME          (1)</span>
+
+<span class="cp">#if (DISPLAY_DRIVER_WAY == DISPLAY_DRIVER_UART)</span>
+<span class="k">static</span> <span class="kt">uint8_t</span> <span class="nf">ProtocolCrc</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">uint8_t</span> <span class="n">crc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">j</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">crc</span> <span class="o">+=</span> <span class="o">*</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">j</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">crc</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">uint8_t</span> <span class="nf">keyDisplayUartSend</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">cmd</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">uint8_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">j</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">ProtocolSendBuf</span> <span class="o">+</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="o">=</span> <span class="n">PROTOCOL_HEADER</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">ProtocolSendBuf</span> <span class="o">+</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="o">=</span> <span class="n">PROTOCOL_VERSION</span> <span class="o">|</span> <span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="n">len</span><span class="p">);</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">ProtocolSendBuf</span> <span class="o">+</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="o">=</span> <span class="n">cmd</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">data</span> <span class="o">&amp;&amp;</span> <span class="n">len</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+            <span class="o">*</span><span class="p">(</span><span class="n">ProtocolSendBuf</span> <span class="o">+</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">j</span><span class="p">);</span>
+    <span class="o">*</span><span class="p">(</span><span class="n">ProtocolSendBuf</span> <span class="o">+</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="o">=</span> <span class="n">ProtocolCrc</span><span class="p">(</span><span class="n">ProtocolSendBuf</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="o">+</span><span class="n">len</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">drvDisplaySendData</span><span class="p">(</span><span class="n">ProtocolSendBuf</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">//AA 44 01 03 48 AA 44 01 03 48</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">keyDisplayUartReceive</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">plen</span><span class="p">;</span>
+  <span class="c1">// ESP_LOG_BUFFER_HEXDUMP(ATTAG, recbuf, len, ESP_LOG_INFO);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">recbuf</span><span class="o">+</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="n">PROTOCOL_HEADER</span><span class="p">)</span><span class="c1">//</span>
+    <span class="p">{</span>
+          <span class="n">plen</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">recbuf</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">PROTOCOL_VERSION_MASK</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">plen</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="n">len</span> <span class="o">||</span> <span class="n">ProtocolCrc</span><span class="p">(</span><span class="n">recbuf</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">plen</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">!=</span> <span class="o">*</span><span class="p">(</span><span class="n">recbuf</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="n">plen</span><span class="p">))</span>
+        <span class="k">continue</span><span class="p">;</span>
+      <span class="c1">// WashMode.DisplayVersion = (*(pdata+1) &amp; KEY_PROTOCOL_VERSION_MASK) &gt;&gt; 6;</span>
+            <span class="n">keyDisplayUartPrase</span><span class="p">(</span><span class="n">recbuf</span><span class="o">+</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="n">plen</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+      <span class="n">i</span> <span class="o">+=</span> <span class="n">plen</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">keyDisplayUartPrase</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// int i=0, j;</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;keyDisplayUartReceive Read %d bytes: &#39;%s&#39;  &quot;, len, recbuf);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">recbuf</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">len</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="c1">// ESP_LOG_BUFFER_HEXDUMP(ATTAG, recbuf, len, ESP_LOG_INFO);</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;%s len [%d]&quot;, __FUNCTION__ , len);</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">recbuf</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">{</span>  <span class="c1">//respon</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="o">*</span><span class="p">(</span><span class="n">recbuf</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">getDisplaykey</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">recbuf</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7f</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">*</span><span class="n">recbuf</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>  <span class="p">{</span>  <span class="c1">//display report key</span>
+    <span class="n">getDisplaykey</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">recbuf</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7f</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">keyDisplayProcess</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span><span class="o">*</span> <span class="n">keyBufTemp</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">stQueueMsg</span> <span class="n">keyDisplayEvent</span><span class="p">;</span>
+  <span class="n">keyBufTemp</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">realloc</span><span class="p">(</span><span class="n">keyBufTemp</span><span class="p">,</span> <span class="mi">128</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">keyBufTemp</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;keyDisplayPro xQueueReceive null&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">xQueueReceive</span><span class="p">(</span><span class="n">keyDisplayDataQueue</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span> <span class="p">)</span><span class="o">&amp;</span><span class="n">keyDisplayEvent</span><span class="p">,</span> <span class="mi">10</span> <span class="o">/</span> <span class="n">portTICK_PERIOD_MS</span><span class="p">)</span> <span class="p">)</span>
+      <span class="p">{</span>
+        <span class="c1">//  ESP_LOGI(ATTAG, &quot;keyDisplayPro xQueueReceive begin %d\tbytes %d&quot;, keyDisplayEvent.start, keyDisplayEvent.len);</span>
+         <span class="k">if</span><span class="p">(</span><span class="n">drvDisplayCanReadData</span><span class="p">(</span><span class="n">keyDisplayEvent</span><span class="p">.</span><span class="n">start</span><span class="p">,</span> <span class="n">keyDisplayEvent</span><span class="p">.</span><span class="n">len</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+         <span class="p">{</span>
+            <span class="c1">// portENTER_CRITICAL();</span>
+            <span class="c1">// else</span>
+            <span class="p">{</span>
+              <span class="k">if</span><span class="p">(</span><span class="n">drvDisplayReadData</span><span class="p">(</span><span class="n">keyBufTemp</span><span class="p">,</span> <span class="n">keyDisplayEvent</span><span class="p">.</span><span class="n">start</span><span class="p">,</span> <span class="n">keyDisplayEvent</span><span class="p">.</span><span class="n">len</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">keyDisplayUartReceive</span><span class="p">(</span><span class="n">keyBufTemp</span><span class="p">,</span> <span class="n">keyDisplayEvent</span><span class="p">.</span><span class="n">len</span><span class="p">);</span>
+                <span class="n">keyBufTemp</span><span class="p">[</span><span class="n">keyDisplayEvent</span><span class="p">.</span><span class="n">len</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="c1">// portEXIT_CRITICAL();</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">keyBufTemp</span><span class="p">);</span>
+  <span class="n">keyBufTemp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">vTaskDelete</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">keyDisplayPro</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">drvDisplayProcess</span><span class="p">();</span>
+  <span class="n">xTaskCreate</span><span class="p">(</span><span class="n">keyDisplayProcess</span><span class="p">,</span> <span class="s">&quot;keyDisplayProcess&quot;</span><span class="p">,</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">configMAX_PRIORITIES</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#else</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">keyDisplayUartReceive</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="p">}</span>
+<span class="kt">uint8_t</span> <span class="nf">keyDisplayUartSend</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">cmd</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">uint8_t</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">j</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">data</span> <span class="o">&amp;&amp;</span> <span class="n">len</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ProtocolSendBuf</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="n">ProtocolSendBuf</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="mi">2</span><span class="p">);</span>
+    <span class="c1">// ProtocolSendBuf[i++] = *(data + 3);</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="mi">4</span><span class="p">);</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="p">((</span><span class="n">j</span><span class="o">&amp;</span><span class="mh">0x04</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">5</span><span class="p">)</span> <span class="o">|</span> <span class="p">((</span><span class="n">j</span><span class="o">&amp;</span><span class="mh">0x01</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">6</span><span class="p">);</span>
+    <span class="n">ProtocolSendBuf</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>
+      <span class="k">return</span> <span class="n">drvDisplaySendData</span><span class="p">(</span><span class="n">ProtocolSendBuf</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">keyDisplayPro</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// drvDisplayProcess();</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">operationSetTemp</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">step</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_LOCKED</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">setTempDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_TEMP</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">displayTemp</span> <span class="o">=</span> <span class="n">displayTemp</span> <span class="o">+</span> <span class="n">step</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayTemp</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">29</span> <span class="o">&amp;&amp;</span> <span class="n">displayTemp</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="mi">14</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">displayTemp</span> <span class="o">==</span> <span class="o">-</span><span class="mi">29</span><span class="p">)</span>
+        <span class="n">displayTemp</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">15</span><span class="p">;</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayTemp</span> <span class="o">==</span> <span class="o">-</span><span class="mi">14</span><span class="p">)</span>
+        <span class="n">displayTemp</span>  <span class="o">=</span> <span class="o">-</span><span class="mi">28</span><span class="p">;</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span>        <span class="o">=</span> <span class="n">SET_OPERATION_TIME</span><span class="p">;</span>
+      <span class="n">resetDisplay</span><span class="p">();</span>
+      <span class="n">setTempDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">operationSetParam</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">step</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_LOCKED</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">selectParamDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">step</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">||</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">step</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">displayStatus</span> <span class="o">&gt;</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">)</span>
+          <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">step</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">--</span><span class="n">displayStatus</span> <span class="o">&lt;</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span><span class="p">)</span>
+          <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span>   <span class="o">=</span> <span class="n">SET_OPERATION_TIME</span><span class="p">;</span>
+      <span class="n">resetDisplay</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SET_F1</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">step</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span> <span class="o">||</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">step</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">||</span> <span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C2</span><span class="p">)</span>
+            <span class="o">&amp;&amp;</span> <span class="o">++</span><span class="n">displayTemp</span> <span class="o">&gt;</span> <span class="mi">999</span><span class="p">){</span>
+          <span class="n">displayTemp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//999;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C3</span> <span class="o">||</span> <span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C4</span><span class="p">)</span>
+            <span class="o">&amp;&amp;</span> <span class="o">++</span><span class="n">displayTemp</span> <span class="o">&gt;</span> <span class="mi">99</span><span class="p">){</span>
+          <span class="n">displayTemp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//999;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C5</span> <span class="o">&amp;&amp;</span> <span class="o">++</span><span class="n">displayTemp</span> <span class="o">&gt;</span> <span class="mi">999</span><span class="p">){</span>
+          <span class="n">displayTemp</span> <span class="o">=</span> <span class="o">-</span><span class="mi">999</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_F1</span> <span class="o">&amp;&amp;</span> <span class="o">++</span><span class="n">displayTemp</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">){</span>
+          <span class="n">displayTemp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//2;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">step</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">||</span> <span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C2</span><span class="p">)</span>
+            <span class="o">&amp;&amp;</span> <span class="o">--</span><span class="n">displayTemp</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+          <span class="n">displayTemp</span> <span class="o">=</span> <span class="mi">999</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C3</span> <span class="o">||</span> <span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C4</span><span class="p">)</span>
+            <span class="o">&amp;&amp;</span> <span class="o">--</span><span class="n">displayTemp</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+          <span class="n">displayTemp</span> <span class="o">=</span> <span class="mi">99</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C5</span> <span class="o">&amp;&amp;</span> <span class="o">--</span><span class="n">displayTemp</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">999</span><span class="p">){</span>
+          <span class="n">displayTemp</span> <span class="o">=</span> <span class="mi">999</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_F1</span> <span class="o">&amp;&amp;</span> <span class="o">--</span><span class="n">displayTemp</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">){</span>
+          <span class="n">displayTemp</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span>   <span class="o">=</span> <span class="n">SET_OPERATION_TIME</span><span class="p">;</span>
+      <span class="n">resetDisplay</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">operationSetUp</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_TEMP</span><span class="p">)</span>
+    <span class="n">operationSetTemp</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">)</span>
+    <span class="n">operationSetParam</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SET_F1</span><span class="p">)</span>
+    <span class="n">operationSetParam</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">operationSetDown</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_TEMP</span><span class="p">)</span>
+    <span class="n">operationSetTemp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">)</span>
+    <span class="n">operationSetParam</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SET_F1</span><span class="p">)</span>
+    <span class="n">operationSetParam</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">operationSetQuit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_TEMP</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">setDisplay_0</span><span class="p">(</span><span class="n">displayTemp</span> <span class="o">-</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span><span class="p">);</span>
+    <span class="n">settingQuit</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">)</span>
+    <span class="n">settingQuit</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SET_F1</span><span class="p">)</span>
+    <span class="n">settingQuit</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">char</span> <span class="n">fastCount</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">operationSetFastUp</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">fastCount</span> <span class="o">&gt;</span> <span class="n">FAST_COUNT_TIME</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fastCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">operationSetUp</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">operationSetFastDown</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">fastCount</span> <span class="o">&gt;</span> <span class="n">FAST_COUNT_TIME</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fastCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">operationSetDown</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">operationSetPower</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">step</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">powerstatus</span> <span class="o">==</span> <span class="n">POWER_STATUS_ON</span><span class="p">)</span> <span class="p">{</span><span class="c1">//off</span>
+    <span class="n">powerOnControl</span><span class="p">(</span><span class="n">POWER_STATUS_LOCALOFF</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">powerstatus</span> <span class="o">==</span> <span class="n">POWER_STATUS_LOCALOFF</span><span class="p">)</span> <span class="p">{</span><span class="c1">//on</span>
+    <span class="n">powerOnControl</span><span class="p">(</span><span class="n">POWER_STATUS_ON</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">operationSetErr</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">step</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// iotinfo_module.error.errbit = 0xffff;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_LOCKED</span><span class="p">)</span>
+    <span class="n">setErrDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="k">static</span> <span class="kt">char</span> <span class="nf">getDisplaykey</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">key</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">displaySetRekey</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="n">KEY_NONE</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="c1">// extern void displayTest(void);</span>
+  <span class="c1">// displayTest();</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s key [0x%x] time:%d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span><span class="p">);</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">key</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">KEY_HAVE_PRESS</span><span class="p">:</span>
+      <span class="n">fastCount</span> <span class="o">=</span> <span class="n">FAST_COUNT_TIME</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">!=</span> <span class="n">DISPLAY_LOCKED</span><span class="p">)</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span> <span class="o">=</span> <span class="n">SET_OPERATION_TIME</span><span class="p">;</span>
+      <span class="k">else</span>
+        <span class="n">displayTempAlarm</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">KEY_UPDOWN_8S</span><span class="p">:</span>
+      <span class="n">operationSetPower</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">KEY_SET_3S</span><span class="p">:</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_LOCKED</span><span class="p">)</span>
+        <span class="n">operationSetTemp</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">)</span>
+        <span class="n">setParamDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">KEY_UPSET_3S</span><span class="p">:</span>
+      <span class="n">operationSetErr</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">KEY_DOWNSET_3S</span><span class="p">:</span>
+      <span class="n">operationSetParam</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+
+    <span class="k">case</span> <span class="nl">KEY_UP_SHORT</span><span class="p">:</span>
+      <span class="n">operationSetUp</span><span class="p">();</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">KEY_DOWN_SHORT</span><span class="p">:</span>
+      <span class="n">operationSetDown</span><span class="p">();</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">KEY_SET_SHORT</span><span class="p">:</span>
+      <span class="n">operationSetQuit</span><span class="p">();</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">KEY_UP_CONTINUE</span><span class="p">:</span>
+      <span class="n">operationSetFastUp</span><span class="p">();</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">KEY_DOWN_CONTINUE</span><span class="p">:</span>
+      <span class="n">operationSetFastDown</span><span class="p">();</span>
+      <span class="k">break</span><span class="p">;</span>
+
+    <span class="k">default</span><span class="o">:</span>
+      <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">keyDisplayInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">drvDisplayInit</span><span class="p">(</span><span class="n">keyDisplayUartReceive</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">keyDisplayDataQueue</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, vencol
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

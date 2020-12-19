@@ -1,0 +1,13 @@
+.. _exhale_define_iotinfo_8c_1a0b74e47110c983c2a26f6db046b55627:
+
+Define SIGN_STRING
+==================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_iot_iotinfo.c`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: SIGN_STRING

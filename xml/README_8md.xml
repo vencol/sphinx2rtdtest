@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="README_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>WiFi<sp/>station<sp/>example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">(See<sp/>the<sp/>README.md<sp/>file<sp/>in<sp/>the<sp/>upper<sp/>level<sp/>&apos;examples&apos;<sp/>directory<sp/>for<sp/>more<sp/>information<sp/>about<sp/>examples.)</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>How<sp/>to<sp/>use<sp/>example</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Configure<sp/>the<sp/>project</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">idf.py<sp/>menuconfig</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Set<sp/>WiFi<sp/>SSID<sp/>and<sp/>WiFi<sp/>Password<sp/>and<sp/>Maximum<sp/>retry<sp/>under<sp/>Example<sp/>Configuration<sp/>Options.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>Build<sp/>and<sp/>Flash</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Build<sp/>the<sp/>project<sp/>and<sp/>flash<sp/>it<sp/>to<sp/>the<sp/>board,<sp/>then<sp/>run<sp/>monitor<sp/>tool<sp/>to<sp/>view<sp/>serial<sp/>output:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">idf.py<sp/>-p<sp/>PORT<sp/>flash<sp/>monitor</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">(To<sp/>exit<sp/>the<sp/>serial<sp/>monitor,<sp/>type<sp/>``Ctrl-]``.)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">See<sp/>the<sp/>Getting<sp/>Started<sp/>Guide<sp/>for<sp/>full<sp/>steps<sp/>to<sp/>configure<sp/>and<sp/>use<sp/>ESP-IDF<sp/>to<sp/>build<sp/>projects.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Example<sp/>Output</highlight></codeline>
+<codeline><highlight class="normal">Note<sp/>that<sp/>the<sp/>output,<sp/>in<sp/>particular<sp/>the<sp/>order<sp/>of<sp/>the<sp/>output,<sp/>may<sp/>vary<sp/>depending<sp/>on<sp/>the<sp/>environment.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Console<sp/>output<sp/>if<sp/>station<sp/>connects<sp/>to<sp/>AP<sp/>successfully:</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(589)<sp/>wifi<sp/>station:<sp/>ESP_WIFI_MODE_STA</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(599)<sp/>wifi:<sp/>wifi<sp/>driver<sp/>task:<sp/>3ffc08b4,<sp/>prio:23,<sp/>stack:3584,<sp/>core=0</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(599)<sp/>system_api:<sp/>Base<sp/>MAC<sp/>address<sp/>is<sp/>not<sp/>set,<sp/>read<sp/>default<sp/>base<sp/>MAC<sp/>address<sp/>from<sp/>BLK0<sp/>of<sp/>EFUSE</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(599)<sp/>system_api:<sp/>Base<sp/>MAC<sp/>address<sp/>is<sp/>not<sp/>set,<sp/>read<sp/>default<sp/>base<sp/>MAC<sp/>address<sp/>from<sp/>BLK0<sp/>of<sp/>EFUSE</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(629)<sp/>wifi:<sp/>wifi<sp/>firmware<sp/>version:<sp/>2d94f02</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(629)<sp/>wifi:<sp/>config<sp/>NVS<sp/>flash:<sp/>enabled</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(629)<sp/>wifi:<sp/>config<sp/>nano<sp/>formating:<sp/>disabled</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(629)<sp/>wifi:<sp/>Init<sp/>dynamic<sp/>tx<sp/>buffer<sp/>num:<sp/>32</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(629)<sp/>wifi:<sp/>Init<sp/>data<sp/>frame<sp/>dynamic<sp/>rx<sp/>buffer<sp/>num:<sp/>32</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(639)<sp/>wifi:<sp/>Init<sp/>management<sp/>frame<sp/>dynamic<sp/>rx<sp/>buffer<sp/>num:<sp/>32</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(639)<sp/>wifi:<sp/>Init<sp/>management<sp/>short<sp/>buffer<sp/>num:<sp/>32</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(649)<sp/>wifi:<sp/>Init<sp/>static<sp/>rx<sp/>buffer<sp/>size:<sp/>1600</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(649)<sp/>wifi:<sp/>Init<sp/>static<sp/>rx<sp/>buffer<sp/>num:<sp/>10</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(659)<sp/>wifi:<sp/>Init<sp/>dynamic<sp/>rx<sp/>buffer<sp/>num:<sp/>32</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(759)<sp/>phy:<sp/>phy_version:<sp/>4180,<sp/>cb3948e,<sp/>Sep<sp/>12<sp/>2019,<sp/>16:39:13,<sp/>0,<sp/>0</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(769)<sp/>wifi:<sp/>mode<sp/>:<sp/>sta<sp/>(30:ae:a4:d9:bc:c4)</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(769)<sp/>wifi<sp/>station:<sp/>wifi_init_sta<sp/>finished.</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(889)<sp/>wifi:<sp/>new:&lt;6,0&gt;,<sp/>old:&lt;1,0&gt;,<sp/>ap:&lt;255,255&gt;,<sp/>sta:&lt;6,0&gt;,<sp/>prof:1</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(889)<sp/>wifi:<sp/>state:<sp/>init<sp/>-&gt;<sp/>auth<sp/>(b0)</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(899)<sp/>wifi:<sp/>state:<sp/>auth<sp/>-&gt;<sp/>assoc<sp/>(0)</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(909)<sp/>wifi:<sp/>state:<sp/>assoc<sp/>-&gt;<sp/>run<sp/>(10)</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(939)<sp/>wifi:<sp/>connected<sp/>with<sp/>#!/bin/test,<sp/>aid<sp/>=<sp/>1,<sp/>channel<sp/>6,<sp/>BW20,<sp/>bssid<sp/>=<sp/>ac:9e:17:7e:31:40</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(939)<sp/>wifi:<sp/>security<sp/>type:<sp/>3,<sp/>phy:<sp/>bgn,<sp/>rssi:<sp/>-68</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(949)<sp/>wifi:<sp/>pm<sp/>start,<sp/>type:<sp/>1</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">I<sp/>(1029)<sp/>wifi:<sp/>AP&apos;s<sp/>beacon<sp/>interval<sp/>=<sp/>102400<sp/>us,<sp/>DTIM<sp/>period<sp/>=<sp/>3</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(2089)<sp/>esp_netif_handlers:<sp/>sta<sp/>ip:<sp/>192.168.77.89,<sp/>mask:<sp/>255.255.255.0,<sp/>gw:<sp/>192.168.77.1</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(2089)<sp/>wifi<sp/>station:<sp/>got<sp/>ip:192.168.77.89</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(2089)<sp/>wifi<sp/>station:<sp/>connected<sp/>to<sp/>ap<sp/>SSID:myssid<sp/>password:mypassword</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Console<sp/>output<sp/>if<sp/>the<sp/>station<sp/>failed<sp/>to<sp/>connect<sp/>to<sp/>AP:</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(589)<sp/>wifi<sp/>station:<sp/>ESP_WIFI_MODE_STA</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(599)<sp/>wifi:<sp/>wifi<sp/>driver<sp/>task:<sp/>3ffc08b4,<sp/>prio:23,<sp/>stack:3584,<sp/>core=0</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(599)<sp/>system_api:<sp/>Base<sp/>MAC<sp/>address<sp/>is<sp/>not<sp/>set,<sp/>read<sp/>default<sp/>base<sp/>MAC<sp/>address<sp/>from<sp/>BLK0<sp/>of<sp/>EFUSE</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(599)<sp/>system_api:<sp/>Base<sp/>MAC<sp/>address<sp/>is<sp/>not<sp/>set,<sp/>read<sp/>default<sp/>base<sp/>MAC<sp/>address<sp/>from<sp/>BLK0<sp/>of<sp/>EFUSE</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(629)<sp/>wifi:<sp/>wifi<sp/>firmware<sp/>version:<sp/>2d94f02</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(629)<sp/>wifi:<sp/>config<sp/>NVS<sp/>flash:<sp/>enabled</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(629)<sp/>wifi:<sp/>config<sp/>nano<sp/>formating:<sp/>disabled</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(629)<sp/>wifi:<sp/>Init<sp/>dynamic<sp/>tx<sp/>buffer<sp/>num:<sp/>32</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(629)<sp/>wifi:<sp/>Init<sp/>data<sp/>frame<sp/>dynamic<sp/>rx<sp/>buffer<sp/>num:<sp/>32</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(639)<sp/>wifi:<sp/>Init<sp/>management<sp/>frame<sp/>dynamic<sp/>rx<sp/>buffer<sp/>num:<sp/>32</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(639)<sp/>wifi:<sp/>Init<sp/>management<sp/>short<sp/>buffer<sp/>num:<sp/>32</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(649)<sp/>wifi:<sp/>Init<sp/>static<sp/>rx<sp/>buffer<sp/>size:<sp/>1600</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(649)<sp/>wifi:<sp/>Init<sp/>static<sp/>rx<sp/>buffer<sp/>num:<sp/>10</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(659)<sp/>wifi:<sp/>Init<sp/>dynamic<sp/>rx<sp/>buffer<sp/>num:<sp/>32</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(759)<sp/>phy:<sp/>phy_version:<sp/>4180,<sp/>cb3948e,<sp/>Sep<sp/>12<sp/>2019,<sp/>16:39:13,<sp/>0,<sp/>0</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(759)<sp/>wifi:<sp/>mode<sp/>:<sp/>sta<sp/>(30:ae:a4:d9:bc:c4)</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(769)<sp/>wifi<sp/>station:<sp/>wifi_init_sta<sp/>finished.</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(889)<sp/>wifi:<sp/>new:&lt;6,0&gt;,<sp/>old:&lt;1,0&gt;,<sp/>ap:&lt;255,255&gt;,<sp/>sta:&lt;6,0&gt;,<sp/>prof:1</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(889)<sp/>wifi:<sp/>state:<sp/>init<sp/>-&gt;<sp/>auth<sp/>(b0)</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(1889)<sp/>wifi:<sp/>state:<sp/>auth<sp/>-&gt;<sp/>init<sp/>(200)</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(1889)<sp/>wifi:<sp/>new:&lt;6,0&gt;,<sp/>old:&lt;6,0&gt;,<sp/>ap:&lt;255,255&gt;,<sp/>sta:&lt;6,0&gt;,<sp/>prof:1</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(1889)<sp/>wifi<sp/>station:<sp/>retry<sp/>to<sp/>connect<sp/>to<sp/>the<sp/>AP</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(1899)<sp/>wifi<sp/>station:<sp/>connect<sp/>to<sp/>the<sp/>AP<sp/>fail</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(3949)<sp/>wifi<sp/>station:<sp/>retry<sp/>to<sp/>connect<sp/>to<sp/>the<sp/>AP</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(3949)<sp/>wifi<sp/>station:<sp/>connect<sp/>to<sp/>the<sp/>AP<sp/>fail</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(4069)<sp/>wifi:<sp/>new:&lt;6,0&gt;,<sp/>old:&lt;6,0&gt;,<sp/>ap:&lt;255,255&gt;,<sp/>sta:&lt;6,0&gt;,<sp/>prof:1</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(4069)<sp/>wifi:<sp/>state:<sp/>init<sp/>-&gt;<sp/>auth<sp/>(b0)</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(5069)<sp/>wifi:<sp/>state:<sp/>auth<sp/>-&gt;<sp/>init<sp/>(200)</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(5069)<sp/>wifi:<sp/>new:&lt;6,0&gt;,<sp/>old:&lt;6,0&gt;,<sp/>ap:&lt;255,255&gt;,<sp/>sta:&lt;6,0&gt;,<sp/>prof:1</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(5069)<sp/>wifi<sp/>station:<sp/>retry<sp/>to<sp/>connect<sp/>to<sp/>the<sp/>AP</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(5069)<sp/>wifi<sp/>station:<sp/>connect<sp/>to<sp/>the<sp/>AP<sp/>fail</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(7129)<sp/>wifi<sp/>station:<sp/>retry<sp/>to<sp/>connect<sp/>to<sp/>the<sp/>AP</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(7129)<sp/>wifi<sp/>station:<sp/>connect<sp/>to<sp/>the<sp/>AP<sp/>fail</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(7249)<sp/>wifi:<sp/>new:&lt;6,0&gt;,<sp/>old:&lt;6,0&gt;,<sp/>ap:&lt;255,255&gt;,<sp/>sta:&lt;6,0&gt;,<sp/>prof:1</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(7249)<sp/>wifi:<sp/>state:<sp/>init<sp/>-&gt;<sp/>auth<sp/>(b0)</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(8249)<sp/>wifi:<sp/>state:<sp/>auth<sp/>-&gt;<sp/>init<sp/>(200)</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(8249)<sp/>wifi:<sp/>new:&lt;6,0&gt;,<sp/>old:&lt;6,0&gt;,<sp/>ap:&lt;255,255&gt;,<sp/>sta:&lt;6,0&gt;,<sp/>prof:1</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(8249)<sp/>wifi<sp/>station:<sp/>retry<sp/>to<sp/>connect<sp/>to<sp/>the<sp/>AP</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(8249)<sp/>wifi<sp/>station:<sp/>connect<sp/>to<sp/>the<sp/>AP<sp/>fail</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(10299)<sp/>wifi<sp/>station:<sp/>connect<sp/>to<sp/>the<sp/>AP<sp/>fail</highlight></codeline>
+<codeline><highlight class="normal">I<sp/>(10299)<sp/>wifi<sp/>station:<sp/>Failed<sp/>to<sp/>connect<sp/>to<sp/>SSID:myssid,<sp/>password:mypassword</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+    </programlisting>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

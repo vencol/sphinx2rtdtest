@@ -1,0 +1,1052 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program Listing for File displaypro.c &#8212; freezer  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="program-listing-for-file-displaypro-c">
+<span id="program-listing-file-g-code-esp-code-freezer-main-iot-displaypro-c"></span><h1>Program Listing for File displaypro.c<a class="headerlink" href="#program-listing-for-file-displaypro-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_G__code_esp_code_freezer_main_iot_displaypro.c.html#file-g-code-esp-code-freezer-main-iot-displaypro-c"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\iot\displaypro.c</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* WiFi station Example</span>
+
+<span class="cm">   This example code is in the Public Domain (or CC0 licensed, at your option.)</span>
+
+<span class="cm">   Unless required by applicable law or agreed to in writing, this</span>
+<span class="cm">   software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR</span>
+<span class="cm">   CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm">*/</span>
+<span class="cp">#include</span> <span class="cpf">&quot;freertos/FreeRTOS.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;freertos/task.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;freertos/queue.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_system.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_log.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;drv_display.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;iotinfo.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;iotmain.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;keydisplay.h&quot;</span><span class="cp"></span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ATTAG</span> <span class="o">=</span> <span class="s">&quot;displayPro&quot;</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">short</span>  <span class="n">count</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">short</span>  <span class="n">on</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">short</span>  <span class="n">off</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">display_param_t</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">display_param_t</span>  <span class="n">display_param</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">display_buf_t</span>    <span class="n">display_buf</span><span class="p">;</span>
+<span class="k">static</span> <span class="kt">uint8_t</span> <span class="n">s0Display</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">unsigned</span> <span class="kt">char</span>   <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">DISPLAY_NONE</span><span class="p">;</span>
+<span class="kt">signed</span> <span class="kt">short</span>    <span class="n">displayTemp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="kt">char</span> <span class="n">numTable</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mh">0x3F</span><span class="p">,</span><span class="mh">0x06</span><span class="p">,</span><span class="mh">0x5B</span><span class="p">,</span><span class="mh">0x4F</span><span class="p">,</span><span class="mh">0x66</span><span class="p">,</span><span class="mh">0x6D</span><span class="p">,</span><span class="mh">0x7D</span><span class="p">,</span><span class="mh">0x07</span><span class="p">,</span><span class="mh">0x7F</span><span class="p">,</span><span class="mh">0x6F</span><span class="p">,</span>
+    <span class="mh">0x77</span><span class="p">,</span><span class="n">DISPLAY_CHAR_b</span><span class="p">,</span><span class="mh">0x58</span><span class="p">,</span><span class="n">DISPLAY_CHAR_d</span><span class="p">,</span><span class="n">DISPLAY_CHAR_E</span><span class="p">,</span><span class="n">DISPLAY_CHAR_F</span><span class="p">};</span>
+<span class="cp">#define ALARM_TIME_1S           (1*100 / DISPLAY_FLASH_500MS + 1)</span>
+<span class="cp">#define ALARM_TIME_1M           (60*100 / DISPLAY_FLASH_500MS + 1)</span>
+<span class="cp">#define DISPLAY_TIME_UP         (6*100 / DISPLAY_FLASH_500MS + 1)</span>
+<span class="cp">#define DISPLAY_TIME_DOWN       (3*100 / DISPLAY_FLASH_500MS + 1)</span>
+<span class="cp">#define DISPLAY_TIME_1_2        (6*100 / DISPLAY_FLASH_500MS + 1)</span>
+<span class="cp">#define DISPLAY_TIME_3_5        (8*100 / DISPLAY_FLASH_500MS + 1)</span>
+<span class="cp">#define DISPLAY_TIME_6_13       (12*100 / DISPLAY_FLASH_500MS + 1)</span>
+<span class="cp">#define DISPLAY_TEMP_MIN        (-320)</span>
+
+<span class="k">static</span> <span class="kt">uint8_t</span> <span class="nf">keyDisplayRefresh</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">data</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">keyDisplayUartSend</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">char</span> <span class="nf">getErrorBit</span><span class="p">(</span><span class="kt">char</span> <span class="n">nowstatu</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errbit</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">nowstatu</span> <span class="o">==</span> <span class="n">DISPLAY_ERR_NONE</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errnone</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">return</span> <span class="n">DISPLAY_ERR_NONE</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">nowstatu</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_ERR_NONE</span> <span class="o">&amp;&amp;</span> <span class="n">nowstatu</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_ERR_SHOW_CSQ</span><span class="p">){</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errnone</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">nowstatu</span> <span class="o">&lt;</span> <span class="n">DISPLAY_ERR_NOSIM</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errnosim</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">DISPLAY_ERR_NOSIM</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">nowstatu</span> <span class="o">&lt;</span> <span class="n">DISPLAY_ERR_FROZEN</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errfrozen</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">DISPLAY_ERR_FROZEN</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">nowstatu</span> <span class="o">&lt;</span> <span class="n">DISPLAY_ERR_REFRIGERA</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errrefrigera</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">DISPLAY_ERR_REFRIGERA</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">nowstatu</span> <span class="o">&lt;</span> <span class="n">DISPLAY_ERR_REGISTER</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errregister</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">DISPLAY_ERR_REGISTER</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">nowstatu</span> <span class="o">&lt;</span> <span class="n">DISPLAY_ERR_ERRSIM</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errsim</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">DISPLAY_ERR_ERRSIM</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">nowstatu</span> <span class="o">&lt;</span> <span class="n">DISPLAY_ERR_CSQ</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errcsq</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">DISPLAY_ERR_CSQ</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">nowstatu</span> <span class="o">&lt;</span> <span class="n">DISPLAY_ERR_MCU</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errmcu</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">DISPLAY_ERR_MCU</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">nowstatu</span> <span class="o">&lt;</span> <span class="n">DISPLAY_ERR_WIFI</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errwifi</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">DISPLAY_ERR_WIFI</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">nowstatu</span> <span class="o">&lt;</span> <span class="n">DISPLAY_ERR_BLE</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errble</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">DISPLAY_ERR_BLE</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">nowstatu</span> <span class="o">&lt;</span> <span class="n">DISPLAY_ERR_SHOW_CSQ</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">DISPLAY_ERR_SHOW_CSQ</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="mi">255</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">setDigitalDisplay</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">isnum</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dig</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">display_buf</span><span class="p">.</span><span class="n">frozenred</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">isnum</span> <span class="o">&lt;</span> <span class="n">DISPLAY_TYPE_PARAM1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">dig</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">display_buf</span><span class="p">.</span><span class="n">signled</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="n">dig</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">dig</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="n">display_buf</span><span class="p">.</span><span class="n">signled</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">display_buf</span><span class="p">.</span><span class="n">point1</span>    <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">isnum</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_DIGITAL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital0</span>  <span class="o">=</span> <span class="n">numTable</span><span class="p">[</span><span class="n">dig</span><span class="o">%</span><span class="mi">100</span><span class="o">/</span><span class="mi">10</span><span class="p">];</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital1</span>  <span class="o">=</span> <span class="n">numTable</span><span class="p">[</span><span class="n">dig</span><span class="o">%</span><span class="mi">10</span><span class="p">];</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital2</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">isnum</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_DECIMAL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital0</span>  <span class="o">=</span> <span class="n">numTable</span><span class="p">[</span><span class="n">dig</span><span class="o">/</span><span class="mi">100</span><span class="p">];</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital1</span>  <span class="o">=</span> <span class="n">numTable</span><span class="p">[</span><span class="n">dig</span><span class="o">%</span><span class="mi">100</span><span class="o">/</span><span class="mi">10</span><span class="p">];</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital2</span>  <span class="o">=</span> <span class="n">numTable</span><span class="p">[</span><span class="n">dig</span><span class="o">%</span><span class="mi">10</span><span class="p">];</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">point1</span>    <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">isnum</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_PARAM1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital0</span>  <span class="o">=</span> <span class="p">(</span><span class="n">dig</span><span class="o">&amp;</span><span class="mh">0xff00</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital1</span>  <span class="o">=</span> <span class="n">numTable</span><span class="p">[</span><span class="n">dig</span><span class="o">&amp;</span><span class="mh">0x0f</span><span class="p">];</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital2</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">signled</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">isnum</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_CSQ</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital0</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_C</span><span class="p">;</span>
+    <span class="n">dig</span> <span class="o">=</span> <span class="n">dig</span> <span class="o">%</span> <span class="mi">100</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital1</span>  <span class="o">=</span> <span class="n">numTable</span><span class="p">[</span><span class="n">dig</span><span class="o">/</span><span class="mi">10</span><span class="p">];</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital2</span>  <span class="o">=</span> <span class="n">numTable</span><span class="p">[</span><span class="n">dig</span><span class="o">%</span><span class="mi">10</span><span class="p">];</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">signled</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">isnum</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_HHH</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital0</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_H</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital1</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_H</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital2</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_H</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">signled</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">isnum</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_LLL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital0</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_L</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital1</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_L</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital2</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_L</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">signled</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">isnum</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_bd</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital0</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_b</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital1</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_d</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital2</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">signled</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">isnum</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_OF</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital0</span>  <span class="o">=</span> <span class="n">numTable</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital1</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_F</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital2</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">signled</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">isnum</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ERROR</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital0</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_E</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital1</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_r</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital2</span>  <span class="o">=</span> <span class="n">DISPLAY_CHAR_r</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">signled</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">isnum</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_NONE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital0</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital1</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">digital2</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">signled</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">displayTempAlarm_0</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">short</span> <span class="o">*</span><span class="n">alarmtime</span><span class="p">)</span><span class="c1">//10ms</span>
+<span class="p">{</span>
+  <span class="kt">signed</span> <span class="kt">short</span> <span class="n">distemp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">settemp</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="n">settemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">firstOn</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">&lt;=</span> <span class="n">settemp</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">firstOn</span>      <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="n">s0Display</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">distemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span> <span class="o">+</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">tempoffset</span><span class="p">;</span><span class="c1">//Tx=Tc+C5</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">=</span> <span class="n">distemp</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">s0Display</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">distemp</span> <span class="o">=</span> <span class="n">settemp</span> <span class="o">+</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">tempoffset</span> <span class="o">+</span> <span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span> <span class="o">-</span> <span class="n">settemp</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">;</span><span class="c1">//Tx=Ts+C5+(1/6)*(Tc-Ts)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">==</span> <span class="n">settemp</span><span class="p">)</span>
+        <span class="n">s0Display</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">else</span>  <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">s0Display</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span>
+          <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">else</span>
+          <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="n">s0Display</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">s0Display</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+          <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span> <span class="o">=</span> <span class="n">DISPLAY_TIME_1_2</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">s0Display</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">||</span> <span class="n">s0Display</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+          <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span> <span class="o">=</span> <span class="n">DISPLAY_TIME_3_5</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">s0Display</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">||</span> <span class="n">s0Display</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span>
+          <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span> <span class="o">=</span> <span class="n">DISPLAY_TIME_6_13</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+    <span class="n">distemp</span> <span class="o">=</span> <span class="n">settemp</span> <span class="o">+</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">tempoffset</span> <span class="o">+</span> <span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span> <span class="o">-</span> <span class="n">settemp</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span><span class="p">;</span><span class="c1">//Tx=Ts+C5+(1/6)*(Tc-Ts)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">distemp</span> <span class="o">!=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">distemp</span> <span class="o">&gt;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span>  <span class="o">=</span> <span class="n">DISPLAY_TIME_UP</span><span class="p">;</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span>     <span class="o">+=</span>  <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">else</span>  <span class="p">{</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span>  <span class="o">=</span> <span class="n">DISPLAY_TIME_DOWN</span><span class="p">;</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span>     <span class="o">-=</span>  <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;firston:%d distemp:%d todistemp:%d settemp:%d realTemp:%d s0Display:%d tempDisTime:%d powerOnTime:%d&quot;</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">firstOn</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span><span class="p">,</span> <span class="n">distemp</span><span class="p">,</span>
+              <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span><span class="p">,</span> <span class="n">s0Display</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">powerOnTime</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">distemp</span> <span class="o">&gt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">hightempalarm</span> <span class="o">||</span> <span class="n">distemp</span> <span class="o">&lt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">lowtempalarm</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+      <span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">firstOn</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">firstOn</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">powerOnTime</span> <span class="o">&gt;=</span> <span class="n">POWERON_6HOUR</span><span class="p">))</span> <span class="p">)</span> <span class="p">{</span> <span class="c1">//alarm 0</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">distemp</span> <span class="o">&gt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">hightempalarm</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">alarmtime</span> <span class="o">&amp;&amp;</span> <span class="o">--*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="o">*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_HHH</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">else</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">distemp</span> <span class="o">&lt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">lowtempalarm</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">alarmtime</span> <span class="o">&amp;&amp;</span> <span class="o">--*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="o">*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_LLL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">else</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="o">*</span><span class="n">alarmtime</span> <span class="o">=</span> <span class="n">ALARM_TIME_1S</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_TEMP_MIN</span><span class="p">)</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">=</span> <span class="n">DISPLAY_TEMP_MIN</span><span class="p">;</span>
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_DECIMAL</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span><span class="p">);</span>
+    <span class="o">*</span><span class="n">alarmtime</span> <span class="o">=</span> <span class="n">ALARM_TIME_1S</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">displayTempAlarm_1</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">short</span> <span class="o">*</span><span class="n">alarmtime</span><span class="p">)</span><span class="c1">//10ms</span>
+<span class="p">{</span>
+  <span class="kt">signed</span> <span class="kt">short</span> <span class="n">distemp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">settemp</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="n">settemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span> <span class="o">+</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">tempoffset</span><span class="p">;</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">distemp</span> <span class="o">=</span> <span class="n">settemp</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">400</span><span class="p">)</span>
+    <span class="n">distemp</span> <span class="o">=</span> <span class="n">settemp</span> <span class="o">+</span> <span class="mi">60</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="n">distemp</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">settemp</span><span class="p">;</span>
+
+
+  <span class="k">if</span><span class="p">(</span><span class="n">distemp</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_TEMP_MIN</span><span class="p">)</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">=</span> <span class="n">DISPLAY_TEMP_MIN</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">distemp</span> <span class="o">!=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">distemp</span> <span class="o">&gt;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span>  <span class="o">=</span> <span class="n">DISPLAY_TIME_UP</span><span class="p">;</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span>     <span class="o">+=</span>  <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>  <span class="p">{</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span>  <span class="o">=</span> <span class="n">DISPLAY_TIME_DOWN</span><span class="p">;</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span>     <span class="o">-=</span>  <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;showway:%d distemp:%d todistemp:%d settemp:%d realTemp:%d s0Display:%d tempDisTime:%d powerOnTime:%d&quot;</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span><span class="p">,</span> <span class="n">distemp</span><span class="p">,</span>
+              <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span><span class="p">,</span> <span class="n">s0Display</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">powerOnTime</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span>  <span class="p">(</span><span class="n">distemp</span> <span class="o">&gt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">hightempalarm</span> <span class="o">||</span> <span class="n">distemp</span> <span class="o">&lt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">lowtempalarm</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">powerOnTime</span> <span class="o">&gt;=</span> <span class="n">POWERON_6HOUR</span> <span class="p">)</span> <span class="p">{</span> <span class="c1">//alarm 0</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">distemp</span> <span class="o">&gt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">hightempalarm</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">alarmtime</span> <span class="o">&amp;&amp;</span> <span class="o">--*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="o">*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_HHH</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">else</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">distemp</span> <span class="o">&lt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">lowtempalarm</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">alarmtime</span> <span class="o">&amp;&amp;</span> <span class="o">--*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="o">*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_LLL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">else</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="o">*</span><span class="n">alarmtime</span> <span class="o">=</span> <span class="n">ALARM_TIME_1M</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_DECIMAL</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">displayTempAlarm_2</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">short</span> <span class="o">*</span><span class="n">alarmtime</span><span class="p">)</span><span class="c1">//10ms</span>
+<span class="p">{</span>
+  <span class="kt">signed</span> <span class="kt">short</span> <span class="n">alarmtemp</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">settemp</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_TEMP_MIN</span><span class="p">)</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">=</span> <span class="n">DISPLAY_TEMP_MIN</span> <span class="o">/</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span><span class="p">;</span>
+  <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_DIGITAL</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">showTemp</span><span class="p">);</span>
+
+  <span class="n">settemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span> <span class="o">+</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">tempoffset</span><span class="p">;</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">alarmtemp</span> <span class="o">=</span> <span class="n">settemp</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">400</span><span class="p">)</span>
+    <span class="n">alarmtemp</span> <span class="o">=</span> <span class="n">settemp</span> <span class="o">+</span> <span class="mi">60</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="n">alarmtemp</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">settemp</span><span class="p">;</span>
+
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;showway:%d alarmtemp:%d settemp:%d realTemp:%d tempDisTime:%d powerOnTime:%d high:%d low:%d&quot;</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span><span class="p">,</span> <span class="n">alarmtemp</span><span class="p">,</span>
+              <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">powerOnTime</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">hightempalarm</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">lowtempalarm</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">alarmtemp</span> <span class="o">&gt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">hightempalarm</span> <span class="o">||</span> <span class="n">alarmtemp</span> <span class="o">&lt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">lowtempalarm</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">powerOnTime</span> <span class="o">&gt;=</span> <span class="n">POWERON_6HOUR</span> <span class="p">)</span> <span class="p">{</span> <span class="c1">//alarm 0</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">alarmtemp</span> <span class="o">&gt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">hightempalarm</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">alarmtime</span> <span class="o">&amp;&amp;</span> <span class="o">--*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="o">*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_HHH</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">else</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">alarmtemp</span> <span class="o">&lt;=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">lowtempalarm</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="o">*</span><span class="n">alarmtime</span> <span class="o">&amp;&amp;</span> <span class="o">--*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="o">*</span><span class="n">alarmtime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_LLL</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="k">else</span>
+          <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="o">*</span><span class="n">alarmtime</span> <span class="o">=</span> <span class="n">ALARM_TIME_1M</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">displayTempAlarm</span><span class="p">(</span><span class="kt">int</span> <span class="n">settime</span><span class="p">)</span><span class="c1">//500ms</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">alarmtime</span><span class="o">=</span><span class="n">ALARM_TIME_1S</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">settime</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>   <span class="p">{</span>
+    <span class="c1">// if()</span>
+    <span class="c1">//   return;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">//show 0</span>
+      <span class="n">alarmtime</span><span class="o">=</span><span class="n">ALARM_TIME_1S</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">//show 1</span>
+      <span class="n">alarmtime</span><span class="o">=</span><span class="n">ALARM_TIME_1M</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">//show 2</span>
+      <span class="n">alarmtime</span><span class="o">=</span><span class="n">ALARM_TIME_1M</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span><span class="p">)</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">//show 0</span>
+      <span class="n">displayTempAlarm_0</span><span class="p">(</span><span class="o">&amp;</span><span class="n">alarmtime</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">//show 1</span>
+      <span class="n">displayTempAlarm_1</span><span class="p">(</span><span class="o">&amp;</span><span class="n">alarmtime</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">//show 2</span>
+      <span class="n">displayTempAlarm_2</span><span class="p">(</span><span class="o">&amp;</span><span class="n">alarmtime</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">lockedDisplay</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_SET</span><span class="p">)</span> <span class="p">{</span><span class="c1">//set display param</span>
+    <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">DISPLAY_LOCKED</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">display_param</span><span class="p">.</span><span class="n">on</span>    <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">off</span>   <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display on</span>
+    <span class="n">displayTempAlarm</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_OFF</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display off</span>
+    <span class="n">displayTempAlarm</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+  <span class="p">}</span><span class="c1">//</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">temp3SDisplay</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_SET</span><span class="p">)</span> <span class="p">{</span><span class="c1">//set display param</span>
+    <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">DISPLAY_3STEMP</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">display_param</span><span class="p">.</span><span class="n">on</span>    <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">DISPLAY_FLASH_1S</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">off</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display on</span>
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_DECIMAL</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">realTemp</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ONOVER</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display off</span>
+    <span class="n">lockedDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+  <span class="p">}</span><span class="c1">//</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">resetDisplay</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">settingQuit</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_SET</span> <span class="o">||</span> <span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span> <span class="o">&amp;&amp;</span> <span class="o">--</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s time[%d], type[%d]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span><span class="p">,</span> <span class="n">type</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_TEMP</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span> <span class="o">!=</span> <span class="n">displayTemp</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span> <span class="o">=</span> <span class="n">displayTemp</span><span class="p">;</span>
+        <span class="n">type</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">powerOnTime</span> <span class="o">&lt;</span> <span class="mi">1100U</span><span class="p">)</span>
+        <span class="n">temp3SDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+      <span class="k">else</span>
+        <span class="n">lockedDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SET_F1</span><span class="p">){</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span>   <span class="o">=</span> <span class="n">SET_OPERATION_TIME</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">setParamInOut</span><span class="p">(</span><span class="n">DISPLAY_TYPE_OFF</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">type</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+      <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">displayStatus</span> <span class="o">-</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">+</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">)</span> <span class="o">||</span>
+              <span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_ERR_SHOW_CSQ</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">lockedDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="mi">100</span> <span class="o">&amp;&amp;</span> <span class="n">SaveInfoToFlash</span><span class="p">(</span><span class="nb">NULL</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">powerOffRemote</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_SET</span><span class="p">)</span> <span class="p">{</span><span class="c1">//set display param</span>
+    <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">DISPLAY_REMOTEOFF</span><span class="p">;</span>
+
+    <span class="n">display_param</span><span class="p">.</span><span class="n">on</span>    <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">off</span>   <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display on</span>
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_OF</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_OFF</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display off</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+  <span class="p">}</span><span class="c1">//</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">powerOffLocal</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_SET</span><span class="p">)</span> <span class="p">{</span><span class="c1">//set display param</span>
+    <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">DISPLAY_LOCALOFF</span><span class="p">;</span>
+
+    <span class="n">display_param</span><span class="p">.</span><span class="n">on</span>    <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">off</span>   <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display on</span>
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_bd</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_OFF</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display off</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+  <span class="p">}</span><span class="c1">//</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">powerOnDisplay</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">display_buf</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_SET</span><span class="p">)</span> <span class="p">{</span><span class="c1">//set display param</span>
+    <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">DISPLAY_POWERON</span><span class="p">;</span>
+
+    <span class="n">display_param</span><span class="p">.</span><span class="n">on</span>    <span class="o">=</span> <span class="n">DISPLAY_FLASH_1S</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">off</span>   <span class="o">=</span> <span class="n">DISPLAY_FLASH_1S</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display on</span>
+    <span class="n">type</span> <span class="o">=</span> <span class="n">display_buf</span><span class="p">.</span><span class="n">reskey</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">display_buf_t</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="o">*</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0xff</span><span class="p">;</span>
+    <span class="n">display_buf</span><span class="p">.</span><span class="n">reskey</span> <span class="o">=</span> <span class="n">type</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_OFF</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display off</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">display_buf_t</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="o">*</span><span class="p">(</span><span class="n">data</span> <span class="o">+</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ONOVER</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display off</span>
+    <span class="n">setTempDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+  <span class="p">}</span><span class="c1">//</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">setDisplay_0</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">settemp</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">sign</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">firstOn</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="c1">// settemp = settemp - iotinfo_module.devparam-&gt;settemp;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">settemp</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">settemp</span> <span class="o">=</span> <span class="o">~</span><span class="p">(</span><span class="n">settemp</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+      <span class="n">sign</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">settemp</span> <span class="o">&amp;&amp;</span> <span class="mi">2</span> <span class="o">&gt;=</span> <span class="n">settemp</span><span class="p">){</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span>  <span class="o">=</span> <span class="n">DISPLAY_TIME_1_2</span><span class="p">;</span>
+      <span class="n">s0Display</span>   <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="mi">3</span> <span class="o">&lt;=</span> <span class="n">settemp</span> <span class="o">&amp;&amp;</span> <span class="mi">5</span> <span class="o">&gt;=</span> <span class="n">settemp</span><span class="p">){</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span> <span class="o">=</span> <span class="n">DISPLAY_TIME_3_5</span><span class="p">;</span>
+      <span class="n">s0Display</span>   <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="mi">6</span> <span class="o">&lt;=</span> <span class="n">settemp</span> <span class="o">&amp;&amp;</span> <span class="mi">13</span> <span class="o">&gt;=</span> <span class="n">settemp</span><span class="p">){</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">tempDisTime</span> <span class="o">=</span> <span class="n">DISPLAY_TIME_6_13</span><span class="p">;</span>
+      <span class="n">s0Display</span>   <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+      <span class="n">s0Display</span> <span class="o">+=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">setTempDisplay</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_SET</span><span class="p">)</span> <span class="p">{</span><span class="c1">//set display param</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_LOCKED</span> <span class="o">||</span> <span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_POWERON</span><span class="p">)</span>
+      <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">DISPLAY_SET_TEMP</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span>   <span class="o">=</span> <span class="n">SET_OPERATION_TIME</span><span class="p">;</span>
+    <span class="n">displayTemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">settemp</span><span class="p">;</span>
+
+    <span class="n">display_param</span><span class="p">.</span><span class="n">on</span>    <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">off</span>   <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display on</span>
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_DIGITAL</span><span class="p">,</span> <span class="n">displayTemp</span><span class="p">);</span><span class="c1">//iotinfo_module.devparam-&gt;settemp);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_OFF</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display off</span>
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+  <span class="p">}</span><span class="c1">//</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">selectParamDisplay</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_SET</span><span class="p">)</span> <span class="p">{</span><span class="c1">//set display param</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_LOCKED</span> <span class="o">||</span> <span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">)</span>
+      <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">)</span>
+      <span class="n">displayStatus</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SET_F1</span><span class="p">)</span>
+      <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">displayStatus</span> <span class="o">-</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">+</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span>   <span class="o">=</span> <span class="n">SET_OPERATION_TIME</span><span class="p">;</span>
+
+    <span class="n">display_param</span><span class="p">.</span><span class="n">on</span>    <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">off</span>   <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display on</span>
+    <span class="kt">signed</span> <span class="kt">short</span> <span class="n">dig</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">dig</span> <span class="o">=</span> <span class="n">DISPLAY_CHAR_F</span><span class="p">;</span>
+      <span class="n">dig</span> <span class="o">=</span> <span class="p">(</span><span class="n">dig</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>  <span class="p">{</span>
+      <span class="n">dig</span> <span class="o">=</span> <span class="n">DISPLAY_CHAR_C</span><span class="p">;</span>
+      <span class="n">dig</span> <span class="o">=</span> <span class="p">(</span><span class="n">dig</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">displayStatus</span> <span class="o">-</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_PARAM1</span><span class="p">,</span> <span class="n">dig</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_OFF</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display off</span>
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+  <span class="p">}</span><span class="c1">//</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">setParamInOut</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C1</span><span class="p">)</span>
+      <span class="n">displayTemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">upbacklash</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C2</span><span class="p">)</span>
+      <span class="n">displayTemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">downbacklash</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C3</span><span class="p">)</span>
+      <span class="n">displayTemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">erroron</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C4</span><span class="p">)</span>
+      <span class="n">displayTemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">erroroff</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C5</span><span class="p">)</span>
+      <span class="n">displayTemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">tempoffset</span><span class="p">;</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_F1</span><span class="p">)</span>
+      <span class="n">displayTemp</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_OFF</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">upbacklash</span> <span class="o">!=</span> <span class="n">displayTemp</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">upbacklash</span> <span class="o">=</span> <span class="n">displayTemp</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C2</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">downbacklash</span> <span class="o">!=</span> <span class="n">displayTemp</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">downbacklash</span> <span class="o">=</span> <span class="n">displayTemp</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C3</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">erroron</span> <span class="o">!=</span> <span class="n">displayTemp</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">erroron</span> <span class="o">=</span> <span class="n">displayTemp</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C4</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">erroroff</span> <span class="o">!=</span> <span class="n">displayTemp</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">erroroff</span> <span class="o">=</span> <span class="n">displayTemp</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C5</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">tempoffset</span> <span class="o">!=</span> <span class="n">displayTemp</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">tempoffset</span> <span class="o">=</span> <span class="n">displayTemp</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_F1</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span> <span class="o">!=</span> <span class="n">displayTemp</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">showway</span> <span class="o">=</span> <span class="n">displayTemp</span><span class="p">;</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">setParamDisplay</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_SET</span><span class="p">)</span> <span class="p">{</span><span class="c1">//set display param</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">)</span>
+      <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">displayStatus</span> <span class="o">-</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span> <span class="o">+</span> <span class="n">DISPLAY_SET_C1</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span>   <span class="o">=</span> <span class="n">SET_OPERATION_TIME</span><span class="p">;</span>
+    <span class="n">setParamInOut</span><span class="p">(</span><span class="n">DISPLAY_TYPE_ON</span><span class="p">);</span>
+
+    <span class="n">display_param</span><span class="p">.</span><span class="n">on</span>    <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">off</span>   <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display on</span>
+    <span class="c1">// signed short dig=0;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">||</span> <span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C2</span> <span class="o">||</span> <span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_C5</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="c1">// if(displayStatus == DISPLAY_SET_C1)</span>
+      <span class="c1">//   dig = iotinfo_module.devparam-&gt;upbacklash;</span>
+      <span class="c1">// else if(displayStatus == DISPLAY_SET_C2)</span>
+      <span class="c1">//   dig = iotinfo_module.devparam-&gt;downbacklash;</span>
+      <span class="c1">// else if(displayStatus == DISPLAY_SET_C5)</span>
+      <span class="c1">//   dig = iotinfo_module.devparam-&gt;tempoffset;</span>
+      <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_DECIMAL</span><span class="p">,</span> <span class="n">displayTemp</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>  <span class="p">{</span>
+      <span class="c1">// if(displayStatus == DISPLAY_SET_C3)</span>
+      <span class="c1">//   dig = iotinfo_module.devparam-&gt;erroron;</span>
+      <span class="c1">// else if(displayStatus == DISPLAY_SET_C4)</span>
+      <span class="c1">//   dig = iotinfo_module.devparam-&gt;erroroff;</span>
+      <span class="c1">// else if(displayStatus == DISPLAY_SET_F1)</span>
+      <span class="c1">//   dig = iotinfo_module.devparam-&gt;showway;</span>
+      <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_DIGITAL</span><span class="p">,</span> <span class="n">displayTemp</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_OFF</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display off</span>
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+  <span class="p">}</span><span class="c1">//</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">setErrDisplay</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="n">errsta</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_SET</span><span class="p">)</span> <span class="p">{</span><span class="c1">//set display param</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_LOCKED</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">errsta</span> <span class="o">=</span> <span class="n">getErrorBit</span><span class="p">(</span><span class="n">DISPLAY_ERR_NONE</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">errsta</span> <span class="o">!=</span> <span class="mi">255</span> <span class="o">&amp;&amp;</span> <span class="n">errsta</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_ERR_NONE</span><span class="p">)</span>
+        <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">errsta</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">operateTime</span>   <span class="o">=</span> <span class="n">SET_OPERATION_TIME</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="n">display_param</span><span class="p">.</span><span class="n">on</span>    <span class="o">=</span> <span class="n">DISPLAY_FLASH_1S</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">off</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display on</span>
+    <span class="kt">signed</span> <span class="kt">short</span> <span class="n">dig</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_ERR_SHOW_CSQ</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">dig</span> <span class="o">=</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">at_module</span><span class="o">-&gt;</span><span class="n">csqRssi</span><span class="p">;</span>
+      <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_CSQ</span><span class="p">,</span> <span class="n">dig</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>  <span class="p">{</span>
+      <span class="n">dig</span> <span class="o">=</span> <span class="n">DISPLAY_CHAR_E</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_ERR_NONE</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_ERR_ERRSIM</span><span class="p">)</span>
+        <span class="n">dig</span> <span class="o">=</span> <span class="p">(</span><span class="n">dig</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">displayStatus</span> <span class="o">-</span> <span class="n">DISPLAY_ERR_NONE</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_ERR_CSQ</span><span class="p">)</span>
+        <span class="n">dig</span> <span class="o">=</span> <span class="p">(</span><span class="n">dig</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_ERR_MCU</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_ERR_BLE</span><span class="p">)</span>
+        <span class="n">dig</span> <span class="o">=</span> <span class="p">(</span><span class="n">dig</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">displayStatus</span> <span class="o">-</span> <span class="n">DISPLAY_ERR_MCU</span> <span class="o">+</span> <span class="mi">10</span><span class="p">);</span>
+      <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_PARAM1</span><span class="p">,</span> <span class="n">dig</span><span class="p">);</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span>
+  <span class="c1">// else if(type == DISPLAY_TYPE_OFF)  {//refresh display off</span>
+  <span class="c1">// }</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ONOVER</span><span class="p">)</span>  <span class="p">{</span><span class="c1">//refresh display on over</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_ERR_NONE</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;</span> <span class="n">DISPLAY_ERR_SHOW_CSQ</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_ERR_NONE</span><span class="p">)</span>
+        <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">DISPLAY_ERR_SHOW_CSQ</span><span class="p">;</span>
+      <span class="k">else</span>  <span class="p">{</span>
+        <span class="n">errsta</span> <span class="o">=</span> <span class="n">getErrorBit</span><span class="p">(</span><span class="n">displayStatus</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">errsta</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_ERR_NONE</span> <span class="o">&amp;&amp;</span> <span class="n">errsta</span> <span class="o">!=</span> <span class="mi">255</span><span class="p">)</span>
+          <span class="n">displayStatus</span> <span class="o">=</span> <span class="n">errsta</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="n">display_param</span><span class="p">.</span><span class="n">on</span>    <span class="o">=</span> <span class="n">DISPLAY_FLASH_1S</span><span class="p">;</span>
+      <span class="n">display_param</span><span class="p">.</span><span class="n">off</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span><span class="c1">//displayStatus</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_ERR_SHOW_CSQ</span><span class="p">)</span>
+      <span class="n">settingQuit</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span>  <span class="p">{</span>
+  <span class="p">}</span><span class="c1">//</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">tempErrDisplay</span><span class="p">(</span><span class="kt">signed</span> <span class="kt">char</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errfrozen</span> <span class="o">||</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errrefrigera</span><span class="p">){</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">on</span>    <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+    <span class="n">display_param</span><span class="p">.</span><span class="n">off</span>   <span class="o">=</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">){</span>
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_ERROR</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">type</span> <span class="o">==</span> <span class="n">DISPLAY_TYPE_OFF</span><span class="p">){</span>
+    <span class="n">setDigitalDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">canFastDisplay</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">==</span> <span class="n">DISPLAY_FLASH_500MS</span> <span class="o">&amp;&amp;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">off</span> <span class="o">==</span> <span class="n">DISPLAY_FLASH_500MS</span> <span class="o">&amp;&amp;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">otherDisplay</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="c1">//10ms</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">!=</span> <span class="n">DISPLAY_POWERON</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// compressor led</span>
+<span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="k">extern</span> <span class="kt">int</span> <span class="n">isCompressorDelay</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">isCompressorDelay</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span><span class="c1">//delay</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">==</span> <span class="n">DISPLAY_FLASH_500MS</span> <span class="o">&amp;&amp;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">off</span> <span class="o">==</span> <span class="n">DISPLAY_FLASH_500MS</span> <span class="o">&amp;&amp;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">display_buf</span><span class="p">.</span><span class="n">compressorled</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span><span class="c1">//work on</span>
+      <span class="n">display_buf</span><span class="p">.</span><span class="n">compressorled</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="n">display_buf</span><span class="p">.</span><span class="n">compressorled</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="c1">//4g led</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">at_module</span><span class="o">-&gt;</span><span class="n">csqRssi</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">iotStatus</span> <span class="o">==</span> <span class="n">IOT_CONNECTMQTT</span><span class="p">)</span>
+        <span class="n">display_buf</span><span class="p">.</span><span class="n">lteled</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">==</span> <span class="n">DISPLAY_FLASH_500MS</span> <span class="o">&amp;&amp;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">off</span> <span class="o">==</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">)</span>  <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="n">display_buf</span><span class="p">.</span><span class="n">lteled</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">else</span>
+          <span class="n">display_buf</span><span class="p">.</span><span class="n">lteled</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="n">display_buf</span><span class="p">.</span><span class="n">lteled</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="c1">//wifi led</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devinfo</span><span class="o">-&gt;</span><span class="n">wifinum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">display_buf</span><span class="p">.</span><span class="n">wifiled</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="c1">// iotinfo_module.error.errwifi = 1;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>  <span class="p">{</span>
+      <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errwifi</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devinfo</span><span class="o">-&gt;</span><span class="n">wifinum</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">==</span> <span class="n">DISPLAY_FLASH_500MS</span> <span class="o">&amp;&amp;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">off</span> <span class="o">==</span> <span class="n">DISPLAY_FLASH_500MS</span><span class="p">)</span>  <span class="p">{</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">display_buf</span><span class="p">.</span><span class="n">wifiled</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+          <span class="k">else</span>
+            <span class="n">display_buf</span><span class="p">.</span><span class="n">wifiled</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">else</span>
+        <span class="n">display_buf</span><span class="p">.</span><span class="n">wifiled</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span><span class="c1">//DISPLAY_POWERON</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">displayProcess</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="c1">//10ms</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">distime</span><span class="o">=</span><span class="n">DISPLAY_REFRESH_TIME</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">showway</span><span class="o">=</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">;</span>
+<span class="cp">#if 1</span>
+  <span class="n">settingQuit</span><span class="p">(</span><span class="n">DISPLAY_TYPE_NONE</span><span class="p">);</span>
+  <span class="n">otherDisplay</span><span class="p">();</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">||</span> <span class="n">display_param</span><span class="p">.</span><span class="n">off</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">++</span><span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">on</span><span class="p">)</span>
+        <span class="n">showway</span> <span class="o">=</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">;</span>
+      <span class="k">else</span>  <span class="p">{</span>
+        <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">showway</span> <span class="o">=</span> <span class="n">DISPLAY_TYPE_OFF</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">==</span> <span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">off</span><span class="p">)</span>
+        <span class="n">showway</span> <span class="o">=</span> <span class="n">DISPLAY_TYPE_OFF</span><span class="p">;</span>
+      <span class="k">else</span>  <span class="p">{</span>
+        <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">showway</span> <span class="o">=</span> <span class="n">DISPLAY_TYPE_ONOVER</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">==</span> <span class="n">display_param</span><span class="p">.</span><span class="n">on</span> <span class="o">+</span> <span class="n">display_param</span><span class="p">.</span><span class="n">off</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">showway</span> <span class="o">=</span> <span class="n">DISPLAY_TYPE_ON</span><span class="p">;</span>
+      <span class="n">display_param</span><span class="p">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_POWERON</span><span class="p">)</span>
+        <span class="n">showway</span> <span class="o">=</span> <span class="n">DISPLAY_TYPE_ONOVER</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_ERR_NONE</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_ERR_SHOW_CSQ</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+        <span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errfrozen</span> <span class="o">||</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">error</span><span class="p">.</span><span class="n">errrefrigera</span><span class="p">)</span> <span class="p">)</span>
+      <span class="n">tempErrDisplay</span><span class="p">(</span><span class="n">showway</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_POWERON</span><span class="p">)</span>
+        <span class="n">powerOnDisplay</span><span class="p">(</span><span class="n">showway</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_3STEMP</span><span class="p">)</span>
+        <span class="n">temp3SDisplay</span><span class="p">(</span><span class="n">showway</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_REMOTEOFF</span><span class="p">)</span>
+        <span class="n">powerOffRemote</span><span class="p">(</span><span class="n">showway</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_LOCALOFF</span><span class="p">)</span>
+        <span class="n">powerOffLocal</span><span class="p">(</span><span class="n">showway</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_SET_TEMP</span><span class="p">)</span>
+        <span class="n">setTempDisplay</span><span class="p">(</span><span class="n">showway</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SELECT_PARAM_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SELECT_PARAM_F1</span><span class="p">)</span>
+        <span class="n">selectParamDisplay</span><span class="p">(</span><span class="n">showway</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_SET_C1</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_SET_F1</span><span class="p">)</span>
+        <span class="n">setParamDisplay</span><span class="p">(</span><span class="n">showway</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">&gt;=</span> <span class="n">DISPLAY_ERR_NONE</span> <span class="o">&amp;&amp;</span> <span class="n">displayStatus</span> <span class="o">&lt;=</span> <span class="n">DISPLAY_ERR_SHOW_CSQ</span><span class="p">)</span>
+        <span class="n">setErrDisplay</span><span class="p">(</span><span class="n">showway</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span> <span class="o">==</span> <span class="n">DISPLAY_LOCKED</span><span class="p">)</span>
+        <span class="n">lockedDisplay</span><span class="p">(</span><span class="n">showway</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span><span class="c1">//ON DISPLAY</span>
+<span class="cp">#else</span>
+<span class="k">extern</span> <span class="kt">void</span> <span class="n">displayTest</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+  <span class="n">displayTest</span><span class="p">();</span>
+<span class="cp">#endif</span>
+
+  <span class="k">if</span><span class="p">(</span><span class="n">distime</span> <span class="o">&amp;&amp;</span> <span class="o">--</span><span class="n">distime</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+    <span class="n">distime</span> <span class="o">=</span> <span class="n">DISPLAY_REFRESH_TIME</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">displayStatus</span><span class="p">)</span>
+      <span class="n">keyDisplayRefresh</span><span class="p">((</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">display_buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">display_buf_t</span><span class="p">));</span>
+    <span class="c1">// else</span>
+    <span class="c1">//   keyDisplayRefresh(NULL, sizeof(display_buf_t));</span>
+    <span class="c1">// ESP_LOGI(ATTAG,&quot;ontime:%d displayStatus:%d count:%d on:%d off:%d &quot; , iotinfo_module.powerOnTime, displayStatus, display_param.count, display_param.on, display_param.off);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">displaySetRekey</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">key</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">display_buf</span><span class="p">.</span><span class="n">reskey</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">displayInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">display_buf</span><span class="p">.</span><span class="n">reskey</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">powerOnDisplay</span><span class="p">(</span><span class="n">DISPLAY_TYPE_SET</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#if 0</span><span class="c"></span>
+<span class="c">void displayTest(void)//10ms</span>
+<span class="c">{</span>
+<span class="c">  static unsigned char test=0, pers=0;</span>
+<span class="c">  if(++pers &lt; 200)</span>
+<span class="c">    return;</span>
+<span class="c">  pers = 0;</span>
+<span class="c">  if(++test == 1)</span>
+<span class="c">    display_buf.frozenred = 1;</span>
+<span class="c">  else if(test == 2)</span>
+<span class="c">    display_buf.frozengreen = 1;</span>
+<span class="c">  else if(test == 3)</span>
+<span class="c">    display_buf.compressorled = 1;</span>
+<span class="c">  else if(test == 4)</span>
+<span class="c">    display_buf.wifiled = 1;</span>
+<span class="c">  else if(test == 5)</span>
+<span class="c">    display_buf.signled = 1;</span>
+<span class="c">  else if(test == 6)</span>
+<span class="c">    display_buf.lteled = 1;</span>
+<span class="c">  else if(test == 7)</span>
+<span class="c">    display_buf.digital0 = numTable[2];</span>
+<span class="c">  else if(test == 8)</span>
+<span class="c">    display_buf.digital0 = numTable[4];</span>
+<span class="c">  else if(test == 9)</span>
+<span class="c">    display_buf.digital0 = numTable[6];</span>
+<span class="c">  else if(test == 10)</span>
+<span class="c">    display_buf.digital1 = numTable[8];</span>
+<span class="c">  else if(test == 11)</span>
+<span class="c">    display_buf.digital1 = numTable[1];</span>
+<span class="c">  else if(test == 12)</span>
+<span class="c">    display_buf.digital1 = numTable[3];</span>
+<span class="c">  else if(test == 13)</span>
+<span class="c">    display_buf.digital1 = numTable[5];</span>
+<span class="c">  else if(test == 14)</span>
+<span class="c">    display_buf.digital2 = numTable[7];</span>
+<span class="c">  else if(test == 15)</span>
+<span class="c">    display_buf.digital2 = numTable[9];</span>
+<span class="c">  else if(test == 16)</span>
+<span class="c">    display_buf.digital2 = numTable[0];</span>
+<span class="c">  else if(test == 17)</span>
+<span class="c">    display_buf.point0 = 1;</span>
+<span class="c">  else if(test == 18)</span>
+<span class="c">    display_buf.point1 = 1;</span>
+<span class="c">  else if(test == 19)</span>
+<span class="c">    display_buf.point2 = 1;</span>
+
+<span class="c">  ESP_LOGI(ATTAG,&quot;test step:%d &quot; , test);</span>
+<span class="c">}</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">freezer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, vencol.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/program_listing_file_G__code_esp_code_freezer_main_iot_displaypro.c.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

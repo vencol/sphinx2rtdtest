@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="unionerror__info__t" kind="union" language="C++" prot="public">
+    <compoundname>error_info_t</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="unionerror__info__t_1a4ebe553817b92dfeef819eeaa0e40fdf" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short error_info_t::errbit</definition>
+        <argsstring></argsstring>
+        <name>errbit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="52" column="19" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionerror__info__t_1a7c962fb224a2fb3b192bfd12d8287c89" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short error_info_t::errnone</definition>
+        <argsstring></argsstring>
+        <name>errnone</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="54" column="23" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionerror__info__t_1a1c7c8a7c4d8d543cad2b3589731eb8e9" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short error_info_t::errnosim</definition>
+        <argsstring></argsstring>
+        <name>errnosim</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="55" column="23" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionerror__info__t_1a83195c188ada070e1c060eddfb66c401" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short error_info_t::errfrozen</definition>
+        <argsstring></argsstring>
+        <name>errfrozen</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="56" column="23" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionerror__info__t_1ab1ef48e70238e32cd555038ea4e2b350" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short error_info_t::errrefrigera</definition>
+        <argsstring></argsstring>
+        <name>errrefrigera</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="57" column="23" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionerror__info__t_1a31d86dd759a2b37a9940c7bba51b8f6d" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short error_info_t::errregister</definition>
+        <argsstring></argsstring>
+        <name>errregister</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="58" column="23" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionerror__info__t_1a91f517d7a27dc58f95e4a49429ee29dc" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short error_info_t::errsim</definition>
+        <argsstring></argsstring>
+        <name>errsim</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="59" column="23" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionerror__info__t_1a1817504fb038eca843bed14abe4f9a52" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short error_info_t::errcsq</definition>
+        <argsstring></argsstring>
+        <name>errcsq</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="60" column="23" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionerror__info__t_1ad0ffbfa6bde96d7ddf0838064c48aef0" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short error_info_t::errmcu</definition>
+        <argsstring></argsstring>
+        <name>errmcu</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="61" column="23" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionerror__info__t_1a394f35264af6995f84c673b59a509849" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short error_info_t::errwifi</definition>
+        <argsstring></argsstring>
+        <name>errwifi</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="62" column="23" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionerror__info__t_1a776aee300e8472c0101bfe6fcf408a6a" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short error_info_t::errble</definition>
+        <argsstring></argsstring>
+        <name>errble</name>
+        <bitfield> 1</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="63" column="23" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="unionerror__info__t_1aefd626cfa0d61cc0decd2b2aee751443" prot="public" static="no" mutable="no">
+        <type>struct error_info_t::@0</type>
+        <definition>struct error_info_t::@0 error_info_t::@1</definition>
+        <argsstring></argsstring>
+        <name>@1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="64" column="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/code/esp/code/freezer/main/iot/iotinfo.h" line="50" column="1" bodyfile="G:/code/esp/code/freezer/main/iot/iotinfo.h" bodystart="51" bodyend="65"/>
+    <listofallmembers>
+      <member refid="unionerror__info__t_1a4ebe553817b92dfeef819eeaa0e40fdf" prot="public" virt="non-virtual"><scope>error_info_t</scope><name>errbit</name></member>
+      <member refid="unionerror__info__t_1a776aee300e8472c0101bfe6fcf408a6a" prot="public" virt="non-virtual"><scope>error_info_t</scope><name>errble</name></member>
+      <member refid="unionerror__info__t_1a1817504fb038eca843bed14abe4f9a52" prot="public" virt="non-virtual"><scope>error_info_t</scope><name>errcsq</name></member>
+      <member refid="unionerror__info__t_1a83195c188ada070e1c060eddfb66c401" prot="public" virt="non-virtual"><scope>error_info_t</scope><name>errfrozen</name></member>
+      <member refid="unionerror__info__t_1ad0ffbfa6bde96d7ddf0838064c48aef0" prot="public" virt="non-virtual"><scope>error_info_t</scope><name>errmcu</name></member>
+      <member refid="unionerror__info__t_1a7c962fb224a2fb3b192bfd12d8287c89" prot="public" virt="non-virtual"><scope>error_info_t</scope><name>errnone</name></member>
+      <member refid="unionerror__info__t_1a1c7c8a7c4d8d543cad2b3589731eb8e9" prot="public" virt="non-virtual"><scope>error_info_t</scope><name>errnosim</name></member>
+      <member refid="unionerror__info__t_1ab1ef48e70238e32cd555038ea4e2b350" prot="public" virt="non-virtual"><scope>error_info_t</scope><name>errrefrigera</name></member>
+      <member refid="unionerror__info__t_1a31d86dd759a2b37a9940c7bba51b8f6d" prot="public" virt="non-virtual"><scope>error_info_t</scope><name>errregister</name></member>
+      <member refid="unionerror__info__t_1a91f517d7a27dc58f95e4a49429ee29dc" prot="public" virt="non-virtual"><scope>error_info_t</scope><name>errsim</name></member>
+      <member refid="unionerror__info__t_1a394f35264af6995f84c673b59a509849" prot="public" virt="non-virtual"><scope>error_info_t</scope><name>errwifi</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+.. _exhale_define_keydisplay_8h_1a7be328e00e5c923d574b56384901515f:
+
+Define DISPLAY_FLASH_1S
+=======================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_iot_keydisplay.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: DISPLAY_FLASH_1S

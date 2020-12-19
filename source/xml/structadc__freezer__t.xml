@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="structadc__freezer__t" kind="struct" language="C++" prot="public">
+    <compoundname>adc_freezer_t</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structadc__freezer__t_1ad8daba1402a749358b5ca809788d53f8" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int adc_freezer_t::adcmax</definition>
+        <argsstring></argsstring>
+        <name>adcmax</name>
+        <bitfield> 12</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" line="48" column="17" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structadc__freezer__t_1aba5ee806045395823f5bdd357616f549" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int adc_freezer_t::adcmin</definition>
+        <argsstring></argsstring>
+        <name>adcmin</name>
+        <bitfield> 12</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" line="49" column="17" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structadc__freezer__t_1a2293c0c03b64e29d7af0bfe1e7dbf48a" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int adc_freezer_t::adcChannel</definition>
+        <argsstring></argsstring>
+        <name>adcChannel</name>
+        <bitfield> 8</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" line="50" column="21" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structadc__freezer__t_1a19820e9709d591284f4a574d9ab02672" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short adc_freezer_t::adcReaded</definition>
+        <argsstring></argsstring>
+        <name>adcReaded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" line="51" column="19" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structadc__freezer__t_1a1323d4c85ba745bfd50215ee3907c478" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short adc_freezer_t::adcValue</definition>
+        <argsstring></argsstring>
+        <name>adcValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" line="52" column="19" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structadc__freezer__t_1a2cf0ff3ca295493bbd5eb9f881db10f8" prot="public" static="no" mutable="no">
+        <type>unsigned short</type>
+        <definition>unsigned short adc_freezer_t::lastValue</definition>
+        <argsstring></argsstring>
+        <name>lastValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" line="53" column="19" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structadc__freezer__t_1ab59091b05cbd34b7b65df59fb271d8d0" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char adc_freezer_t::adcCounter</definition>
+        <argsstring></argsstring>
+        <name>adcCounter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" line="54" column="18" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structadc__freezer__t_1ad0759af9e8c0165b33dafc369bd4fbb0" prot="public" static="no" mutable="no">
+        <type>unsigned char</type>
+        <definition>unsigned char adc_freezer_t::adcCoutTarget</definition>
+        <argsstring></argsstring>
+        <name>adcCoutTarget</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" line="55" column="18" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" line="47" column="1" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_adc.c" bodystart="47" bodyend="56"/>
+    <listofallmembers>
+      <member refid="structadc__freezer__t_1a2293c0c03b64e29d7af0bfe1e7dbf48a" prot="public" virt="non-virtual"><scope>adc_freezer_t</scope><name>adcChannel</name></member>
+      <member refid="structadc__freezer__t_1ab59091b05cbd34b7b65df59fb271d8d0" prot="public" virt="non-virtual"><scope>adc_freezer_t</scope><name>adcCounter</name></member>
+      <member refid="structadc__freezer__t_1ad0759af9e8c0165b33dafc369bd4fbb0" prot="public" virt="non-virtual"><scope>adc_freezer_t</scope><name>adcCoutTarget</name></member>
+      <member refid="structadc__freezer__t_1ad8daba1402a749358b5ca809788d53f8" prot="public" virt="non-virtual"><scope>adc_freezer_t</scope><name>adcmax</name></member>
+      <member refid="structadc__freezer__t_1aba5ee806045395823f5bdd357616f549" prot="public" virt="non-virtual"><scope>adc_freezer_t</scope><name>adcmin</name></member>
+      <member refid="structadc__freezer__t_1a19820e9709d591284f4a574d9ab02672" prot="public" virt="non-virtual"><scope>adc_freezer_t</scope><name>adcReaded</name></member>
+      <member refid="structadc__freezer__t_1a1323d4c85ba745bfd50215ee3907c478" prot="public" virt="non-virtual"><scope>adc_freezer_t</scope><name>adcValue</name></member>
+      <member refid="structadc__freezer__t_1a2cf0ff3ca295493bbd5eb9f881db10f8" prot="public" virt="non-virtual"><scope>adc_freezer_t</scope><name>lastValue</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

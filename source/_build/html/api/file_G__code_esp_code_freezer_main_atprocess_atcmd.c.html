@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File atcmd.c &#8212; freezer  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="file-atcmd-c">
+<span id="file-g-code-esp-code-freezer-main-atprocess-atcmd-c"></span><h1>File atcmd.c<a class="headerlink" href="#file-atcmd-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="dir_G__code_esp_code_freezer_main_atprocess.html#dir-g-code-esp-code-freezer-main-atprocess"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\atprocess</span></code>)</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-g-code-esp-code-freezer-main-atprocess-atcmd-c" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\atprocess\atcmd.c</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id2">Includes</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id3">Functions</a></p></li>
+<li><p><a class="reference internal" href="#defines" id="id4">Defines</a></p></li>
+<li><p><a class="reference internal" href="#variables" id="id5">Variables</a></p></li>
+</ul>
+</div>
+<div class="section" id="definition-g-code-esp-code-freezer-main-atprocess-atcmd-c">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\atprocess\atcmd.c</span></code>)<a class="headerlink" href="#definition-g-code-esp-code-freezer-main-atprocess-atcmd-c" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_G__code_esp_code_freezer_main_atprocess_atcmd.c.html">Program Listing for File atcmd.c</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">atcmd.h</span></code> (<a class="reference internal" href="file_G__code_esp_code_freezer_main_atprocess_atcmd.h.html#file-g-code-esp-code-freezer-main-atprocess-atcmd-h"><span class="std std-ref">File atcmd.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">athttp.h</span></code> (<a class="reference internal" href="file_G__code_esp_code_freezer_main_atprocess_athttp.h.html#file-g-code-esp-code-freezer-main-atprocess-athttp-h"><span class="std std-ref">File athttp.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">atmqtt.h</span></code> (<a class="reference internal" href="file_G__code_esp_code_freezer_main_atprocess_atmqtt.h.html#file-g-code-esp-code-freezer-main-atprocess-atmqtt-h"><span class="std std-ref">File atmqtt.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drv_at.h</span></code> (<a class="reference internal" href="file_G__code_esp_code_freezer_main_freezerdrv_drv_at.h.html#file-g-code-esp-code-freezer-main-freezerdrv-drv-at-h"><span class="std std-ref">File drv_at.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esp_log.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">freertos/FreeRTOS.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">freertos/queue.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">freertos/task.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iotinfo.h</span></code> (<a class="reference internal" href="file_G__code_esp_code_freezer_main_iot_iotinfo.h.html#file-g-code-esp-code-freezer-main-iot-iotinfo-h"><span class="std std-ref">File iotinfo.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string.h</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_atcmd_8c_1a133b9f92c83eb065063f8fa2e785ef0e.html#exhale-function-atcmd-8c-1a133b9f92c83eb065063f8fa2e785ef0e"><span class="std std-ref">Function atCmdInit(void)</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1ad94671d38529f892e19418259054f5c9.html#exhale-function-atcmd-8c-1ad94671d38529f892e19418259054f5c9"><span class="std std-ref">Function atCmdPro(void)</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1afca35744711019499365d618b959faa8.html#exhale-function-atcmd-8c-1afca35744711019499365d618b959faa8"><span class="std std-ref">Function atMallocCmd(char, char *, char *)</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1a299b9325c473db482b0e771e4cfde722.html#exhale-function-atcmd-8c-1a299b9325c473db482b0e771e4cfde722"><span class="std std-ref">Function atPraseBaseCmd</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1a5a954ad2117f6113f1d0421f31950fc0.html#exhale-function-atcmd-8c-1a5a954ad2117f6113f1d0421f31950fc0"><span class="std std-ref">Function atPraseBaseError</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1a6461ae630a94840bf8117a0ed39093e0.html#exhale-function-atcmd-8c-1a6461ae630a94840bf8117a0ed39093e0"><span class="std std-ref">Function atPraseBaseOk</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1a8cd5b6f8aaed9b0e63d0db82a95b69a8.html#exhale-function-atcmd-8c-1a8cd5b6f8aaed9b0e63d0db82a95b69a8"><span class="std std-ref">Function atPrasePro</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1a841522764e69d66c51c8772ae16c3665.html#exhale-function-atcmd-8c-1a841522764e69d66c51c8772ae16c3665"><span class="std std-ref">Function atSendCmd(bool)</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1af099abc985503febd6d8b0f889f839ae.html#exhale-function-atcmd-8c-1af099abc985503febd6d8b0f889f839ae"><span class="std std-ref">Function atSendCmdChange(char, char *, char *, unsigned short, unsigned short)</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1a3594bb6e92e13e5d3630a73aeab09131.html#exhale-function-atcmd-8c-1a3594bb6e92e13e5d3630a73aeab09131"><span class="std std-ref">Function atUartReceive</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1a925b00a06119a30091533ac80cb33368.html#exhale-function-atcmd-8c-1a925b00a06119a30091533ac80cb33368"><span class="std std-ref">Function cellInfoValid</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1a191079ef21b52b9966412f037cbb9401.html#exhale-function-atcmd-8c-1a191079ef21b52b9966412f037cbb9401"><span class="std std-ref">Function detectSimCard</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1ac60a75e56acbf97eeab584a7d40ebe13.html#exhale-function-atcmd-8c-1ac60a75e56acbf97eeab584a7d40ebe13"><span class="std std-ref">Function hexStr2Num</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1a2d5b19d51a142e83d6ff7e5c45fc2e96.html#exhale-function-atcmd-8c-1a2d5b19d51a142e83d6ff7e5c45fc2e96"><span class="std std-ref">Function operateCellInfo(char, int, int, int, int, int)</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1aa47e88722a40f753daf12c9c651072d7.html#exhale-function-atcmd-8c-1aa47e88722a40f753daf12c9c651072d7"><span class="std std-ref">Function sendAtCmd(const char *, int)</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1ab4065e13b17322ba2fb943d894973d8e.html#exhale-function-atcmd-8c-1ab4065e13b17322ba2fb943d894973d8e"><span class="std std-ref">Function setQueryTime</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1af8276aead43d68eb414b985a343a6446.html#exhale-function-atcmd-8c-1af8276aead43d68eb414b985a343a6446"><span class="std std-ref">Function updateCsq</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1a4e744a0f0a09a2187da2e26fa79fa726.html#exhale-function-atcmd-8c-1a4e744a0f0a09a2187da2e26fa79fa726"><span class="std std-ref">Function updateMainCell</span></a></p></li>
+<li><p><a class="reference internal" href="function_atcmd_8c_1abc2af8f81c80f8a7d186b89f24776b00.html#exhale-function-atcmd-8c-1abc2af8f81c80f8a7d186b89f24776b00"><span class="std std-ref">Function updateOtherCell</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="defines">
+<h2>Defines<a class="headerlink" href="#defines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="define_atcmd_8c_1a6f4d45f8b74106deec92b3a5a14c72b0.html#exhale-define-atcmd-8c-1a6f4d45f8b74106deec92b3a5a14c72b0"><span class="std std-ref">Define STR_NULL_BREAK</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="variable_atcmd_8c_1a88aca5801cafe33aacd838812ff46f8b.html#exhale-variable-atcmd-8c-1a88aca5801cafe33aacd838812ff46f8b"><span class="std std-ref">Variable atcmd_current</span></a></p></li>
+<li><p><a class="reference internal" href="variable_atcmd_8c_1a82ce3c7ffccf81983f60f8c315c7e36a.html#exhale-variable-atcmd-8c-1a82ce3c7ffccf81983f60f8c315c7e36a"><span class="std std-ref">Variable atcmd_module</span></a></p></li>
+<li><p><a class="reference internal" href="variable_atcmd_8c_1a4bc490c1294912852a832f1d48cae668.html#exhale-variable-atcmd-8c-1a4bc490c1294912852a832f1d48cae668"><span class="std std-ref">Variable atcmd_sendtimeout</span></a></p></li>
+<li><p><a class="reference internal" href="variable_atcmd_8c_1a7824321023ad9129184997eb1ff951ed.html#exhale-variable-atcmd-8c-1a7824321023ad9129184997eb1ff951ed"><span class="std std-ref">Variable atDataQueue</span></a></p></li>
+<li><p><a class="reference internal" href="variable_atcmd_8c_1a98c24dc9eb271dd1b713bfa38220de12.html#exhale-variable-atcmd-8c-1a98c24dc9eb271dd1b713bfa38220de12"><span class="std std-ref">Variable ATTAG</span></a></p></li>
+<li><p><a class="reference internal" href="variable_atcmd_8c_1a752000d206831061db91a1319a561c6a.html#exhale-variable-atcmd-8c-1a752000d206831061db91a1319a561c6a"><span class="std std-ref">Variable g_atcmd_uri_map_send</span></a></p></li>
+<li><p><a class="reference internal" href="variable_atcmd_8c_1a7bcc103da5cb867319979b93a2e1a535.html#exhale-variable-atcmd-8c-1a7bcc103da5cb867319979b93a2e1a535"><span class="std std-ref">Variable querytime</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">freezer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, vencol.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/file_G__code_esp_code_freezer_main_atprocess_atcmd.c.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

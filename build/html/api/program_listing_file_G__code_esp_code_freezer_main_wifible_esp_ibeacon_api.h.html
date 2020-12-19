@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File esp_ibeacon_api.h &mdash; freezer  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists\css\tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> freezer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">freezer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File esp_ibeacon_api.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_G__code_esp_code_freezer_main_wifible_esp_ibeacon_api.h.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-esp-ibeacon-api-h">
+<span id="program-listing-file-g-code-esp-code-freezer-main-wifible-esp-ibeacon-api-h"></span><h1>Program Listing for File esp_ibeacon_api.h<a class="headerlink" href="#program-listing-for-file-esp-ibeacon-api-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_G__code_esp_code_freezer_main_wifible_esp_ibeacon_api.h.html#file-g-code-esp-code-freezer-main-wifible-esp-ibeacon-api-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\wifible\esp_ibeacon_api.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">   This example code is in the Public Domain (or CC0 licensed, at your option.)</span>
+
+<span class="cm">   Unless required by applicable law or agreed to in writing, this</span>
+<span class="cm">   software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR</span>
+<span class="cm">   CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm">*/</span>
+
+
+
+<span class="cm">/****************************************************************************</span>
+<span class="cm">*</span>
+<span class="cm">* This file is for iBeacon definitions. It supports both iBeacon sender and receiver</span>
+<span class="cm">* which is distinguished by macros IBEACON_SENDER and IBEACON_RECEIVER,</span>
+<span class="cm">*</span>
+<span class="cm">* iBeacon is a trademark of Apple Inc. Before building devices which use iBeacon technology,</span>
+<span class="cm">* visit https://developer.apple.com/ibeacon/ to obtain a license.</span>
+<span class="cm">*</span>
+<span class="cm">****************************************************************************/</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;esp_gap_ble_api.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_gattc_api.h&quot;</span><span class="cp"></span>
+
+
+<span class="cm">/* Because current ESP IDF version doesn&#39;t support scan and adv simultaneously,</span>
+<span class="cm"> * so iBeacon sender and receiver should not run simultaneously */</span>
+<span class="cp">#define IBEACON_SENDER      0</span>
+<span class="cp">#define IBEACON_RECEIVER    1</span>
+<span class="cp">#define IBEACON_MODE CONFIG_IBEACON_MODE</span>
+
+<span class="cm">/* Major and Minor part are stored in big endian mode in iBeacon packet,</span>
+<span class="cm"> * need to use this macro to transfer while creating or processing</span>
+<span class="cm"> * iBeacon data */</span>
+<span class="cp">#define ENDIAN_CHANGE_U16(x) ((((x)&amp;0xFF00)&gt;&gt;8) + (((x)&amp;0xFF)&lt;&lt;8))</span>
+
+<span class="cm">/* Espressif WeChat official account can be found using WeChat &quot;Yao Yi Yao Zhou Bian&quot;,</span>
+<span class="cm"> * if device advertises using ESP defined UUID.</span>
+<span class="cm"> * Please refer to http://zb.weixin.qq.com for further information. */</span>
+<span class="c1">// #define ESP_UUID    {0xFD, 0xA5, 0x06, 0x93, 0xA4, 0xE2, 0x4F, 0xB1, 0xAF, 0xCF, 0xC6, 0xEB, 0x07, 0x64, 0x78, 0x25}</span>
+<span class="c1">// #define ESP_MAJOR   10167</span>
+<span class="c1">// #define ESP_MINOR   61958</span>
+<span class="cp">#define ESP_UUID    {0xAB, 0x81, 0x90, 0xD5, 0xD1, 0x1E, 0x49, 0x41, 0xAC, 0xC4, 0x42, 0xF3, 0x05, 0x10, 0xB4, 0x08}</span>
+<span class="cp">#define ESP_MAJOR   10099</span>
+<span class="cp">#define ESP_MINOR   52844</span>
+
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">uint8_t</span> <span class="n">flags</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+    <span class="kt">uint8_t</span> <span class="n">length</span><span class="p">;</span>
+    <span class="kt">uint8_t</span> <span class="n">type</span><span class="p">;</span>
+    <span class="kt">uint16_t</span> <span class="n">company_id</span><span class="p">;</span>
+    <span class="kt">uint16_t</span> <span class="n">beacon_type</span><span class="p">;</span>
+<span class="p">}</span><span class="n">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span> <span class="n">esp_ble_ibeacon_head_t</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">uint8_t</span> <span class="n">proximity_uuid</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+    <span class="kt">uint16_t</span> <span class="n">major</span><span class="p">;</span>
+    <span class="kt">uint16_t</span> <span class="n">minor</span><span class="p">;</span>
+    <span class="kt">int8_t</span> <span class="n">measured_power</span><span class="p">;</span>
+<span class="p">}</span><span class="n">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span> <span class="n">esp_ble_ibeacon_vendor_t</span><span class="p">;</span>
+
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">esp_ble_ibeacon_head_t</span> <span class="n">ibeacon_head</span><span class="p">;</span>
+    <span class="n">esp_ble_ibeacon_vendor_t</span> <span class="n">ibeacon_vendor</span><span class="p">;</span>
+<span class="p">}</span><span class="n">__attribute__</span><span class="p">((</span><span class="n">packed</span><span class="p">))</span> <span class="n">esp_ble_ibeacon_t</span><span class="p">;</span>
+
+
+<span class="cm">/* For iBeacon packet format, please refer to Apple &quot;Proximity Beacon Specification&quot; doc */</span>
+<span class="cm">/* Constant part of iBeacon data */</span>
+<span class="k">extern</span> <span class="n">esp_ble_ibeacon_head_t</span> <span class="n">ibeacon_common_head</span><span class="p">;</span>
+
+<span class="kt">bool</span> <span class="nf">espBleIsIbeaconPacket</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="n">adv_data</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">adv_data_len</span><span class="p">);</span>
+
+<span class="n">esp_err_t</span> <span class="nf">esp_ble_config_ibeacon_data</span> <span class="p">(</span><span class="n">esp_ble_ibeacon_vendor_t</span> <span class="o">*</span><span class="n">vendor_config</span><span class="p">,</span> <span class="n">esp_ble_ibeacon_t</span> <span class="o">*</span><span class="n">ibeacon_adv_data</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, vencol
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

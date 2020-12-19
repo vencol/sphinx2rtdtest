@@ -1,0 +1,13 @@
+.. _exhale_define_atcmd_8h_1a16f6f20285b3000b128561988d53338a:
+
+Define AT_CMD_ATIPR_RESPOND
+===========================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_atprocess_atcmd.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: AT_CMD_ATIPR_RESPOND

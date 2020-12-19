@@ -1,0 +1,512 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="drv__1650_8c" kind="file" language="C++">
+    <compoundname>drv_1650.c</compoundname>
+    <includes local="no">stdio.h</includes>
+    <includes local="yes">driver/i2c.h</includes>
+    <includes refid="drv__1650_8h" local="yes">drv_1650.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c</label>
+        <link refid="drv__1650_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>drv_1650.h</label>
+        <link refid="drv__1650_8h_source"/>
+      </node>
+      <node id="3">
+        <label>driver/i2c.h</label>
+      </node>
+      <node id="2">
+        <label>stdio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="drv__1650_8c_1a38388ca431dfe7534c1deb2d6aadc88b" prot="public" static="no">
+        <name>_I2C_NUMBER</name>
+        <param><defname>num</defname></param>
+        <initializer>I2C_NUM_##num</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="23" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1a7e81f0c40cb8c94fe0aeac6d0e3d3317" prot="public" static="no">
+        <name>I2C_NUMBER</name>
+        <param><defname>num</defname></param>
+        <initializer>_I2C_NUMBER(num)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="24" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1a033b5e8a30541fe4ff939a62fdb7a43d" prot="public" static="no">
+        <name>I2C_MASTER_SCL_IO</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="26" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1af47631d568bba17edf9d1ea042602bb6" prot="public" static="no">
+        <name>I2C_MASTER_SDA_IO</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="27" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1aab9e642b6200f95fcbd2ad7466aaa2d3" prot="public" static="no">
+        <name>I2C_MASTER_NUM</name>
+        <initializer>I2C_NUMBER(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C port number for master dev </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="28" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1a5c22ca4de37a83a59014e48b0a0b043d" prot="public" static="no">
+        <name>I2C_MASTER_FREQ_HZ</name>
+        <initializer>40000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C master clock frequency </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="29" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1aaa0e84f340ef5ea9db2d7624fdadaa26" prot="public" static="no">
+        <name>I2C_MASTER_TX_BUF_DISABLE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C master doesn&apos;t need buffer </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="30" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1a37a0707200e50e3b3e9ab28b1b8d6777" prot="public" static="no">
+        <name>I2C_MASTER_RX_BUF_DISABLE</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C master doesn&apos;t need buffer </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="31" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1a9f9c3c2775d6508766675227ac88bf91" prot="public" static="no">
+        <name>ESP_SLAVE_ADDR</name>
+        <initializer>0x28</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>ESP32 slave address, you can set any 7bit value </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="33" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1a7fc57d5be9f588839a00c75ef2946e17" prot="public" static="no">
+        <name>WRITE_BIT</name>
+        <initializer>I2C_MASTER_WRITE</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C master write </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="34" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1a2f493ed233e66342493f155ebda5c183" prot="public" static="no">
+        <name>READ_BIT</name>
+        <initializer>I2C_MASTER_READ</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C master read </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="35" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1a7dd22b838d2b1f22d367e6cdef04ccc3" prot="public" static="no">
+        <name>ACK_CHECK_EN</name>
+        <initializer>0x1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C master will check ack from slave </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="36" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1a8ad7ceb373ce664b1c2482a66537e7c0" prot="public" static="no">
+        <name>ACK_CHECK_DIS</name>
+        <initializer>0x0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C master will not check ack from slave </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="37" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1a1d64a546dacc15052a6c4887f9d0020f" prot="public" static="no">
+        <name>ACK_VAL</name>
+        <initializer>0x0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C ack value </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="38" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1ae20bf16f65c41237e2d620ef49890781" prot="public" static="no">
+        <name>NACK_VAL</name>
+        <initializer>0x1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C nack value </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="39" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1ac3e4315e79902ff16ea085a5ed0475ed" prot="public" static="no">
+        <name>TM1650_READ_KEY_ADDR</name>
+        <initializer>0X49</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C master doesn&apos;t need buffer </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="41" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1aad4f3d56174a879dbc5e088e7c505ffc" prot="public" static="no">
+        <name>TM1650_SET_DIASPLAY_ADDR</name>
+        <initializer>0X48</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C master doesn&apos;t need buffer </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="42" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8c_1a96cc48d9ecb3312bfc287208af8533d6" prot="public" static="no">
+        <name>TM1650_SET_DIASPLAY_DATAADDR</name>
+        <initializer>0X68</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>I2C master doesn&apos;t need buffer </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="43" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="drv__1650_8c_1a09fdbc701715e56354b68b67c3b0be05" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>static uint8_t LSB2MSB</definition>
+        <argsstring>(uint8_t data)</argsstring>
+        <name>LSB2MSB</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="46" column="16" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="46" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__1650_8c_1ac169ccc71127fb86cf492675fc409b1b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>static int i2cMasterSetAddrData</definition>
+        <argsstring>(uint8_t addr, uint8_t data)</argsstring>
+        <name>i2cMasterSetAddrData</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>addr</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>test code to read esp-i2c-slave We need to fill the buffer of esp slave device, then master can read them out. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><hruler/>
+ | start | addr +ack | data + ack | stop | -----<mdash/>|-----------------------<mdash/>|-------------------<mdash/>|-----------------<mdash/>|---<mdash/>| </para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; I2C master will check ack from slave</para>
+<para>&lt; I2C master will check ack from slave</para>
+<para>&lt; I2C port number for master dev</para>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="64" column="12" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="64" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__1650_8c_1ad5c80941eb3d1b8d11e83416e7a5aa51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int tm1650SetDispaly</definition>
+        <argsstring>(uint8_t data)</argsstring>
+        <name>tm1650SetDispaly</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>test code to read esp-i2c-slave We need to fill the buffer of esp slave device, then master can read them out. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><hruler/>
+ | start | addr +ack | key + ack | stop | -----<mdash/>|-----------------------<mdash/>|-------------------<mdash/>|-----------------<mdash/>|---<mdash/>| </para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; I2C master doesn&apos;t need buffer</para>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="85" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="85" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__1650_8c_1aab7fb602ef15e78e63c14aaff709e59f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int tm1650SetDispalyData</definition>
+        <argsstring>(uint8_t *data, uint8_t size)</argsstring>
+        <name>tm1650SetDispalyData</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>test code to read esp-i2c-slave We need to fill the buffer of esp slave device, then master can read them out. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><hruler/>
+ | start | addr +ack | key + ack | stop | -----<mdash/>|-----------------------<mdash/>|-------------------<mdash/>|-----------------<mdash/>|---<mdash/>| </para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; I2C master doesn&apos;t need buffer</para>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="98" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="98" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__1650_8c_1a6fa5f2878ae0081f326492ba97ae1040" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int tm1650ReadKey</definition>
+        <argsstring>(uint8_t *key)</argsstring>
+        <name>tm1650ReadKey</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>test code to read esp-i2c-slave We need to fill the buffer of esp slave device, then master can read them out. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><hruler/>
+ | start | addr +ack | key + ack | stop | -----<mdash/>|-----------------------<mdash/>|-------------------<mdash/>|-----------------<mdash/>|---<mdash/>| </para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; I2C master doesn&apos;t need buffer</para>
+<para>&lt; I2C master will check ack from slave</para>
+<para>&lt; I2C ack value</para>
+<para>&lt; I2C port number for master dev</para>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="127" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="127" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__1650_8c_1ad06044476ebc80b52b9ef417025b4510" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvTm1650Init</definition>
+        <argsstring>(void)</argsstring>
+        <name>drvTm1650Init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>i2c master initialization </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; I2C port number for master dev</para>
+<para>&lt; gpio number for I2C master data <linebreak/>
+</para>
+<para>&lt; gpio number for I2C master clock</para>
+<para>&lt; I2C master clock frequency</para>
+<para>&lt; I2C master doesn&apos;t need buffer</para>
+<para>&lt; I2C master doesn&apos;t need buffer</para>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" line="145" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="145" bodyend="161"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/*<sp/>i2c<sp/>-<sp/>Example</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"></highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/><sp/>For<sp/>other<sp/>examples<sp/>please<sp/>check:</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/><sp/><sp/>https://github.com/espressif/esp-idf/tree/master/examples</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"></highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/><sp/><sp/>See<sp/>README.md<sp/>file<sp/>to<sp/>get<sp/>detailed<sp/>usage<sp/>of<sp/>this<sp/>example.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"></highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/><sp/><sp/>This<sp/>example<sp/>code<sp/>is<sp/>in<sp/>the<sp/>Public<sp/>Domain<sp/>(or<sp/>CC0<sp/>licensed,<sp/>at<sp/>your<sp/>option.)</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/><sp/><sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>this</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/><sp/><sp/>software<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/><sp/><sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;driver/i2c.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;drv_1650.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>drvTm1650Init();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>tm1650SetDispaly(<sp/>TM1650_DISPLAY_VALUE(LEVEL_1,<sp/>TM1650_SEGMENT_8,<sp/>TM1650_DISPLAY_ON)<sp/>);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>uint8_t<sp/>disbuftest[4]={0x11,<sp/>0x22,<sp/>0x33,<sp/>0x44};</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>tm1650SetDispalyData(disbuftest,<sp/>4);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_I2C_NUMBER(num)<sp/>I2C_NUM_##num</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2C_NUMBER(num)<sp/>_I2C_NUMBER(num)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2C_MASTER_SCL_IO<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//19</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2C_MASTER_SDA_IO<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//18</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2C_MASTER_NUM<sp/>I2C_NUMBER(1)<sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="preprocessor">#define<sp/>I2C_MASTER_FREQ_HZ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>40000<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="preprocessor">#define<sp/>I2C_MASTER_TX_BUF_DISABLE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="preprocessor">#define<sp/>I2C_MASTER_RX_BUF_DISABLE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="preprocessor">#define<sp/>ESP_SLAVE_ADDR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x28<sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="preprocessor">#define<sp/>WRITE_BIT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>I2C_MASTER_WRITE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35"><highlight class="preprocessor">#define<sp/>READ_BIT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>I2C_MASTER_READ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="preprocessor">#define<sp/>ACK_CHECK_EN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37"><highlight class="preprocessor">#define<sp/>ACK_CHECK_DIS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="preprocessor">#define<sp/>ACK_VAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="preprocessor">#define<sp/>NACK_VAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x1<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41"><highlight class="preprocessor">#define<sp/>TM1650_READ_KEY_ADDR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0X49<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="preprocessor">#define<sp/>TM1650_SET_DIASPLAY_ADDR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0X48<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="preprocessor">#define<sp/>TM1650_SET_DIASPLAY_DATAADDR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0X68<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="preprocessor">static<sp/>uint8_t<sp/>LSB2MSB(uint8_t<sp/>data)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>printf(&quot;data<sp/>in<sp/>0x%0X&quot;,<sp/>data);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>data<sp/>=<sp/>data&lt;&lt;4<sp/>|<sp/>data&gt;&gt;4;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>data<sp/>=<sp/>(data&amp;0x55)&lt;&lt;1<sp/>|<sp/>(data&amp;0xaa)&gt;&gt;1;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>data<sp/>=<sp/>(data&amp;0x33)&lt;&lt;2<sp/>|<sp/>(data&amp;0xcc)&gt;&gt;2;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>printf(&quot;data<sp/>in<sp/>0x%0X&quot;,<sp/>data);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>data;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="64"><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i2cMasterSetAddrData(uint8_t<sp/>addr,<sp/>uint8_t<sp/>data)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_cmd_handle_t<sp/>cmd<sp/>=<sp/>i2c_cmd_link_create();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_master_start(cmd);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_master_write_byte(cmd,<sp/>LSB2MSB(addr),<sp/>ACK_CHECK_EN);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_master_write_byte(cmd,<sp/>LSB2MSB(data),<sp/>ACK_CHECK_EN);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_master_stop(cmd);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/>i2c_master_cmd_begin(I2C_MASTER_NUM,<sp/>cmd,<sp/>100<sp/>/<sp/>portTICK_RATE_MS);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>printf(&quot;i2cMasterSetAddrData<sp/>init<sp/>%d\r\n&quot;,<sp/>ret);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_cmd_link_delete(cmd);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="85"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tm1650SetDispaly(uint8_t<sp/>data)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i2cMasterSetAddrData(TM1650_SET_DIASPLAY_ADDR,<sp/>data);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="98"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tm1650SetDispalyData(uint8_t<sp/>*data,<sp/>uint8_t<sp/>size)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>static<sp/>char<sp/>testper=0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if(++testper<sp/>&lt;<sp/>100)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>return<sp/>0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>testper<sp/>=<sp/>0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(data<sp/>==<sp/>NULL<sp/>||<sp/>size<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>*(data+1)<sp/>=<sp/>0;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>printf(&quot;get<sp/>ke435y<sp/>0x%0X\r\n&quot;,<sp/>*(data+1));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>tm1650ReadKey(data+1);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>printf(&quot;get<sp/>key<sp/>0x%0X\r\n&quot;,<sp/>*(data+1));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;<sp/>i&lt;size;<sp/>i++)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>i2cMasterSetAddrData(TM1650_SET_DIASPLAY_DATAADDR<sp/>+<sp/>2*i,<sp/>*(data+i))<sp/>!=<sp/>0<sp/>)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="127"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tm1650ReadKey(uint8_t<sp/>*key)</highlight></codeline>
+<codeline lineno="128"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(key<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_cmd_handle_t<sp/>cmd<sp/>=<sp/>i2c_cmd_link_create();</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_master_start(cmd);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_master_write_byte(cmd,<sp/>LSB2MSB(TM1650_READ_KEY_ADDR),<sp/>ACK_CHECK_EN);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_master_read(cmd,<sp/>key,<sp/>1,<sp/>ACK_VAL);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_master_stop(cmd);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/>i2c_master_cmd_begin(I2C_MASTER_NUM,<sp/>cmd,<sp/>10<sp/>/<sp/>portTICK_RATE_MS);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_cmd_link_delete(cmd);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvTm1650Init(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ret=0;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i2c_master_port<sp/>=<sp/>I2C_MASTER_NUM;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_config_t<sp/>conf;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>conf.mode<sp/>=<sp/>I2C_MODE_MASTER;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>conf.sda_io_num<sp/>=<sp/>I2C_MASTER_SDA_IO;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>conf.sda_pullup_en<sp/>=<sp/>GPIO_PULLUP_ENABLE;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>conf.scl_io_num<sp/>=<sp/>I2C_MASTER_SCL_IO;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>conf.scl_pullup_en<sp/>=<sp/>GPIO_PULLUP_ENABLE;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>conf.master.clk_speed<sp/>=<sp/>I2C_MASTER_FREQ_HZ;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>i2c_param_config(i2c_master_port,<sp/>&amp;conf);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;i2c_param_config<sp/>init<sp/>%d\r\n&quot;</highlight><highlight class="normal">,<sp/>ret);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>i2c_driver_install(i2c_master_port,<sp/>conf.mode,<sp/>I2C_MASTER_RX_BUF_DISABLE,<sp/>I2C_MASTER_TX_BUF_DISABLE,<sp/>0);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;i2c_driver_install<sp/>init<sp/>%d\r\n&quot;</highlight><highlight class="normal">,<sp/>ret);</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,13 @@
+.. _exhale_define_drv__gpio_8h_1a3f3cd899a24b55f66b4a5a2697677774:
+
+Define OUTPUT_LOW
+=================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_freezerdrv_drv_gpio.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: OUTPUT_LOW

@@ -1,0 +1,13 @@
+.. _exhale_function_drv__display_8h_1a669228c160543a799a6474bd83ed7431:
+
+Function drvDisplayCanReadData(int, int)
+========================================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_freezerdrv_drv_display.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: drvDisplayCanReadData(int, int)

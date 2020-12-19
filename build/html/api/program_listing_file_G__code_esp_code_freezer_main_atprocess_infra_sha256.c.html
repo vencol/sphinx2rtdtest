@@ -1,0 +1,523 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Program Listing for File infra_sha256.c &mdash; freezer  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists\css\tree_view.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> freezer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">freezer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File infra_sha256.c</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/program_listing_file_G__code_esp_code_freezer_main_atprocess_infra_sha256.c.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-infra-sha256-c">
+<span id="program-listing-file-g-code-esp-code-freezer-main-atprocess-infra-sha256-c"></span><h1>Program Listing for File infra_sha256.c<a class="headerlink" href="#program-listing-for-file-infra-sha256-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_G__code_esp_code_freezer_main_atprocess_infra_sha256.c.html#file-g-code-esp-code-freezer-main-atprocess-infra-sha256-c"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\atprocess\infra_sha256.c</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Copyright (C) 2015-2018 Alibaba Group Holding Limited</span>
+<span class="cm"> */</span>
+
+<span class="cp">#define INFRA_SHA256_SMALLER</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;infra_sha256.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#define SHA256_KEY_IOPAD_SIZE   (64)</span>
+<span class="cp">#define SHA256_DIGEST_SIZE      (32)</span>
+
+<span class="cm">/*</span>
+<span class="cm"> * 32-bit integer manipulation macros (big endian)</span>
+<span class="cm"> */</span>
+<span class="cp">#ifndef GET_UINT32_BE</span>
+<span class="cp">#define GET_UINT32_BE(n,b,i)                            \</span>
+<span class="cp">    do {                                                    \</span>
+<span class="cp">        (n) = ( (uint32_t) (b)[(i)    ] &lt;&lt; 24 )             \</span>
+<span class="cp">              | ( (uint32_t) (b)[(i) + 1] &lt;&lt; 16 )             \</span>
+<span class="cp">              | ( (uint32_t) (b)[(i) + 2] &lt;&lt;  8 )             \</span>
+<span class="cp">              | ( (uint32_t) (b)[(i) + 3]       );            \</span>
+<span class="cp">    } while( 0 )</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#ifndef PUT_UINT32_BE</span>
+<span class="cp">#define PUT_UINT32_BE(n,b,i)                            \</span>
+<span class="cp">    do {                                                    \</span>
+<span class="cp">        (b)[(i)    ] = (unsigned char) ( (n) &gt;&gt; 24 );       \</span>
+<span class="cp">        (b)[(i) + 1] = (unsigned char) ( (n) &gt;&gt; 16 );       \</span>
+<span class="cp">        (b)[(i) + 2] = (unsigned char) ( (n) &gt;&gt;  8 );       \</span>
+<span class="cp">        (b)[(i) + 3] = (unsigned char) ( (n)       );       \</span>
+<span class="cp">    } while( 0 )</span>
+<span class="cp">#endif</span>
+
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">utilsSha256Zeroize</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">v</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">volatile</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="o">*</span><span class="n">p</span><span class="o">++</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">utilsSha256Init</span><span class="p">(</span><span class="n">iot_sha256_context</span> <span class="o">*</span><span class="n">ctx</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">iot_sha256_context</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">utilsSha256Free</span><span class="p">(</span><span class="n">iot_sha256_context</span> <span class="o">*</span><span class="n">ctx</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">utilsSha256Zeroize</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">iot_sha256_context</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">utilsSha256Starts</span><span class="p">(</span><span class="n">iot_sha256_context</span> <span class="o">*</span><span class="n">ctx</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">is224</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">total</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">total</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">is224</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="cm">/* SHA-256 */</span>
+        <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x6A09E667</span><span class="p">;</span>
+        <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xBB67AE85</span><span class="p">;</span>
+        <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x3C6EF372</span><span class="p">;</span>
+        <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xA54FF53A</span><span class="p">;</span>
+        <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x510E527F</span><span class="p">;</span>
+        <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x9B05688C</span><span class="p">;</span>
+        <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x1F83D9AB</span><span class="p">;</span>
+        <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x5BE0CD19</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">is224</span> <span class="o">=</span> <span class="n">is224</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">uint32_t</span> <span class="n">K</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mh">0x428A2F98</span><span class="p">,</span> <span class="mh">0x71374491</span><span class="p">,</span> <span class="mh">0xB5C0FBCF</span><span class="p">,</span> <span class="mh">0xE9B5DBA5</span><span class="p">,</span>
+    <span class="mh">0x3956C25B</span><span class="p">,</span> <span class="mh">0x59F111F1</span><span class="p">,</span> <span class="mh">0x923F82A4</span><span class="p">,</span> <span class="mh">0xAB1C5ED5</span><span class="p">,</span>
+    <span class="mh">0xD807AA98</span><span class="p">,</span> <span class="mh">0x12835B01</span><span class="p">,</span> <span class="mh">0x243185BE</span><span class="p">,</span> <span class="mh">0x550C7DC3</span><span class="p">,</span>
+    <span class="mh">0x72BE5D74</span><span class="p">,</span> <span class="mh">0x80DEB1FE</span><span class="p">,</span> <span class="mh">0x9BDC06A7</span><span class="p">,</span> <span class="mh">0xC19BF174</span><span class="p">,</span>
+    <span class="mh">0xE49B69C1</span><span class="p">,</span> <span class="mh">0xEFBE4786</span><span class="p">,</span> <span class="mh">0x0FC19DC6</span><span class="p">,</span> <span class="mh">0x240CA1CC</span><span class="p">,</span>
+    <span class="mh">0x2DE92C6F</span><span class="p">,</span> <span class="mh">0x4A7484AA</span><span class="p">,</span> <span class="mh">0x5CB0A9DC</span><span class="p">,</span> <span class="mh">0x76F988DA</span><span class="p">,</span>
+    <span class="mh">0x983E5152</span><span class="p">,</span> <span class="mh">0xA831C66D</span><span class="p">,</span> <span class="mh">0xB00327C8</span><span class="p">,</span> <span class="mh">0xBF597FC7</span><span class="p">,</span>
+    <span class="mh">0xC6E00BF3</span><span class="p">,</span> <span class="mh">0xD5A79147</span><span class="p">,</span> <span class="mh">0x06CA6351</span><span class="p">,</span> <span class="mh">0x14292967</span><span class="p">,</span>
+    <span class="mh">0x27B70A85</span><span class="p">,</span> <span class="mh">0x2E1B2138</span><span class="p">,</span> <span class="mh">0x4D2C6DFC</span><span class="p">,</span> <span class="mh">0x53380D13</span><span class="p">,</span>
+    <span class="mh">0x650A7354</span><span class="p">,</span> <span class="mh">0x766A0ABB</span><span class="p">,</span> <span class="mh">0x81C2C92E</span><span class="p">,</span> <span class="mh">0x92722C85</span><span class="p">,</span>
+    <span class="mh">0xA2BFE8A1</span><span class="p">,</span> <span class="mh">0xA81A664B</span><span class="p">,</span> <span class="mh">0xC24B8B70</span><span class="p">,</span> <span class="mh">0xC76C51A3</span><span class="p">,</span>
+    <span class="mh">0xD192E819</span><span class="p">,</span> <span class="mh">0xD6990624</span><span class="p">,</span> <span class="mh">0xF40E3585</span><span class="p">,</span> <span class="mh">0x106AA070</span><span class="p">,</span>
+    <span class="mh">0x19A4C116</span><span class="p">,</span> <span class="mh">0x1E376C08</span><span class="p">,</span> <span class="mh">0x2748774C</span><span class="p">,</span> <span class="mh">0x34B0BCB5</span><span class="p">,</span>
+    <span class="mh">0x391C0CB3</span><span class="p">,</span> <span class="mh">0x4ED8AA4A</span><span class="p">,</span> <span class="mh">0x5B9CCA4F</span><span class="p">,</span> <span class="mh">0x682E6FF3</span><span class="p">,</span>
+    <span class="mh">0x748F82EE</span><span class="p">,</span> <span class="mh">0x78A5636F</span><span class="p">,</span> <span class="mh">0x84C87814</span><span class="p">,</span> <span class="mh">0x8CC70208</span><span class="p">,</span>
+    <span class="mh">0x90BEFFFA</span><span class="p">,</span> <span class="mh">0xA4506CEB</span><span class="p">,</span> <span class="mh">0xBEF9A3F7</span><span class="p">,</span> <span class="mh">0xC67178F2</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="cp">#define  SHR(x,n) ((x &amp; 0xFFFFFFFF) &gt;&gt; n)</span>
+<span class="cp">#define ROTR(x,n) (SHR(x,n) | (x &lt;&lt; (32 - n)))</span>
+
+<span class="cp">#define S0(x) (ROTR(x, 7) ^ ROTR(x,18) ^  SHR(x, 3))</span>
+<span class="cp">#define S1(x) (ROTR(x,17) ^ ROTR(x,19) ^  SHR(x,10))</span>
+
+<span class="cp">#define S2(x) (ROTR(x, 2) ^ ROTR(x,13) ^ ROTR(x,22))</span>
+<span class="cp">#define S3(x) (ROTR(x, 6) ^ ROTR(x,11) ^ ROTR(x,25))</span>
+
+<span class="cp">#define F0(x,y,z) ((x &amp; y) | (z &amp; (x | y)))</span>
+<span class="cp">#define F1(x,y,z) (z ^ (x &amp; (y ^ z)))</span>
+
+<span class="cp">#define R(t)                                    \</span>
+<span class="cp">    (                                               \</span>
+<span class="cp">            W[t] = S1(W[t -  2]) + W[t -  7] +          \</span>
+<span class="cp">                   S0(W[t - 15]) + W[t - 16]            \</span>
+<span class="cp">    )</span>
+
+<span class="cp">#define P(a,b,c,d,e,f,g,h,x,K)                  \</span>
+<span class="cp">    {                                               \</span>
+<span class="cp">        temp1 = h + S3(e) + F1(e,f,g) + K + x;      \</span>
+<span class="cp">        temp2 = S2(a) + F0(a,b,c);                  \</span>
+<span class="cp">        d += temp1; h = temp1 + temp2;              \</span>
+<span class="cp">    }</span>
+
+<span class="kt">void</span> <span class="nf">utilsSha256Process</span><span class="p">(</span><span class="n">iot_sha256_context</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">64</span><span class="p">])</span>
+<span class="p">{</span>
+    <span class="kt">uint32_t</span> <span class="n">temp1</span><span class="p">,</span> <span class="n">temp2</span><span class="p">,</span> <span class="n">W</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+    <span class="kt">uint32_t</span> <span class="n">A</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+
+<span class="cp">#if defined(INFRA_SHA256_SMALLER)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">64</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">GET_UINT32_BE</span><span class="p">(</span><span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">i</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">R</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+        <span class="n">temp1</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="cp">#else </span><span class="cm">/* INFRA_SHA256_SMALLER */</span><span class="cp"></span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">GET_UINT32_BE</span><span class="p">(</span><span class="n">W</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">i</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">0</span><span class="p">],</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">0</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">],</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">],</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">],</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">5</span><span class="p">],</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">5</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">6</span><span class="p">],</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">W</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">7</span><span class="p">],</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">7</span><span class="p">]);</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">16</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">64</span><span class="p">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mi">8</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">R</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">0</span><span class="p">),</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">0</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">R</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">R</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">),</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">R</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">),</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">R</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">),</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">R</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">5</span><span class="p">),</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">5</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">R</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">6</span><span class="p">),</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">6</span><span class="p">]);</span>
+        <span class="n">P</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">R</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">7</span><span class="p">),</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">7</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="cp">#endif </span><span class="cm">/* INFRA_SHA256_SMALLER */</span><span class="cp"></span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">utilsSha256Update</span><span class="p">(</span><span class="n">iot_sha256_context</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">input</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">ilen</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">size_t</span> <span class="n">fill</span><span class="p">;</span>
+    <span class="kt">uint32_t</span> <span class="n">left</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">ilen</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">left</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">total</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x3F</span><span class="p">;</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="mi">64</span> <span class="o">-</span> <span class="n">left</span><span class="p">;</span>
+
+    <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">total</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="kt">uint32_t</span><span class="p">)</span> <span class="n">ilen</span><span class="p">;</span>
+    <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">total</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;=</span> <span class="mh">0xFFFFFFFF</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">total</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="p">(</span><span class="kt">uint32_t</span><span class="p">)</span> <span class="n">ilen</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">total</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&amp;&amp;</span> <span class="n">ilen</span> <span class="o">&gt;=</span> <span class="n">fill</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">memcpy</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">buffer</span> <span class="o">+</span> <span class="n">left</span><span class="p">),</span> <span class="n">input</span><span class="p">,</span> <span class="n">fill</span><span class="p">);</span>
+        <span class="n">utilsSha256Process</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">buffer</span><span class="p">);</span>
+        <span class="n">input</span> <span class="o">+=</span> <span class="n">fill</span><span class="p">;</span>
+        <span class="n">ilen</span>  <span class="o">-=</span> <span class="n">fill</span><span class="p">;</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">ilen</span> <span class="o">&gt;=</span> <span class="mi">64</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">utilsSha256Process</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">input</span><span class="p">);</span>
+        <span class="n">input</span> <span class="o">+=</span> <span class="mi">64</span><span class="p">;</span>
+        <span class="n">ilen</span>  <span class="o">-=</span> <span class="mi">64</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">ilen</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">memcpy</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">buffer</span> <span class="o">+</span> <span class="n">left</span><span class="p">),</span> <span class="n">input</span><span class="p">,</span> <span class="n">ilen</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">sha256_padding</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mh">0x80</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">utilsSha256Finish</span><span class="p">(</span><span class="n">iot_sha256_context</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">output</span><span class="p">[</span><span class="mi">32</span><span class="p">])</span>
+<span class="p">{</span>
+    <span class="kt">uint32_t</span> <span class="n">last</span><span class="p">,</span> <span class="n">padn</span><span class="p">;</span>
+    <span class="kt">uint32_t</span> <span class="n">high</span><span class="p">,</span> <span class="n">low</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">msglen</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+
+    <span class="n">high</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">total</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">29</span><span class="p">)</span>
+           <span class="o">|</span> <span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">total</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span>  <span class="mi">3</span><span class="p">);</span>
+    <span class="n">low</span>  <span class="o">=</span> <span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">total</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span>  <span class="mi">3</span><span class="p">);</span>
+
+    <span class="n">PUT_UINT32_BE</span><span class="p">(</span><span class="n">high</span><span class="p">,</span> <span class="n">msglen</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">PUT_UINT32_BE</span><span class="p">(</span><span class="n">low</span><span class="p">,</span>  <span class="n">msglen</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+
+    <span class="n">last</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">-&gt;</span><span class="n">total</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mh">0x3F</span><span class="p">;</span>
+    <span class="n">padn</span> <span class="o">=</span> <span class="p">(</span><span class="n">last</span> <span class="o">&lt;</span> <span class="mi">56</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="mi">56</span> <span class="o">-</span> <span class="n">last</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="mi">120</span> <span class="o">-</span> <span class="n">last</span><span class="p">);</span>
+
+    <span class="n">utilsSha256Update</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">sha256_padding</span><span class="p">,</span> <span class="n">padn</span><span class="p">);</span>
+    <span class="n">utilsSha256Update</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">msglen</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+
+    <span class="n">PUT_UINT32_BE</span><span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">output</span><span class="p">,</span>  <span class="mi">0</span><span class="p">);</span>
+    <span class="n">PUT_UINT32_BE</span><span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">output</span><span class="p">,</span>  <span class="mi">4</span><span class="p">);</span>
+    <span class="n">PUT_UINT32_BE</span><span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">output</span><span class="p">,</span>  <span class="mi">8</span><span class="p">);</span>
+    <span class="n">PUT_UINT32_BE</span><span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">output</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
+    <span class="n">PUT_UINT32_BE</span><span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">output</span><span class="p">,</span> <span class="mi">16</span><span class="p">);</span>
+    <span class="n">PUT_UINT32_BE</span><span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">output</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+    <span class="n">PUT_UINT32_BE</span><span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">output</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">is224</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">PUT_UINT32_BE</span><span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">state</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">output</span><span class="p">,</span> <span class="mi">28</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">utilsSha256</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">input</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">ilen</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">output</span><span class="p">[</span><span class="mi">32</span><span class="p">])</span>
+<span class="p">{</span>
+    <span class="n">iot_sha256_context</span> <span class="n">ctx</span><span class="p">;</span>
+
+    <span class="n">utilsSha256Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">);</span>
+    <span class="n">utilsSha256Starts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">);</span>
+    <span class="n">utilsSha256Update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">,</span> <span class="n">input</span><span class="p">,</span> <span class="n">ilen</span><span class="p">);</span>
+    <span class="n">utilsSha256Finish</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>
+    <span class="n">utilsSha256Free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">utilsHmacSha256</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">msg</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">msg_len</span><span class="p">,</span> <span class="k">const</span> <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">key</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">key_len</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">output</span><span class="p">[</span><span class="mi">32</span><span class="p">])</span>
+<span class="p">{</span>
+    <span class="n">iot_sha256_context</span> <span class="n">context</span><span class="p">;</span>
+    <span class="kt">uint8_t</span> <span class="n">k_ipad</span><span class="p">[</span><span class="n">SHA256_KEY_IOPAD_SIZE</span><span class="p">];</span>    <span class="cm">/* inner padding - key XORd with ipad  */</span>
+    <span class="kt">uint8_t</span> <span class="n">k_opad</span><span class="p">[</span><span class="n">SHA256_KEY_IOPAD_SIZE</span><span class="p">];</span>    <span class="cm">/* outer padding - key XORd with opad */</span>
+    <span class="kt">int32_t</span> <span class="n">i</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">((</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">msg</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nb">NULL</span> <span class="o">==</span> <span class="n">output</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">key_len</span> <span class="o">&gt;</span> <span class="n">SHA256_KEY_IOPAD_SIZE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* start out by storing key in pads */</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">k_ipad</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">k_ipad</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">k_opad</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">k_opad</span><span class="p">));</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="n">k_ipad</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">key_len</span><span class="p">);</span>
+    <span class="n">memcpy</span><span class="p">(</span><span class="n">k_opad</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">key_len</span><span class="p">);</span>
+
+    <span class="cm">/* XOR key with ipad and opad values */</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SHA256_KEY_IOPAD_SIZE</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">k_ipad</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^=</span> <span class="mh">0x36</span><span class="p">;</span>
+        <span class="n">k_opad</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">^=</span> <span class="mh">0x5c</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="cm">/* perform inner SHA */</span>
+    <span class="n">utilsSha256Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">context</span><span class="p">);</span>                                      <span class="cm">/* init context for 1st pass */</span>
+    <span class="n">utilsSha256Starts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">context</span><span class="p">);</span>                                    <span class="cm">/* setup context for 1st pass */</span>
+    <span class="n">utilsSha256Update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">context</span><span class="p">,</span> <span class="n">k_ipad</span><span class="p">,</span> <span class="n">SHA256_KEY_IOPAD_SIZE</span><span class="p">);</span>     <span class="cm">/* start with inner pad */</span>
+    <span class="n">utilsSha256Update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">context</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">msg_len</span><span class="p">);</span>                      <span class="cm">/* then text of datagram */</span>
+    <span class="n">utilsSha256Finish</span><span class="p">(</span><span class="o">&amp;</span><span class="n">context</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>                            <span class="cm">/* finish up 1st pass */</span>
+
+    <span class="cm">/* perform outer SHA */</span>
+    <span class="n">utilsSha256Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">context</span><span class="p">);</span>                              <span class="cm">/* init context for 2nd pass */</span>
+    <span class="n">utilsSha256Starts</span><span class="p">(</span><span class="o">&amp;</span><span class="n">context</span><span class="p">);</span>                            <span class="cm">/* setup context for 2nd pass */</span>
+    <span class="n">utilsSha256Update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">context</span><span class="p">,</span> <span class="n">k_opad</span><span class="p">,</span> <span class="n">SHA256_KEY_IOPAD_SIZE</span><span class="p">);</span>    <span class="cm">/* start with outer pad */</span>
+    <span class="n">utilsSha256Update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">context</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">SHA256_DIGEST_SIZE</span><span class="p">);</span>     <span class="cm">/* then results of 1st hash */</span>
+    <span class="n">utilsSha256Finish</span><span class="p">(</span><span class="o">&amp;</span><span class="n">context</span><span class="p">,</span> <span class="n">output</span><span class="p">);</span>                       <span class="cm">/* finish up 2nd pass */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, vencol
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

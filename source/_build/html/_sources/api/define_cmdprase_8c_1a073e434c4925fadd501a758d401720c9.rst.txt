@@ -1,0 +1,13 @@
+.. _exhale_define_cmdprase_8c_1a073e434c4925fadd501a758d401720c9:
+
+Define CMD_PREFIX_20GA_OFFSET
+=============================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_iot_cmdprase.c`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: CMD_PREFIX_20GA_OFFSET

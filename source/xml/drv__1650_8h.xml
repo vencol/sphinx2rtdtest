@@ -1,0 +1,267 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="drv__1650_8h" kind="file" language="C++">
+    <compoundname>drv_1650.h</compoundname>
+    <includedby refid="drv__1650_8c" local="yes">G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c</includedby>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="drv__1650_8h_1a57f788505a5e88922ce39ee03ff9083c" prot="public" static="no">
+        <name>TM1650_SEGMENT_8</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" line="16" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8h_1a7fe4c4d4b02b9384470af81ee8c14dbd" prot="public" static="no">
+        <name>TM1650_SEGMENT_7</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" line="17" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8h_1a928bdee16c902e25cbe73635ce96ae6c" prot="public" static="no">
+        <name>TM1650_DISPLAY_ON</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" line="18" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8h_1a2b767ba4afb41f92b88a5e094a3ed9d6" prot="public" static="no">
+        <name>TM1650_DISPLAY_OFF</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" line="19" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__1650_8h_1a1024ddbf17daefa3aa5f72ad0b4f1c20" prot="public" static="no">
+        <name>TM1650_DISPLAY_VALUE</name>
+        <param><defname>level</defname></param>
+        <param><defname>seg</defname></param>
+        <param><defname>on</defname></param>
+        <initializer>( (level)&lt;&lt;4 | (seg)&lt;&lt;3 | (on) )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" line="20" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="drv__1650_8h_1a244fc052a55fb3d1889c25c1b30b59c4" prot="public" static="no" strong="no">
+        <type></type>
+        <name>display_light_level</name>
+        <enumvalue id="drv__1650_8h_1a244fc052a55fb3d1889c25c1b30b59c4afeb57eb6fcd1e362dd390e208d77c514" prot="public">
+          <name>LEVEL_8</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="drv__1650_8h_1a244fc052a55fb3d1889c25c1b30b59c4a07fe07f1ff57b320269c9e11dee7d3d3" prot="public">
+          <name>LEVEL_1</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="drv__1650_8h_1a244fc052a55fb3d1889c25c1b30b59c4a205eff243b7d649055f9138a24963d20" prot="public">
+          <name>LEVEL_2</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="drv__1650_8h_1a244fc052a55fb3d1889c25c1b30b59c4adf832959eb2d6b3227c12e80bf25c5fb" prot="public">
+          <name>LEVEL_3</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="drv__1650_8h_1a244fc052a55fb3d1889c25c1b30b59c4a553a90eef526f8db7b3d15a324b12327" prot="public">
+          <name>LEVEL_4</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="drv__1650_8h_1a244fc052a55fb3d1889c25c1b30b59c4a8007c9aa627f039efeeb652c7eb45d8f" prot="public">
+          <name>LEVEL_5</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="drv__1650_8h_1a244fc052a55fb3d1889c25c1b30b59c4a1e329ee1e9f10a70ad3bf3e2f9af083b" prot="public">
+          <name>LEVEL_6</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="drv__1650_8h_1a244fc052a55fb3d1889c25c1b30b59c4ac3d7cc6acce22149ee5e5f5764c02f96" prot="public">
+          <name>LEVEL_7</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" line="5" column="1" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" bodystart="5" bodyend="14"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="drv__1650_8h_1ad06044476ebc80b52b9ef417025b4510" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int drvTm1650Init</definition>
+        <argsstring>(void)</argsstring>
+        <name>drvTm1650Init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>i2c master initialization </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; I2C port number for master dev</para>
+<para>&lt; gpio number for I2C master data <linebreak/>
+</para>
+<para>&lt; gpio number for I2C master clock</para>
+<para>&lt; I2C master clock frequency</para>
+<para>&lt; I2C master doesn&apos;t need buffer</para>
+<para>&lt; I2C master doesn&apos;t need buffer</para>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" line="22" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="145" bodyend="161" declfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" declline="22" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__1650_8h_1a6fa5f2878ae0081f326492ba97ae1040" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int tm1650ReadKey</definition>
+        <argsstring>(uint8_t *key)</argsstring>
+        <name>tm1650ReadKey</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+<para>test code to read esp-i2c-slave We need to fill the buffer of esp slave device, then master can read them out. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><hruler/>
+ | start | addr +ack | key + ack | stop | -----<mdash/>|-----------------------<mdash/>|-------------------<mdash/>|-----------------<mdash/>|---<mdash/>| </para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; I2C master doesn&apos;t need buffer</para>
+<para>&lt; I2C master will check ack from slave</para>
+<para>&lt; I2C ack value</para>
+<para>&lt; I2C port number for master dev</para>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" line="23" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="127" bodyend="140" declfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" declline="23" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__1650_8h_1ad5c80941eb3d1b8d11e83416e7a5aa51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int tm1650SetDispaly</definition>
+        <argsstring>(uint8_t data)</argsstring>
+        <name>tm1650SetDispaly</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>test code to read esp-i2c-slave We need to fill the buffer of esp slave device, then master can read them out. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><hruler/>
+ | start | addr +ack | key + ack | stop | -----<mdash/>|-----------------------<mdash/>|-------------------<mdash/>|-----------------<mdash/>|---<mdash/>| </para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; I2C master doesn&apos;t need buffer</para>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" line="24" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="85" bodyend="88" declfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" declline="24" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__1650_8h_1aab7fb602ef15e78e63c14aaff709e59f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int tm1650SetDispalyData</definition>
+        <argsstring>(uint8_t *data, uint8_t size)</argsstring>
+        <name>tm1650SetDispalyData</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>test code to read esp-i2c-slave We need to fill the buffer of esp slave device, then master can read them out. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><hruler/>
+ | start | addr +ack | key + ack | stop | -----<mdash/>|-----------------------<mdash/>|-------------------<mdash/>|-----------------<mdash/>|---<mdash/>| </para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; I2C master doesn&apos;t need buffer</para>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" line="25" column="5" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.c" bodystart="98" bodyend="117" declfile="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h" declline="25" declcolumn="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__DRV_1650__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__DRV_1650__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>LEVEL_8,</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>LEVEL_1,</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>LEVEL_2,</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>LEVEL_3,</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>LEVEL_4,</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>LEVEL_5,</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>LEVEL_6,</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>LEVEL_7</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}<sp/>display_light_level;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TM1650_SEGMENT_8<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TM1650_SEGMENT_7<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TM1650_DISPLAY_ON<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TM1650_DISPLAY_OFF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TM1650_DISPLAY_VALUE(level,<sp/>seg,<sp/>on)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>(level)&lt;&lt;4<sp/>|<sp/>(seg)&lt;&lt;3<sp/>|<sp/>(on)<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>drvTm1650Init(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tm1650ReadKey(uint8_t<sp/>*key);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tm1650SetDispaly(uint8_t<sp/>data);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tm1650SetDispalyData(uint8_t<sp/>*data,<sp/>uint8_t<sp/>size);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_1650.h"/>
+  </compounddef>
+</doxygen>

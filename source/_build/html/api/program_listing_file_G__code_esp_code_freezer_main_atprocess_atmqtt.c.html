@@ -1,0 +1,748 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program Listing for File atmqtt.c &#8212; freezer  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="program-listing-for-file-atmqtt-c">
+<span id="program-listing-file-g-code-esp-code-freezer-main-atprocess-atmqtt-c"></span><h1>Program Listing for File atmqtt.c<a class="headerlink" href="#program-listing-for-file-atmqtt-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_G__code_esp_code_freezer_main_atprocess_atmqtt.c.html#file-g-code-esp-code-freezer-main-atprocess-atmqtt-c"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\atprocess\atmqtt.c</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/* WiFi station Example</span>
+
+<span class="cm">   This example code is in the Public Domain (or CC0 licensed, at your option.)</span>
+
+<span class="cm">   Unless required by applicable law or agreed to in writing, this</span>
+<span class="cm">   software is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR</span>
+<span class="cm">   CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="cm">*/</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_system.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;esp_log.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;iotinfo.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;atcmd.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;atmqtt.h&quot;</span><span class="cp"></span>
+<span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ATTAG</span> <span class="o">=</span> <span class="s">&quot;atmqtt&quot;</span><span class="p">;</span>
+
+<span class="cp">#pragma pack(1)</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">IotMqttOperatoinCb</span><span class="p">)(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">status</span><span class="p">);</span>
+  <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">IotMqttReceiveCb</span><span class="p">)(</span><span class="kt">char</span> <span class="o">*</span><span class="n">topic</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">payload</span><span class="p">);</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span>      <span class="nl">mqttClienNum</span>    <span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span>      <span class="nl">qos</span>             <span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span>      <span class="nl">dup</span>             <span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span>      <span class="nl">retain</span>          <span class="p">:</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">atmqtt_module_t</span><span class="p">;</span>
+<span class="cp">#pragma pack()</span>
+<span class="k">static</span> <span class="n">atmqtt_module_t</span> <span class="n">atmqtt_module</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">atMqttCallBackInit</span><span class="p">(</span><span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">IotMqttOperatoinCb</span><span class="p">)(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">),</span> <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">IotMqttReceiveCb</span><span class="p">)(</span><span class="kt">char</span> <span class="o">*</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="p">))</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">IotMqttOperatoinCb</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">IotMqttReceiveCb</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">IotMqttOperatoinCb</span>  <span class="o">=</span> <span class="n">IotMqttOperatoinCb</span><span class="p">;</span>
+  <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">IotMqttReceiveCb</span>    <span class="o">=</span> <span class="n">IotMqttReceiveCb</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">atMqttInfoInit</span><span class="p">(</span><span class="kt">char</span> <span class="n">secureMode</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">secureMode</span> <span class="o">=</span> <span class="n">secureMode</span><span class="p">;</span>
+  <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span> <span class="o">=</span> <span class="n">AT_CMD_MQTT_CLIENT_NUM</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">getMqttInfo</span><span class="p">(</span><span class="o">&amp;</span><span class="n">iotinfo_module</span><span class="p">)</span> <span class="o">==</span><span class="mi">0</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s getMqttInfo success&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atSetMqttAccq</span><span class="p">(</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">clientid</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">securemode</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">clientnum</span> <span class="o">=</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">clientnum</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_CLIENT_MAXNUM</span> <span class="o">||</span> <span class="n">securemode</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_SECURE_MAXNUM</span> <span class="o">||</span> <span class="n">clientid</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTACCQ_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="n">strlen</span><span class="p">(</span><span class="n">clientid</span><span class="p">));</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">securemode</span> <span class="o">==</span> <span class="n">MODE_TCP_DIRECT_PLAIN</span><span class="p">)</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTACCQ_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">,</span> <span class="n">clientid</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTACCQ_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">,</span> <span class="n">clientid</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="mi">128</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTACCQ [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTACCQ</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTACCQ_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTACCQ</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTACCQ_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTACCQ_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTACCQ_RETRY</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atSetMqttConnect</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">keepalive</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">cleansession</span><span class="p">,</span> <span class="n">iotinfo_module_t</span> <span class="o">*</span><span class="n">pmqtt_module</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">clientnum</span> <span class="o">=</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">clientnum</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_CLIENT_MAXNUM</span> <span class="o">||</span> <span class="n">cleansession</span> <span class="o">&gt;</span> <span class="n">AT_CMD_ATCMQTTCONNECT_CLEANSEESION_MAX</span> <span class="o">||</span> <span class="n">keepalive</span> <span class="o">&gt;</span> <span class="n">AT_CMD_ATCMQTTCONNECT_KEEPALIVE_MAX</span>
+                                            <span class="o">||</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">iotDomain</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">userName</span> <span class="o">==</span> <span class="nb">NULL</span>
+                                            <span class="o">||</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">passWord</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">iotPort</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">AT_CMD_ATCMQTTCONNECT_SEND_MAXLEN</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTCONNECT_SEND_MAXLEN</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTCONNECT_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">,</span>
+                            <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">productKey</span><span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">iotDomain</span><span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">iotPort</span><span class="p">,</span>
+                            <span class="n">keepalive</span><span class="p">,</span> <span class="n">cleansession</span><span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">userName</span><span class="p">,</span> <span class="n">pmqtt_module</span><span class="o">-&gt;</span><span class="n">passWord</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="n">AT_CMD_ATCMQTTCONNECT_SEND_MAXLEN</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTCONNECT &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTCONNECT</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTCONNECT_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTCONNECT</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTCONNECT_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTCONNECT_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTCONNECT_RETRY</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atSubMqttConnect</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">clientnum</span> <span class="o">=</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">clientnum</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_CLIENT_MAXNUM</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTSUB_SEND</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTSUB_SEND</span><span class="p">),</span> <span class="n">AT_CMD_ATCMQTTSUB_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTSUB_SEND</span><span class="p">))</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTSUB [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTSUB</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSUB_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTSUB</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSUB_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSUB_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSUB_RETRY</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atUnSubMqttConnect</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">clientnum</span> <span class="o">=</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">clientnum</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_CLIENT_MAXNUM</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTUNSUB_SEND</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTUNSUB_SEND</span><span class="p">),</span> <span class="n">AT_CMD_ATCMQTTUNSUB_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTUNSUB_SEND</span><span class="p">))</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTUNSUB [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTUNSUB</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTUNSUB_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTUNSUB</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTUNSUB_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTUNSUB_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTUNSUB_RETRY</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atPubMqttTopicPayload</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">payload</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">clientnum</span> <span class="o">=</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">payload</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">clientnum</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_CLIENT_MAXNUM</span> <span class="o">||</span> <span class="n">payload</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">ret</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">ret</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_MAX_PAYLOAD_LEN</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTPAYLOAD_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">ret</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTPAYLOAD_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">payload</span><span class="p">));</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTPAYLOAD_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTPAYLOAD [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTPAYLOAD</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span>       <span class="o">=</span> <span class="n">ATCMD_WAIT_INPUT</span><span class="p">;</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTPAYLOAD</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTPAYLOAD_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTPAYLOAD_RETRY</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+        <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atPublishMqttConnect</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">qos</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">retain</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">dup</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">timeout</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">clientnum</span> <span class="o">=</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">clientnum</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_CLIENT_MAXNUM</span> <span class="o">||</span> <span class="n">qos</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_QOS_MAXNUM</span> <span class="o">||</span> <span class="n">dup</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_DUP_MAXNUM</span> <span class="o">||</span> <span class="n">retain</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_RETAIN_MAXNUM</span>
+        <span class="o">||</span> <span class="n">timeout</span> <span class="o">&lt;</span> <span class="n">AT_CMD_ATCMQTTPUB_TIMEOUT_MINI</span> <span class="o">||</span> <span class="n">retain</span> <span class="o">&gt;</span> <span class="n">AT_CMD_ATCMQTTPUB_TIMEOUT_MAX</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTPUB_SEND</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTPUB_SEND</span><span class="p">),</span> <span class="n">AT_CMD_ATCMQTTPUB_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">,</span> <span class="n">qos</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">retain</span><span class="p">,</span> <span class="n">dup</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTPUB_SEND</span><span class="p">))</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTPUB [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTPUB</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTPUB_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTPUB</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTPUB_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTPUB_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTPUB_RETRY</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">atReleaseMqttSession</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">clientnum</span> <span class="o">=</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">clientnum</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_CLIENT_MAXNUM</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTREL_SEND</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">ret</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTREL_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTREL_SEND</span><span class="p">)</span> <span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTREL [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTREL</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTREL_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTREL</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTREL_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTREL_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTREL_RETRY</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPraseMqttReceive</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">str1</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">static</span> <span class="kt">char</span> <span class="o">*</span><span class="n">topic</span><span class="o">=</span><span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">payload</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s in  [%d] &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">esp_get_free_heap_size</span><span class="p">());</span>
+  <span class="kt">int</span> <span class="n">topiclen</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">payloadlen</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="c1">// str = strstr(recbuf, AT_CMD_MQTT_RECEIVE_END);</span>
+  <span class="c1">// if(atmqtt_module.IotMqttReceiveCb &amp;&amp; str) {</span>
+  <span class="c1">// if(len &lt; 6)</span>
+  <span class="c1">//   return;</span>
+
+    <span class="n">str</span>   <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">AT_CMD_MQTT_RECEIVE_START</span><span class="p">);</span>
+    <span class="n">str1</span>  <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">atmqtt_module</span><span class="p">.</span><span class="n">IotMqttReceiveCb</span> <span class="o">&amp;&amp;</span> <span class="n">str</span> <span class="o">&amp;&amp;</span> <span class="n">str1</span><span class="p">){</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s Read OK bytes&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+      <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">str</span> <span class="o">&amp;&amp;</span> <span class="n">str</span> <span class="o">&lt;</span> <span class="n">str1</span><span class="p">){</span>
+        <span class="n">topiclen</span>  <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="n">str</span>       <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s Read OK topiclen [%d]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">topiclen</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">str</span> <span class="o">&amp;&amp;</span> <span class="n">str</span> <span class="o">&lt;</span> <span class="n">str1</span><span class="p">){</span>
+          <span class="n">payloadlen</span>  <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s Read OK payloadlen [%d]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">payloadlen</span><span class="p">);</span>
+          <span class="k">if</span><span class="p">(</span><span class="n">topiclen</span> <span class="o">&amp;&amp;</span> <span class="n">payloadlen</span> <span class="o">&amp;&amp;</span> <span class="n">topiclen</span> <span class="o">&lt;</span> <span class="n">AT_CMD_MQTT_MAX_TOPIC_LEN</span><span class="p">)</span>
+          <span class="p">{</span>
+            <span class="n">str</span>   <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+              <span class="n">str1</span>  <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+              <span class="k">if</span><span class="p">(</span><span class="n">str</span> <span class="o">&amp;&amp;</span> <span class="n">str</span> <span class="o">&lt;</span> <span class="n">str1</span><span class="p">){</span>
+  <span class="c1">// ESP_LOGI(ATTAG, &quot;%s Read OK topic&quot;, __FUNCTION__ );</span>
+                <span class="n">len</span>  <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">len</span> <span class="o">==</span> <span class="n">topiclen</span><span class="p">)</span>
+                <span class="p">{</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s Read OK topic len:%d&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">topiclen</span><span class="p">);</span>
+                  <span class="n">topic</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">realloc</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">topiclen</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s Read OK 32 topic&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+                  <span class="k">if</span><span class="p">(</span><span class="n">topic</span><span class="p">){</span>
+                    <span class="n">payload</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">realloc</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">payloadlen</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">payload</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
+                      <span class="n">free</span><span class="p">(</span><span class="n">topic</span><span class="p">);</span>
+                      <span class="n">topic</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+                      <span class="k">return</span><span class="p">;</span>
+                    <span class="p">}</span>
+                  <span class="p">}</span><span class="c1">//get topic</span>
+                  <span class="k">else</span>
+                    <span class="k">return</span><span class="p">;</span>
+
+                  <span class="n">memcpy</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">str1</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">topiclen</span><span class="p">);</span>
+                  <span class="o">*</span><span class="p">(</span><span class="n">topic</span> <span class="o">+</span> <span class="n">topiclen</span> <span class="p">)</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s Read OK topic [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">topic</span> <span class="p">);</span>
+                  <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+                  <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">){</span>
+                    <span class="n">len</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                    <span class="n">str1</span>  <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">str1</span><span class="p">)</span>  <span class="p">{</span>
+                      <span class="n">topiclen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                      <span class="k">while</span><span class="p">(</span><span class="n">len</span> <span class="o">&amp;&amp;</span> <span class="n">payloadlen</span> <span class="o">&gt;</span> <span class="n">topiclen</span><span class="p">){</span>
+                        <span class="n">memcpy</span><span class="p">(</span><span class="n">payload</span><span class="o">+</span><span class="n">topiclen</span><span class="p">,</span> <span class="n">str1</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+                        <span class="n">topiclen</span> <span class="o">+=</span> <span class="n">len</span><span class="p">;</span>
+                        <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+                        <span class="n">str</span>  <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="s">&quot;+CMQTTRXPAYLOAD:&quot;</span><span class="p">);</span>
+                        <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+                          <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+                          <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="p">{</span>
+                            <span class="n">len</span> <span class="o">=</span> <span class="n">atoi</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+                            <span class="n">str1</span>  <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+                          <span class="p">}</span>
+                        <span class="p">}</span>
+                      <span class="p">}</span>
+
+                      <span class="c1">// if(len == payloadlen) {</span>
+                      <span class="c1">//   if(payload)</span>
+                      <span class="c1">//     memcpy(payload, str1+2, payloadlen);</span>
+                      <span class="c1">// }//equ payloadlen</span>
+                      <span class="c1">// else if(len &amp;&amp; len &lt; payloadlen)</span>
+                      <span class="c1">// {</span>
+
+                      <span class="c1">// }</span>
+                      <span class="o">*</span><span class="p">(</span><span class="n">payload</span> <span class="o">+</span> <span class="n">payloadlen</span> <span class="p">)</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+                      <span class="k">if</span><span class="p">(</span><span class="n">atmqtt_module</span><span class="p">.</span><span class="n">IotMqttReceiveCb</span><span class="p">)</span>
+                        <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">IotMqttReceiveCb</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">payload</span><span class="p">);</span>
+                    <span class="p">}</span>
+                  <span class="p">}</span><span class="c1">//payloadlen</span>
+
+                  <span class="n">free</span><span class="p">(</span><span class="n">payload</span><span class="p">);</span>
+                  <span class="n">payload</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+                  <span class="n">free</span><span class="p">(</span><span class="n">topic</span><span class="p">);</span>
+                  <span class="n">topic</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+                <span class="p">}</span><span class="c1">// equ topiclen</span>
+              <span class="p">}</span><span class="c1">// topic len end</span>
+            <span class="p">}</span><span class="c1">//topic len</span>
+          <span class="p">}</span><span class="c1">//both len</span>
+        <span class="p">}</span><span class="c1">//,</span>
+      <span class="p">}</span><span class="c1">//,</span>
+    <span class="p">}</span><span class="c1">//AT_CMD_MQTT_RECEIVE_START</span>
+  <span class="c1">// }//AT_CMD_MQTT_RECEIVE_END</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s out  [%d] &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span><span class="p">,</span> <span class="n">esp_get_free_heap_size</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPraseMqttOk</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s Read OK bytes&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">atcmd_current</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">//start connect</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTSTART</span><span class="p">:</span>
+    <span class="n">ATCMD_WAIT_SPECIAL</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTSTART_TIMEOUT</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTACCQ</span><span class="p">:</span>
+    <span class="n">atSetMqttConnect</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">devparam</span><span class="o">-&gt;</span><span class="n">heartTime</span><span class="p">,</span> <span class="n">AT_CMD_MQTT_CLEAN_SESSION</span><span class="p">,</span><span class="o">&amp;</span><span class="n">iotinfo_module</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTCONNECT</span><span class="p">:</span>
+    <span class="n">ATCMD_WAIT_SPECIAL</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTCONNECT_TIMEOUT</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+    <span class="c1">//disconnect stop</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTDISC</span><span class="p">:</span>
+    <span class="n">ATCMD_WAIT_SPECIAL</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTDISC_TIMEOUT</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTREL</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">==</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">ATSENDCMD_CHANGE</span><span class="p">(</span><span class="n">ATCMQTTSTOP</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTSTOP</span><span class="p">:</span>
+    <span class="k">break</span><span class="p">;</span>
+    <span class="c1">//subtopic</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTSUBTOPIC</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">==</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">)</span>
+      <span class="n">atSubMqttConnect</span><span class="p">();</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTSUB</span><span class="p">:</span>
+    <span class="n">ATCMD_WAIT_SPECIAL</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTSUB_TIMEOUT</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+    <span class="c1">//unsubtopic</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTUNSUBTOPIC</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">==</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">)</span>
+      <span class="n">atUnSubMqttConnect</span><span class="p">();</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTUNSUB</span><span class="p">:</span>
+      <span class="n">ATCMD_WAIT_SPECIAL</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTUNSUB_TIMEOUT</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+    <span class="c1">//pubtopic payload</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTTOPIC</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">==</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">)</span>
+      <span class="n">atPubMqttTopicPayload</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">payload</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTPAYLOAD</span><span class="p">:</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">==</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">)</span>
+      <span class="n">atPublishMqttConnect</span><span class="p">(</span><span class="n">AT_CMD_MQTT_QOS</span><span class="p">,</span> <span class="n">AT_CMD_MQTT_DUP</span><span class="p">,</span> <span class="n">AT_CMD_MQTT_RETAIN</span><span class="p">,</span> <span class="n">AT_CMD_MQTT_TIMEOUT</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="k">case</span> <span class="nl">ATCMQTTPUB</span><span class="p">:</span>
+    <span class="n">ATCMD_WAIT_SPECIAL</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTPUB_TIMEOUT</span><span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+
+  <span class="k">default</span><span class="o">:</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s not atcmd_current&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+    <span class="k">break</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">specialMqttOperatoinCb</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">type</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">MQTT_DISCONNECT_SUCCESS</span> <span class="o">&gt;=</span> <span class="n">type</span> <span class="o">&amp;&amp;</span> <span class="n">MQTT_CONNECT_SUCCESS</span> <span class="o">&lt;=</span> <span class="n">type</span><span class="p">)</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strchr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span> <span class="o">&amp;&amp;</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">IotMqttOperatoinCb</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">atoi</span><span class="p">(</span><span class="n">str</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">{</span>
+      <span class="n">ATSENDCMD_CHANGE_NULL</span><span class="p">();</span>
+      <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">IotMqttOperatoinCb</span><span class="p">(</span><span class="n">type</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>  <span class="p">{</span>
+      <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">IotMqttOperatoinCb</span><span class="p">(</span><span class="n">type</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;IotMqttOperatoinCb fail [type:%d] Special bytes &quot;</span><span class="p">,</span> <span class="n">type</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPraseMqttSpecial</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s Read Special bytes&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">==</span> <span class="n">ATCMD_WAIT_ADD</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCMQTTSTART</span> <span class="o">&amp;&amp;</span> <span class="n">ATCMD_WAIT_SPECIAL_CMP</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">ATCMQTTSTART</span><span class="p">)</span> <span class="p">)</span>  <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">;</span><span class="c1">//only one receive</span>
+      <span class="n">atSetMqttAccq</span><span class="p">(</span><span class="n">iotinfo_module</span><span class="p">.</span><span class="n">clientId</span><span class="p">,</span> <span class="n">iotinfo_module</span><span class="p">.</span><span class="n">secureMode</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCMQTTCONNECT</span> <span class="o">&amp;&amp;</span> <span class="n">ATCMD_WAIT_SPECIAL_CMP</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">ATCMQTTCONNECT</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">;</span><span class="c1">//only one receive</span>
+      <span class="n">specialMqttOperatoinCb</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">MQTT_CONNECT_SUCCESS</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCMQTTSUB</span> <span class="o">&amp;&amp;</span> <span class="n">ATCMD_WAIT_SPECIAL_CMP</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">ATCMQTTSUB</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">;</span><span class="c1">//only one receive</span>
+      <span class="n">specialMqttOperatoinCb</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">MQTT_CONNECT_SUB_SUCCESS</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCMQTTUNSUB</span> <span class="o">&amp;&amp;</span> <span class="n">ATCMD_WAIT_SPECIAL_CMP</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">ATCMQTTUNSUB</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">;</span><span class="c1">//only one receive</span>
+      <span class="n">specialMqttOperatoinCb</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">MQTT_CONNECT_UNSUB_SUCCESS</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCMQTTPUB</span> <span class="o">&amp;&amp;</span> <span class="n">ATCMD_WAIT_SPECIAL_CMP</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">ATCMQTTPUB</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">;</span><span class="c1">//only one receive</span>
+      <span class="n">specialMqttOperatoinCb</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">MQTT_CONNECT_PUB_SUCCESS</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCMQTTDISC</span> <span class="o">&amp;&amp;</span> <span class="n">ATCMD_WAIT_SPECIAL_CMP</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">ATCMQTTDISC</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">;</span><span class="c1">//only one receive</span>
+      <span class="n">specialMqttOperatoinCb</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">MQTT_DISCONNECT_SUCCESS</span><span class="p">);</span>
+      <span class="n">atReleaseMqttSession</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">==</span> <span class="n">ATCMD_WAIT_INPUT</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">AT_CMD_MQTT_INPUTOK</span><span class="p">(</span><span class="n">recbuf</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="o">=</span> <span class="n">ATCMD_WAIT_NONE</span><span class="p">;</span><span class="c1">//only one receive</span>
+      <span class="k">if</span><span class="p">(</span> <span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCMQTTSUBTOPIC</span> <span class="o">||</span> <span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCMQTTUNSUBTOPIC</span> <span class="o">||</span> <span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCMQTTTOPIC</span> <span class="p">)</span>
+        <span class="n">sendAtCmd</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">receiveprefix</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">receiveprefix</span><span class="p">));</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">atcmd_current</span> <span class="o">==</span> <span class="n">ATCMQTTPAYLOAD</span> <span class="p">)</span>
+        <span class="n">sendAtCmd</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">payload</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">payload</span><span class="p">));</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="c1">// g_atcmd_uri_map_send.wait = ATCMD_WAIT_NONE;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">atPraseMqttError</span><span class="p">(</span> <span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s Read ERROR bytes []&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">recbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;[%s] Read ERROR len %d&quot;</span><span class="p">,</span> <span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span> <span class="p">);</span>
+  <span class="n">str</span> <span class="o">=</span> <span class="n">strstr</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">AT_CMD_MQTT_RECEIVE_START</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+    <span class="n">atPraseMqttReceive</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kt">void</span> <span class="nf">atPraseMqttCmd</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">recbuf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s atcmd_current : %d wait:%d &quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">atcmd_current</span><span class="p">,</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">ATCMDRESPONDOK</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span> <span class="p">)</span>
+    <span class="n">atPraseMqttOk</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span> <span class="p">)</span>
+    <span class="n">atPraseMqttSpecial</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+  <span class="k">else</span><span class="c1">//receive not right</span>
+    <span class="n">atPraseMqttError</span><span class="p">(</span><span class="n">recbuf</span><span class="p">,</span> <span class="n">len</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">atConnectMqtt</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">timeout</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTSTART</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSTART_SEND</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSTART_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTSTART</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSTART_SEND</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSTART_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSTART_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSTART_RETRY</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">atDisconnectMqtt</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">timeout</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">clientnum</span> <span class="o">=</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">clientnum</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_CLIENT_MAXNUM</span> <span class="o">||</span> <span class="p">(</span><span class="n">timeout</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">timeout</span> <span class="o">&lt;</span> <span class="n">AT_CMD_ATCMQTTPUB_TIMEOUT_MINI</span> <span class="o">||</span> <span class="n">timeout</span> <span class="o">&gt;</span> <span class="n">AT_CMD_ATCMQTTPUB_TIMEOUT_MAX</span><span class="p">))</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTDISC_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">ret</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTDISC_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">,</span> <span class="n">timeout</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTDISC_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTDISC [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTDISC</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTDISC_RESPOND</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTDISC</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTDISC_RESPOND</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTDISC_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTDISC_RETRY</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">atSubMqttTopic</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">qos</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">topic</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">clientnum</span> <span class="o">=</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">topic</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">clientnum</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_CLIENT_MAXNUM</span> <span class="o">||</span> <span class="n">qos</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_QOS_MAXNUM</span> <span class="o">||</span> <span class="n">topic</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">ret</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">ret</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_MAX_TOPIC_LEN</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTSUBTOPIC_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">ret</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSUBTOPIC_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">topic</span><span class="p">),</span> <span class="n">qos</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTSUBTOPIC_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTSUBTOPIC [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTSUBTOPIC</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">topic</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span>       <span class="o">=</span> <span class="n">ATCMD_WAIT_INPUT</span><span class="p">;</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTSUBTOPIC</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSUBTOPIC_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSUBTOPIC_RETRY</span><span class="p">);</span>
+      <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s wait [%d]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+        <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">atUnSubMqttTopic</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">dup</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">topic</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">clientnum</span> <span class="o">=</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">topic</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">clientnum</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_CLIENT_MAXNUM</span> <span class="o">||</span> <span class="n">dup</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_DUP_MAXNUM</span> <span class="o">||</span> <span class="n">topic</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">ret</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">ret</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_MAX_TOPIC_LEN</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTUNSUBTOPIC_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">ret</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTUNSUBTOPIC_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">topic</span><span class="p">),</span> <span class="n">dup</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTUNSUBTOPIC_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTUNSUBTOPIC [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTUNSUBTOPIC</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">topic</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span>       <span class="o">=</span> <span class="n">ATCMD_WAIT_INPUT</span><span class="p">;</span>
+      <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTUNSUBTOPIC</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTUNSUBTOPIC_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTUNSUBTOPIC_RETRY</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+        <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">atPublishMqttTopic</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">topic</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">payload</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">sendbuf</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">clientnum</span> <span class="o">=</span> <span class="n">atmqtt_module</span><span class="p">.</span><span class="n">mqttClienNum</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">topic</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">clientnum</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_CLIENT_MAXNUM</span> <span class="o">||</span> <span class="n">topic</span> <span class="o">==</span> <span class="nb">NULL</span>  <span class="o">||</span> <span class="n">payload</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="o">||</span> <span class="n">ret</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">ret</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_MAX_TOPIC_LEN</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">payload</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">ret</span> <span class="o">&gt;</span> <span class="n">AT_CMD_MQTT_MAX_PAYLOAD_LEN</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ESP_LOGE</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTTOPIC max len [%d]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">ret</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTTOPIC_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span> <span class="n">ret</span> <span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">sendbuf</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">snprintf</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTTOPIC_SEND</span><span class="p">,</span> <span class="n">clientnum</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">topic</span><span class="p">));</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">ret</span> <span class="o">&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">AT_CMD_ATCMQTTSUBTOPIC_SEND</span><span class="p">)</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">ret</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTTOPIC [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">sendbuf</span><span class="p">);</span>
+    <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">payload</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">realloc</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">payload</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">payload</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">memcpy</span><span class="p">(</span><span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">payload</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span> <span class="n">atMallocCmd</span><span class="p">(</span><span class="n">ATCMQTTTOPIC</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">topic</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">ESP_LOGI</span><span class="p">(</span><span class="n">ATTAG</span><span class="p">,</span> <span class="s">&quot;%s ATCMQTTTOPIC payload [%s]&quot;</span><span class="p">,</span> <span class="n">__FUNCTION__</span> <span class="p">,</span> <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">payload</span><span class="p">);</span>
+        <span class="n">g_atcmd_uri_map_send</span><span class="p">.</span><span class="n">wait</span>       <span class="o">=</span> <span class="n">ATCMD_WAIT_INPUT</span><span class="p">;</span>
+        <span class="n">atSendCmdChange</span><span class="p">(</span><span class="n">ATCMQTTTOPIC</span><span class="p">,</span> <span class="n">sendbuf</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSUBTOPIC_TIMEOUT</span><span class="p">,</span> <span class="n">AT_CMD_ATCMQTTSUBTOPIC_RETRY</span><span class="p">);</span>
+        <span class="n">ret</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">ret</span><span class="o">=-</span><span class="mi">1</span><span class="p">;</span>
+
+  <span class="n">free</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span>
+  <span class="n">sendbuf</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">freezer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, vencol.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/program_listing_file_G__code_esp_code_freezer_main_atprocess_atmqtt.c.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

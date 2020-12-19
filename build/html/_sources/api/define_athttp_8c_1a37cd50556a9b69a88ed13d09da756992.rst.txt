@@ -1,0 +1,13 @@
+.. _exhale_define_athttp_8c_1a37cd50556a9b69a88ed13d09da756992:
+
+Define OTA_READMODE
+===================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_atprocess_athttp.c`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: OTA_READMODE

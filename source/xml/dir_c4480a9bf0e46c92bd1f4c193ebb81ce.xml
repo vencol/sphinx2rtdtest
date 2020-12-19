@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="dir_c4480a9bf0e46c92bd1f4c193ebb81ce" kind="dir">
+    <compoundname>G:/code/esp/code/freezer/main/freezerdrv</compoundname>
+    <innerfile refid="drv__1650_8c">drv_1650.c</innerfile>
+    <innerfile refid="drv__1650_8h">drv_1650.h</innerfile>
+    <innerfile refid="drv__adc_8c">drv_adc.c</innerfile>
+    <innerfile refid="drv__adc_8h">drv_adc.h</innerfile>
+    <innerfile refid="drv__at_8c">drv_at.c</innerfile>
+    <innerfile refid="drv__at_8h">drv_at.h</innerfile>
+    <innerfile refid="drv__display_8c">drv_display.c</innerfile>
+    <innerfile refid="drv__display_8h">drv_display.h</innerfile>
+    <innerfile refid="drv__gpio_8c">drv_gpio.c</innerfile>
+    <innerfile refid="drv__gpio_8h">drv_gpio.h</innerfile>
+    <innerfile refid="drv__loopuart_8c">drv_loopuart.c</innerfile>
+    <innerfile refid="drv__loopuart_8h">drv_loopuart.h</innerfile>
+    <innerfile refid="drv__nvs__flash_8c">drv_nvs_flash.c</innerfile>
+    <innerfile refid="drv__nvs__flash_8h">drv_nvs_flash.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/code/esp/code/freezer/main/freezerdrv/"/>
+  </compounddef>
+</doxygen>

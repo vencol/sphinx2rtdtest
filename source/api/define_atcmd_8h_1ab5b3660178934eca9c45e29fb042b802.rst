@@ -1,0 +1,13 @@
+.. _exhale_define_atcmd_8h_1ab5b3660178934eca9c45e29fb042b802:
+
+Define AT_CMD_RESPOND_SPOK
+==========================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_atprocess_atcmd.h`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: AT_CMD_RESPOND_SPOK

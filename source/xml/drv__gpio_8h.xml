@@ -1,0 +1,367 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.20" xml:lang="en-US">
+  <compounddef id="drv__gpio_8h" kind="file" language="C++">
+    <compoundname>drv_gpio.h</compoundname>
+    <includes local="yes">driver/gpio.h</includes>
+    <includedby refid="drv__gpio_8c" local="yes">G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.c</includedby>
+    <includedby refid="controlpro_8c" local="yes">G:/code/esp/code/freezer/main/iot/controlpro.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h</label>
+        <link refid="drv__gpio_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>driver/gpio.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="drv__gpio_8h_1a93f2dc9bb4f0a14418811ce6264d70e3" prot="public" static="no">
+        <name>OUTPUT_HIGH</name>
+        <initializer>(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="10" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a3f3cd899a24b55f66b4a5a2697677774" prot="public" static="no">
+        <name>OUTPUT_LOW</name>
+        <initializer>(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="11" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a2659cbf88abccc01d311cd55ce988c69" prot="public" static="no">
+        <name>OUTPUT_COMPRESSOR_NUMBER</name>
+        <initializer>(21)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="13" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a8354b32e617712f601c637c15e5b91ea" prot="public" static="no">
+        <name>OUTPUT_FAN_NUMBER</name>
+        <initializer>(19)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="14" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a2b5ee7bf0bd76daf86825247f10da903" prot="public" static="no">
+        <name>OUTPUT_4GPOWER_NUMBER</name>
+        <initializer>(27)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="15" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a3ceaf40f8ae96b3fa1a92b9b87a4eecf" prot="public" static="no">
+        <name>OUTPUT_4GPWRKEY_NUMBER</name>
+        <initializer>(26)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="16" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a918711dcf193e0fcb99af028c946371d" prot="public" static="no">
+        <name>OUTPUT_4GRESET_NUMBER</name>
+        <initializer>(25)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="17" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1ac2ba1f86ea9df6761f5c10d3e5803933" prot="public" static="no">
+        <name>INTERRUPT_ZERO_NUMBER</name>
+        <initializer>(32)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="18" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1adb21600a017f2becf92c65f3169c3674" prot="public" static="no">
+        <name>GPIO_OUTPUT_NUM</name>
+        <param><defname>pin</defname></param>
+        <initializer>( 1ULL&lt;&lt;(pin) )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="20" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a0e743a665ebb9eac1d3d18df63f03b6d" prot="public" static="no">
+        <name>OUTPUT_COMPRESSOR</name>
+        <initializer>( GPIO_OUTPUT_NUM(OUTPUT_COMPRESSOR_NUMBER) )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="21" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a478997b477cf8ffe8fe8263c7d40eed3" prot="public" static="no">
+        <name>OUTPUT_FAN</name>
+        <initializer>( GPIO_OUTPUT_NUM(OUTPUT_FAN_NUMBER) )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="22" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a5bd8a0bf4467395d9ec565fcb08ebe0a" prot="public" static="no">
+        <name>OUTPUT_4GPOWER</name>
+        <initializer>( GPIO_OUTPUT_NUM(OUTPUT_4GPOWER_NUMBER) )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="23" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1afe0f6c6b8a90a42511a99f894a5b4ae9" prot="public" static="no">
+        <name>OUTPUT_4GPWRKEY</name>
+        <initializer>( GPIO_OUTPUT_NUM(OUTPUT_4GPWRKEY_NUMBER) )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="24" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a0aa1031eb1533b034dc561fdf913578e" prot="public" static="no">
+        <name>OUTPUT_4GRESET</name>
+        <initializer>( GPIO_OUTPUT_NUM(OUTPUT_4GRESET_NUMBER) )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="25" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a7932ee7672936c7ad34572706973e6a9" prot="public" static="no">
+        <name>FREEZER_OUTPUT_GPIO</name>
+        <param></param>
+        <initializer>(OUTPUT_COMPRESSOR | OUTPUT_FAN | OUTPUT_4GPOWER | OUTPUT_4GPWRKEY | OUTPUT_4GRESET)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="26" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a828d3fc1e51059844d6c75216c4283a5" prot="public" static="no">
+        <name>SET_COMPRESSOR_OUTPUT</name>
+        <param><defname>x</defname></param>
+        <initializer>do{ gpio_set_level(OUTPUT_COMPRESSOR_NUMBER, (x)); gpio_set_level(OUTPUT_FAN_NUMBER, (x));}while(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="28" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a71502dc51e38007635a4e0b91c8b2f33" prot="public" static="no">
+        <name>SET_FAN_OUTPUT</name>
+        <param><defname>x</defname></param>
+        <initializer>do{ gpio_set_level(OUTPUT_FAN_NUMBER, (x)); }while(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="29" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a35980ff076c1b416e6cebddb911f6db1" prot="public" static="no">
+        <name>SET_4GPOWER_OUTPUT</name>
+        <param><defname>x</defname></param>
+        <initializer>do{ gpio_set_level(OUTPUT_4GPOWER_NUMBER, (x)); }while(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="30" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1adc91eb7c011ab1951d7233645062eee2" prot="public" static="no">
+        <name>SET_4GPWRKEY_OUTPUT</name>
+        <param><defname>x</defname></param>
+        <initializer>do{ gpio_set_level(OUTPUT_4GPWRKEY_NUMBER, (x)); }while(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="31" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a6379f78741ce2f1664034b8646249981" prot="public" static="no">
+        <name>SET_4GRESET_OUTPUT</name>
+        <param><defname>x</defname></param>
+        <initializer>do{ gpio_set_level(OUTPUT_4GRESET_NUMBER, (x)); }while(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="32" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1a0947494c23ae05e892b9cd6adffde2fa" prot="public" static="no">
+        <name>INTERRUPT_ZERO</name>
+        <initializer>( GPIO_OUTPUT_NUM(INTERRUPT_ZERO_NUMBER) )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="34" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="drv__gpio_8h_1afa0f0c928caf53c950eca239ed979160" prot="public" static="no">
+        <name>FREEZER_INTERRUPT_GPIO</name>
+        <param></param>
+        <initializer>(INTERRUPT_ZERO )</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="35" column="9" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="drv__gpio_8h_1a7921b6f32111302a4f055af756b50c54" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void drvOutputGpioInit</definition>
+        <argsstring>(void)</argsstring>
+        <name>drvOutputGpioInit</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="6" column="6" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.c" bodystart="73" bodyend="113" declfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" declline="6" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__gpio_8h_1a089ad43c7140ac808b81fe63dc85cc50" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void drvGpioPro</definition>
+        <argsstring>(void)</argsstring>
+        <name>drvGpioPro</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="7" column="6" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.c" bodystart="114" bodyend="117" declfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" declline="7" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="drv__gpio_8h_1a931f0e663717299473c7200bf8b6ea8b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void setModuleStatus</definition>
+        <argsstring>(char type)</argsstring>
+        <name>setModuleStatus</name>
+        <param>
+          <type>char</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" line="8" column="6" bodyfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.c" bodystart="61" bodyend="71" declfile="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h" declline="8" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>__DRV_GPIO__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__DRV_GPIO__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;driver/gpio.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>drvOutputGpioInit(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>drvGpioPro(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>setModuleStatus(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>type);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_HIGH<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_LOW<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_COMPRESSOR_NUMBER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(21)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_FAN_NUMBER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(19)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_4GPOWER_NUMBER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(27)//4g<sp/>on<sp/>off</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_4GPWRKEY_NUMBER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(26)//4g<sp/>pwrkey</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_4GRESET_NUMBER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(25)//4g<sp/>reset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ZERO_NUMBER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(32)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GPIO_OUTPUT_NUM(pin)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>1ULL&lt;&lt;(pin)<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_COMPRESSOR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>GPIO_OUTPUT_NUM(OUTPUT_COMPRESSOR_NUMBER)<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_FAN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>GPIO_OUTPUT_NUM(OUTPUT_FAN_NUMBER)<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_4GPOWER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>GPIO_OUTPUT_NUM(OUTPUT_4GPOWER_NUMBER)<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_4GPWRKEY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>GPIO_OUTPUT_NUM(OUTPUT_4GPWRKEY_NUMBER)<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUTPUT_4GRESET<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>GPIO_OUTPUT_NUM(OUTPUT_4GRESET_NUMBER)<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FREEZER_OUTPUT_GPIO()<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(OUTPUT_COMPRESSOR<sp/>|<sp/>OUTPUT_FAN<sp/>|<sp/>OUTPUT_4GPOWER<sp/>|<sp/>OUTPUT_4GPWRKEY<sp/>|<sp/>OUTPUT_4GRESET)//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SET_COMPRESSOR_OUTPUT(x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>do{<sp/>gpio_set_level(OUTPUT_COMPRESSOR_NUMBER,<sp/>(x));<sp/>gpio_set_level(OUTPUT_FAN_NUMBER,<sp/>(x));}while(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SET_FAN_OUTPUT(x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>do{<sp/>gpio_set_level(OUTPUT_FAN_NUMBER,<sp/>(x));<sp/>}while(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SET_4GPOWER_OUTPUT(x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>do{<sp/>gpio_set_level(OUTPUT_4GPOWER_NUMBER,<sp/>(x));<sp/>}while(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SET_4GPWRKEY_OUTPUT(x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>do{<sp/>gpio_set_level(OUTPUT_4GPWRKEY_NUMBER,<sp/>(x));<sp/>}while(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SET_4GRESET_OUTPUT(x)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>do{<sp/>gpio_set_level(OUTPUT_4GRESET_NUMBER,<sp/>(x));<sp/>}while(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>INTERRUPT_ZERO<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(<sp/>GPIO_OUTPUT_NUM(INTERRUPT_ZERO_NUMBER)<sp/>)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FREEZER_INTERRUPT_GPIO()<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(INTERRUPT_ZERO<sp/>)//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="G:/code/esp/code/freezer/main/freezerdrv/drv_gpio.h"/>
+  </compounddef>
+</doxygen>

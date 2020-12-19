@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File drv_display.c &#8212; freezer  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists\css\tree_view.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="file-drv-display-c">
+<span id="file-g-code-esp-code-freezer-main-freezerdrv-drv-display-c"></span><h1>File drv_display.c<a class="headerlink" href="#file-drv-display-c" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="dir_G__code_esp_code_freezer_main_freezerdrv.html#dir-g-code-esp-code-freezer-main-freezerdrv"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\freezerdrv</span></code>)</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-g-code-esp-code-freezer-main-freezerdrv-drv-display-c" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\freezerdrv\drv_display.c</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id2">Includes</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id3">Functions</a></p></li>
+<li><p><a class="reference internal" href="#defines" id="id4">Defines</a></p></li>
+<li><p><a class="reference internal" href="#variables" id="id5">Variables</a></p></li>
+</ul>
+</div>
+<div class="section" id="definition-g-code-esp-code-freezer-main-freezerdrv-drv-display-c">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">G:\code\esp\code\freezer\main\freezerdrv\drv_display.c</span></code>)<a class="headerlink" href="#definition-g-code-esp-code-freezer-main-freezerdrv-drv-display-c" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_G__code_esp_code_freezer_main_freezerdrv_drv_display.c.html">Program Listing for File drv_display.c</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">driver/uart.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drv_display.h</span></code> (<a class="reference internal" href="file_G__code_esp_code_freezer_main_freezerdrv_drv_display.h.html#file-g-code-esp-code-freezer-main-freezerdrv-drv-display-h"><span class="std std-ref">File drv_display.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drv_loopuart.h</span></code> (<a class="reference internal" href="file_G__code_esp_code_freezer_main_freezerdrv_drv_loopuart.h.html#file-g-code-esp-code-freezer-main-freezerdrv-drv-loopuart-h"><span class="std std-ref">File drv_loopuart.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esp_log.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esp_system.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">esp_task_wdt.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">freertos/FreeRTOS.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">freertos/queue.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">freertos/task.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string.h</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_drv__display_8c_1a669228c160543a799a6474bd83ed7431.html#exhale-function-drv-display-8c-1a669228c160543a799a6474bd83ed7431"><span class="std std-ref">Function drvDisplayCanReadData(int, int)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__display_8c_1a90b2efec1d593c29f6e034bee4cce99b.html#exhale-function-drv-display-8c-1a90b2efec1d593c29f6e034bee4cce99b"><span class="std std-ref">Function drvDisplayEventTask</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__display_8c_1a47f0bf6c179915ba45271e760e5cc1f5.html#exhale-function-drv-display-8c-1a47f0bf6c179915ba45271e760e5cc1f5"><span class="std std-ref">Function drvDisplayInit(uartReceiveCallback, QueueHandle_t *)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__display_8c_1a3c6257d6633c1133c6c6ff9bc1898748.html#exhale-function-drv-display-8c-1a3c6257d6633c1133c6c6ff9bc1898748"><span class="std std-ref">Function drvDisplayProcess(void)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__display_8c_1ac9d8a0aa36f271f2d953b208ce4c5d39.html#exhale-function-drv-display-8c-1ac9d8a0aa36f271f2d953b208ce4c5d39"><span class="std std-ref">Function drvDisplayReadData(char *, int, int)</span></a></p></li>
+<li><p><a class="reference internal" href="function_drv__display_8c_1a5097ae130d61d926ae495b1f7160f095.html#exhale-function-drv-display-8c-1a5097ae130d61d926ae495b1f7160f095"><span class="std std-ref">Function drvDisplaySendData(const char *, int)</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="defines">
+<h2>Defines<a class="headerlink" href="#defines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="define_drv__display_8c_1a76893687375140e30295db89fd11b7da.html#exhale-define-drv-display-8c-1a76893687375140e30295db89fd11b7da"><span class="std std-ref">Define PATTERN_CHR_NUM</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="variable_drv__display_8c_1a05d3e98eb94fd35ff57e5b545ebd8a61.html#exhale-variable-drv-display-8c-1a05d3e98eb94fd35ff57e5b545ebd8a61"><span class="std std-ref">Variable displayDataQueue</span></a></p></li>
+<li><p><a class="reference internal" href="variable_drv__display_8c_1a52140b762b74a566c6eae3c3e785e4bb.html#exhale-variable-drv-display-8c-1a52140b762b74a566c6eae3c3e785e4bb"><span class="std std-ref">Variable displayQueuemsg</span></a></p></li>
+<li><p><a class="reference internal" href="variable_drv__display_8c_1a8f804d88a727172910bd8f9c85e21fbd.html#exhale-variable-drv-display-8c-1a8f804d88a727172910bd8f9c85e21fbd"><span class="std std-ref">Variable displayReceiveBuf</span></a></p></li>
+<li><p><a class="reference internal" href="variable_drv__display_8c_1abcd41171404e386dd56bf91daf0deaaf.html#exhale-variable-drv-display-8c-1abcd41171404e386dd56bf91daf0deaaf"><span class="std std-ref">Variable displayReceiveCb</span></a></p></li>
+<li><p><a class="reference internal" href="variable_drv__display_8c_1aa1843535827532b7e151d7995eb00d18.html#exhale-variable-drv-display-8c-1aa1843535827532b7e151d7995eb00d18"><span class="std std-ref">Variable displayUartQueue</span></a></p></li>
+<li><p><a class="reference internal" href="variable_drv__display_8c_1a03af67cfe8dbf5a4c16745052745a34d.html#exhale-variable-drv-display-8c-1a03af67cfe8dbf5a4c16745052745a34d"><span class="std std-ref">Variable drvLoopDisplay</span></a></p></li>
+<li><p><a class="reference internal" href="variable_drv__display_8c_1a7215ea8bf09a65adc834c7937f0a5b72.html#exhale-variable-drv-display-8c-1a7215ea8bf09a65adc834c7937f0a5b72"><span class="std std-ref">Variable UARTTAG</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">freezer</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, vencol.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api/file_G__code_esp_code_freezer_main_freezerdrv_drv_display.c.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

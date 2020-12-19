@@ -1,0 +1,13 @@
+.. _exhale_variable_drv__at_8c_1a7824321023ad9129184997eb1ff951ed:
+
+Variable atDataQueue
+====================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_freezerdrv_drv_at.c`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: atDataQueue

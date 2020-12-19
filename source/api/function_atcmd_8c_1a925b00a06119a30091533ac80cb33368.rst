@@ -1,0 +1,13 @@
+.. _exhale_function_atcmd_8c_1a925b00a06119a30091533ac80cb33368:
+
+Function cellInfoValid
+======================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_atprocess_atcmd.c`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: cellInfoValid(int, int, int, int, int)

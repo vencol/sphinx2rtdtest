@@ -1,0 +1,13 @@
+.. _exhale_define_drv__1650_8c_1a7fc57d5be9f588839a00c75ef2946e17:
+
+Define WRITE_BIT
+================
+
+- Defined in :ref:`file_G__code_esp_code_freezer_main_freezerdrv_drv_1650.c`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: WRITE_BIT
